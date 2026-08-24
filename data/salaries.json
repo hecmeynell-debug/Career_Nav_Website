@@ -1,0 +1,1682 @@
+[
+  {
+    "id": "you",
+    "stages": {
+      "entry": 40,
+      "early": 62,
+      "mid": 90,
+      "senior": 120,
+      "peak": 145
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "de",
+    "stages": {
+      "entry": 38,
+      "early": 55,
+      "mid": 72,
+      "senior": 90,
+      "peak": 110
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "ds",
+    "stages": {
+      "entry": 38,
+      "early": 58,
+      "mid": 78,
+      "senior": 100,
+      "peak": 125
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "analyst",
+    "stages": {
+      "entry": 30,
+      "early": 42,
+      "mid": 55,
+      "senior": 70,
+      "peak": 90
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "swe",
+    "stages": {
+      "entry": 35,
+      "early": 55,
+      "mid": 75,
+      "senior": 95,
+      "peak": 115
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "devops",
+    "stages": {
+      "entry": 38,
+      "early": 58,
+      "mid": 80,
+      "senior": 105,
+      "peak": 135
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "cyber",
+    "stages": {
+      "entry": 35,
+      "early": 55,
+      "mid": 80,
+      "senior": 105,
+      "peak": 130
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "ux",
+    "stages": {
+      "entry": 28,
+      "early": 40,
+      "mid": 55,
+      "senior": 72,
+      "peak": 95
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "itsupport",
+    "stages": {
+      "entry": 24,
+      "early": 30,
+      "mid": 38,
+      "senior": 48,
+      "peak": 60
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "pm",
+    "stages": {
+      "entry": 40,
+      "early": 60,
+      "mid": 85,
+      "senior": 115,
+      "peak": 150
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "quant",
+    "stages": {
+      "entry": 65,
+      "early": 120,
+      "mid": 180,
+      "senior": 250,
+      "peak": 350
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "ib",
+    "stages": {
+      "entry": 65,
+      "early": 120,
+      "mid": 180,
+      "senior": 275,
+      "peak": 450
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "consult",
+    "stages": {
+      "entry": 45,
+      "early": 70,
+      "mid": 100,
+      "senior": 150,
+      "peak": 220
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "finanalyst",
+    "stages": {
+      "entry": 35,
+      "early": 50,
+      "mid": 70,
+      "senior": 95,
+      "peak": 130
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "account",
+    "stages": {
+      "entry": 35,
+      "early": 55,
+      "mid": 75,
+      "senior": 100,
+      "peak": 140
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "auditor",
+    "stages": {
+      "entry": 32,
+      "early": 48,
+      "mid": 65,
+      "senior": 88,
+      "peak": 120
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "hr",
+    "stages": {
+      "entry": 28,
+      "early": 38,
+      "mid": 50,
+      "senior": 65,
+      "peak": 90
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "recruiter",
+    "stages": {
+      "entry": 25,
+      "early": 40,
+      "mid": 60,
+      "senior": 90,
+      "peak": 150
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "economist",
+    "stages": {
+      "entry": 32,
+      "early": 45,
+      "mid": 60,
+      "senior": 80,
+      "peak": 110
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "underwriter",
+    "stages": {
+      "entry": 28,
+      "early": 40,
+      "mid": 55,
+      "senior": 72,
+      "peak": 100
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "doctor",
+    "stages": {
+      "entry": 34,
+      "early": 48,
+      "mid": 65,
+      "senior": 100,
+      "peak": 145
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "surgeon",
+    "stages": {
+      "entry": 34,
+      "early": 50,
+      "mid": 70,
+      "senior": 110,
+      "peak": 180
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "psychiatrist",
+    "stages": {
+      "entry": 34,
+      "early": 50,
+      "mid": 68,
+      "senior": 100,
+      "peak": 140
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "dentist",
+    "stages": {
+      "entry": 35,
+      "early": 55,
+      "mid": 80,
+      "senior": 110,
+      "peak": 150
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "nurse",
+    "stages": {
+      "entry": 29,
+      "early": 35,
+      "mid": 43,
+      "senior": 52,
+      "peak": 65
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "midwife",
+    "stages": {
+      "entry": 29,
+      "early": 35,
+      "mid": 43,
+      "senior": 52,
+      "peak": 63
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "physio",
+    "stages": {
+      "entry": 29,
+      "early": 36,
+      "mid": 45,
+      "senior": 55,
+      "peak": 75
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "ot",
+    "stages": {
+      "entry": 29,
+      "early": 36,
+      "mid": 44,
+      "senior": 53,
+      "peak": 68
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "radiographer",
+    "stages": {
+      "entry": 29,
+      "early": 36,
+      "mid": 45,
+      "senior": 55,
+      "peak": 70
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "pharma",
+    "stages": {
+      "entry": 35,
+      "early": 45,
+      "mid": 52,
+      "senior": 60,
+      "peak": 75
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "optometrist",
+    "stages": {
+      "entry": 30,
+      "early": 42,
+      "mid": 52,
+      "senior": 62,
+      "peak": 85
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "vet",
+    "stages": {
+      "entry": 35,
+      "early": 45,
+      "mid": 55,
+      "senior": 70,
+      "peak": 90
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "psych",
+    "stages": {
+      "entry": 30,
+      "early": 42,
+      "mid": 55,
+      "senior": 70,
+      "peak": 90
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "therapist",
+    "stages": {
+      "entry": 28,
+      "early": 40,
+      "mid": 52,
+      "senior": 65,
+      "peak": 85
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "paramedic",
+    "stages": {
+      "entry": 27,
+      "early": 38,
+      "mid": 46,
+      "senior": 54,
+      "peak": 65
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "careworker",
+    "stages": {
+      "entry": 21,
+      "early": 23,
+      "mid": 26,
+      "senior": 30,
+      "peak": 36
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "socialworker",
+    "stages": {
+      "entry": 28,
+      "early": 34,
+      "mid": 40,
+      "senior": 48,
+      "peak": 60
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "actuary",
+    "stages": {
+      "entry": 32,
+      "early": 50,
+      "mid": 75,
+      "senior": 100,
+      "peak": 130
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "lawyer",
+    "stages": {
+      "entry": 48,
+      "early": 100,
+      "mid": 150,
+      "senior": 220,
+      "peak": 350
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "barrister",
+    "stages": {
+      "entry": 25,
+      "early": 55,
+      "mid": 100,
+      "senior": 180,
+      "peak": 350
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "paralegal",
+    "stages": {
+      "entry": 24,
+      "early": 30,
+      "mid": 38,
+      "senior": 48,
+      "peak": 62
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "surveyor",
+    "stages": {
+      "entry": 28,
+      "early": 40,
+      "mid": 55,
+      "senior": 72,
+      "peak": 95
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "townplanner",
+    "stages": {
+      "entry": 27,
+      "early": 35,
+      "mid": 45,
+      "senior": 58,
+      "peak": 80
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "civileng",
+    "stages": {
+      "entry": 30,
+      "early": 40,
+      "mid": 52,
+      "senior": 68,
+      "peak": 90
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "mecheng",
+    "stages": {
+      "entry": 30,
+      "early": 40,
+      "mid": 52,
+      "senior": 68,
+      "peak": 92
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "eleceng",
+    "stages": {
+      "entry": 31,
+      "early": 42,
+      "mid": 55,
+      "senior": 72,
+      "peak": 98
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "aeroeng",
+    "stages": {
+      "entry": 32,
+      "early": 44,
+      "mid": 58,
+      "senior": 75,
+      "peak": 100
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "researchsci",
+    "stages": {
+      "entry": 30,
+      "early": 38,
+      "mid": 45,
+      "senior": 60,
+      "peak": 90
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "labtech",
+    "stages": {
+      "entry": 27,
+      "early": 33,
+      "mid": 42,
+      "senior": 52,
+      "peak": 68
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "envsci",
+    "stages": {
+      "entry": 26,
+      "early": 33,
+      "mid": 42,
+      "senior": 55,
+      "peak": 78
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "pilot",
+    "stages": {
+      "entry": 30,
+      "early": 55,
+      "mid": 85,
+      "senior": 120,
+      "peak": 150
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "atc",
+    "stages": {
+      "entry": 30,
+      "early": 55,
+      "mid": 75,
+      "senior": 95,
+      "peak": 120
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "traindriver",
+    "stages": {
+      "entry": 30,
+      "early": 48,
+      "mid": 60,
+      "senior": 65,
+      "peak": 70
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "electrician",
+    "stages": {
+      "entry": 22,
+      "early": 32,
+      "mid": 42,
+      "senior": 55,
+      "peak": 75
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "plumber",
+    "stages": {
+      "entry": 22,
+      "early": 32,
+      "mid": 42,
+      "senior": 52,
+      "peak": 70
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "gaseng",
+    "stages": {
+      "entry": 24,
+      "early": 35,
+      "mid": 46,
+      "senior": 58,
+      "peak": 78
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "carpenter",
+    "stages": {
+      "entry": 20,
+      "early": 28,
+      "mid": 38,
+      "senior": 48,
+      "peak": 62
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "welder",
+    "stages": {
+      "entry": 22,
+      "early": 32,
+      "mid": 42,
+      "senior": 55,
+      "peak": 80
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "bricklayer",
+    "stages": {
+      "entry": 20,
+      "early": 28,
+      "mid": 36,
+      "senior": 46,
+      "peak": 60
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "painter",
+    "stages": {
+      "entry": 19,
+      "early": 25,
+      "mid": 32,
+      "senior": 42,
+      "peak": 55
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "mechanic",
+    "stages": {
+      "entry": 20,
+      "early": 27,
+      "mid": 35,
+      "senior": 45,
+      "peak": 60
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "chef",
+    "stages": {
+      "entry": 20,
+      "early": 26,
+      "mid": 34,
+      "senior": 48,
+      "peak": 80
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "pt",
+    "stages": {
+      "entry": 18,
+      "early": 26,
+      "mid": 35,
+      "senior": 48,
+      "peak": 70
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "teacher",
+    "stages": {
+      "entry": 32,
+      "early": 38,
+      "mid": 45,
+      "senior": 52,
+      "peak": 62
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "lecturer",
+    "stages": {
+      "entry": 38,
+      "early": 45,
+      "mid": 55,
+      "senior": 70,
+      "peak": 95
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "civilservant",
+    "stages": {
+      "entry": 30,
+      "early": 40,
+      "mid": 52,
+      "senior": 70,
+      "peak": 95
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "police",
+    "stages": {
+      "entry": 28,
+      "early": 36,
+      "mid": 44,
+      "senior": 52,
+      "peak": 70
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "firefighter",
+    "stages": {
+      "entry": 28,
+      "early": 35,
+      "mid": 42,
+      "senior": 50,
+      "peak": 65
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "architect",
+    "stages": {
+      "entry": 28,
+      "early": 35,
+      "mid": 45,
+      "senior": 60,
+      "peak": 90
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "interiordesign",
+    "stages": {
+      "entry": 22,
+      "early": 30,
+      "mid": 40,
+      "senior": 55,
+      "peak": 85
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "marketer",
+    "stages": {
+      "entry": 26,
+      "early": 35,
+      "mid": 48,
+      "senior": 65,
+      "peak": 90
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "journalist",
+    "stages": {
+      "entry": 22,
+      "early": 28,
+      "mid": 36,
+      "senior": 48,
+      "peak": 70
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "copywriter",
+    "stages": {
+      "entry": 22,
+      "early": 30,
+      "mid": 40,
+      "senior": 55,
+      "peak": 85
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "photographer",
+    "stages": {
+      "entry": 18,
+      "early": 26,
+      "mid": 35,
+      "senior": 48,
+      "peak": 75
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "gdesign",
+    "stages": {
+      "entry": 24,
+      "early": 30,
+      "mid": 38,
+      "senior": 48,
+      "peak": 65
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "estateagent",
+    "stages": {
+      "entry": 22,
+      "early": 32,
+      "mid": 45,
+      "senior": 65,
+      "peak": 110
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "creator",
+    "stages": {
+      "entry": 5,
+      "early": 12,
+      "mid": 25,
+      "senior": 45,
+      "peak": 80
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "businessanalyst",
+    "stages": {
+      "entry": 32,
+      "early": 45,
+      "mid": 58,
+      "senior": 75,
+      "peak": 95
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "mobiledev",
+    "stages": {
+      "entry": 34,
+      "early": 52,
+      "mid": 72,
+      "senior": 92,
+      "peak": 112
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "gamedev",
+    "stages": {
+      "entry": 26,
+      "early": 38,
+      "mid": 55,
+      "senior": 78,
+      "peak": 110
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "qaeng",
+    "stages": {
+      "entry": 28,
+      "early": 42,
+      "mid": 58,
+      "senior": 75,
+      "peak": 95
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "networkeng",
+    "stages": {
+      "entry": 30,
+      "early": 45,
+      "mid": 62,
+      "senior": 80,
+      "peak": 100
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "solarch",
+    "stages": {
+      "entry": 55,
+      "early": 80,
+      "mid": 105,
+      "senior": 130,
+      "peak": 165
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "techwriter",
+    "stages": {
+      "entry": 28,
+      "early": 38,
+      "mid": 50,
+      "senior": 65,
+      "peak": 85
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "dietitian",
+    "stages": {
+      "entry": 29,
+      "early": 35,
+      "mid": 44,
+      "senior": 53,
+      "peak": 70
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "slt",
+    "stages": {
+      "entry": 29,
+      "early": 36,
+      "mid": 45,
+      "senior": 54,
+      "peak": 70
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "podiatrist",
+    "stages": {
+      "entry": 29,
+      "early": 36,
+      "mid": 45,
+      "senior": 55,
+      "peak": 80
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "dentalhyg",
+    "stages": {
+      "entry": 28,
+      "early": 35,
+      "mid": 42,
+      "senior": 50,
+      "peak": 65
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "pharmtech",
+    "stages": {
+      "entry": 23,
+      "early": 27,
+      "mid": 32,
+      "senior": 38,
+      "peak": 48
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "counsellor",
+    "stages": {
+      "entry": 24,
+      "early": 32,
+      "mid": 42,
+      "senior": 52,
+      "peak": 70
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "ifa",
+    "stages": {
+      "entry": 28,
+      "early": 45,
+      "mid": 65,
+      "senior": 90,
+      "peak": 140
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "taxadviser",
+    "stages": {
+      "entry": 30,
+      "early": 45,
+      "mid": 65,
+      "senior": 90,
+      "peak": 130
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "compliance",
+    "stages": {
+      "entry": 32,
+      "early": 48,
+      "mid": 68,
+      "senior": 95,
+      "peak": 140
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "insbroker",
+    "stages": {
+      "entry": 26,
+      "early": 38,
+      "mid": 52,
+      "senior": 72,
+      "peak": 110
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "cilex",
+    "stages": {
+      "entry": 24,
+      "early": 34,
+      "mid": 48,
+      "senior": 65,
+      "peak": 90
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "prisonofficer",
+    "stages": {
+      "entry": 28,
+      "early": 32,
+      "mid": 37,
+      "senior": 42,
+      "peak": 52
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "probation",
+    "stages": {
+      "entry": 28,
+      "early": 34,
+      "mid": 40,
+      "senior": 47,
+      "peak": 58
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "diplomat",
+    "stages": {
+      "entry": 30,
+      "early": 42,
+      "mid": 58,
+      "senior": 80,
+      "peak": 120
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "intelanalyst",
+    "stages": {
+      "entry": 32,
+      "early": 42,
+      "mid": 55,
+      "senior": 72,
+      "peak": 95
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "eho",
+    "stages": {
+      "entry": 28,
+      "early": 35,
+      "mid": 44,
+      "senior": 55,
+      "peak": 72
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "chemeng",
+    "stages": {
+      "entry": 32,
+      "early": 45,
+      "mid": 60,
+      "senior": 80,
+      "peak": 110
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "biomedeng",
+    "stages": {
+      "entry": 30,
+      "early": 42,
+      "mid": 55,
+      "senior": 72,
+      "peak": 95
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "roboticseng",
+    "stages": {
+      "entry": 34,
+      "early": 50,
+      "mid": 68,
+      "senior": 90,
+      "peak": 120
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "quantsurveyor",
+    "stages": {
+      "entry": 28,
+      "early": 40,
+      "mid": 55,
+      "senior": 72,
+      "peak": 100
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "geologist",
+    "stages": {
+      "entry": 28,
+      "early": 38,
+      "mid": 50,
+      "senior": 68,
+      "peak": 95
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "statistician",
+    "stages": {
+      "entry": 30,
+      "early": 44,
+      "mid": 60,
+      "senior": 80,
+      "peak": 110
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "videoeditor",
+    "stages": {
+      "entry": 22,
+      "early": 30,
+      "mid": 40,
+      "senior": 55,
+      "peak": 80
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "animator",
+    "stages": {
+      "entry": 24,
+      "early": 32,
+      "mid": 42,
+      "senior": 58,
+      "peak": 85
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "fashiondesigner",
+    "stages": {
+      "entry": 22,
+      "early": 28,
+      "mid": 38,
+      "senior": 55,
+      "peak": 95
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "industrialdesigner",
+    "stages": {
+      "entry": 27,
+      "early": 38,
+      "mid": 50,
+      "senior": 68,
+      "peak": 95
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "prmanager",
+    "stages": {
+      "entry": 26,
+      "early": 36,
+      "mid": 50,
+      "senior": 70,
+      "peak": 100
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "translator",
+    "stages": {
+      "entry": 24,
+      "early": 30,
+      "mid": 38,
+      "senior": 50,
+      "peak": 75
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "roofer",
+    "stages": {
+      "entry": 20,
+      "early": 28,
+      "mid": 36,
+      "senior": 46,
+      "peak": 62
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "plasterer",
+    "stages": {
+      "entry": 20,
+      "early": 28,
+      "mid": 36,
+      "senior": 46,
+      "peak": 62
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "landscaper",
+    "stages": {
+      "entry": 19,
+      "early": 25,
+      "mid": 32,
+      "senior": 42,
+      "peak": 60
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "hgvdriver",
+    "stages": {
+      "entry": 26,
+      "early": 32,
+      "mid": 38,
+      "senior": 44,
+      "peak": 52
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "hairdresser",
+    "stages": {
+      "entry": 16,
+      "early": 22,
+      "mid": 28,
+      "senior": 38,
+      "peak": 60
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "baker",
+    "stages": {
+      "entry": 18,
+      "early": 24,
+      "mid": 30,
+      "senior": 40,
+      "peak": 58
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "opsmanager",
+    "stages": {
+      "entry": 32,
+      "early": 45,
+      "mid": 60,
+      "senior": 80,
+      "peak": 110
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  },
+  {
+    "id": "supplychain",
+    "stages": {
+      "entry": 32,
+      "early": 45,
+      "mid": 62,
+      "senior": 82,
+      "peak": 115
+    },
+    "source": "estimate",
+    "socCode": null,
+    "citation": null,
+    "lastUpdated": null
+  }
+]

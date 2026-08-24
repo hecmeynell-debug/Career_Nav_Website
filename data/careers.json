@@ -1,0 +1,5630 @@
+[
+  {
+    "id": "you",
+    "name": "ML / AI engineering",
+    "colour": "#1F5FA8",
+    "axes": {
+      "pay": 8,
+      "future": 7.5,
+      "secure": 7.5,
+      "entry": 6,
+      "speed": 8,
+      "life": 7,
+      "option": 7
+    },
+    "workStyle": [
+      3,
+      9,
+      4,
+      2,
+      4,
+      6
+    ],
+    "tags": [
+      "ml",
+      "data",
+      "prog",
+      "cloud"
+    ],
+    "blurb": "A rare all-rounder: decent entry, fast climb, livable hours and the AI-skills premium underneath it.",
+    "route": {
+      "summary": "Numerate degree + MSc, or self-taught portfolio via a data/software role, then a crossover.",
+      "time": "2-5 yrs",
+      "cost": "Moderate (MSc) or low (self-taught)",
+      "steps": [
+        [
+          "Foundations",
+          "Python, SQL, ML fundamentals and a cloud platform"
+        ],
+        [
+          "Credential or portfolio",
+          "MSc in AI/Data Science, or a strong public project portfolio"
+        ],
+        [
+          "Enter & cross over",
+          "Data/software role, then migrate into ML/AI engineering"
+        ]
+      ],
+      "alt": "Direct entry to junior ML roles is rare; most cross in from an adjacent role."
+    }
+  },
+  {
+    "id": "de",
+    "name": "Data engineering",
+    "colour": "#2E6FA8",
+    "axes": {
+      "pay": 7,
+      "future": 7,
+      "secure": 7.5,
+      "entry": 6.5,
+      "speed": 7.5,
+      "life": 7,
+      "option": 7
+    },
+    "workStyle": [
+      4,
+      7,
+      2,
+      2,
+      3,
+      7
+    ],
+    "tags": [
+      "data",
+      "prog",
+      "cloud"
+    ],
+    "blurb": "The backbone of modern data, one of the few high-paying tracks you can enter on a portfolio.",
+    "route": {
+      "summary": "Portfolio-first or MSc conversion into a junior data/analytics engineer role.",
+      "time": "0-2 yrs to first role",
+      "cost": "Low to moderate",
+      "steps": [
+        [
+          "Foundations",
+          "SQL, Python, a cloud platform"
+        ],
+        [
+          "Portfolio",
+          "2-3 real ETL/pipeline projects on GitHub"
+        ],
+        [
+          "Entry role",
+          "Junior data engineer or analytics engineer"
+        ]
+      ],
+      "alt": "Conversion MSc is the common route for non-numerate graduates."
+    }
+  },
+  {
+    "id": "ds",
+    "name": "Data science",
+    "colour": "#3F7EA8",
+    "axes": {
+      "pay": 7.5,
+      "future": 6.5,
+      "secure": 7,
+      "entry": 5,
+      "speed": 7,
+      "life": 7,
+      "option": 6.5
+    },
+    "workStyle": [
+      2,
+      9,
+      3,
+      2,
+      3,
+      6
+    ],
+    "tags": [
+      "data",
+      "ml",
+      "prog"
+    ],
+    "blurb": "Statistics and ML applied to business questions, higher maths bar, and squeezed between analysts and ML engineers.",
+    "route": {
+      "summary": "Numerate degree → MSc (often) → analyst or junior data scientist.",
+      "time": "3-5 yrs incl. study",
+      "cost": "Moderate-high",
+      "steps": [
+        [
+          "Numerate degree",
+          "Maths, stats, CS, economics or science"
+        ],
+        [
+          "MSc (common)",
+          "Data science, statistics or ML"
+        ],
+        [
+          "Entry",
+          "Data analyst or junior data scientist"
+        ]
+      ],
+      "alt": "Analyst-to-scientist internal moves happen without a master’s."
+    }
+  },
+  {
+    "id": "analyst",
+    "name": "Data analyst",
+    "colour": "#5A8AB0",
+    "axes": {
+      "pay": 6,
+      "future": 5.5,
+      "secure": 6.5,
+      "entry": 7,
+      "speed": 6.5,
+      "life": 7,
+      "option": 6
+    },
+    "workStyle": [
+      2,
+      7,
+      2,
+      3,
+      3,
+      7
+    ],
+    "tags": [
+      "data",
+      "prog"
+    ],
+    "blurb": "The most accessible data role and a springboard into science or engineering, the routine reporting end is in AI’s sights.",
+    "route": {
+      "summary": "Any numerate-ish degree or self-study → analyst role → specialise.",
+      "time": "0-2 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Skills",
+          "SQL, Excel, a BI tool, some Python"
+        ],
+        [
+          "Entry",
+          "Data or business analyst role"
+        ],
+        [
+          "Grow",
+          "Senior analyst, or pivot to data science/engineering"
+        ]
+      ],
+      "alt": "Bootcamps and certifications are a common route in."
+    }
+  },
+  {
+    "id": "swe",
+    "name": "Software eng (generalist)",
+    "colour": "#6C747F",
+    "axes": {
+      "pay": 7,
+      "future": 5.5,
+      "secure": 6,
+      "entry": 7,
+      "speed": 8,
+      "life": 7,
+      "option": 7
+    },
+    "workStyle": [
+      3,
+      8,
+      4,
+      2,
+      3,
+      6
+    ],
+    "tags": [
+      "prog",
+      "web",
+      "cloud"
+    ],
+    "blurb": "Well-paid and quick to climb, but the junior rung is the most AI-exposed spot here.",
+    "route": {
+      "summary": "Degree, bootcamp or self-taught portfolio → junior developer.",
+      "time": "0-3 yrs",
+      "cost": "Low-moderate",
+      "steps": [
+        [
+          "Skills + portfolio",
+          "A language, projects on GitHub, fundamentals"
+        ],
+        [
+          "Entry",
+          "Junior developer, grad scheme or apprenticeship"
+        ],
+        [
+          "Grow",
+          "Mid → senior → staff, or specialise"
+        ]
+      ],
+      "alt": "Degree apprenticeships and bootcamps are well-established routes."
+    }
+  },
+  {
+    "id": "devops",
+    "name": "DevOps / cloud engineer",
+    "colour": "#4E7A8A",
+    "axes": {
+      "pay": 7.5,
+      "future": 6.5,
+      "secure": 7,
+      "entry": 5.5,
+      "speed": 7,
+      "life": 6.5,
+      "option": 7
+    },
+    "workStyle": [
+      5,
+      7,
+      2,
+      2,
+      3,
+      7
+    ],
+    "tags": [
+      "cloud",
+      "prog",
+      "cyber"
+    ],
+    "blurb": "The infrastructure-automation backbone of software, usually reached from software or sysadmin, not entered cold.",
+    "route": {
+      "summary": "Software/sysadmin base → cloud certs → DevOps engineer.",
+      "time": "2-4 yrs",
+      "cost": "Low-moderate",
+      "steps": [
+        [
+          "Base",
+          "Software dev or systems administration experience"
+        ],
+        [
+          "Certify",
+          "AWS/Azure/GCP + IaC and containers"
+        ],
+        [
+          "Move",
+          "DevOps/platform/cloud engineer → SRE/architect"
+        ]
+      ],
+      "alt": "Rarely a first job; a step up from an adjacent role."
+    }
+  },
+  {
+    "id": "cyber",
+    "name": "Cybersecurity engineering",
+    "colour": "#2E7A60",
+    "axes": {
+      "pay": 7.5,
+      "future": 8.5,
+      "secure": 8.5,
+      "entry": 6,
+      "speed": 7,
+      "life": 6,
+      "option": 7
+    },
+    "workStyle": [
+      4,
+      8,
+      3,
+      2,
+      4,
+      7
+    ],
+    "tags": [
+      "cyber",
+      "prog",
+      "cloud"
+    ],
+    "blurb": "Structural shortage, rising demand, contract optionality, a durable, well-paid all-rounder.",
+    "route": {
+      "summary": "Degree, apprenticeship, bootcamp or certs → analyst → engineer.",
+      "time": "0-3 yrs",
+      "cost": "Low-moderate",
+      "steps": [
+        [
+          "Foundations",
+          "Networking, systems, security certifications"
+        ],
+        [
+          "Entry",
+          "SOC analyst or apprenticeship"
+        ],
+        [
+          "Specialise",
+          "Security/DevSecOps engineer, pen-testing, cloud security"
+        ]
+      ],
+      "alt": "Cyber degree apprenticeships are strong low-debt routes."
+    }
+  },
+  {
+    "id": "ux",
+    "name": "UX / UI designer",
+    "colour": "#7A6DA8",
+    "axes": {
+      "pay": 6,
+      "future": 5,
+      "secure": 6,
+      "entry": 6,
+      "speed": 6,
+      "life": 6.5,
+      "option": 7
+    },
+    "workStyle": [
+      2,
+      6,
+      8,
+      5,
+      4,
+      4
+    ],
+    "tags": [
+      "ux",
+      "design",
+      "product"
+    ],
+    "blurb": "Design plus research plus psychology, better paid and more durable than pure graphic design.",
+    "route": {
+      "summary": "Portfolio + (optional) course → junior UX → specialise.",
+      "time": "0-3 yrs",
+      "cost": "Low-moderate",
+      "steps": [
+        [
+          "Portfolio",
+          "UX process, research, prototyping; case studies"
+        ],
+        [
+          "Entry",
+          "Junior UX/UI designer"
+        ],
+        [
+          "Grow",
+          "Senior → lead/product designer"
+        ]
+      ],
+      "alt": "Conversion from graphic design, research or front-end dev."
+    }
+  },
+  {
+    "id": "itsupport",
+    "name": "IT support technician",
+    "colour": "#7A828C",
+    "axes": {
+      "pay": 4.5,
+      "future": 5.5,
+      "secure": 6.5,
+      "entry": 8,
+      "speed": 5.5,
+      "life": 7,
+      "option": 5.5
+    },
+    "workStyle": [
+      5,
+      5,
+      2,
+      5,
+      2,
+      6
+    ],
+    "tags": [
+      "admin",
+      "cloud",
+      "cyber"
+    ],
+    "blurb": "A very open on-ramp into tech with clear progression into networks, cloud or security.",
+    "route": {
+      "summary": "Certs/apprenticeship → help desk → specialise up.",
+      "time": "0-1 yr",
+      "cost": "Low",
+      "steps": [
+        [
+          "Foundations",
+          "CompTIA/Microsoft certs or an apprenticeship"
+        ],
+        [
+          "Entry",
+          "First/second-line support"
+        ],
+        [
+          "Climb",
+          "Network, cloud, security or sysadmin roles"
+        ]
+      ],
+      "alt": "One of the most accessible entries into the whole tech sector."
+    }
+  },
+  {
+    "id": "pm",
+    "name": "Product manager",
+    "colour": "#4A6FA0",
+    "axes": {
+      "pay": 7.5,
+      "future": 6.5,
+      "secure": 6.5,
+      "entry": 4.5,
+      "speed": 6.5,
+      "life": 6.5,
+      "option": 6
+    },
+    "workStyle": [
+      2,
+      6,
+      5,
+      6,
+      8,
+      5
+    ],
+    "tags": [
+      "pm",
+      "product"
+    ],
+    "blurb": "Decides what gets built and why, strong pay and a path to leadership, but hard to enter cold.",
+    "route": {
+      "summary": "Lateral move from engineering, analytics, consulting or an APM scheme.",
+      "time": "Varies",
+      "cost": "Low",
+      "steps": [
+        [
+          "Adjacent experience",
+          "Engineering, data, UX, consulting or marketing"
+        ],
+        [
+          "Break in",
+          "APM scheme or internal move to junior PM"
+        ],
+        [
+          "Grow",
+          "PM → senior PM → group PM / director"
+        ]
+      ],
+      "alt": "APM graduate schemes are the direct route, but very competitive."
+    }
+  },
+  {
+    "id": "quant",
+    "name": "Quant finance / dev",
+    "colour": "#6B4E9E",
+    "axes": {
+      "pay": 10,
+      "future": 5.5,
+      "secure": 5.5,
+      "entry": 2,
+      "speed": 8,
+      "life": 4,
+      "option": 4
+    },
+    "workStyle": [
+      1,
+      9,
+      3,
+      1,
+      4,
+      7
+    ],
+    "tags": [
+      "ml",
+      "data",
+      "fin",
+      "prog"
+    ],
+    "blurb": "The highest ceiling here, and the thinnest durability: elite entry, boom-bust cycles, burnout baked in.",
+    "route": {
+      "summary": "Elite numerate degree, often a PhD/MSc → quant analyst/dev.",
+      "time": "4-8 yrs incl. study",
+      "cost": "High (often PhD)",
+      "steps": [
+        [
+          "Numerate degree",
+          "Top maths/physics/CS/engineering degree"
+        ],
+        [
+          "Postgrad (common)",
+          "PhD or elite MSc"
+        ],
+        [
+          "Enter",
+          "Quant analyst, dev or researcher at a fund/bank"
+        ]
+      ],
+      "alt": "Strong CS + competitive programming into quant dev without a PhD."
+    }
+  },
+  {
+    "id": "ib",
+    "name": "Investment banking (IBD)",
+    "colour": "#7A5A3A",
+    "axes": {
+      "pay": 9.5,
+      "future": 6.5,
+      "secure": 6,
+      "entry": 3,
+      "speed": 8.5,
+      "life": 2,
+      "option": 4.5
+    },
+    "workStyle": [
+      1,
+      6,
+      2,
+      3,
+      9,
+      6
+    ],
+    "tags": [
+      "fin"
+    ],
+    "blurb": "Among the highest early pay anywhere, and the worst hours here, with a brutal analyst-to-MD tournament.",
+    "route": {
+      "summary": "Target-uni degree → internship pipeline → analyst programme.",
+      "time": "~3-4 yrs to associate",
+      "cost": "Degree cost only",
+      "steps": [
+        [
+          "Degree",
+          "2:1+ from a target university"
+        ],
+        [
+          "Internship",
+          "Spring week → summer internship"
+        ],
+        [
+          "Analyst",
+          "Analyst programme, then associate"
+        ]
+      ],
+      "alt": "A master’s in finance helps non-target candidates."
+    }
+  },
+  {
+    "id": "consult",
+    "name": "Management consulting",
+    "colour": "#3D6797",
+    "axes": {
+      "pay": 8,
+      "future": 6.5,
+      "secure": 6.5,
+      "entry": 4,
+      "speed": 7,
+      "life": 3.5,
+      "option": 6
+    },
+    "workStyle": [
+      1,
+      7,
+      4,
+      5,
+      8,
+      5
+    ],
+    "tags": [
+      "pm",
+      "fin",
+      "data"
+    ],
+    "blurb": "Broad exposure and an exit-opportunity machine, at the cost of relentless travel and hours.",
+    "route": {
+      "summary": "Strong degree → case-interview recruitment → analyst/associate.",
+      "time": "Direct from graduation",
+      "cost": "Degree (MBA optional)",
+      "steps": [
+        [
+          "Degree",
+          "2:1+, any discipline"
+        ],
+        [
+          "Case prep",
+          "Case + fit interviews are the gate"
+        ],
+        [
+          "Entry",
+          "Analyst/associate, up-or-out to partner"
+        ]
+      ],
+      "alt": "Post-MBA entry, or experienced hire from industry."
+    }
+  },
+  {
+    "id": "finanalyst",
+    "name": "Financial analyst",
+    "colour": "#3D6797",
+    "axes": {
+      "pay": 7,
+      "future": 6,
+      "secure": 7,
+      "entry": 5.5,
+      "speed": 6.5,
+      "life": 6,
+      "option": 5.5
+    },
+    "workStyle": [
+      1,
+      7,
+      2,
+      2,
+      6,
+      8
+    ],
+    "tags": [
+      "fin",
+      "data"
+    ],
+    "blurb": "Corporate finance or markets analysis, a gateway to senior finance, with routine modelling automating.",
+    "route": {
+      "summary": "Degree → graduate role → often CFA while working.",
+      "time": "2-4 yrs",
+      "cost": "Degree (+ CFA)",
+      "steps": [
+        [
+          "Degree",
+          "Finance, economics or maths (2:1+)"
+        ],
+        [
+          "Entry",
+          "Analyst on a graduate scheme"
+        ],
+        [
+          "Credential",
+          "CFA → senior analyst or manager"
+        ]
+      ],
+      "alt": "Accountancy or MBA routes into corporate finance."
+    }
+  },
+  {
+    "id": "account",
+    "name": "Chartered accountancy (ACA)",
+    "colour": "#3D6797",
+    "axes": {
+      "pay": 7.5,
+      "future": 6.5,
+      "secure": 8,
+      "entry": 5.5,
+      "speed": 5.5,
+      "life": 6,
+      "option": 7
+    },
+    "workStyle": [
+      1,
+      5,
+      1,
+      3,
+      5,
+      9
+    ],
+    "tags": [
+      "acct",
+      "fin"
+    ],
+    "blurb": "The reliable escalator into senior finance and the CFO track.",
+    "route": {
+      "summary": "Degree + graduate scheme with ACA/ACCA exams → chartered.",
+      "time": "~3-4 yrs",
+      "cost": "Degree (exams funded)",
+      "steps": [
+        [
+          "Degree",
+          "Any discipline, 2:1+ for top schemes"
+        ],
+        [
+          "Training contract",
+          "Graduate scheme sponsoring ACA/ACCA"
+        ],
+        [
+          "Qualify",
+          "Pass exams → chartered accountant"
+        ]
+      ],
+      "alt": "School-leaver and apprenticeship routes (AAT → ACA) skip the degree."
+    }
+  },
+  {
+    "id": "auditor",
+    "name": "Auditor",
+    "colour": "#4A6E90",
+    "axes": {
+      "pay": 6.5,
+      "future": 5.5,
+      "secure": 7.5,
+      "entry": 5.5,
+      "speed": 5.5,
+      "life": 6,
+      "option": 6
+    },
+    "workStyle": [
+      1,
+      5,
+      1,
+      3,
+      4,
+      9
+    ],
+    "tags": [
+      "acct",
+      "fin"
+    ],
+    "blurb": "A structured, secure route through the profession, but the routine testing half is heavily automation-exposed.",
+    "route": {
+      "summary": "Degree → audit graduate scheme with ACA → qualify → industry or stay.",
+      "time": "~3 yrs",
+      "cost": "Degree (exams funded)",
+      "steps": [
+        [
+          "Degree",
+          "Any discipline, 2:1+"
+        ],
+        [
+          "Scheme",
+          "Audit graduate role at a firm"
+        ],
+        [
+          "Qualify",
+          "ACA → senior auditor, or exit to industry"
+        ]
+      ],
+      "alt": "Apprenticeship routes into audit are growing."
+    }
+  },
+  {
+    "id": "hr",
+    "name": "HR manager",
+    "colour": "#5A7A6A",
+    "axes": {
+      "pay": 5.5,
+      "future": 6,
+      "secure": 7,
+      "entry": 6,
+      "speed": 5.5,
+      "life": 6.5,
+      "option": 5.5
+    },
+    "workStyle": [
+      1,
+      3,
+      3,
+      8,
+      5,
+      6
+    ],
+    "tags": [
+      "hr",
+      "admin"
+    ],
+    "blurb": "A stable, people-centred profession with a ladder into leadership, middling pay, admin-heavy tasks automating.",
+    "route": {
+      "summary": "Any degree → HR role → CIPD qualification → manager.",
+      "time": "3-5 yrs",
+      "cost": "Degree (+ CIPD)",
+      "steps": [
+        [
+          "Entry",
+          "HR assistant; any degree"
+        ],
+        [
+          "Qualify",
+          "CIPD Level 5/7"
+        ],
+        [
+          "Advance",
+          "HR manager → business partner → director"
+        ]
+      ],
+      "alt": "Apprenticeships and internal moves from admin roles."
+    }
+  },
+  {
+    "id": "recruiter",
+    "name": "Recruitment consultant",
+    "colour": "#8A6A4A",
+    "axes": {
+      "pay": 6.5,
+      "future": 5,
+      "secure": 5,
+      "entry": 8,
+      "speed": 7,
+      "life": 5,
+      "option": 7
+    },
+    "workStyle": [
+      1,
+      3,
+      3,
+      7,
+      9,
+      4
+    ],
+    "tags": [
+      "sales",
+      "hr"
+    ],
+    "blurb": "Very open entry and uncapped commission make top earnings high, but target-driven, cyclical and insecure.",
+    "route": {
+      "summary": "Any background → trainee consultant → build a desk.",
+      "time": "0-2 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Entry",
+          "Trainee consultant, drive matters more than a degree"
+        ],
+        [
+          "Build",
+          "Develop a sector niche; hit targets"
+        ],
+        [
+          "Grow",
+          "Senior/principal, team lead, or start an agency"
+        ]
+      ],
+      "alt": "In-house recruitment offers steadier, salaried work."
+    }
+  },
+  {
+    "id": "economist",
+    "name": "Economist",
+    "colour": "#5A6EA0",
+    "axes": {
+      "pay": 6.5,
+      "future": 7,
+      "secure": 7,
+      "entry": 4.5,
+      "speed": 5,
+      "life": 6.5,
+      "option": 5
+    },
+    "workStyle": [
+      1,
+      9,
+      3,
+      3,
+      5,
+      6
+    ],
+    "tags": [
+      "econ",
+      "data",
+      "research"
+    ],
+    "blurb": "Analytical policy or commercial work with strong credibility, usually needs a strong quantitative postgrad.",
+    "route": {
+      "summary": "Economics degree → MSc (often) → government/consultancy/finance.",
+      "time": "3-5 yrs",
+      "cost": "Degree + MSc",
+      "steps": [
+        [
+          "Degree",
+          "Economics (2:1+), quantitative focus"
+        ],
+        [
+          "MSc",
+          "Economics master’s expected for many roles"
+        ],
+        [
+          "Enter",
+          "Government Economic Service, consultancy or finance"
+        ]
+      ],
+      "alt": "The Government Economic Service fast stream is a key entry."
+    }
+  },
+  {
+    "id": "underwriter",
+    "name": "Insurance underwriter",
+    "colour": "#4A6E80",
+    "axes": {
+      "pay": 6,
+      "future": 6,
+      "secure": 7.5,
+      "entry": 6,
+      "speed": 5.5,
+      "life": 6.5,
+      "option": 5
+    },
+    "workStyle": [
+      1,
+      6,
+      1,
+      3,
+      4,
+      9
+    ],
+    "tags": [
+      "fin",
+      "acct"
+    ],
+    "blurb": "A stable, less-visible profession pricing risk, good balance and security, with data tools reshaping the routine end.",
+    "route": {
+      "summary": "Any degree → trainee underwriter → CII qualifications.",
+      "time": "2-4 yrs",
+      "cost": "Degree (exams funded)",
+      "steps": [
+        [
+          "Entry",
+          "Graduate/trainee underwriter"
+        ],
+        [
+          "Qualify",
+          "Chartered Insurance Institute exams"
+        ],
+        [
+          "Advance",
+          "Senior underwriter → specialist lines or management"
+        ]
+      ],
+      "alt": "Apprenticeships and internal moves from broking."
+    }
+  },
+  {
+    "id": "doctor",
+    "name": "Doctor (GP / consultant)",
+    "colour": "#B0472E",
+    "axes": {
+      "pay": 8.2,
+      "future": 9,
+      "secure": 9.5,
+      "entry": 2.5,
+      "speed": 2.5,
+      "life": 4,
+      "option": 6
+    },
+    "workStyle": [
+      4,
+      8,
+      2,
+      8,
+      4,
+      6
+    ],
+    "tags": [
+      "clin",
+      "research"
+    ],
+    "blurb": "The classic delayed-gratification curve: a punishing decade, then near-total security and strong money.",
+    "route": {
+      "summary": "Medical school → foundation → specialty training → consultant/GP.",
+      "time": "~10+ yrs to consultant",
+      "cost": "High",
+      "steps": [
+        [
+          "Medical school",
+          "5-6 yr degree (or graduate-entry)"
+        ],
+        [
+          "Foundation",
+          "2 years foundation training"
+        ],
+        [
+          "Specialty",
+          "3-8 yrs specialty/GP training → consultant or GP"
+        ]
+      ],
+      "alt": "Graduate-entry medicine for those with a prior degree."
+    }
+  },
+  {
+    "id": "surgeon",
+    "name": "Surgeon",
+    "colour": "#9A3E2E",
+    "axes": {
+      "pay": 9,
+      "future": 9.5,
+      "secure": 9.5,
+      "entry": 2,
+      "speed": 2,
+      "life": 3,
+      "option": 5
+    },
+    "workStyle": [
+      7,
+      8,
+      2,
+      6,
+      5,
+      6
+    ],
+    "tags": [
+      "clin"
+    ],
+    "blurb": "The apex of procedural medicine: elite pay and near-total security, at the cost of the longest training path here.",
+    "route": {
+      "summary": "Medical school → foundation → core → specialty surgical training → consultant.",
+      "time": "~12-15 yrs",
+      "cost": "High",
+      "steps": [
+        [
+          "Medical school",
+          "5-6 yr degree"
+        ],
+        [
+          "Foundation + core",
+          "Foundation, then core surgical training"
+        ],
+        [
+          "Specialty",
+          "Higher surgical training → CCT → consultant surgeon"
+        ]
+      ],
+      "alt": "Sub-specialisation and private practice raise earnings further."
+    }
+  },
+  {
+    "id": "psychiatrist",
+    "name": "Psychiatrist",
+    "colour": "#8A4E6E",
+    "axes": {
+      "pay": 8,
+      "future": 9,
+      "secure": 9,
+      "entry": 2.5,
+      "speed": 2.5,
+      "life": 5,
+      "option": 6
+    },
+    "workStyle": [
+      2,
+      8,
+      3,
+      9,
+      4,
+      5
+    ],
+    "tags": [
+      "clin"
+    ],
+    "blurb": "Medicine’s security and pay applied to mental health, long training, but strong demand and better balance than surgery.",
+    "route": {
+      "summary": "Medical school → foundation → core + higher psychiatry training → consultant.",
+      "time": "~11-13 yrs",
+      "cost": "High",
+      "steps": [
+        [
+          "Medical school",
+          "5-6 yr degree"
+        ],
+        [
+          "Foundation",
+          "2 years foundation training"
+        ],
+        [
+          "Psychiatry",
+          "Core + higher specialty training → consultant psychiatrist"
+        ]
+      ],
+      "alt": "A range of sub-specialties (forensic, child, old-age)."
+    }
+  },
+  {
+    "id": "dentist",
+    "name": "Dentistry",
+    "colour": "#C77D2E",
+    "axes": {
+      "pay": 8.5,
+      "future": 9,
+      "secure": 9,
+      "entry": 3,
+      "speed": 5,
+      "life": 6,
+      "option": 8
+    },
+    "workStyle": [
+      7,
+      6,
+      3,
+      6,
+      6,
+      6
+    ],
+    "tags": [
+      "clin"
+    ],
+    "blurb": "Medicine’s pay and durability, but you can own the practice and reach the money faster.",
+    "route": {
+      "summary": "Dental school → foundation training → dentist (NHS/private/own practice).",
+      "time": "~6 yrs",
+      "cost": "High",
+      "steps": [
+        [
+          "Dental school",
+          "5-yr dentistry degree"
+        ],
+        [
+          "Foundation",
+          "1 yr foundation training"
+        ],
+        [
+          "Practise",
+          "Associate → principal / practice owner, or specialise"
+        ]
+      ],
+      "alt": "Specialty training (orthodontics, oral surgery) for higher earnings."
+    }
+  },
+  {
+    "id": "nurse",
+    "name": "Registered nurse",
+    "colour": "#4E8A8A",
+    "axes": {
+      "pay": 5,
+      "future": 9,
+      "secure": 9,
+      "entry": 5.5,
+      "speed": 4.5,
+      "life": 4.5,
+      "option": 6
+    },
+    "workStyle": [
+      5,
+      4,
+      2,
+      9,
+      3,
+      6
+    ],
+    "tags": [
+      "clin",
+      "care"
+    ],
+    "blurb": "Deep, durable demand and near-total security, modest banded pay and demanding shifts the trade-off.",
+    "route": {
+      "summary": "Nursing degree → NMC registration → band 5 nurse.",
+      "time": "3 yrs",
+      "cost": "Degree (NHS funding support)",
+      "steps": [
+        [
+          "Nursing degree",
+          "BSc Nursing (NMC-approved)"
+        ],
+        [
+          "Register",
+          "Nursing & Midwifery Council register"
+        ],
+        [
+          "Practise",
+          "Band 5 → specialist/senior or advanced practice"
+        ]
+      ],
+      "alt": "Nursing degree apprenticeship, earn while you train."
+    }
+  },
+  {
+    "id": "midwife",
+    "name": "Midwife",
+    "colour": "#5E8A7A",
+    "axes": {
+      "pay": 5,
+      "future": 9,
+      "secure": 9,
+      "entry": 5.5,
+      "speed": 4.5,
+      "life": 4.5,
+      "option": 5.5
+    },
+    "workStyle": [
+      5,
+      4,
+      2,
+      9,
+      3,
+      5
+    ],
+    "tags": [
+      "clin",
+      "care"
+    ],
+    "blurb": "Deeply meaningful, automation-proof and utterly secure, modest banded pay and hard shifts the trade-off.",
+    "route": {
+      "summary": "Midwifery degree → NMC registration → practise.",
+      "time": "3 yrs",
+      "cost": "Degree (NHS funding support)",
+      "steps": [
+        [
+          "Degree",
+          "BSc Midwifery (NMC-approved)"
+        ],
+        [
+          "Register",
+          "Nursing & Midwifery Council registration"
+        ],
+        [
+          "Practise",
+          "Band 5 → band 6/7 or specialist roles"
+        ]
+      ],
+      "alt": "Shortened programmes for registered nurses."
+    }
+  },
+  {
+    "id": "physio",
+    "name": "Physiotherapist",
+    "colour": "#3E8A6E",
+    "axes": {
+      "pay": 5,
+      "future": 8.5,
+      "secure": 8,
+      "entry": 5,
+      "speed": 4.5,
+      "life": 7,
+      "option": 8
+    },
+    "workStyle": [
+      6,
+      5,
+      2,
+      8,
+      4,
+      4
+    ],
+    "tags": [
+      "clin",
+      "fitness"
+    ],
+    "blurb": "Hands-on, trust-based and automation-resistant, with private-practice independence, capped ceiling the trade-off.",
+    "route": {
+      "summary": "Physio degree → HCPC registration → practise (NHS or private).",
+      "time": "3 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "BSc/MSc Physiotherapy (HCPC-approved)"
+        ],
+        [
+          "Register",
+          "HCPC registration"
+        ],
+        [
+          "Practise",
+          "NHS bands or a private practice"
+        ]
+      ],
+      "alt": "Physiotherapy degree apprenticeship route."
+    }
+  },
+  {
+    "id": "ot",
+    "name": "Occupational therapist",
+    "colour": "#4E8A5E",
+    "axes": {
+      "pay": 5,
+      "future": 8.5,
+      "secure": 8,
+      "entry": 5,
+      "speed": 4.5,
+      "life": 7,
+      "option": 7
+    },
+    "workStyle": [
+      5,
+      5,
+      4,
+      9,
+      4,
+      5
+    ],
+    "tags": [
+      "clin",
+      "care"
+    ],
+    "blurb": "Trust-based rehabilitation, automation-resistant with private options, a modest ceiling the cost of the meaning.",
+    "route": {
+      "summary": "OT degree → HCPC registration → practise.",
+      "time": "3 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "BSc/MSc Occupational Therapy (HCPC-approved)"
+        ],
+        [
+          "Register",
+          "HCPC registration"
+        ],
+        [
+          "Practise",
+          "NHS bands or independent practice"
+        ]
+      ],
+      "alt": "Degree apprenticeship route."
+    }
+  },
+  {
+    "id": "radiographer",
+    "name": "Radiographer",
+    "colour": "#5E8A8A",
+    "axes": {
+      "pay": 5.5,
+      "future": 8,
+      "secure": 8.5,
+      "entry": 5,
+      "speed": 4.5,
+      "life": 6,
+      "option": 5
+    },
+    "workStyle": [
+      6,
+      6,
+      2,
+      6,
+      2,
+      7
+    ],
+    "tags": [
+      "clin",
+      "lab"
+    ],
+    "blurb": "A stable, technical clinical role, AI assists imaging but the hands-on, patient-facing core endures.",
+    "route": {
+      "summary": "Radiography degree → HCPC registration → practise.",
+      "time": "3 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "BSc Diagnostic or Therapeutic Radiography"
+        ],
+        [
+          "Register",
+          "HCPC registration"
+        ],
+        [
+          "Advance",
+          "Band 5 → advanced/consultant practitioner"
+        ]
+      ],
+      "alt": "Degree apprenticeship routes exist."
+    }
+  },
+  {
+    "id": "pharma",
+    "name": "Pharmacist",
+    "colour": "#5E8A4E",
+    "axes": {
+      "pay": 6,
+      "future": 8,
+      "secure": 8,
+      "entry": 4,
+      "speed": 5.5,
+      "life": 6,
+      "option": 7
+    },
+    "workStyle": [
+      3,
+      6,
+      1,
+      6,
+      4,
+      8
+    ],
+    "tags": [
+      "clin",
+      "lab"
+    ],
+    "blurb": "Secure, well-regulated and clinically respected, with community-ownership options.",
+    "route": {
+      "summary": "MPharm → foundation year → registration assessment → registered pharmacist.",
+      "time": "~5 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "MPharm",
+          "4-year Master of Pharmacy degree"
+        ],
+        [
+          "Foundation year",
+          "Paid pre-registration training"
+        ],
+        [
+          "Register",
+          "Pass the GPhC registration assessment"
+        ]
+      ],
+      "alt": "Now includes prescribing from qualification under newer standards."
+    }
+  },
+  {
+    "id": "optometrist",
+    "name": "Optometrist",
+    "colour": "#4E7A6A",
+    "axes": {
+      "pay": 6.5,
+      "future": 8,
+      "secure": 8,
+      "entry": 3.5,
+      "speed": 5,
+      "life": 6.5,
+      "option": 8
+    },
+    "workStyle": [
+      5,
+      6,
+      2,
+      6,
+      5,
+      6
+    ],
+    "tags": [
+      "clin"
+    ],
+    "blurb": "A clinical profession with strong high-street demand and practice-ownership upside, a competitive degree the barrier.",
+    "route": {
+      "summary": "Optometry degree → pre-reg year → GOC registration.",
+      "time": "~4 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "Optometry degree (competitive)"
+        ],
+        [
+          "Pre-reg",
+          "Supervised pre-registration year"
+        ],
+        [
+          "Register",
+          "GOC registration → practise, specialise or own a practice"
+        ]
+      ],
+      "alt": "Independent-prescribing qualifications extend the clinical scope."
+    }
+  },
+  {
+    "id": "vet",
+    "name": "Veterinarian",
+    "colour": "#8A6D3B",
+    "axes": {
+      "pay": 6,
+      "future": 8.5,
+      "secure": 8,
+      "entry": 2.5,
+      "speed": 4,
+      "life": 4,
+      "option": 7.5
+    },
+    "workStyle": [
+      6,
+      7,
+      2,
+      7,
+      5,
+      5
+    ],
+    "tags": [
+      "clin",
+      "research"
+    ],
+    "blurb": "Vocation-heavy and automation-proof with ownership upside, but a punishing degree and emotional toll.",
+    "route": {
+      "summary": "Vet degree → RCVS registration → practise.",
+      "time": "5-6 yrs",
+      "cost": "High",
+      "steps": [
+        [
+          "Vet degree",
+          "5-yr veterinary medicine degree (very competitive)"
+        ],
+        [
+          "Register",
+          "Royal College of Veterinary Surgeons registration"
+        ],
+        [
+          "Practise",
+          "Assistant vet → senior/partner or owner"
+        ]
+      ],
+      "alt": "Graduate-entry accelerated vet degrees for science graduates."
+    }
+  },
+  {
+    "id": "psych",
+    "name": "Clinical psychologist",
+    "colour": "#7A5A8A",
+    "axes": {
+      "pay": 6,
+      "future": 8.5,
+      "secure": 8,
+      "entry": 3,
+      "speed": 3,
+      "life": 6.5,
+      "option": 7.5
+    },
+    "workStyle": [
+      1,
+      8,
+      4,
+      9,
+      3,
+      5
+    ],
+    "tags": [
+      "clin",
+      "research"
+    ],
+    "blurb": "Deeply meaningful and automation-resistant, with private-practice independence, the doctorate route is long and competitive.",
+    "route": {
+      "summary": "Psychology degree → experience → funded DClinPsy → HCPC registration.",
+      "time": "~6-8 yrs",
+      "cost": "Doctorate often funded but hard to win",
+      "steps": [
+        [
+          "Degree",
+          "BPS-accredited psychology degree"
+        ],
+        [
+          "Experience",
+          "Assistant psychologist roles, the bottleneck"
+        ],
+        [
+          "Doctorate",
+          "3-yr DClinPsy → HCPC registration"
+        ]
+      ],
+      "alt": "Counselling psychology or PWP roles as faster entry."
+    }
+  },
+  {
+    "id": "therapist",
+    "name": "Mental-health therapist",
+    "colour": "#4E8A8A",
+    "axes": {
+      "pay": 5.5,
+      "future": 8.5,
+      "secure": 7.5,
+      "entry": 5,
+      "speed": 4,
+      "life": 7,
+      "option": 8
+    },
+    "workStyle": [
+      1,
+      6,
+      5,
+      9,
+      3,
+      4
+    ],
+    "tags": [
+      "clin",
+      "care"
+    ],
+    "blurb": "Rising demand, a deep trust-moat against automation, and private practice you own, modest ceiling the cost.",
+    "route": {
+      "summary": "Relevant degree + accredited training and placement hours → accredited.",
+      "time": "~4-6 yrs",
+      "cost": "Moderate-high",
+      "steps": [
+        [
+          "Degree",
+          "Psychology or a related field"
+        ],
+        [
+          "Accredited training",
+          "Counselling/psychotherapy course + placement"
+        ],
+        [
+          "Accredit",
+          "BACP/UKCP accreditation → NHS or private"
+        ]
+      ],
+      "alt": "IAPT/PWP roles offer a faster, funded entry."
+    }
+  },
+  {
+    "id": "paramedic",
+    "name": "Paramedic",
+    "colour": "#B0472E",
+    "axes": {
+      "pay": 5.5,
+      "future": 8.5,
+      "secure": 8.5,
+      "entry": 5.5,
+      "speed": 5,
+      "life": 4.5,
+      "option": 6
+    },
+    "workStyle": [
+      7,
+      5,
+      2,
+      8,
+      4,
+      5
+    ],
+    "tags": [
+      "clin",
+      "safety"
+    ],
+    "blurb": "Embodied, high-responsibility and automation-proof, with expanding advanced-practice roles.",
+    "route": {
+      "summary": "Paramedic science degree → HCPC registration → practise.",
+      "time": "3 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "Paramedic science degree (HCPC-approved)"
+        ],
+        [
+          "Register",
+          "HCPC registration"
+        ],
+        [
+          "Practise",
+          "Ambulance service → advanced paramedic, GP roles"
+        ]
+      ],
+      "alt": "Paramedic degree apprenticeship."
+    }
+  },
+  {
+    "id": "careworker",
+    "name": "Care worker",
+    "colour": "#7A6A5A",
+    "axes": {
+      "pay": 3,
+      "future": 8,
+      "secure": 8,
+      "entry": 9,
+      "speed": 3.5,
+      "life": 4.5,
+      "option": 5
+    },
+    "workStyle": [
+      4,
+      2,
+      2,
+      9,
+      2,
+      4
+    ],
+    "tags": [
+      "care"
+    ],
+    "blurb": "Utterly automation-proof and always in demand, and the most open door in healthcare, but among the lowest pay here.",
+    "route": {
+      "summary": "Apply directly → on-the-job training → optional qualifications.",
+      "time": "Immediate",
+      "cost": "Very low",
+      "steps": [
+        [
+          "Enter",
+          "Apply directly, no formal qualifications needed"
+        ],
+        [
+          "Train",
+          "On-the-job + Care Certificate"
+        ],
+        [
+          "Progress",
+          "Senior carer, then into nursing or management with study"
+        ]
+      ],
+      "alt": "A common stepping stone into nursing via an apprenticeship."
+    }
+  },
+  {
+    "id": "socialworker",
+    "name": "Social worker",
+    "colour": "#5A6E7A",
+    "axes": {
+      "pay": 5,
+      "future": 8,
+      "secure": 8,
+      "entry": 5.5,
+      "speed": 4.5,
+      "life": 4,
+      "option": 5
+    },
+    "workStyle": [
+      2,
+      4,
+      3,
+      9,
+      4,
+      5
+    ],
+    "tags": [
+      "care",
+      "admin"
+    ],
+    "blurb": "Demanding, meaningful, automation-proof frontline work with strong security, heavy caseloads and modest pay the reality.",
+    "route": {
+      "summary": "Social work degree (or apprenticeship) → registration → practise.",
+      "time": "3 yrs",
+      "cost": "Degree (bursaries available)",
+      "steps": [
+        [
+          "Degree",
+          "BA/MA Social Work (approved)"
+        ],
+        [
+          "Register",
+          "Social Work England registration"
+        ],
+        [
+          "Practise",
+          "Assessed year → specialise"
+        ]
+      ],
+      "alt": "Frontline/Step Up fast-track and apprenticeship routes."
+    }
+  },
+  {
+    "id": "actuary",
+    "name": "Actuary",
+    "colour": "#8A6D3B",
+    "axes": {
+      "pay": 7.5,
+      "future": 8.5,
+      "secure": 9,
+      "entry": 4.5,
+      "speed": 4,
+      "life": 7,
+      "option": 6
+    },
+    "workStyle": [
+      1,
+      9,
+      1,
+      2,
+      5,
+      9
+    ],
+    "tags": [
+      "fin",
+      "data",
+      "acct"
+    ],
+    "blurb": "An exam gauntlet gates a near-recession-proof, comfortable, sane-hours career. Security is its superpower.",
+    "route": {
+      "summary": "Numerate degree → trainee role → professional exams → qualify.",
+      "time": "~3-6 yrs of exams",
+      "cost": "Degree (exams funded)",
+      "steps": [
+        [
+          "Numerate degree",
+          "Maths, stats, economics, actuarial science"
+        ],
+        [
+          "Trainee role",
+          "Employer-sponsored while you sit exams"
+        ],
+        [
+          "Qualify",
+          "Pass IFoA exams → qualified actuary"
+        ]
+      ],
+      "alt": "Actuarial apprenticeships offer a non-degree route."
+    }
+  },
+  {
+    "id": "lawyer",
+    "name": "Solicitor (corporate)",
+    "colour": "#7A2E3A",
+    "axes": {
+      "pay": 9,
+      "future": 7,
+      "secure": 7,
+      "entry": 3,
+      "speed": 4,
+      "life": 2.5,
+      "option": 5
+    },
+    "workStyle": [
+      1,
+      7,
+      3,
+      4,
+      8,
+      7
+    ],
+    "tags": [
+      "legal"
+    ],
+    "blurb": "Superb pay and prestige, bought with the worst hours here and an up-or-out tournament.",
+    "route": {
+      "summary": "Degree (or conversion) + SQE → qualifying work experience → solicitor.",
+      "time": "~5-6 yrs",
+      "cost": "High",
+      "steps": [
+        [
+          "Degree",
+          "Law degree, or any degree + conversion"
+        ],
+        [
+          "SQE",
+          "Pass the Solicitors Qualifying Exam"
+        ],
+        [
+          "Qualify",
+          "2 yrs qualifying work experience → solicitor → partner"
+        ]
+      ],
+      "alt": "Solicitor apprenticeships (6 yrs) qualify with no tuition debt."
+    }
+  },
+  {
+    "id": "barrister",
+    "name": "Barrister",
+    "colour": "#6A2E3A",
+    "axes": {
+      "pay": 8.5,
+      "future": 7,
+      "secure": 5.5,
+      "entry": 2.5,
+      "speed": 3.5,
+      "life": 3,
+      "option": 7
+    },
+    "workStyle": [
+      1,
+      7,
+      5,
+      5,
+      9,
+      6
+    ],
+    "tags": [
+      "legal"
+    ],
+    "blurb": "Advocacy at the top of the profession, self-employed and high-ceiling, but a brutally competitive route and precarious early years.",
+    "route": {
+      "summary": "Law degree/conversion → Bar course → pupillage → tenancy.",
+      "time": "~5-6 yrs",
+      "cost": "High (Bar course + lean early years)",
+      "steps": [
+        [
+          "Degree",
+          "Law degree or any degree + conversion"
+        ],
+        [
+          "Bar course",
+          "Vocational Bar training + join an Inn"
+        ],
+        [
+          "Pupillage",
+          "Win a pupillage → tenancy in chambers"
+        ]
+      ],
+      "alt": "Employed barrister roles (CPS, in-house) offer more security."
+    }
+  },
+  {
+    "id": "paralegal",
+    "name": "Paralegal",
+    "colour": "#7A4E5A",
+    "axes": {
+      "pay": 5,
+      "future": 5.5,
+      "secure": 6.5,
+      "entry": 7,
+      "speed": 5,
+      "life": 6.5,
+      "option": 5
+    },
+    "workStyle": [
+      1,
+      5,
+      2,
+      4,
+      3,
+      8
+    ],
+    "tags": [
+      "legal",
+      "admin"
+    ],
+    "blurb": "An accessible entry into law without the debt, but the routine document work is squarely in AI’s path.",
+    "route": {
+      "summary": "Any degree or paralegal qualification → paralegal role → optional route to solicitor.",
+      "time": "0-2 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Enter",
+          "Law degree, or a paralegal qualification"
+        ],
+        [
+          "Work",
+          "Paralegal in a firm or in-house team"
+        ],
+        [
+          "Progress",
+          "Senior paralegal, or qualify as a solicitor via SQE"
+        ]
+      ],
+      "alt": "A common stepping stone toward qualifying as a solicitor."
+    }
+  },
+  {
+    "id": "surveyor",
+    "name": "Chartered surveyor",
+    "colour": "#5A6E88",
+    "axes": {
+      "pay": 6.5,
+      "future": 7,
+      "secure": 7.5,
+      "entry": 5.5,
+      "speed": 5.5,
+      "life": 6.5,
+      "option": 6.5
+    },
+    "workStyle": [
+      6,
+      5,
+      2,
+      4,
+      6,
+      7
+    ],
+    "tags": [
+      "property",
+      "engciv"
+    ],
+    "blurb": "A stable, chartered profession across property, construction and land, with an inspection element that resists automation.",
+    "route": {
+      "summary": "RICS-accredited degree (or conversion) → APC → MRICS.",
+      "time": "~4-5 yrs",
+      "cost": "Degree (conversion possible)",
+      "steps": [
+        [
+          "Degree",
+          "RICS-accredited degree, or a conversion master’s"
+        ],
+        [
+          "APC",
+          "~2 yrs of structured workplace training"
+        ],
+        [
+          "Charter",
+          "Pass the APC to become MRICS"
+        ]
+      ],
+      "alt": "Surveying degree apprenticeships and conversion routes."
+    }
+  },
+  {
+    "id": "townplanner",
+    "name": "Town planner",
+    "colour": "#5E7A6A",
+    "axes": {
+      "pay": 5.5,
+      "future": 6.5,
+      "secure": 7.5,
+      "entry": 5.5,
+      "speed": 5,
+      "life": 7,
+      "option": 5.5
+    },
+    "workStyle": [
+      3,
+      6,
+      5,
+      6,
+      6,
+      6
+    ],
+    "tags": [
+      "property",
+      "env",
+      "admin"
+    ],
+    "blurb": "Stable, meaningful shaping of the built environment with good balance, a modest ceiling outside senior private-sector roles.",
+    "route": {
+      "summary": "RTPI-accredited degree (or conversion) → APC → chartered planner.",
+      "time": "~4-5 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "RTPI-accredited degree, or a conversion master’s"
+        ],
+        [
+          "Experience",
+          "Assistant planner building competencies"
+        ],
+        [
+          "Charter",
+          "RTPI Assessment of Professional Competence"
+        ]
+      ],
+      "alt": "Degree apprenticeships in planning are growing."
+    }
+  },
+  {
+    "id": "civileng",
+    "name": "Civil / structural engineer",
+    "colour": "#4E6A5A",
+    "axes": {
+      "pay": 6.5,
+      "future": 8,
+      "secure": 7.5,
+      "entry": 5.5,
+      "speed": 5,
+      "life": 6.5,
+      "option": 6
+    },
+    "workStyle": [
+      7,
+      7,
+      3,
+      3,
+      5,
+      7
+    ],
+    "tags": [
+      "engciv",
+      "engmech"
+    ],
+    "blurb": "Infrastructure demand is structural, the work is embodied and accountable, and chartership is a durable moat.",
+    "route": {
+      "summary": "Accredited degree → graduate role → chartership (CEng).",
+      "time": "~6-8 yrs to chartered",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "Accredited BEng/MEng civil/structural"
+        ],
+        [
+          "Graduate role",
+          "Build competencies under a mentor"
+        ],
+        [
+          "Chartership",
+          "ICE/IStructE review for CEng"
+        ]
+      ],
+      "alt": "Degree apprenticeships lead to the same chartership."
+    }
+  },
+  {
+    "id": "mecheng",
+    "name": "Mechanical engineer",
+    "colour": "#5A6A6A",
+    "axes": {
+      "pay": 6.5,
+      "future": 7.5,
+      "secure": 7.5,
+      "entry": 5.5,
+      "speed": 5.5,
+      "life": 6.5,
+      "option": 6
+    },
+    "workStyle": [
+      7,
+      8,
+      3,
+      2,
+      5,
+      6
+    ],
+    "tags": [
+      "engmech"
+    ],
+    "blurb": "A broad, durable engineering discipline across manufacturing, energy and product, a solid, not spectacular, ceiling.",
+    "route": {
+      "summary": "Accredited degree → graduate role → chartership (CEng).",
+      "time": "~6-8 yrs to chartered",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "Accredited BEng/MEng mechanical"
+        ],
+        [
+          "Graduate role",
+          "Competency development under a mentor"
+        ],
+        [
+          "Chartership",
+          "IMechE review for CEng"
+        ]
+      ],
+      "alt": "Degree apprenticeships lead to the same chartership."
+    }
+  },
+  {
+    "id": "eleceng",
+    "name": "Electrical / electronics engineer",
+    "colour": "#4E6A7A",
+    "axes": {
+      "pay": 6.5,
+      "future": 8,
+      "secure": 7.5,
+      "entry": 5.5,
+      "speed": 5.5,
+      "life": 6.5,
+      "option": 6
+    },
+    "workStyle": [
+      7,
+      8,
+      3,
+      2,
+      5,
+      6
+    ],
+    "tags": [
+      "engelec",
+      "engmech"
+    ],
+    "blurb": "Power, electronics and embedded systems, riding electrification and defence demand, chartership a durable credential.",
+    "route": {
+      "summary": "Accredited degree → graduate role → chartership (CEng).",
+      "time": "~6-8 yrs to chartered",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "Accredited electrical/electronic degree"
+        ],
+        [
+          "Graduate role",
+          "Structured competency development"
+        ],
+        [
+          "Chartership",
+          "IET review for CEng"
+        ]
+      ],
+      "alt": "Degree apprenticeships; strong defence and energy overlap."
+    }
+  },
+  {
+    "id": "aeroeng",
+    "name": "Aerospace engineer",
+    "colour": "#4E5E7A",
+    "axes": {
+      "pay": 7,
+      "future": 7.5,
+      "secure": 7.5,
+      "entry": 5,
+      "speed": 5.5,
+      "life": 6.5,
+      "option": 5.5
+    },
+    "workStyle": [
+      6,
+      9,
+      3,
+      2,
+      5,
+      7
+    ],
+    "tags": [
+      "engmech",
+      "engelec"
+    ],
+    "blurb": "High-skill design and systems work in aviation, space and defence, cyclical, but clearance-gated roles are well protected.",
+    "route": {
+      "summary": "Accredited degree → graduate scheme → chartership (CEng).",
+      "time": "~6-8 yrs to chartered",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "Accredited aerospace/mechanical degree"
+        ],
+        [
+          "Graduate scheme",
+          "Often at a defence or aerospace prime"
+        ],
+        [
+          "Chartership",
+          "RAeS/IMechE review for CEng"
+        ]
+      ],
+      "alt": "Degree apprenticeships at major aerospace employers."
+    }
+  },
+  {
+    "id": "researchsci",
+    "name": "Research scientist (academia)",
+    "colour": "#5A5E7A",
+    "axes": {
+      "pay": 4.5,
+      "future": 7,
+      "secure": 4,
+      "entry": 3,
+      "speed": 3,
+      "life": 5.5,
+      "option": 5
+    },
+    "workStyle": [
+      3,
+      9,
+      4,
+      2,
+      3,
+      6
+    ],
+    "tags": [
+      "research",
+      "lab"
+    ],
+    "blurb": "Intellectually rich frontier work, but a broken labour market, low pay for the training, and brutal postdoc-to-lecturer odds.",
+    "route": {
+      "summary": "Degree → PhD → postdoc(s) → (rare) permanent academic post.",
+      "time": "~8-12 yrs",
+      "cost": "PhD often funded, but long low-pay years",
+      "steps": [
+        [
+          "Degree",
+          "Strong science degree"
+        ],
+        [
+          "PhD",
+          "3-4 yr doctorate"
+        ],
+        [
+          "Postdoc → post",
+          "Postdoc years → compete for scarce lecturer roles"
+        ]
+      ],
+      "alt": "Industry R&D pays far better and is far more secure than academia."
+    }
+  },
+  {
+    "id": "labtech",
+    "name": "Biomedical / lab scientist",
+    "colour": "#5E7A7A",
+    "axes": {
+      "pay": 5,
+      "future": 7,
+      "secure": 7.5,
+      "entry": 5.5,
+      "speed": 4.5,
+      "life": 6.5,
+      "option": 4.5
+    },
+    "workStyle": [
+      6,
+      7,
+      1,
+      3,
+      2,
+      8
+    ],
+    "tags": [
+      "lab",
+      "research"
+    ],
+    "blurb": "Steady, essential lab work underpinning healthcare and research, secure and balanced, with a modest ceiling.",
+    "route": {
+      "summary": "Accredited degree → HCPC registration → practise (NHS or industry).",
+      "time": "3-4 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "IBMS-accredited biomedical science degree"
+        ],
+        [
+          "Registration",
+          "Complete a registration portfolio → HCPC"
+        ],
+        [
+          "Advance",
+          "Specialist → advanced/consultant scientist"
+        ]
+      ],
+      "alt": "Degree apprenticeships and the NHS Scientist Training Programme."
+    }
+  },
+  {
+    "id": "envsci",
+    "name": "Environmental scientist",
+    "colour": "#5E7A5A",
+    "axes": {
+      "pay": 5,
+      "future": 7.5,
+      "secure": 6.5,
+      "entry": 5.5,
+      "speed": 4.5,
+      "life": 6.5,
+      "option": 5.5
+    },
+    "workStyle": [
+      6,
+      7,
+      3,
+      5,
+      4,
+      6
+    ],
+    "tags": [
+      "env",
+      "research",
+      "lab"
+    ],
+    "blurb": "Growing demand from climate, energy and regulation, meaningful and durable, though pay lags outside senior consultancy.",
+    "route": {
+      "summary": "Science degree → graduate role → chartership (CEnv/CSci).",
+      "time": "~4-6 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "Environmental/earth/biological science"
+        ],
+        [
+          "Entry",
+          "Consultancy, agency or industry role"
+        ],
+        [
+          "Charter",
+          "Chartered Environmentalist status"
+        ]
+      ],
+      "alt": "MSc in a specialism (e.g. sustainability) aids entry."
+    }
+  },
+  {
+    "id": "pilot",
+    "name": "Airline pilot (senior)",
+    "colour": "#5A6E88",
+    "axes": {
+      "pay": 8,
+      "future": 7.5,
+      "secure": 7,
+      "entry": 3,
+      "speed": 4,
+      "life": 5,
+      "option": 4
+    },
+    "workStyle": [
+      7,
+      5,
+      2,
+      4,
+      5,
+      7
+    ],
+    "tags": [
+      "aviation"
+    ],
+    "blurb": "Great once senior, but a huge self-funded training bill, a cyclical industry, and a life lived on a roster.",
+    "route": {
+      "summary": "Self-funded training or cadetship → frozen ATPL → first officer.",
+      "time": "~2-3 yrs training",
+      "cost": "Very high (£70-100k+) unless sponsored",
+      "steps": [
+        [
+          "Training",
+          "Integrated/modular flight training"
+        ],
+        [
+          "Licence",
+          "Frozen ATPL + type rating"
+        ],
+        [
+          "Fly",
+          "First officer → captain with hours and seniority"
+        ]
+      ],
+      "alt": "Airline cadet schemes reduce or spread the upfront cost."
+    }
+  },
+  {
+    "id": "atc",
+    "name": "Air traffic controller",
+    "colour": "#3C6796",
+    "axes": {
+      "pay": 8.5,
+      "future": 7.5,
+      "secure": 8,
+      "entry": 5,
+      "speed": 6.5,
+      "life": 6,
+      "option": 3
+    },
+    "workStyle": [
+      4,
+      6,
+      2,
+      5,
+      4,
+      8
+    ],
+    "tags": [
+      "aviation",
+      "safety"
+    ],
+    "blurb": "Unusually high pay for a non-degree route, with strong security and a hard automation moat, brutal selection the barrier.",
+    "route": {
+      "summary": "Aptitude selection → paid training → validation → controller.",
+      "time": "~3 yrs to validated",
+      "cost": "Low (training is paid)",
+      "steps": [
+        [
+          "Selection",
+          "Rigorous aptitude testing, most are filtered out"
+        ],
+        [
+          "Training",
+          "Paid classroom + simulator training"
+        ],
+        [
+          "Validate",
+          "On-the-job validation → licensed controller"
+        ]
+      ],
+      "alt": "No degree needed; age and medical requirements apply."
+    }
+  },
+  {
+    "id": "traindriver",
+    "name": "Train driver",
+    "colour": "#5E6E88",
+    "axes": {
+      "pay": 7.5,
+      "future": 7,
+      "secure": 8,
+      "entry": 6,
+      "speed": 6,
+      "life": 6,
+      "option": 2
+    },
+    "workStyle": [
+      7,
+      3,
+      1,
+      3,
+      2,
+      7
+    ],
+    "tags": [
+      "safety"
+    ],
+    "blurb": "Unusually high pay for the entry bar, strongly unionised and secure, but limited progression and few operators.",
+    "route": {
+      "summary": "Apply to a trainee scheme → paid training → qualified driver.",
+      "time": "~1-2 yrs training",
+      "cost": "Low (paid training)",
+      "steps": [
+        [
+          "Apply",
+          "Trainee driver scheme, competitive, no degree"
+        ],
+        [
+          "Train",
+          "Paid rules, traction and route training"
+        ],
+        [
+          "Drive",
+          "Qualified driver; limited but stable progression"
+        ]
+      ],
+      "alt": "Often entered from other rail roles (conductor, station staff)."
+    }
+  },
+  {
+    "id": "electrician",
+    "name": "Electrician",
+    "colour": "#B08A2E",
+    "axes": {
+      "pay": 6.5,
+      "future": 9.5,
+      "secure": 8.5,
+      "entry": 8,
+      "speed": 6,
+      "life": 6,
+      "option": 9
+    },
+    "workStyle": [
+      9,
+      4,
+      2,
+      4,
+      5,
+      6
+    ],
+    "tags": [
+      "telec"
+    ],
+    "blurb": "High-demand, licensed and riding the EV/solar/heat-pump boom, arguably the most future-proof trade, with strong self-employment upside.",
+    "route": {
+      "summary": "Apprenticeship → NVQ Level 3 → qualified electrician (→ self-employed).",
+      "time": "~3-4 yrs",
+      "cost": "Low (paid apprenticeship)",
+      "steps": [
+        [
+          "Apprenticeship",
+          "Earn while you learn toward NVQ Level 3"
+        ],
+        [
+          "Qualify",
+          "AM2 assessment + Part P; join a competent-person scheme"
+        ],
+        [
+          "Go solo",
+          "Employed → self-employed → run a firm"
+        ]
+      ],
+      "alt": "Adult fast-track courses exist, but employers value logged experience."
+    }
+  },
+  {
+    "id": "plumber",
+    "name": "Plumber",
+    "colour": "#9A7A3E",
+    "axes": {
+      "pay": 6.5,
+      "future": 9,
+      "secure": 8.5,
+      "entry": 8,
+      "speed": 6,
+      "life": 5.5,
+      "option": 9
+    },
+    "workStyle": [
+      9,
+      3,
+      2,
+      5,
+      5,
+      5
+    ],
+    "tags": [
+      "tplumb"
+    ],
+    "blurb": "Essential, embodied and impossible to offshore, with excellent self-employment earnings, call-outs and emergency hours the trade-off.",
+    "route": {
+      "summary": "Apprenticeship → NVQ Level 2/3 → qualified plumber (gas optional).",
+      "time": "~2-4 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Apprenticeship",
+          "NVQ in plumbing & heating"
+        ],
+        [
+          "Qualify",
+          "Level 3; add Gas Safe for boiler work"
+        ],
+        [
+          "Go solo",
+          "Self-employed or build a team"
+        ]
+      ],
+      "alt": "Gas Safe registration significantly raises earning power."
+    }
+  },
+  {
+    "id": "gaseng",
+    "name": "Gas / heating engineer",
+    "colour": "#A87A2E",
+    "axes": {
+      "pay": 7,
+      "future": 8.5,
+      "secure": 8.5,
+      "entry": 7,
+      "speed": 6,
+      "life": 5.5,
+      "option": 9
+    },
+    "workStyle": [
+      9,
+      4,
+      2,
+      5,
+      5,
+      6
+    ],
+    "tags": [
+      "tplumb",
+      "telec"
+    ],
+    "blurb": "Gas Safe registration is a licence to earn, high demand, strong self-employed rates, and heat-pump work adding a green tailwind.",
+    "route": {
+      "summary": "Plumbing/heating route → Gas Safe registration → engineer.",
+      "time": "~3-4 yrs",
+      "cost": "Low-moderate",
+      "steps": [
+        [
+          "Train",
+          "Plumbing & heating apprenticeship or managed programme"
+        ],
+        [
+          "Register",
+          "ACS assessment → Gas Safe registration"
+        ],
+        [
+          "Go solo",
+          "Domestic/commercial work, or run a business"
+        ]
+      ],
+      "alt": "Managed Learning Programmes for adult career-changers."
+    }
+  },
+  {
+    "id": "carpenter",
+    "name": "Carpenter / joiner",
+    "colour": "#8A6A3A",
+    "axes": {
+      "pay": 5.5,
+      "future": 8.5,
+      "secure": 8,
+      "entry": 8,
+      "speed": 6,
+      "life": 6,
+      "option": 8.5
+    },
+    "workStyle": [
+      9,
+      3,
+      5,
+      3,
+      5,
+      5
+    ],
+    "tags": [
+      "tconstruct"
+    ],
+    "blurb": "A craft trade spanning construction and bespoke joinery, hands-on and automation-proof, a solid ceiling with real ownership potential.",
+    "route": {
+      "summary": "Apprenticeship → NVQ → carpenter/joiner (→ own business).",
+      "time": "~2-3 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Apprenticeship",
+          "Site carpentry or bench joinery NVQ"
+        ],
+        [
+          "Qualify",
+          "Level 2/3 + on-site experience"
+        ],
+        [
+          "Specialise",
+          "First/second fix, joinery, or run a firm"
+        ]
+      ],
+      "alt": "College diplomas plus experience, though apprenticeship is preferred."
+    }
+  },
+  {
+    "id": "welder",
+    "name": "Welder / fabricator",
+    "colour": "#8A5A2E",
+    "axes": {
+      "pay": 6,
+      "future": 8,
+      "secure": 7.5,
+      "entry": 7.5,
+      "speed": 6,
+      "life": 5,
+      "option": 7
+    },
+    "workStyle": [
+      9,
+      3,
+      3,
+      2,
+      4,
+      6
+    ],
+    "tags": [
+      "tconstruct",
+      "tmech"
+    ],
+    "blurb": "A certification-gated trade where coded (offshore/pipeline) welders earn very well, physically demanding and site-dependent.",
+    "route": {
+      "summary": "Apprenticeship/college → welding certifications → coded welder.",
+      "time": "~2-3 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Train",
+          "Apprenticeship or welding course"
+        ],
+        [
+          "Certify",
+          "Coding tests for specific processes/positions"
+        ],
+        [
+          "Specialise",
+          "Offshore, pipeline or fabrication for top rates"
+        ]
+      ],
+      "alt": "Coded/specialist welding pays a large premium over general work."
+    }
+  },
+  {
+    "id": "bricklayer",
+    "name": "Bricklayer",
+    "colour": "#9A5B34",
+    "axes": {
+      "pay": 5.5,
+      "future": 7.5,
+      "secure": 7,
+      "entry": 8,
+      "speed": 6,
+      "life": 5,
+      "option": 8
+    },
+    "workStyle": [
+      9,
+      2,
+      2,
+      3,
+      4,
+      5
+    ],
+    "tags": [
+      "tconstruct"
+    ],
+    "blurb": "Core construction trade, embodied and hard to automate, with self-employed earnings, weather-exposed and physically tough.",
+    "route": {
+      "summary": "Apprenticeship → NVQ → bricklayer (→ self-employed/gang).",
+      "time": "~2 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Apprenticeship",
+          "Bricklaying NVQ Level 2"
+        ],
+        [
+          "Qualify",
+          "On-site experience + CSCS card"
+        ],
+        [
+          "Go solo",
+          "Sub-contract or run a gang"
+        ]
+      ],
+      "alt": "College courses plus site experience."
+    }
+  },
+  {
+    "id": "painter",
+    "name": "Painter & decorator",
+    "colour": "#A8825A",
+    "axes": {
+      "pay": 4.5,
+      "future": 7,
+      "secure": 6.5,
+      "entry": 8.5,
+      "speed": 6,
+      "life": 6,
+      "option": 8.5
+    },
+    "workStyle": [
+      8,
+      2,
+      5,
+      4,
+      5,
+      4
+    ],
+    "tags": [
+      "tconstruct"
+    ],
+    "blurb": "One of the most accessible trades to enter and go solo, a lower ceiling and easy competition the trade-off.",
+    "route": {
+      "summary": "Apprenticeship or short course → experience → self-employed.",
+      "time": "~1-2 yrs",
+      "cost": "Very low",
+      "steps": [
+        [
+          "Learn",
+          "Apprenticeship or college course"
+        ],
+        [
+          "Build up",
+          "Experience and a portfolio of jobs"
+        ],
+        [
+          "Go solo",
+          "Domestic/commercial decorating business"
+        ]
+      ],
+      "alt": "Very common self-taught → self-employed route."
+    }
+  },
+  {
+    "id": "mechanic",
+    "name": "Auto mechanic / technician",
+    "colour": "#7A6A4A",
+    "axes": {
+      "pay": 5,
+      "future": 6.5,
+      "secure": 7,
+      "entry": 8,
+      "speed": 6,
+      "life": 6,
+      "option": 7.5
+    },
+    "workStyle": [
+      9,
+      5,
+      2,
+      4,
+      4,
+      6
+    ],
+    "tags": [
+      "tmech"
+    ],
+    "blurb": "A hands-on trade shifting fast to EV and diagnostics, retrain for EVs and durability rises; stick to petrol and it falls.",
+    "route": {
+      "summary": "Apprenticeship → NVQ → technician (→ EV specialism / own garage).",
+      "time": "~3 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Apprenticeship",
+          "Motor vehicle NVQ"
+        ],
+        [
+          "Qualify",
+          "Level 3 + manufacturer training"
+        ],
+        [
+          "Specialise",
+          "EV/hybrid diagnostics, or open a garage"
+        ]
+      ],
+      "alt": "EV/hybrid certification is the future-proofing move."
+    }
+  },
+  {
+    "id": "chef",
+    "name": "Chef",
+    "colour": "#A8603A",
+    "axes": {
+      "pay": 4.5,
+      "future": 7.5,
+      "secure": 6,
+      "entry": 7.5,
+      "speed": 5,
+      "life": 3,
+      "option": 8
+    },
+    "workStyle": [
+      7,
+      3,
+      8,
+      5,
+      6,
+      5
+    ],
+    "tags": [
+      "culinary"
+    ],
+    "blurb": "A hands-on craft that’s automation-resistant with restaurant-ownership upside, brutal hours and low early pay the cost.",
+    "route": {
+      "summary": "Kitchen entry (+ optional college) → work up the brigade → head chef.",
+      "time": "~4-8 yrs to head chef",
+      "cost": "Low",
+      "steps": [
+        [
+          "Start",
+          "Commis chef; culinary college optional"
+        ],
+        [
+          "Climb",
+          "Chef de partie → sous chef"
+        ],
+        [
+          "Lead",
+          "Head chef, or open your own place"
+        ]
+      ],
+      "alt": "Apprenticeships and culinary school speed the early climb."
+    }
+  },
+  {
+    "id": "pt",
+    "name": "Personal trainer",
+    "colour": "#A87A4A",
+    "axes": {
+      "pay": 4,
+      "future": 7,
+      "secure": 4.5,
+      "entry": 8.5,
+      "speed": 5,
+      "life": 6,
+      "option": 9
+    },
+    "workStyle": [
+      7,
+      3,
+      3,
+      8,
+      7,
+      4
+    ],
+    "tags": [
+      "fitness",
+      "care"
+    ],
+    "blurb": "Quick and cheap to qualify, highly independent and people-facing, but client-dependent and insecure, especially early.",
+    "route": {
+      "summary": "Level 2/3 certification → build a client base → self-employed.",
+      "time": "~6-12 months to qualify",
+      "cost": "Low",
+      "steps": [
+        [
+          "Certify",
+          "Level 2 Gym Instructor + Level 3 Personal Trainer"
+        ],
+        [
+          "Build",
+          "Gym floor → grow a client base"
+        ],
+        [
+          "Scale",
+          "Independent, online coaching, or own studio"
+        ]
+      ],
+      "alt": "Online coaching and niche specialisms raise the ceiling."
+    }
+  },
+  {
+    "id": "teacher",
+    "name": "Teaching",
+    "colour": "#7E8A5A",
+    "axes": {
+      "pay": 4.5,
+      "future": 7.5,
+      "secure": 8,
+      "entry": 6,
+      "speed": 4,
+      "life": 4,
+      "option": 4
+    },
+    "workStyle": [
+      2,
+      5,
+      5,
+      9,
+      6,
+      6
+    ],
+    "tags": [
+      "teach"
+    ],
+    "blurb": "AI-resistant in the relational sense and secure, but a flat, publicly-set pay scale and heavy workload cap it here.",
+    "route": {
+      "summary": "Degree + teaching qualification (PGCE/QTS) → qualified teacher.",
+      "time": "~1 yr post-degree",
+      "cost": "Degree + PGCE (bursaries in shortage subjects)",
+      "steps": [
+        [
+          "Degree",
+          "Subject degree, or an education degree"
+        ],
+        [
+          "Train",
+          "PGCE or school-based training → QTS"
+        ],
+        [
+          "Teach",
+          "Early-career teacher → main scale → leadership"
+        ]
+      ],
+      "alt": "Salaried school-based training and apprenticeship routes."
+    }
+  },
+  {
+    "id": "lecturer",
+    "name": "University lecturer",
+    "colour": "#6A6E5A",
+    "axes": {
+      "pay": 5.5,
+      "future": 6.5,
+      "secure": 5,
+      "entry": 2.5,
+      "speed": 3,
+      "life": 5.5,
+      "option": 5
+    },
+    "workStyle": [
+      1,
+      9,
+      5,
+      6,
+      4,
+      6
+    ],
+    "tags": [
+      "teach",
+      "research"
+    ],
+    "blurb": "Prestige, autonomy and intellectual freedom, undercut by a difficult labour market and years of insecure early posts.",
+    "route": {
+      "summary": "Degree → PhD → postdoc/teaching → permanent lectureship.",
+      "time": "~8-12 yrs",
+      "cost": "PhD often funded; long lean years",
+      "steps": [
+        [
+          "PhD",
+          "Doctorate in the field"
+        ],
+        [
+          "Early roles",
+          "Postdoc, teaching fellow, or research fellow"
+        ],
+        [
+          "Lectureship",
+          "Compete for a permanent academic post → senior lecturer/professor"
+        ]
+      ],
+      "alt": "Teaching-focused and industry-adjacent academic roles."
+    }
+  },
+  {
+    "id": "civilservant",
+    "name": "Civil servant (Fast Stream)",
+    "colour": "#5A6E88",
+    "axes": {
+      "pay": 6,
+      "future": 7.5,
+      "secure": 8,
+      "entry": 4.5,
+      "speed": 5.5,
+      "life": 7,
+      "option": 4.5
+    },
+    "workStyle": [
+      1,
+      6,
+      3,
+      6,
+      6,
+      8
+    ],
+    "tags": [
+      "admin",
+      "pm"
+    ],
+    "blurb": "Stable, meaningful public-policy work with good balance and a clear ladder into leadership, pay lags the private sector.",
+    "route": {
+      "summary": "Degree → Fast Stream assessment centre → leadership scheme.",
+      "time": "~4 yr scheme",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "2:1+ typically; any discipline"
+        ],
+        [
+          "Fast Stream",
+          "Multi-stage online + assessment-centre selection"
+        ],
+        [
+          "Progress",
+          "Rotational scheme → Grade 7 → senior civil service"
+        ]
+      ],
+      "alt": "Direct-entry apprenticeships and standard grades."
+    }
+  },
+  {
+    "id": "police",
+    "name": "Police officer",
+    "colour": "#3C5E88",
+    "axes": {
+      "pay": 5.5,
+      "future": 8,
+      "secure": 8.5,
+      "entry": 6,
+      "speed": 5,
+      "life": 4.5,
+      "option": 4
+    },
+    "workStyle": [
+      6,
+      4,
+      2,
+      7,
+      6,
+      6
+    ],
+    "tags": [
+      "safety"
+    ],
+    "blurb": "Secure, pensioned public service with genuine variety and progression, shift work and public scrutiny the trade-offs.",
+    "route": {
+      "summary": "Degree-entry or degree-holder entry → probation → constable.",
+      "time": "~2-3 yrs to confirmed",
+      "cost": "Low (some routes paid)",
+      "steps": [
+        [
+          "Apply",
+          "PCDA apprenticeship, degree-holder entry, or pre-join degree"
+        ],
+        [
+          "Train",
+          "Paid on-the-job training + study"
+        ],
+        [
+          "Progress",
+          "Constable → sergeant → inspector, or specialise"
+        ]
+      ],
+      "alt": "Direct-entry detective routes exist."
+    }
+  },
+  {
+    "id": "firefighter",
+    "name": "Firefighter",
+    "colour": "#A0472E",
+    "axes": {
+      "pay": 5.5,
+      "future": 8.5,
+      "secure": 8.5,
+      "entry": 6,
+      "speed": 5,
+      "life": 6,
+      "option": 4
+    },
+    "workStyle": [
+      9,
+      3,
+      2,
+      7,
+      5,
+      5
+    ],
+    "tags": [
+      "safety"
+    ],
+    "blurb": "Embodied, respected public service with a strong pension and security, very competitive to enter and physically demanding.",
+    "route": {
+      "summary": "Fitness + aptitude selection → training → firefighter.",
+      "time": "~1 yr to operational",
+      "cost": "Low",
+      "steps": [
+        [
+          "Selection",
+          "Physical, aptitude and medical tests, very competitive"
+        ],
+        [
+          "Train",
+          "Intensive initial training course"
+        ],
+        [
+          "Develop",
+          "Firefighter → crew/watch manager, or specialise"
+        ]
+      ],
+      "alt": "On-call (retained) firefighter routes alongside other work."
+    }
+  },
+  {
+    "id": "architect",
+    "name": "Architect",
+    "colour": "#8A6D3B",
+    "axes": {
+      "pay": 5,
+      "future": 6,
+      "secure": 6.5,
+      "entry": 3.5,
+      "speed": 3.5,
+      "life": 5,
+      "option": 7
+    },
+    "workStyle": [
+      5,
+      6,
+      9,
+      4,
+      6,
+      6
+    ],
+    "tags": [
+      "design",
+      "engciv",
+      "property"
+    ],
+    "blurb": "Creative and respected, with ownership potential, but one of the longest, lowest-paid qualification routes for the effort.",
+    "route": {
+      "summary": "Part 1 → Part 2 → Part 3, ~7 years to registration.",
+      "time": "~7 yrs",
+      "cost": "High (long study)",
+      "steps": [
+        [
+          "Part 1",
+          "3-yr architecture degree"
+        ],
+        [
+          "Part 2",
+          "2-yr MArch after a year in practice"
+        ],
+        [
+          "Part 3",
+          "Practice + exams → ARB/RIBA registration"
+        ]
+      ],
+      "alt": "Architecture apprenticeships offer an earn-while-you-train route."
+    }
+  },
+  {
+    "id": "interiordesign",
+    "name": "Interior designer",
+    "colour": "#A87A8A",
+    "axes": {
+      "pay": 4.5,
+      "future": 5.5,
+      "secure": 4.5,
+      "entry": 6.5,
+      "speed": 5,
+      "life": 6,
+      "option": 8
+    },
+    "workStyle": [
+      4,
+      3,
+      9,
+      6,
+      6,
+      5
+    ],
+    "tags": [
+      "design"
+    ],
+    "blurb": "Creative and ownership-friendly, with high-end residential and commercial upside, project-based income and some AI pressure the risks.",
+    "route": {
+      "summary": "Degree or course + portfolio → junior/assistant → own studio.",
+      "time": "0-4 yrs",
+      "cost": "Moderate",
+      "steps": [
+        [
+          "Train",
+          "Interior design degree or diploma; build a portfolio"
+        ],
+        [
+          "Entry",
+          "Junior/assistant designer at a studio"
+        ],
+        [
+          "Establish",
+          "Senior designer, or own practice"
+        ]
+      ],
+      "alt": "Self-taught + portfolio route into residential work."
+    }
+  },
+  {
+    "id": "marketer",
+    "name": "Digital marketing manager",
+    "colour": "#A87A5A",
+    "axes": {
+      "pay": 5.5,
+      "future": 5,
+      "secure": 6,
+      "entry": 7,
+      "speed": 6.5,
+      "life": 6.5,
+      "option": 7.5
+    },
+    "workStyle": [
+      1,
+      4,
+      7,
+      6,
+      8,
+      5
+    ],
+    "tags": [
+      "market",
+      "media",
+      "sales"
+    ],
+    "blurb": "Accessible and creative with freelance/agency upside, but generative AI is reshaping content and campaign work fast.",
+    "route": {
+      "summary": "Any degree or none → junior/exec role → build a results portfolio.",
+      "time": "0-2 yrs to entry",
+      "cost": "Low",
+      "steps": [
+        [
+          "Foundations",
+          "SEO, paid media, analytics, content, often self-taught + certs"
+        ],
+        [
+          "Entry",
+          "Marketing executive, agency or in-house"
+        ],
+        [
+          "Grow",
+          "Manager → head of marketing, or freelance"
+        ]
+      ],
+      "alt": "Bootcamps and platform certifications speed entry."
+    }
+  },
+  {
+    "id": "journalist",
+    "name": "Journalist",
+    "colour": "#7A6A5A",
+    "axes": {
+      "pay": 4,
+      "future": 4,
+      "secure": 4,
+      "entry": 6,
+      "speed": 5,
+      "life": 5,
+      "option": 6
+    },
+    "workStyle": [
+      2,
+      6,
+      8,
+      6,
+      6,
+      4
+    ],
+    "tags": [
+      "write",
+      "media"
+    ],
+    "blurb": "Meaningful and varied, but a shrinking, insecure industry with modest pay and heavy AI/economic pressure on the routine end.",
+    "route": {
+      "summary": "Degree or NCTJ → junior reporter → build a beat.",
+      "time": "0-3 yrs",
+      "cost": "Low-moderate",
+      "steps": [
+        [
+          "Train",
+          "Journalism degree or NCTJ; build clips"
+        ],
+        [
+          "Entry",
+          "Junior reporter or content role"
+        ],
+        [
+          "Grow",
+          "Specialist correspondent, editor, or freelance"
+        ]
+      ],
+      "alt": "Portfolio + freelancing route without formal qualifications."
+    }
+  },
+  {
+    "id": "copywriter",
+    "name": "Copywriter",
+    "colour": "#8A6A7A",
+    "axes": {
+      "pay": 4.5,
+      "future": 3.5,
+      "secure": 4,
+      "entry": 7,
+      "speed": 5,
+      "life": 6.5,
+      "option": 8
+    },
+    "workStyle": [
+      1,
+      4,
+      9,
+      4,
+      6,
+      4
+    ],
+    "tags": [
+      "write",
+      "market"
+    ],
+    "blurb": "Flexible, creative and freelance-friendly, but generative AI is compressing routine copy hard, so the safe ground is strategy and brand.",
+    "route": {
+      "summary": "Portfolio → junior/agency role or freelance → specialise.",
+      "time": "0-3 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Portfolio",
+          "Spec work and a portfolio; degree optional"
+        ],
+        [
+          "Entry",
+          "Junior copywriter, agency or in-house"
+        ],
+        [
+          "Grow",
+          "Senior/creative lead, or freelance/brand strategy"
+        ]
+      ],
+      "alt": "Move toward brand/content strategy to stay ahead of AI."
+    }
+  },
+  {
+    "id": "photographer",
+    "name": "Photographer",
+    "colour": "#7A5E6A",
+    "axes": {
+      "pay": 3.5,
+      "future": 5,
+      "secure": 3.5,
+      "entry": 7.5,
+      "speed": 4,
+      "life": 6,
+      "option": 9
+    },
+    "workStyle": [
+      6,
+      3,
+      9,
+      5,
+      6,
+      3
+    ],
+    "tags": [
+      "media",
+      "design"
+    ],
+    "blurb": "Creative and independent with full ownership, but income is project-based and volatile, and AI imagery pressures commercial work.",
+    "route": {
+      "summary": "Build a portfolio → assist/second-shoot → own business.",
+      "time": "1-4 yrs",
+      "cost": "Moderate (gear)",
+      "steps": [
+        [
+          "Portfolio",
+          "Develop a style and body of work; kit"
+        ],
+        [
+          "Break in",
+          "Assisting, second-shooting, building clients"
+        ],
+        [
+          "Establish",
+          "Weddings, commercial, editorial or fine-art niche"
+        ]
+      ],
+      "alt": "Salaried in-house/commercial roles offer more stability."
+    }
+  },
+  {
+    "id": "gdesign",
+    "name": "Graphic designer",
+    "colour": "#A8829A",
+    "axes": {
+      "pay": 4,
+      "future": 3,
+      "secure": 4,
+      "entry": 7,
+      "speed": 5,
+      "life": 6,
+      "option": 8
+    },
+    "workStyle": [
+      3,
+      3,
+      9,
+      3,
+      5,
+      4
+    ],
+    "tags": [
+      "design",
+      "media"
+    ],
+    "blurb": "Creative and portfolio-driven, but among the most AI-exposed careers here, with tools compressing routine work and pay.",
+    "route": {
+      "summary": "Build a portfolio (degree optional) → junior designer → specialise or freelance.",
+      "time": "0-3 yrs",
+      "cost": "Low-moderate",
+      "steps": [
+        [
+          "Skills + portfolio",
+          "Design tools and a strong portfolio"
+        ],
+        [
+          "Entry",
+          "Junior designer, studio or in-house"
+        ],
+        [
+          "Grow",
+          "Senior/art director, or freelance/own studio"
+        ]
+      ],
+      "alt": "Moving toward UX/product design improves pay and durability."
+    }
+  },
+  {
+    "id": "estateagent",
+    "name": "Estate agent",
+    "colour": "#8A7A5A",
+    "axes": {
+      "pay": 5.5,
+      "future": 5,
+      "secure": 5,
+      "entry": 8.5,
+      "speed": 6,
+      "life": 5.5,
+      "option": 8
+    },
+    "workStyle": [
+      2,
+      2,
+      3,
+      7,
+      9,
+      4
+    ],
+    "tags": [
+      "sales",
+      "property"
+    ],
+    "blurb": "Very open entry with commission-driven upside and agency-ownership potential, but cyclical and target-heavy.",
+    "route": {
+      "summary": "Any background → negotiator role → build commission → branch/own agency.",
+      "time": "0-2 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Entry",
+          "Trainee negotiator, no degree needed"
+        ],
+        [
+          "Build",
+          "Listings, sales and commission"
+        ],
+        [
+          "Grow",
+          "Valuer, branch manager, or open an agency"
+        ]
+      ],
+      "alt": "Lettings and commercial property as alternative specialisms."
+    }
+  },
+  {
+    "id": "creator",
+    "name": "Content creation / influencing",
+    "colour": "#B87A9A",
+    "axes": {
+      "pay": 3,
+      "future": 3.5,
+      "secure": 2.5,
+      "entry": 9,
+      "speed": 3,
+      "life": 5,
+      "option": 9
+    },
+    "workStyle": [
+      3,
+      3,
+      9,
+      6,
+      8,
+      3
+    ],
+    "tags": [
+      "media",
+      "write",
+      "design"
+    ],
+    "blurb": "Anyone can start and you own everything, but this is the rare winner’s curve; the median attempt earns almost nothing.",
+    "route": {
+      "summary": "Just start, build an audience and monetise. No barrier, low odds.",
+      "time": "Immediate to start; years to earn (if ever)",
+      "cost": "Low",
+      "steps": [
+        [
+          "Start",
+          "Pick a platform and niche; publish consistently"
+        ],
+        [
+          "Grow",
+          "Build an audience, the hard, uncertain part"
+        ],
+        [
+          "Monetise",
+          "Ads, sponsorship, products, for the minority who scale"
+        ]
+      ],
+      "alt": "Video, writing or design skills transfer to paid roles as a fallback."
+    }
+  },
+  {
+    "id": "businessanalyst",
+    "name": "Business analyst",
+    "colour": "#4A7AA0",
+    "axes": {
+      "pay": 6.5,
+      "future": 5.5,
+      "secure": 6.5,
+      "entry": 5.5,
+      "speed": 6,
+      "life": 6.5,
+      "option": 5.5
+    },
+    "workStyle": [
+      2,
+      6,
+      3,
+      5,
+      6,
+      7
+    ],
+    "tags": [
+      "data",
+      "pm"
+    ],
+    "blurb": "The bridge between business needs and technical delivery, stable and well-paid, though the routine requirements-gathering end is increasingly tool-assisted.",
+    "route": {
+      "summary": "Any degree or an internal move → BA role → BCS/agile certification.",
+      "time": "0-3 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Foundations",
+          "Process mapping, stakeholder skills, some SQL"
+        ],
+        [
+          "Entry",
+          "Junior BA, or a sideways move from operations/analysis"
+        ],
+        [
+          "Grow",
+          "Senior BA → lead → product or delivery roles"
+        ]
+      ],
+      "alt": "BCS Business Analysis certifications; a common internal move from ops."
+    }
+  },
+  {
+    "id": "mobiledev",
+    "name": "Mobile developer",
+    "colour": "#3F7EA8",
+    "axes": {
+      "pay": 7,
+      "future": 5.5,
+      "secure": 6,
+      "entry": 6,
+      "speed": 7.5,
+      "life": 7,
+      "option": 7
+    },
+    "workStyle": [
+      3,
+      8,
+      5,
+      2,
+      3,
+      7
+    ],
+    "tags": [
+      "prog",
+      "web"
+    ],
+    "blurb": "Builds the apps everyone lives on, strong pay and demand, though cross-platform tools and AI assistants are squeezing routine work.",
+    "route": {
+      "summary": "Portfolio of published apps (degree optional) → junior mobile dev.",
+      "time": "0-3 yrs",
+      "cost": "Low-moderate",
+      "steps": [
+        [
+          "Skills",
+          "Swift/Kotlin or React Native; publish an app"
+        ],
+        [
+          "Entry",
+          "Junior mobile developer"
+        ],
+        [
+          "Grow",
+          "Senior → lead, or freelance/own apps"
+        ]
+      ],
+      "alt": "Bootcamps and degree apprenticeships are common routes."
+    }
+  },
+  {
+    "id": "gamedev",
+    "name": "Game developer",
+    "colour": "#6B5E8A",
+    "axes": {
+      "pay": 6,
+      "future": 5.5,
+      "secure": 5,
+      "entry": 5,
+      "speed": 6.5,
+      "life": 5,
+      "option": 6
+    },
+    "workStyle": [
+      4,
+      8,
+      7,
+      2,
+      3,
+      6
+    ],
+    "tags": [
+      "prog",
+      "web"
+    ],
+    "blurb": "Creative and passion-driven, blending code and art, but long hours, volatile studios and fierce competition are the trade-offs.",
+    "route": {
+      "summary": "CS or games degree + portfolio → junior developer at a studio.",
+      "time": "2-4 yrs",
+      "cost": "Degree or self-taught",
+      "steps": [
+        [
+          "Skills + portfolio",
+          "C++/C#, Unreal or Unity; ship a game or demo"
+        ],
+        [
+          "Entry",
+          "Junior gameplay/engine developer"
+        ],
+        [
+          "Grow",
+          "Senior/lead, or indie development"
+        ]
+      ],
+      "alt": "Modding, game jams and indie releases build the portfolio."
+    }
+  },
+  {
+    "id": "qaeng",
+    "name": "QA / test engineer",
+    "colour": "#5A8AB0",
+    "axes": {
+      "pay": 6,
+      "future": 5,
+      "secure": 6.5,
+      "entry": 6.5,
+      "speed": 6.5,
+      "life": 7,
+      "option": 5.5
+    },
+    "workStyle": [
+      4,
+      7,
+      2,
+      3,
+      3,
+      8
+    ],
+    "tags": [
+      "prog"
+    ],
+    "blurb": "Guards software quality through manual and automated testing, an accessible route into tech, though automation is reshaping the manual end.",
+    "route": {
+      "summary": "Entry via a testing role → automation skills → QA engineer.",
+      "time": "0-2 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Foundations",
+          "Test cases, bug tracking, a scripting language"
+        ],
+        [
+          "Automate",
+          "Selenium/Cypress and CI pipelines"
+        ],
+        [
+          "Grow",
+          "QA/SDET engineer → test lead"
+        ]
+      ],
+      "alt": "ISTQB certification and bootcamps ease entry."
+    }
+  },
+  {
+    "id": "networkeng",
+    "name": "Network engineer",
+    "colour": "#4E7A8A",
+    "axes": {
+      "pay": 6.5,
+      "future": 6,
+      "secure": 7,
+      "entry": 6,
+      "speed": 6,
+      "life": 6.5,
+      "option": 5.5
+    },
+    "workStyle": [
+      5,
+      7,
+      2,
+      3,
+      3,
+      7
+    ],
+    "tags": [
+      "cloud",
+      "cyber"
+    ],
+    "blurb": "Designs and maintains the networks everything runs on, stable, certification-driven, and a solid bridge toward cloud and security.",
+    "route": {
+      "summary": "Certifications/apprenticeship → support → network engineer.",
+      "time": "1-3 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Certify",
+          "CompTIA Network+, then Cisco CCNA"
+        ],
+        [
+          "Entry",
+          "Network support or administrator"
+        ],
+        [
+          "Grow",
+          "Network/cloud/security engineer"
+        ]
+      ],
+      "alt": "IT apprenticeships lead straight into networking."
+    }
+  },
+  {
+    "id": "solarch",
+    "name": "Solutions architect",
+    "colour": "#2E6FA8",
+    "axes": {
+      "pay": 8.5,
+      "future": 6.5,
+      "secure": 7,
+      "entry": 3.5,
+      "speed": 6,
+      "life": 6,
+      "option": 6
+    },
+    "workStyle": [
+      3,
+      8,
+      3,
+      4,
+      6,
+      7
+    ],
+    "tags": [
+      "cloud",
+      "prog"
+    ],
+    "blurb": "Designs how large technical systems fit together, among the best-paid tech roles, reached with years of engineering experience rather than entered cold.",
+    "route": {
+      "summary": "Senior engineering experience → architecture role → certification.",
+      "time": "6-10 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Base",
+          "Years as a software or cloud engineer"
+        ],
+        [
+          "Broaden",
+          "Cloud architecture certs (AWS/Azure) + system design"
+        ],
+        [
+          "Move",
+          "Solutions/enterprise architect"
+        ]
+      ],
+      "alt": "Pre-sales and consulting architect tracks exist."
+    }
+  },
+  {
+    "id": "techwriter",
+    "name": "Technical writer",
+    "colour": "#7A828C",
+    "axes": {
+      "pay": 5.5,
+      "future": 4.5,
+      "secure": 5.5,
+      "entry": 6,
+      "speed": 5.5,
+      "life": 7.5,
+      "option": 6
+    },
+    "workStyle": [
+      2,
+      6,
+      6,
+      3,
+      3,
+      7
+    ],
+    "tags": [
+      "write"
+    ],
+    "blurb": "Turns complex products into clear documentation, calm, remote-friendly work, though generative AI is a real pressure on routine docs.",
+    "route": {
+      "summary": "Writing plus technical aptitude → junior technical writer.",
+      "time": "0-2 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Portfolio",
+          "Clear doc samples; learn a docs toolchain"
+        ],
+        [
+          "Entry",
+          "Junior technical writer"
+        ],
+        [
+          "Grow",
+          "Senior → docs lead / content design"
+        ]
+      ],
+      "alt": "A common pivot from support, QA or journalism."
+    }
+  },
+  {
+    "id": "dietitian",
+    "name": "Dietitian",
+    "colour": "#5E8A4E",
+    "axes": {
+      "pay": 5,
+      "future": 8,
+      "secure": 7.5,
+      "entry": 4.5,
+      "speed": 4.5,
+      "life": 7,
+      "option": 7
+    },
+    "workStyle": [
+      4,
+      6,
+      3,
+      8,
+      4,
+      6
+    ],
+    "tags": [
+      "clin"
+    ],
+    "blurb": "The regulated clinical nutrition profession, evidence-based, automation-resistant and private-practice friendly, with a modest NHS ceiling.",
+    "route": {
+      "summary": "Dietetics degree → HCPC registration → practise.",
+      "time": "3-4 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "BSc/MSc Dietetics (HCPC-approved)"
+        ],
+        [
+          "Register",
+          "HCPC registration as a dietitian"
+        ],
+        [
+          "Practise",
+          "NHS bands, industry or private practice"
+        ]
+      ],
+      "alt": "Postgraduate dietetics conversion for science graduates."
+    }
+  },
+  {
+    "id": "slt",
+    "name": "Speech & language therapist",
+    "colour": "#4E8A6E",
+    "axes": {
+      "pay": 5,
+      "future": 8.5,
+      "secure": 8,
+      "entry": 4.5,
+      "speed": 4.5,
+      "life": 7,
+      "option": 7
+    },
+    "workStyle": [
+      3,
+      6,
+      4,
+      9,
+      4,
+      5
+    ],
+    "tags": [
+      "clin",
+      "care"
+    ],
+    "blurb": "Highly relational, deeply automation-resistant rehabilitation work with private options, a capped ceiling the trade-off for the meaning.",
+    "route": {
+      "summary": "SLT degree → HCPC registration → practise.",
+      "time": "3-4 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "BSc/MSc Speech & Language Therapy"
+        ],
+        [
+          "Register",
+          "HCPC registration"
+        ],
+        [
+          "Practise",
+          "NHS, education or independent practice"
+        ]
+      ],
+      "alt": "Postgraduate conversion route for relevant graduates."
+    }
+  },
+  {
+    "id": "podiatrist",
+    "name": "Podiatrist",
+    "colour": "#4E8A7A",
+    "axes": {
+      "pay": 5.5,
+      "future": 8,
+      "secure": 7.5,
+      "entry": 4.5,
+      "speed": 5,
+      "life": 7,
+      "option": 8.5
+    },
+    "workStyle": [
+      6,
+      5,
+      2,
+      7,
+      5,
+      5
+    ],
+    "tags": [
+      "clin"
+    ],
+    "blurb": "A hands-on clinical foot-health profession with strong private-practice earnings and ownership, an under-the-radar, durable choice.",
+    "route": {
+      "summary": "Podiatry degree → HCPC registration → NHS or private practice.",
+      "time": "3 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "BSc Podiatry (HCPC-approved)"
+        ],
+        [
+          "Register",
+          "HCPC registration"
+        ],
+        [
+          "Practise",
+          "NHS, or build and own a private clinic"
+        ]
+      ],
+      "alt": "Advanced practice (podiatric surgery) raises the ceiling."
+    }
+  },
+  {
+    "id": "dentalhyg",
+    "name": "Dental hygienist",
+    "colour": "#5E9A8A",
+    "axes": {
+      "pay": 6,
+      "future": 7.5,
+      "secure": 7.5,
+      "entry": 5,
+      "speed": 5.5,
+      "life": 7.5,
+      "option": 7
+    },
+    "workStyle": [
+      6,
+      4,
+      2,
+      7,
+      4,
+      6
+    ],
+    "tags": [
+      "clin"
+    ],
+    "blurb": "Skilled, hands-on preventive dental care with good hours and steady private demand, a shorter, cheaper route than dentistry.",
+    "route": {
+      "summary": "Dental hygiene/therapy diploma or degree → GDC registration.",
+      "time": "2-3 yrs",
+      "cost": "Course fees",
+      "steps": [
+        [
+          "Train",
+          "Diploma or BSc in dental hygiene/therapy"
+        ],
+        [
+          "Register",
+          "General Dental Council registration"
+        ],
+        [
+          "Practise",
+          "NHS or private practices; often flexible/part-time"
+        ]
+      ],
+      "alt": "Many enter after working as a dental nurse."
+    }
+  },
+  {
+    "id": "pharmtech",
+    "name": "Pharmacy technician",
+    "colour": "#6E9A4E",
+    "axes": {
+      "pay": 4.5,
+      "future": 6.5,
+      "secure": 7.5,
+      "entry": 6.5,
+      "speed": 5,
+      "life": 6.5,
+      "option": 5
+    },
+    "workStyle": [
+      4,
+      4,
+      2,
+      6,
+      3,
+      7
+    ],
+    "tags": [
+      "clin",
+      "lab"
+    ],
+    "blurb": "A regulated, accessible healthcare role supporting pharmacists, secure and in demand, with a clear stepping stone toward pharmacy.",
+    "route": {
+      "summary": "Level 3 apprenticeship → GPhC registration.",
+      "time": "2 yrs",
+      "cost": "Low (paid apprenticeship)",
+      "steps": [
+        [
+          "Train",
+          "Level 3 pharmacy technician apprenticeship"
+        ],
+        [
+          "Register",
+          "General Pharmaceutical Council registration"
+        ],
+        [
+          "Advance",
+          "Specialist roles, or study toward pharmacist"
+        ]
+      ],
+      "alt": "A common route into pharmacy or wider healthcare science."
+    }
+  },
+  {
+    "id": "counsellor",
+    "name": "Counsellor",
+    "colour": "#4E8A8A",
+    "axes": {
+      "pay": 4.5,
+      "future": 8.5,
+      "secure": 6,
+      "entry": 5.5,
+      "speed": 4,
+      "life": 7,
+      "option": 8.5
+    },
+    "workStyle": [
+      1,
+      5,
+      5,
+      9,
+      3,
+      6
+    ],
+    "tags": [
+      "care",
+      "clin"
+    ],
+    "blurb": "Trusted talking-therapy work you can practise independently, deeply automation-resistant, but income is modest and often part-time early on.",
+    "route": {
+      "summary": "Accredited counselling training + placement hours → accreditation.",
+      "time": "3-5 yrs (often part-time)",
+      "cost": "Moderate",
+      "steps": [
+        [
+          "Train",
+          "Level 4+ counselling diploma or degree"
+        ],
+        [
+          "Placement",
+          "Supervised client hours"
+        ],
+        [
+          "Accredit",
+          "BACP/NCPS accreditation → private or agency work"
+        ]
+      ],
+      "alt": "Overlaps with psychotherapy; NHS talking-therapy roles exist."
+    }
+  },
+  {
+    "id": "ifa",
+    "name": "Financial adviser (IFA)",
+    "colour": "#3D6797",
+    "axes": {
+      "pay": 7,
+      "future": 6,
+      "secure": 6,
+      "entry": 5.5,
+      "speed": 6,
+      "life": 6.5,
+      "option": 8.5
+    },
+    "workStyle": [
+      1,
+      5,
+      2,
+      7,
+      8,
+      5
+    ],
+    "tags": [
+      "fin",
+      "sales"
+    ],
+    "blurb": "Advises clients on money and investments, with strong commission upside and the option to build your own practice, regulated and relationship-driven.",
+    "route": {
+      "summary": "Level 4 Diploma → adviser under an authorised firm → build a client book.",
+      "time": "1-3 yrs",
+      "cost": "Exam fees",
+      "steps": [
+        [
+          "Qualify",
+          "Level 4 Diploma for Regulated Financial Planning"
+        ],
+        [
+          "Authorise",
+          "Work under an FCA-authorised firm"
+        ],
+        [
+          "Grow",
+          "Build a client bank, or set up your own practice"
+        ]
+      ],
+      "alt": "Chartered status (Level 6) raises fees and credibility."
+    }
+  },
+  {
+    "id": "taxadviser",
+    "name": "Tax adviser",
+    "colour": "#4A6E90",
+    "axes": {
+      "pay": 7,
+      "future": 6,
+      "secure": 7.5,
+      "entry": 5,
+      "speed": 5.5,
+      "life": 6.5,
+      "option": 6.5
+    },
+    "workStyle": [
+      1,
+      7,
+      1,
+      3,
+      5,
+      9
+    ],
+    "tags": [
+      "acct",
+      "fin"
+    ],
+    "blurb": "A technical, well-paid specialism advising on tax, durable expertise with strong private-practice potential, and a real exam gauntlet.",
+    "route": {
+      "summary": "Degree/AAT → tax trainee → ATT then CTA qualifications.",
+      "time": "3-5 yrs",
+      "cost": "Exams (often funded)",
+      "steps": [
+        [
+          "Entry",
+          "Trainee at a firm; any degree or AAT"
+        ],
+        [
+          "Qualify",
+          "ATT, then Chartered Tax Adviser (CTA)"
+        ],
+        [
+          "Grow",
+          "Manager → partner, or independent practice"
+        ]
+      ],
+      "alt": "A common crossover from accountancy."
+    }
+  },
+  {
+    "id": "compliance",
+    "name": "Compliance officer",
+    "colour": "#4A6E80",
+    "axes": {
+      "pay": 7,
+      "future": 6.5,
+      "secure": 8,
+      "entry": 5,
+      "speed": 5.5,
+      "life": 6.5,
+      "option": 4.5
+    },
+    "workStyle": [
+      1,
+      6,
+      1,
+      4,
+      5,
+      9
+    ],
+    "tags": [
+      "fin",
+      "legal"
+    ],
+    "blurb": "Keeps regulated firms on the right side of the rules, secure, rising demand, and well-paid in financial services, if procedural by nature.",
+    "route": {
+      "summary": "Degree → compliance/analyst role → industry qualifications.",
+      "time": "2-4 yrs",
+      "cost": "Degree (+ certs)",
+      "steps": [
+        [
+          "Entry",
+          "Compliance analyst or graduate scheme"
+        ],
+        [
+          "Qualify",
+          "ICA/CISI compliance certifications"
+        ],
+        [
+          "Advance",
+          "Compliance manager → head of compliance / MLRO"
+        ]
+      ],
+      "alt": "A common move from audit, legal or operations."
+    }
+  },
+  {
+    "id": "insbroker",
+    "name": "Insurance broker",
+    "colour": "#4A7E80",
+    "axes": {
+      "pay": 6,
+      "future": 5.5,
+      "secure": 6.5,
+      "entry": 6.5,
+      "speed": 6,
+      "life": 6.5,
+      "option": 7
+    },
+    "workStyle": [
+      1,
+      4,
+      2,
+      6,
+      8,
+      6
+    ],
+    "tags": [
+      "fin",
+      "sales"
+    ],
+    "blurb": "Arranges cover and advises clients on risk, with commission upside and brokerage-ownership potential, relationship-driven and cyclical.",
+    "route": {
+      "summary": "Any background → trainee broker → CII qualifications.",
+      "time": "1-3 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Entry",
+          "Trainee broker; no specific degree needed"
+        ],
+        [
+          "Qualify",
+          "Chartered Insurance Institute exams"
+        ],
+        [
+          "Grow",
+          "Account executive → own book or brokerage"
+        ]
+      ],
+      "alt": "Overlaps with underwriting and financial advice."
+    }
+  },
+  {
+    "id": "cilex",
+    "name": "Legal executive (CILEX)",
+    "colour": "#7A4E5A",
+    "axes": {
+      "pay": 6,
+      "future": 6,
+      "secure": 7,
+      "entry": 6,
+      "speed": 5.5,
+      "life": 6.5,
+      "option": 5
+    },
+    "workStyle": [
+      1,
+      6,
+      2,
+      4,
+      4,
+      8
+    ],
+    "tags": [
+      "legal",
+      "admin"
+    ],
+    "blurb": "A lower-debt route into qualified legal practice, earn while you train, specialise in one area, and reach solicitor-equivalent work over time.",
+    "route": {
+      "summary": "CILEX qualifications while working → Chartered Legal Executive.",
+      "time": "~4-6 yrs (part-time)",
+      "cost": "Low (earn while you study)",
+      "steps": [
+        [
+          "Study",
+          "CILEX Professional Qualification alongside a legal job"
+        ],
+        [
+          "Qualify",
+          "Chartered Legal Executive status"
+        ],
+        [
+          "Progress",
+          "Specialise; can cross to solicitor via a reduced route"
+        ]
+      ],
+      "alt": "A debt-free alternative to the traditional solicitor path."
+    }
+  },
+  {
+    "id": "prisonofficer",
+    "name": "Prison officer",
+    "colour": "#5A6E7A",
+    "axes": {
+      "pay": 5,
+      "future": 8,
+      "secure": 8.5,
+      "entry": 6.5,
+      "speed": 4.5,
+      "life": 5,
+      "option": 3
+    },
+    "workStyle": [
+      6,
+      3,
+      2,
+      7,
+      5,
+      5
+    ],
+    "tags": [
+      "safety"
+    ],
+    "blurb": "Demanding, people-centred public service with strong security and a pension, automation-proof, but stressful and physically confronting.",
+    "route": {
+      "summary": "Apply → vetting + fitness → paid initial training.",
+      "time": "~3-6 months to start",
+      "cost": "Low",
+      "steps": [
+        [
+          "Apply",
+          "Online tests, interview, fitness and security vetting"
+        ],
+        [
+          "Train",
+          "Paid initial training course"
+        ],
+        [
+          "Progress",
+          "Officer → senior/custodial manager, or specialise"
+        ]
+      ],
+      "alt": "No degree required; wide entry."
+    }
+  },
+  {
+    "id": "probation",
+    "name": "Probation officer",
+    "colour": "#5A6E8A",
+    "axes": {
+      "pay": 5.5,
+      "future": 8,
+      "secure": 8,
+      "entry": 5,
+      "speed": 4.5,
+      "life": 5.5,
+      "option": 4
+    },
+    "workStyle": [
+      2,
+      5,
+      3,
+      9,
+      5,
+      4
+    ],
+    "tags": [
+      "safety",
+      "care"
+    ],
+    "blurb": "Manages offenders in the community, meaningful, secure public-sector work with heavy caseloads and emotional demands.",
+    "route": {
+      "summary": "Professional Qualification in Probation (degree-level) → practise.",
+      "time": "~15-21 months training",
+      "cost": "Low (trainee salary)",
+      "steps": [
+        [
+          "Entry",
+          "Trainee probation officer (PQiP) programme"
+        ],
+        [
+          "Qualify",
+          "Professional Qualification in Probation"
+        ],
+        [
+          "Progress",
+          "Senior probation officer, or specialist units"
+        ]
+      ],
+      "alt": "Probation services officer roles as a lower-entry start."
+    }
+  },
+  {
+    "id": "diplomat",
+    "name": "Diplomat (Foreign Office)",
+    "colour": "#4A5E88",
+    "axes": {
+      "pay": 6.5,
+      "future": 7.5,
+      "secure": 8,
+      "entry": 3.5,
+      "speed": 5,
+      "life": 5.5,
+      "option": 4
+    },
+    "workStyle": [
+      1,
+      7,
+      3,
+      6,
+      7,
+      5
+    ],
+    "tags": [
+      "admin",
+      "legal"
+    ],
+    "blurb": "Represents the UK abroad across policy, trade and crisis work, prestigious, varied and secure, but fiercely competitive and posting-driven.",
+    "route": {
+      "summary": "Diplomatic Fast Stream → postings at home and overseas.",
+      "time": "~4 yr scheme",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "2:1+; languages and international interest help"
+        ],
+        [
+          "Fast Stream",
+          "Diplomatic Fast Stream assessment centre"
+        ],
+        [
+          "Serve",
+          "Rotational home/overseas postings → senior diplomat"
+        ]
+      ],
+      "alt": "Direct-entry policy and specialist roles at the FCDO."
+    }
+  },
+  {
+    "id": "intelanalyst",
+    "name": "Intelligence analyst",
+    "colour": "#3C5E88",
+    "axes": {
+      "pay": 6.5,
+      "future": 8,
+      "secure": 8,
+      "entry": 4,
+      "speed": 5.5,
+      "life": 6,
+      "option": 3.5
+    },
+    "workStyle": [
+      2,
+      9,
+      2,
+      4,
+      4,
+      7
+    ],
+    "tags": [
+      "research",
+      "cyber",
+      "data"
+    ],
+    "blurb": "Turns data and information into assessments for security, government or business, analytical, clearance-gated and durable, if secretive by nature.",
+    "route": {
+      "summary": "Degree + analytical skills → analyst role → security clearance.",
+      "time": "1-3 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "Any analytical discipline; languages or CS help"
+        ],
+        [
+          "Enter",
+          "Government (GCHQ/security), defence or corporate intel"
+        ],
+        [
+          "Clear",
+          "Security vetting → specialise (cyber, geopolitical, financial)"
+        ]
+      ],
+      "alt": "Crossover from data analysis, the military or policing."
+    }
+  },
+  {
+    "id": "eho",
+    "name": "Environmental health officer",
+    "colour": "#5E7A6A",
+    "axes": {
+      "pay": 5.5,
+      "future": 7,
+      "secure": 7.5,
+      "entry": 5,
+      "speed": 5,
+      "life": 6.5,
+      "option": 5
+    },
+    "workStyle": [
+      4,
+      6,
+      2,
+      6,
+      4,
+      7
+    ],
+    "tags": [
+      "env",
+      "safety",
+      "admin"
+    ],
+    "blurb": "Protects public health across food, housing and safety, a stable, varied, meaningful regulatory profession with steady local-authority demand.",
+    "route": {
+      "summary": "Accredited degree → registration → practise.",
+      "time": "3-4 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "CIEH-accredited environmental health degree"
+        ],
+        [
+          "Register",
+          "Complete the professional portfolio → registration"
+        ],
+        [
+          "Practise",
+          "Local authority, or private-sector consultancy"
+        ]
+      ],
+      "alt": "A degree apprenticeship route is emerging."
+    }
+  },
+  {
+    "id": "chemeng",
+    "name": "Chemical engineer",
+    "colour": "#4E6A6A",
+    "axes": {
+      "pay": 7.5,
+      "future": 7.5,
+      "secure": 7.5,
+      "entry": 4.5,
+      "speed": 5.5,
+      "life": 6,
+      "option": 5
+    },
+    "workStyle": [
+      6,
+      9,
+      2,
+      2,
+      5,
+      7
+    ],
+    "tags": [
+      "engmech",
+      "lab"
+    ],
+    "blurb": "Designs the processes behind fuels, pharmaceuticals and materials, among the best-paid engineering fields, with strong energy-transition demand.",
+    "route": {
+      "summary": "Accredited degree → graduate scheme → chartership (CEng).",
+      "time": "~6-8 yrs to chartered",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "Accredited MEng/BEng Chemical Engineering"
+        ],
+        [
+          "Graduate role",
+          "Process, energy or pharma employer"
+        ],
+        [
+          "Chartership",
+          "IChemE professional review for CEng"
+        ]
+      ],
+      "alt": "Degree apprenticeships at major process employers."
+    }
+  },
+  {
+    "id": "biomedeng",
+    "name": "Biomedical engineer",
+    "colour": "#4E7A6A",
+    "axes": {
+      "pay": 6.5,
+      "future": 8,
+      "secure": 7,
+      "entry": 4.5,
+      "speed": 5,
+      "life": 6.5,
+      "option": 5.5
+    },
+    "workStyle": [
+      6,
+      9,
+      3,
+      4,
+      4,
+      6
+    ],
+    "tags": [
+      "engmech",
+      "lab"
+    ],
+    "blurb": "Designs medical devices and clinical technology, a growing field blending engineering and healthcare, durable against automation.",
+    "route": {
+      "summary": "Accredited degree → graduate role → chartership.",
+      "time": "~6-8 yrs to chartered",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "Biomedical or medical engineering degree"
+        ],
+        [
+          "Enter",
+          "Device manufacturer, NHS clinical engineering or research"
+        ],
+        [
+          "Chartership",
+          "IET/IPEM professional registration"
+        ]
+      ],
+      "alt": "NHS Scientist Training Programme (clinical engineering)."
+    }
+  },
+  {
+    "id": "roboticseng",
+    "name": "Robotics engineer",
+    "colour": "#4E5E7A",
+    "axes": {
+      "pay": 7.5,
+      "future": 8,
+      "secure": 7,
+      "entry": 4,
+      "speed": 6,
+      "life": 6,
+      "option": 5.5
+    },
+    "workStyle": [
+      7,
+      9,
+      3,
+      2,
+      4,
+      6
+    ],
+    "tags": [
+      "engmech",
+      "engelec",
+      "prog"
+    ],
+    "blurb": "Builds autonomous systems across manufacturing, logistics and defence, a high-growth field fusing mechanical, electrical and software skills.",
+    "route": {
+      "summary": "Engineering/CS degree → robotics role → specialise.",
+      "time": "4-7 yrs",
+      "cost": "Degree (MSc common)",
+      "steps": [
+        [
+          "Degree",
+          "Robotics, mechatronics, EE or CS"
+        ],
+        [
+          "Specialise",
+          "Control, perception or ML; often an MSc"
+        ],
+        [
+          "Build",
+          "Robotics/automation engineer → senior/lead"
+        ]
+      ],
+      "alt": "Strong overlap with ML engineering and controls."
+    }
+  },
+  {
+    "id": "quantsurveyor",
+    "name": "Quantity surveyor",
+    "colour": "#5A6E88",
+    "axes": {
+      "pay": 6.5,
+      "future": 7,
+      "secure": 7.5,
+      "entry": 5.5,
+      "speed": 5.5,
+      "life": 6.5,
+      "option": 6
+    },
+    "workStyle": [
+      5,
+      5,
+      2,
+      4,
+      6,
+      8
+    ],
+    "tags": [
+      "property",
+      "engciv"
+    ],
+    "blurb": "Manages construction costs and contracts, a stable, chartered, well-paid profession riding sustained UK infrastructure demand.",
+    "route": {
+      "summary": "RICS-accredited degree (or apprenticeship) → APC → MRICS.",
+      "time": "~4-5 yrs",
+      "cost": "Degree (or paid apprenticeship)",
+      "steps": [
+        [
+          "Degree",
+          "RICS-accredited quantity surveying degree"
+        ],
+        [
+          "Experience",
+          "Structured APC training with a contractor/consultancy"
+        ],
+        [
+          "Charter",
+          "Pass the APC → MRICS"
+        ]
+      ],
+      "alt": "Degree apprenticeships qualify with no tuition debt."
+    }
+  },
+  {
+    "id": "geologist",
+    "name": "Geologist",
+    "colour": "#6A6A4E",
+    "axes": {
+      "pay": 6,
+      "future": 6.5,
+      "secure": 6,
+      "entry": 4.5,
+      "speed": 5,
+      "life": 6,
+      "option": 5.5
+    },
+    "workStyle": [
+      6,
+      8,
+      2,
+      3,
+      4,
+      5
+    ],
+    "tags": [
+      "env",
+      "research",
+      "lab"
+    ],
+    "blurb": "Studies the earth for energy, water, mining and environmental work, fieldwork-rich and increasingly tied to the energy transition and geohazards.",
+    "route": {
+      "summary": "Geology degree (often MSc) → graduate role → chartership.",
+      "time": "4-6 yrs",
+      "cost": "Degree (+ MSc)",
+      "steps": [
+        [
+          "Degree",
+          "Geology or earth science; MSc often expected"
+        ],
+        [
+          "Enter",
+          "Consultancy, energy, water or environmental sectors"
+        ],
+        [
+          "Charter",
+          "Chartered Geologist (CGeol)"
+        ]
+      ],
+      "alt": "Strong overlap with environmental and engineering geology."
+    }
+  },
+  {
+    "id": "statistician",
+    "name": "Statistician",
+    "colour": "#5A5E7A",
+    "axes": {
+      "pay": 7,
+      "future": 7,
+      "secure": 7.5,
+      "entry": 4.5,
+      "speed": 5.5,
+      "life": 7,
+      "option": 5
+    },
+    "workStyle": [
+      2,
+      9,
+      2,
+      2,
+      3,
+      7
+    ],
+    "tags": [
+      "data",
+      "research"
+    ],
+    "blurb": "Designs studies and models uncertainty across government, pharma and research, durable, numerate and quietly in demand.",
+    "route": {
+      "summary": "Numerate degree → (often MSc) → statistician role.",
+      "time": "3-5 yrs",
+      "cost": "Degree (+ MSc)",
+      "steps": [
+        [
+          "Degree",
+          "Maths, statistics or a quantitative science"
+        ],
+        [
+          "Postgrad",
+          "An MSc in statistics is common"
+        ],
+        [
+          "Enter",
+          "Government Statistical Service, pharma or research"
+        ]
+      ],
+      "alt": "Strong crossover with data science and actuarial work."
+    }
+  },
+  {
+    "id": "videoeditor",
+    "name": "Video editor",
+    "colour": "#8A6A7A",
+    "axes": {
+      "pay": 4.5,
+      "future": 4,
+      "secure": 4.5,
+      "entry": 6.5,
+      "speed": 5,
+      "life": 5.5,
+      "option": 8
+    },
+    "workStyle": [
+      5,
+      4,
+      8,
+      4,
+      5,
+      7
+    ],
+    "tags": [
+      "media",
+      "design"
+    ],
+    "blurb": "Shapes raw footage into finished stories, creative and freelance-friendly, but project-based income and AI-assisted editing are pressures.",
+    "route": {
+      "summary": "Showreel → assistant/junior editor → freelance or staff.",
+      "time": "1-4 yrs",
+      "cost": "Low-moderate (kit/software)",
+      "steps": [
+        [
+          "Skills",
+          "Premiere/DaVinci/Final Cut; build a showreel"
+        ],
+        [
+          "Break in",
+          "Runner/assistant editor at a studio or agency"
+        ],
+        [
+          "Grow",
+          "Editor → senior/freelance, or own studio"
+        ]
+      ],
+      "alt": "Social-video demand is a fast, accessible entry point."
+    }
+  },
+  {
+    "id": "animator",
+    "name": "Animator",
+    "colour": "#8A6A8A",
+    "axes": {
+      "pay": 5,
+      "future": 4.5,
+      "secure": 4.5,
+      "entry": 5,
+      "speed": 5,
+      "life": 5.5,
+      "option": 7
+    },
+    "workStyle": [
+      4,
+      4,
+      9,
+      3,
+      4,
+      7
+    ],
+    "tags": [
+      "design",
+      "media"
+    ],
+    "blurb": "Brings characters and motion to life for film, games and advertising, highly creative, portfolio-driven, and increasingly AI-pressured at the routine end.",
+    "route": {
+      "summary": "Animation degree or self-taught portfolio → junior animator.",
+      "time": "2-4 yrs",
+      "cost": "Degree or self-taught",
+      "steps": [
+        [
+          "Portfolio",
+          "2D/3D reel in Maya/Blender/After Effects"
+        ],
+        [
+          "Entry",
+          "Junior animator at a studio"
+        ],
+        [
+          "Grow",
+          "Senior/lead animator, or freelance"
+        ]
+      ],
+      "alt": "Games, film and motion-graphics are distinct tracks."
+    }
+  },
+  {
+    "id": "fashiondesigner",
+    "name": "Fashion designer",
+    "colour": "#A87A8A",
+    "axes": {
+      "pay": 4,
+      "future": 5,
+      "secure": 3.5,
+      "entry": 5,
+      "speed": 4,
+      "life": 5,
+      "option": 8
+    },
+    "workStyle": [
+      5,
+      4,
+      9,
+      4,
+      6,
+      6
+    ],
+    "tags": [
+      "design"
+    ],
+    "blurb": "Designs garments and collections, intensely creative with brand-ownership upside, but low pay early, insecure, and fiercely competitive.",
+    "route": {
+      "summary": "Fashion degree + portfolio → junior designer → build a name.",
+      "time": "3-5 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "Fashion design degree; a strong portfolio"
+        ],
+        [
+          "Break in",
+          "Junior designer or design assistant"
+        ],
+        [
+          "Grow",
+          "Senior designer, or launch your own label"
+        ]
+      ],
+      "alt": "Internships and competitions are key to breaking in."
+    }
+  },
+  {
+    "id": "industrialdesigner",
+    "name": "Industrial / product designer",
+    "colour": "#8A7A6A",
+    "axes": {
+      "pay": 6,
+      "future": 5.5,
+      "secure": 5.5,
+      "entry": 4.5,
+      "speed": 5,
+      "life": 6.5,
+      "option": 6.5
+    },
+    "workStyle": [
+      6,
+      6,
+      8,
+      3,
+      5,
+      6
+    ],
+    "tags": [
+      "design",
+      "engmech"
+    ],
+    "blurb": "Designs physical products where form meets engineering, creative and better-paid than pure graphic design, with consultancy and startup routes.",
+    "route": {
+      "summary": "Product/industrial design degree + portfolio → junior designer.",
+      "time": "3-4 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Degree",
+          "Industrial or product design degree; a CAD portfolio"
+        ],
+        [
+          "Entry",
+          "Junior designer at a consultancy or manufacturer"
+        ],
+        [
+          "Grow",
+          "Senior designer → design lead, or own studio"
+        ]
+      ],
+      "alt": "Overlaps with UX and mechanical engineering."
+    }
+  },
+  {
+    "id": "prmanager",
+    "name": "PR manager",
+    "colour": "#A87A5A",
+    "axes": {
+      "pay": 6,
+      "future": 5,
+      "secure": 5.5,
+      "entry": 6,
+      "speed": 6,
+      "life": 5.5,
+      "option": 6.5
+    },
+    "workStyle": [
+      1,
+      4,
+      7,
+      6,
+      8,
+      5
+    ],
+    "tags": [
+      "media",
+      "market",
+      "write"
+    ],
+    "blurb": "Shapes reputation and media coverage for brands and people, fast-paced and relationship-driven, with agency-ownership upside and AI pressure on routine output.",
+    "route": {
+      "summary": "Any degree → PR/comms role → build a track record.",
+      "time": "0-3 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Entry",
+          "PR assistant/account executive; any degree"
+        ],
+        [
+          "Build",
+          "Media relationships, campaigns, a results record"
+        ],
+        [
+          "Grow",
+          "Account director → head of comms, or own agency"
+        ]
+      ],
+      "alt": "CIPR qualifications and journalism crossovers help."
+    }
+  },
+  {
+    "id": "translator",
+    "name": "Translator",
+    "colour": "#7A6A8A",
+    "axes": {
+      "pay": 5,
+      "future": 3.5,
+      "secure": 5,
+      "entry": 5.5,
+      "speed": 5,
+      "life": 7.5,
+      "option": 8.5
+    },
+    "workStyle": [
+      1,
+      6,
+      6,
+      3,
+      3,
+      9
+    ],
+    "tags": [
+      "write"
+    ],
+    "blurb": "Converts meaning across languages, flexible and independent, but machine translation is reshaping the field, pushing value toward specialist and literary work.",
+    "route": {
+      "summary": "Fluency + translation qualification → freelance or in-house.",
+      "time": "2-4 yrs",
+      "cost": "Degree/diploma",
+      "steps": [
+        [
+          "Qualify",
+          "Degree or diploma in translation; near-native fluency"
+        ],
+        [
+          "Specialise",
+          "Legal, medical, technical or literary niche"
+        ],
+        [
+          "Practise",
+          "Freelance, agency or in-house/institutional"
+        ]
+      ],
+      "alt": "CIOL/ITI membership and specialism resist automation best."
+    }
+  },
+  {
+    "id": "roofer",
+    "name": "Roofer",
+    "colour": "#9A5B34",
+    "axes": {
+      "pay": 5.5,
+      "future": 7.5,
+      "secure": 7,
+      "entry": 8,
+      "speed": 6,
+      "life": 5,
+      "option": 8.5
+    },
+    "workStyle": [
+      9,
+      2,
+      3,
+      3,
+      5,
+      7
+    ],
+    "tags": [
+      "tconstruct"
+    ],
+    "blurb": "A physical, weather-exposed construction trade with steady demand and strong self-employment earnings, a lower ceiling and real bodily toll the trade-offs.",
+    "route": {
+      "summary": "Apprenticeship → NVQ → roofer (→ self-employed).",
+      "time": "~2 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Apprenticeship",
+          "Roofing NVQ Level 2"
+        ],
+        [
+          "Qualify",
+          "On-site experience + CSCS card"
+        ],
+        [
+          "Go solo",
+          "Sub-contract or run a team"
+        ]
+      ],
+      "alt": "Specialising (leadwork, heritage) raises rates."
+    }
+  },
+  {
+    "id": "plasterer",
+    "name": "Plasterer",
+    "colour": "#A8825A",
+    "axes": {
+      "pay": 5.5,
+      "future": 7.5,
+      "secure": 7,
+      "entry": 8,
+      "speed": 6,
+      "life": 5.5,
+      "option": 8.5
+    },
+    "workStyle": [
+      9,
+      2,
+      4,
+      3,
+      5,
+      7
+    ],
+    "tags": [
+      "tconstruct"
+    ],
+    "blurb": "A skilled finishing trade with consistent demand and good self-employed rates, hard on the body, with a capped ceiling.",
+    "route": {
+      "summary": "Apprenticeship → NVQ → plasterer (→ self-employed).",
+      "time": "~2 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Apprenticeship",
+          "Plastering NVQ Level 2"
+        ],
+        [
+          "Qualify",
+          "On-site experience + CSCS card"
+        ],
+        [
+          "Go solo",
+          "Domestic/commercial work, or a small firm"
+        ]
+      ],
+      "alt": "Specialist finishes and dry-lining raise earnings."
+    }
+  },
+  {
+    "id": "landscaper",
+    "name": "Landscape gardener",
+    "colour": "#5E7A5A",
+    "axes": {
+      "pay": 4.5,
+      "future": 7,
+      "secure": 6,
+      "entry": 8,
+      "speed": 5.5,
+      "life": 6.5,
+      "option": 9
+    },
+    "workStyle": [
+      9,
+      3,
+      5,
+      4,
+      5,
+      7
+    ],
+    "tags": [
+      "horticulture"
+    ],
+    "blurb": "Outdoor, hands-on and highly automation-proof, with easy self-employment, modest pay and seasonal, weather-dependent work the trade-offs.",
+    "route": {
+      "summary": "Apprenticeship/short course → experience → self-employment.",
+      "time": "1-2 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Learn",
+          "Horticulture apprenticeship or college course"
+        ],
+        [
+          "Build up",
+          "Experience across soft and hard landscaping"
+        ],
+        [
+          "Go solo",
+          "Build a client base; design-and-build for higher rates"
+        ]
+      ],
+      "alt": "Garden design qualifications lift the ceiling."
+    }
+  },
+  {
+    "id": "hgvdriver",
+    "name": "HGV driver",
+    "colour": "#5E6E88",
+    "axes": {
+      "pay": 5.5,
+      "future": 5.5,
+      "secure": 7,
+      "entry": 7,
+      "speed": 6,
+      "life": 5,
+      "option": 5
+    },
+    "workStyle": [
+      8,
+      2,
+      2,
+      3,
+      3,
+      6
+    ],
+    "tags": [
+      "transport"
+    ],
+    "blurb": "Keeps supply chains moving, with a persistent shortage propping up pay, but long hours away from home, and automation a long-horizon question.",
+    "route": {
+      "summary": "Licence acquisition → Driver CPC → HGV driver.",
+      "time": "~2-3 months",
+      "cost": "Low-moderate (training)",
+      "steps": [
+        [
+          "Licence",
+          "Category C/C+E licence training and test"
+        ],
+        [
+          "Certify",
+          "Driver CPC qualification"
+        ],
+        [
+          "Drive",
+          "Employed haulier; specialise (ADR, tankers) for more pay"
+        ]
+      ],
+      "alt": "Employer-funded training schemes are common."
+    }
+  },
+  {
+    "id": "hairdresser",
+    "name": "Hairdresser",
+    "colour": "#A8829A",
+    "axes": {
+      "pay": 4,
+      "future": 7,
+      "secure": 5.5,
+      "entry": 8,
+      "speed": 5.5,
+      "life": 6,
+      "option": 9
+    },
+    "workStyle": [
+      7,
+      2,
+      7,
+      7,
+      6,
+      7
+    ],
+    "tags": [
+      "beauty"
+    ],
+    "blurb": "A creative, personal, automation-proof trade with strong self-employment and salon-ownership routes, low early pay and physical strain the costs.",
+    "route": {
+      "summary": "Apprenticeship/NVQ → stylist → chair rental or own salon.",
+      "time": "2-3 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Train",
+          "Hairdressing NVQ Level 2/3 or apprenticeship"
+        ],
+        [
+          "Build",
+          "Grow a client base as an employed stylist"
+        ],
+        [
+          "Go solo",
+          "Rent a chair, go mobile, or open a salon"
+        ]
+      ],
+      "alt": "Barbering and specialisms (colour) raise earnings."
+    }
+  },
+  {
+    "id": "baker",
+    "name": "Baker",
+    "colour": "#A8603A",
+    "axes": {
+      "pay": 4,
+      "future": 6.5,
+      "secure": 5.5,
+      "entry": 7.5,
+      "speed": 5,
+      "life": 4.5,
+      "option": 8
+    },
+    "workStyle": [
+      8,
+      3,
+      6,
+      3,
+      5,
+      7
+    ],
+    "tags": [
+      "culinary"
+    ],
+    "blurb": "A hands-on craft trade with artisan and business upside, early starts, physical work and modest pay the trade-offs for the independence.",
+    "route": {
+      "summary": "Entry role or apprenticeship → baker → own bakery.",
+      "time": "1-3 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Start",
+          "Bakery role or a food/baking apprenticeship"
+        ],
+        [
+          "Skill up",
+          "Craft techniques; artisan or production focus"
+        ],
+        [
+          "Own it",
+          "Head baker, or open a bakery or market stall"
+        ]
+      ],
+      "alt": "Culinary college and patisserie specialisms raise the ceiling."
+    }
+  },
+  {
+    "id": "opsmanager",
+    "name": "Operations manager",
+    "colour": "#5A6E7A",
+    "axes": {
+      "pay": 6.5,
+      "future": 6,
+      "secure": 6.5,
+      "entry": 5,
+      "speed": 5.5,
+      "life": 5.5,
+      "option": 5.5
+    },
+    "workStyle": [
+      3,
+      5,
+      2,
+      6,
+      7,
+      6
+    ],
+    "tags": [
+      "pm",
+      "admin"
+    ],
+    "blurb": "Runs the day-to-day machinery of a business, a broad, promotable role reached by experience, with strong progression into senior leadership.",
+    "route": {
+      "summary": "Experience in a function → team lead → operations management.",
+      "time": "4-8 yrs",
+      "cost": "Low",
+      "steps": [
+        [
+          "Base",
+          "Experience in a core function (logistics, service, production)"
+        ],
+        [
+          "Lead",
+          "Team leader/supervisor → manager"
+        ],
+        [
+          "Grow",
+          "Operations manager → director / COO track"
+        ]
+      ],
+      "alt": "An MBA or ops apprenticeships accelerate the climb."
+    }
+  },
+  {
+    "id": "supplychain",
+    "name": "Supply chain manager",
+    "colour": "#4E6A7A",
+    "axes": {
+      "pay": 6.5,
+      "future": 6,
+      "secure": 6.5,
+      "entry": 5,
+      "speed": 5.5,
+      "life": 6,
+      "option": 5
+    },
+    "workStyle": [
+      3,
+      6,
+      2,
+      4,
+      6,
+      7
+    ],
+    "tags": [
+      "pm",
+      "data"
+    ],
+    "blurb": "Orchestrates the flow of goods from source to customer, strategically important, well-paid, and increasingly data- and resilience-driven.",
+    "route": {
+      "summary": "Degree or graduate scheme → analyst → supply chain manager.",
+      "time": "3-6 yrs",
+      "cost": "Degree",
+      "steps": [
+        [
+          "Entry",
+          "Supply chain/logistics analyst or graduate scheme"
+        ],
+        [
+          "Qualify",
+          "CIPS procurement or supply chain certifications"
+        ],
+        [
+          "Grow",
+          "Manager → head of supply chain"
+        ]
+      ],
+      "alt": "Common progression from procurement or operations."
+    }
+  }
+]

@@ -1,0 +1,842 @@
+[
+  {
+    "id": "you",
+    "name": "ML / AI engineering",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "de",
+    "name": "Data engineering",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "ds",
+    "name": "Data science",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "analyst",
+    "name": "Data analyst",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "swe",
+    "name": "Software eng (generalist)",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "devops",
+    "name": "DevOps / cloud engineer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "cyber",
+    "name": "Cybersecurity engineering",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "ux",
+    "name": "UX / UI designer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "itsupport",
+    "name": "IT support technician",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "pm",
+    "name": "Product manager",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "quant",
+    "name": "Quant finance / dev",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "ib",
+    "name": "Investment banking (IBD)",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "consult",
+    "name": "Management consulting",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "finanalyst",
+    "name": "Financial analyst",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "account",
+    "name": "Chartered accountancy (ACA)",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "auditor",
+    "name": "Auditor",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "hr",
+    "name": "HR manager",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "recruiter",
+    "name": "Recruitment consultant",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "economist",
+    "name": "Economist",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "underwriter",
+    "name": "Insurance underwriter",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "doctor",
+    "name": "Doctor (GP / consultant)",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "surgeon",
+    "name": "Surgeon",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "psychiatrist",
+    "name": "Psychiatrist",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "dentist",
+    "name": "Dentistry",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "nurse",
+    "name": "Registered nurse",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "midwife",
+    "name": "Midwife",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "physio",
+    "name": "Physiotherapist",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "ot",
+    "name": "Occupational therapist",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "radiographer",
+    "name": "Radiographer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "pharma",
+    "name": "Pharmacist",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "optometrist",
+    "name": "Optometrist",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "vet",
+    "name": "Veterinarian",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "psych",
+    "name": "Clinical psychologist",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "therapist",
+    "name": "Mental-health therapist",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "paramedic",
+    "name": "Paramedic",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "careworker",
+    "name": "Care worker",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "socialworker",
+    "name": "Social worker",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "actuary",
+    "name": "Actuary",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "lawyer",
+    "name": "Solicitor (corporate)",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "barrister",
+    "name": "Barrister",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "paralegal",
+    "name": "Paralegal",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "surveyor",
+    "name": "Chartered surveyor",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "townplanner",
+    "name": "Town planner",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "civileng",
+    "name": "Civil / structural engineer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "mecheng",
+    "name": "Mechanical engineer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "eleceng",
+    "name": "Electrical / electronics engineer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "aeroeng",
+    "name": "Aerospace engineer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "researchsci",
+    "name": "Research scientist (academia)",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "labtech",
+    "name": "Biomedical / lab scientist",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "envsci",
+    "name": "Environmental scientist",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "pilot",
+    "name": "Airline pilot (senior)",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "atc",
+    "name": "Air traffic controller",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "traindriver",
+    "name": "Train driver",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "electrician",
+    "name": "Electrician",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "plumber",
+    "name": "Plumber",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "gaseng",
+    "name": "Gas / heating engineer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "carpenter",
+    "name": "Carpenter / joiner",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "welder",
+    "name": "Welder / fabricator",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "bricklayer",
+    "name": "Bricklayer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "painter",
+    "name": "Painter & decorator",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "mechanic",
+    "name": "Auto mechanic / technician",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "chef",
+    "name": "Chef",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "pt",
+    "name": "Personal trainer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "teacher",
+    "name": "Teaching",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "lecturer",
+    "name": "University lecturer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "civilservant",
+    "name": "Civil servant (Fast Stream)",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "police",
+    "name": "Police officer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "firefighter",
+    "name": "Firefighter",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "architect",
+    "name": "Architect",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "interiordesign",
+    "name": "Interior designer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "marketer",
+    "name": "Digital marketing manager",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "journalist",
+    "name": "Journalist",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "copywriter",
+    "name": "Copywriter",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "photographer",
+    "name": "Photographer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "gdesign",
+    "name": "Graphic designer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "estateagent",
+    "name": "Estate agent",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "creator",
+    "name": "Content creation / influencing",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "businessanalyst",
+    "name": "Business analyst",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "mobiledev",
+    "name": "Mobile developer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "gamedev",
+    "name": "Game developer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "qaeng",
+    "name": "QA / test engineer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "networkeng",
+    "name": "Network engineer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "solarch",
+    "name": "Solutions architect",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "techwriter",
+    "name": "Technical writer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "dietitian",
+    "name": "Dietitian",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "slt",
+    "name": "Speech & language therapist",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "podiatrist",
+    "name": "Podiatrist",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "dentalhyg",
+    "name": "Dental hygienist",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "pharmtech",
+    "name": "Pharmacy technician",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "counsellor",
+    "name": "Counsellor",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "ifa",
+    "name": "Financial adviser (IFA)",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "taxadviser",
+    "name": "Tax adviser",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "compliance",
+    "name": "Compliance officer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "insbroker",
+    "name": "Insurance broker",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "cilex",
+    "name": "Legal executive (CILEX)",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "prisonofficer",
+    "name": "Prison officer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "probation",
+    "name": "Probation officer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "diplomat",
+    "name": "Diplomat (Foreign Office)",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "intelanalyst",
+    "name": "Intelligence analyst",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "eho",
+    "name": "Environmental health officer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "chemeng",
+    "name": "Chemical engineer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "biomedeng",
+    "name": "Biomedical engineer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "roboticseng",
+    "name": "Robotics engineer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "quantsurveyor",
+    "name": "Quantity surveyor",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "geologist",
+    "name": "Geologist",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "statistician",
+    "name": "Statistician",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "videoeditor",
+    "name": "Video editor",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "animator",
+    "name": "Animator",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "fashiondesigner",
+    "name": "Fashion designer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "industrialdesigner",
+    "name": "Industrial / product designer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "prmanager",
+    "name": "PR manager",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "translator",
+    "name": "Translator",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "roofer",
+    "name": "Roofer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "plasterer",
+    "name": "Plasterer",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "landscaper",
+    "name": "Landscape gardener",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "hgvdriver",
+    "name": "HGV driver",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "hairdresser",
+    "name": "Hairdresser",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "baker",
+    "name": "Baker",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "opsmanager",
+    "name": "Operations manager",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  },
+  {
+    "id": "supplychain",
+    "name": "Supply chain manager",
+    "soc2020": null,
+    "socTitle": null,
+    "status": "todo"
+  }
+]

@@ -1,0 +1,15 @@
+# Netlify deployment config.
+#
+# On every push, Netlify runs the build command, then serves everything in `publish`.
+# The site is generated from the single-source-of-truth prototype (see scripts/build-site.js),
+# so there is no duplicated HTML to keep in sync.
+#
+# To use it: on netlify.com, "Add new site -> Import an existing project", pick this repo,
+# and accept the defaults. Netlify reads this file; you do not need to set anything by hand.
+
+[build]
+  command = "npm run build:site"
+  publish = "public"
+
+[build.environment]
+  NODE_VERSION = "20"

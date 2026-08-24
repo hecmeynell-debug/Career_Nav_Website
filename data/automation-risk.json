@@ -1,0 +1,962 @@
+[
+  {
+    "id": "you",
+    "name": "ML / AI engineering",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "de",
+    "name": "Data engineering",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "ds",
+    "name": "Data science",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "analyst",
+    "name": "Data analyst",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "swe",
+    "name": "Software eng (generalist)",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "devops",
+    "name": "DevOps / cloud engineer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "cyber",
+    "name": "Cybersecurity engineering",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "ux",
+    "name": "UX / UI designer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "itsupport",
+    "name": "IT support technician",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "pm",
+    "name": "Product manager",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "quant",
+    "name": "Quant finance / dev",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "ib",
+    "name": "Investment banking (IBD)",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "consult",
+    "name": "Management consulting",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "finanalyst",
+    "name": "Financial analyst",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "account",
+    "name": "Chartered accountancy (ACA)",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "auditor",
+    "name": "Auditor",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "hr",
+    "name": "HR manager",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "recruiter",
+    "name": "Recruitment consultant",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "economist",
+    "name": "Economist",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "underwriter",
+    "name": "Insurance underwriter",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "doctor",
+    "name": "Doctor (GP / consultant)",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "surgeon",
+    "name": "Surgeon",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "psychiatrist",
+    "name": "Psychiatrist",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "dentist",
+    "name": "Dentistry",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "nurse",
+    "name": "Registered nurse",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "midwife",
+    "name": "Midwife",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "physio",
+    "name": "Physiotherapist",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "ot",
+    "name": "Occupational therapist",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "radiographer",
+    "name": "Radiographer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "pharma",
+    "name": "Pharmacist",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "optometrist",
+    "name": "Optometrist",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "vet",
+    "name": "Veterinarian",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "psych",
+    "name": "Clinical psychologist",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "therapist",
+    "name": "Mental-health therapist",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "paramedic",
+    "name": "Paramedic",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "careworker",
+    "name": "Care worker",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "socialworker",
+    "name": "Social worker",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "actuary",
+    "name": "Actuary",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "lawyer",
+    "name": "Solicitor (corporate)",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "barrister",
+    "name": "Barrister",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "paralegal",
+    "name": "Paralegal",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "surveyor",
+    "name": "Chartered surveyor",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "townplanner",
+    "name": "Town planner",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "civileng",
+    "name": "Civil / structural engineer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "mecheng",
+    "name": "Mechanical engineer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "eleceng",
+    "name": "Electrical / electronics engineer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "aeroeng",
+    "name": "Aerospace engineer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "researchsci",
+    "name": "Research scientist (academia)",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "labtech",
+    "name": "Biomedical / lab scientist",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "envsci",
+    "name": "Environmental scientist",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "pilot",
+    "name": "Airline pilot (senior)",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "atc",
+    "name": "Air traffic controller",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "traindriver",
+    "name": "Train driver",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "electrician",
+    "name": "Electrician",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "plumber",
+    "name": "Plumber",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "gaseng",
+    "name": "Gas / heating engineer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "carpenter",
+    "name": "Carpenter / joiner",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "welder",
+    "name": "Welder / fabricator",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "bricklayer",
+    "name": "Bricklayer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "painter",
+    "name": "Painter & decorator",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "mechanic",
+    "name": "Auto mechanic / technician",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "chef",
+    "name": "Chef",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "pt",
+    "name": "Personal trainer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "teacher",
+    "name": "Teaching",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "lecturer",
+    "name": "University lecturer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "civilservant",
+    "name": "Civil servant (Fast Stream)",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "police",
+    "name": "Police officer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "firefighter",
+    "name": "Firefighter",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "architect",
+    "name": "Architect",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "interiordesign",
+    "name": "Interior designer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "marketer",
+    "name": "Digital marketing manager",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "journalist",
+    "name": "Journalist",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "copywriter",
+    "name": "Copywriter",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "photographer",
+    "name": "Photographer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "gdesign",
+    "name": "Graphic designer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "estateagent",
+    "name": "Estate agent",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "creator",
+    "name": "Content creation / influencing",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "businessanalyst",
+    "name": "Business analyst",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "mobiledev",
+    "name": "Mobile developer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "gamedev",
+    "name": "Game developer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "qaeng",
+    "name": "QA / test engineer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "networkeng",
+    "name": "Network engineer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "solarch",
+    "name": "Solutions architect",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "techwriter",
+    "name": "Technical writer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "dietitian",
+    "name": "Dietitian",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "slt",
+    "name": "Speech & language therapist",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "podiatrist",
+    "name": "Podiatrist",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "dentalhyg",
+    "name": "Dental hygienist",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "pharmtech",
+    "name": "Pharmacy technician",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "counsellor",
+    "name": "Counsellor",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "ifa",
+    "name": "Financial adviser (IFA)",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "taxadviser",
+    "name": "Tax adviser",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "compliance",
+    "name": "Compliance officer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "insbroker",
+    "name": "Insurance broker",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "cilex",
+    "name": "Legal executive (CILEX)",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "prisonofficer",
+    "name": "Prison officer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "probation",
+    "name": "Probation officer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "diplomat",
+    "name": "Diplomat (Foreign Office)",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "intelanalyst",
+    "name": "Intelligence analyst",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "eho",
+    "name": "Environmental health officer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "chemeng",
+    "name": "Chemical engineer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "biomedeng",
+    "name": "Biomedical engineer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "roboticseng",
+    "name": "Robotics engineer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "quantsurveyor",
+    "name": "Quantity surveyor",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "geologist",
+    "name": "Geologist",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "statistician",
+    "name": "Statistician",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "videoeditor",
+    "name": "Video editor",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "animator",
+    "name": "Animator",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "fashiondesigner",
+    "name": "Fashion designer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "industrialdesigner",
+    "name": "Industrial / product designer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "prmanager",
+    "name": "PR manager",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "translator",
+    "name": "Translator",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "roofer",
+    "name": "Roofer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "plasterer",
+    "name": "Plasterer",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "landscaper",
+    "name": "Landscape gardener",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "hgvdriver",
+    "name": "HGV driver",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "hairdresser",
+    "name": "Hairdresser",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "baker",
+    "name": "Baker",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "opsmanager",
+    "name": "Operations manager",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  },
+  {
+    "id": "supplychain",
+    "name": "Supply chain manager",
+    "probability": null,
+    "riskBand": null,
+    "source": null,
+    "status": "todo"
+  }
+]

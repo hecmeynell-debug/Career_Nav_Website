@@ -1,0 +1,159 @@
+[
+  {
+    "q": "I’d rather express my own ideas than follow a proven, established method.",
+    "w": {
+      "A": 2,
+      "option": 1
+    }
+  },
+  {
+    "q": "I enjoy taking a problem apart to understand exactly how it works.",
+    "w": {
+      "I": 2,
+      "R": 1
+    }
+  },
+  {
+    "q": "A secure, stable income matters more to me than passion for the work.",
+    "w": {
+      "secure": 2,
+      "pay": 1,
+      "A": -1
+    }
+  },
+  {
+    "q": "I like working with my hands and watching something physical take shape.",
+    "w": {
+      "R": 3
+    }
+  },
+  {
+    "q": "I’m energised by persuading people and leading from the front.",
+    "w": {
+      "E": 2,
+      "option": 1
+    }
+  },
+  {
+    "q": "I prefer clear rules and structure to open-ended ambiguity.",
+    "w": {
+      "C": 2,
+      "secure": 1,
+      "A": -1
+    }
+  },
+  {
+    "q": "Helping people directly is important to me.",
+    "w": {
+      "S": 3
+    }
+  },
+  {
+    "q": "I want work that leaves plenty of room for the rest of my life.",
+    "w": {
+      "life": 3
+    }
+  },
+  {
+    "q": "I’d happily endure years of hard training for a big long-term payoff.",
+    "w": {
+      "pay": 2,
+      "entry": -2,
+      "speed": -1
+    }
+  },
+  {
+    "q": "I’d like to be my own boss one day.",
+    "w": {
+      "option": 3,
+      "E": 1
+    }
+  },
+  {
+    "q": "Doing the same routine every day would bore me quickly.",
+    "w": {
+      "A": 1,
+      "I": 1,
+      "C": -2
+    }
+  },
+  {
+    "q": "Being recognised as an expert in my field matters to me.",
+    "w": {
+      "I": 2,
+      "E": 1
+    }
+  },
+  {
+    "q": "I’d rather make or build something than analyse data.",
+    "w": {
+      "R": 2,
+      "A": 1,
+      "I": -1
+    }
+  },
+  {
+    "q": "Job stability is worth more to me than a high salary.",
+    "w": {
+      "secure": 2,
+      "pay": -1
+    }
+  },
+  {
+    "q": "I enjoy wrestling with abstract, theoretical problems.",
+    "w": {
+      "I": 3,
+      "A": 1
+    }
+  },
+  {
+    "q": "I’m comfortable with risk and uncertainty in my career.",
+    "w": {
+      "option": 2,
+      "secure": -2,
+      "E": 1
+    }
+  },
+  {
+    "q": "Creativity and originality are central to who I am.",
+    "w": {
+      "A": 3
+    }
+  },
+  {
+    "q": "I want my work to serve a clear social purpose.",
+    "w": {
+      "S": 2,
+      "future": 1
+    }
+  },
+  {
+    "q": "I want to reach high earnings as fast as possible.",
+    "w": {
+      "pay": 2,
+      "speed": 3
+    }
+  },
+  {
+    "q": "I’d rather collaborate in a team than work alone.",
+    "w": {
+      "S": 2,
+      "option": -1
+    }
+  },
+  {
+    "q": "I like precise, detail-oriented tasks.",
+    "w": {
+      "C": 2,
+      "I": 1
+    }
+  },
+  {
+    "q": "I value variety and breadth over deep specialisation.",
+    "w": {
+      "A": 1,
+      "E": 1,
+      "option": 1
+    }
+  }
+]

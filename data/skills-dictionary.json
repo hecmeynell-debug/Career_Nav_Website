@@ -1,0 +1,1258 @@
+[
+  {
+    "skill": "Python",
+    "aliases": [
+      "python"
+    ],
+    "domains": [
+      "prog",
+      "data",
+      "ml"
+    ]
+  },
+  {
+    "skill": "Java",
+    "aliases": [
+      "java"
+    ],
+    "domains": [
+      "prog"
+    ]
+  },
+  {
+    "skill": "JavaScript",
+    "aliases": [
+      "javascript",
+      "js"
+    ],
+    "domains": [
+      "prog",
+      "web"
+    ]
+  },
+  {
+    "skill": "TypeScript",
+    "aliases": [
+      "typescript"
+    ],
+    "domains": [
+      "prog",
+      "web"
+    ]
+  },
+  {
+    "skill": "C++",
+    "aliases": [
+      "c++"
+    ],
+    "domains": [
+      "prog"
+    ]
+  },
+  {
+    "skill": "C#",
+    "aliases": [
+      "c#"
+    ],
+    "domains": [
+      "prog"
+    ]
+  },
+  {
+    "skill": "Go",
+    "aliases": [
+      "golang"
+    ],
+    "domains": [
+      "prog"
+    ]
+  },
+  {
+    "skill": "Rust",
+    "aliases": [
+      "rust"
+    ],
+    "domains": [
+      "prog"
+    ]
+  },
+  {
+    "skill": "Ruby",
+    "aliases": [
+      "ruby"
+    ],
+    "domains": [
+      "prog",
+      "web"
+    ]
+  },
+  {
+    "skill": "PHP",
+    "aliases": [
+      "php"
+    ],
+    "domains": [
+      "prog",
+      "web"
+    ]
+  },
+  {
+    "skill": "SQL",
+    "aliases": [
+      "sql"
+    ],
+    "domains": [
+      "data",
+      "prog"
+    ]
+  },
+  {
+    "skill": "R",
+    "aliases": [
+      "r"
+    ],
+    "domains": [
+      "data",
+      "ml"
+    ]
+  },
+  {
+    "skill": "Scala",
+    "aliases": [
+      "scala"
+    ],
+    "domains": [
+      "prog",
+      "data"
+    ]
+  },
+  {
+    "skill": "MATLAB",
+    "aliases": [
+      "matlab"
+    ],
+    "domains": [
+      "engmech",
+      "ml"
+    ]
+  },
+  {
+    "skill": "Bash",
+    "aliases": [
+      "bash",
+      "shell scripting"
+    ],
+    "domains": [
+      "prog",
+      "cloud"
+    ]
+  },
+  {
+    "skill": "Git",
+    "aliases": [
+      "git",
+      "github"
+    ],
+    "domains": [
+      "prog"
+    ]
+  },
+  {
+    "skill": "HTML",
+    "aliases": [
+      "html"
+    ],
+    "domains": [
+      "web"
+    ]
+  },
+  {
+    "skill": "CSS",
+    "aliases": [
+      "css"
+    ],
+    "domains": [
+      "web"
+    ]
+  },
+  {
+    "skill": "React",
+    "aliases": [
+      "react"
+    ],
+    "domains": [
+      "web"
+    ]
+  },
+  {
+    "skill": "Angular",
+    "aliases": [
+      "angular"
+    ],
+    "domains": [
+      "web"
+    ]
+  },
+  {
+    "skill": "Vue",
+    "aliases": [
+      "vue"
+    ],
+    "domains": [
+      "web"
+    ]
+  },
+  {
+    "skill": "Node.js",
+    "aliases": [
+      "node.js",
+      "nodejs"
+    ],
+    "domains": [
+      "web"
+    ]
+  },
+  {
+    "skill": "Django",
+    "aliases": [
+      "django"
+    ],
+    "domains": [
+      "web"
+    ]
+  },
+  {
+    "skill": "Flask",
+    "aliases": [
+      "flask"
+    ],
+    "domains": [
+      "web"
+    ]
+  },
+  {
+    "skill": ".NET",
+    "aliases": [
+      ".net"
+    ],
+    "domains": [
+      "web",
+      "prog"
+    ]
+  },
+  {
+    "skill": "REST APIs",
+    "aliases": [
+      "rest api",
+      "apis"
+    ],
+    "domains": [
+      "web",
+      "prog"
+    ]
+  },
+  {
+    "skill": "Excel",
+    "aliases": [
+      "excel"
+    ],
+    "domains": [
+      "data"
+    ]
+  },
+  {
+    "skill": "Power BI",
+    "aliases": [
+      "power bi"
+    ],
+    "domains": [
+      "data"
+    ]
+  },
+  {
+    "skill": "Tableau",
+    "aliases": [
+      "tableau"
+    ],
+    "domains": [
+      "data"
+    ]
+  },
+  {
+    "skill": "Pandas",
+    "aliases": [
+      "pandas"
+    ],
+    "domains": [
+      "data",
+      "ml"
+    ]
+  },
+  {
+    "skill": "Spark",
+    "aliases": [
+      "spark"
+    ],
+    "domains": [
+      "data"
+    ]
+  },
+  {
+    "skill": "Hadoop",
+    "aliases": [
+      "hadoop"
+    ],
+    "domains": [
+      "data"
+    ]
+  },
+  {
+    "skill": "ETL",
+    "aliases": [
+      "etl"
+    ],
+    "domains": [
+      "data"
+    ]
+  },
+  {
+    "skill": "Snowflake",
+    "aliases": [
+      "snowflake"
+    ],
+    "domains": [
+      "data",
+      "cloud"
+    ]
+  },
+  {
+    "skill": "dbt",
+    "aliases": [
+      "dbt"
+    ],
+    "domains": [
+      "data"
+    ]
+  },
+  {
+    "skill": "Airflow",
+    "aliases": [
+      "airflow"
+    ],
+    "domains": [
+      "data"
+    ]
+  },
+  {
+    "skill": "PostgreSQL",
+    "aliases": [
+      "postgresql",
+      "postgres"
+    ],
+    "domains": [
+      "data"
+    ]
+  },
+  {
+    "skill": "MySQL",
+    "aliases": [
+      "mysql"
+    ],
+    "domains": [
+      "data"
+    ]
+  },
+  {
+    "skill": "MongoDB",
+    "aliases": [
+      "mongodb"
+    ],
+    "domains": [
+      "data"
+    ]
+  },
+  {
+    "skill": "Statistics",
+    "aliases": [
+      "statistics",
+      "statistical"
+    ],
+    "domains": [
+      "data",
+      "research"
+    ]
+  },
+  {
+    "skill": "SAS",
+    "aliases": [
+      "sas"
+    ],
+    "domains": [
+      "data"
+    ]
+  },
+  {
+    "skill": "Stata",
+    "aliases": [
+      "stata"
+    ],
+    "domains": [
+      "data",
+      "econ"
+    ]
+  },
+  {
+    "skill": "SPSS",
+    "aliases": [
+      "spss"
+    ],
+    "domains": [
+      "data",
+      "research"
+    ]
+  },
+  {
+    "skill": "Data analysis",
+    "aliases": [
+      "data analysis",
+      "data analytics"
+    ],
+    "domains": [
+      "data"
+    ]
+  },
+  {
+    "skill": "Machine learning",
+    "aliases": [
+      "machine learning"
+    ],
+    "domains": [
+      "ml",
+      "data"
+    ]
+  },
+  {
+    "skill": "Deep learning",
+    "aliases": [
+      "deep learning"
+    ],
+    "domains": [
+      "ml"
+    ]
+  },
+  {
+    "skill": "TensorFlow",
+    "aliases": [
+      "tensorflow"
+    ],
+    "domains": [
+      "ml"
+    ]
+  },
+  {
+    "skill": "PyTorch",
+    "aliases": [
+      "pytorch"
+    ],
+    "domains": [
+      "ml"
+    ]
+  },
+  {
+    "skill": "scikit-learn",
+    "aliases": [
+      "scikit-learn",
+      "sklearn"
+    ],
+    "domains": [
+      "ml"
+    ]
+  },
+  {
+    "skill": "NLP",
+    "aliases": [
+      "nlp",
+      "natural language processing"
+    ],
+    "domains": [
+      "ml"
+    ]
+  },
+  {
+    "skill": "Computer vision",
+    "aliases": [
+      "computer vision"
+    ],
+    "domains": [
+      "ml"
+    ]
+  },
+  {
+    "skill": "AWS",
+    "aliases": [
+      "aws",
+      "amazon web services"
+    ],
+    "domains": [
+      "cloud"
+    ]
+  },
+  {
+    "skill": "Azure",
+    "aliases": [
+      "azure"
+    ],
+    "domains": [
+      "cloud"
+    ]
+  },
+  {
+    "skill": "GCP",
+    "aliases": [
+      "gcp",
+      "google cloud"
+    ],
+    "domains": [
+      "cloud"
+    ]
+  },
+  {
+    "skill": "Docker",
+    "aliases": [
+      "docker"
+    ],
+    "domains": [
+      "cloud"
+    ]
+  },
+  {
+    "skill": "Kubernetes",
+    "aliases": [
+      "kubernetes",
+      "k8s"
+    ],
+    "domains": [
+      "cloud"
+    ]
+  },
+  {
+    "skill": "Terraform",
+    "aliases": [
+      "terraform"
+    ],
+    "domains": [
+      "cloud"
+    ]
+  },
+  {
+    "skill": "CI/CD",
+    "aliases": [
+      "ci/cd",
+      "continuous integration"
+    ],
+    "domains": [
+      "cloud"
+    ]
+  },
+  {
+    "skill": "Linux",
+    "aliases": [
+      "linux"
+    ],
+    "domains": [
+      "cloud",
+      "prog"
+    ]
+  },
+  {
+    "skill": "Penetration testing",
+    "aliases": [
+      "penetration testing",
+      "pentest"
+    ],
+    "domains": [
+      "cyber"
+    ]
+  },
+  {
+    "skill": "SIEM",
+    "aliases": [
+      "siem"
+    ],
+    "domains": [
+      "cyber"
+    ]
+  },
+  {
+    "skill": "Incident response",
+    "aliases": [
+      "incident response"
+    ],
+    "domains": [
+      "cyber"
+    ]
+  },
+  {
+    "skill": "Network security",
+    "aliases": [
+      "network security",
+      "firewall"
+    ],
+    "domains": [
+      "cyber"
+    ]
+  },
+  {
+    "skill": "Figma",
+    "aliases": [
+      "figma"
+    ],
+    "domains": [
+      "design",
+      "ux"
+    ]
+  },
+  {
+    "skill": "Sketch",
+    "aliases": [
+      "sketch app"
+    ],
+    "domains": [
+      "design",
+      "ux"
+    ]
+  },
+  {
+    "skill": "Adobe",
+    "aliases": [
+      "adobe",
+      "photoshop",
+      "illustrator",
+      "indesign"
+    ],
+    "domains": [
+      "design"
+    ]
+  },
+  {
+    "skill": "UI design",
+    "aliases": [
+      "ui design"
+    ],
+    "domains": [
+      "design",
+      "ux"
+    ]
+  },
+  {
+    "skill": "UX research",
+    "aliases": [
+      "user research",
+      "usability"
+    ],
+    "domains": [
+      "ux"
+    ]
+  },
+  {
+    "skill": "Prototyping",
+    "aliases": [
+      "prototyping",
+      "wireframe",
+      "wireframing"
+    ],
+    "domains": [
+      "ux",
+      "design",
+      "product"
+    ]
+  },
+  {
+    "skill": "Product management",
+    "aliases": [
+      "product management"
+    ],
+    "domains": [
+      "product"
+    ]
+  },
+  {
+    "skill": "Agile",
+    "aliases": [
+      "agile",
+      "scrum"
+    ],
+    "domains": [
+      "product",
+      "pm"
+    ]
+  },
+  {
+    "skill": "Jira",
+    "aliases": [
+      "jira"
+    ],
+    "domains": [
+      "product",
+      "pm"
+    ]
+  },
+  {
+    "skill": "Stakeholder management",
+    "aliases": [
+      "stakeholder"
+    ],
+    "domains": [
+      "product",
+      "pm",
+      "sales"
+    ]
+  },
+  {
+    "skill": "Project management",
+    "aliases": [
+      "project management"
+    ],
+    "domains": [
+      "pm"
+    ]
+  },
+  {
+    "skill": "PRINCE2",
+    "aliases": [
+      "prince2"
+    ],
+    "domains": [
+      "pm"
+    ]
+  },
+  {
+    "skill": "Six Sigma",
+    "aliases": [
+      "six sigma",
+      "lean six"
+    ],
+    "domains": [
+      "pm"
+    ]
+  },
+  {
+    "skill": "Copywriting",
+    "aliases": [
+      "copywriting",
+      "copywriter"
+    ],
+    "domains": [
+      "write",
+      "market"
+    ]
+  },
+  {
+    "skill": "Content writing",
+    "aliases": [
+      "content writing",
+      "blogging"
+    ],
+    "domains": [
+      "write",
+      "media"
+    ]
+  },
+  {
+    "skill": "Editing",
+    "aliases": [
+      "editing",
+      "proofreading"
+    ],
+    "domains": [
+      "write"
+    ]
+  },
+  {
+    "skill": "Journalism",
+    "aliases": [
+      "journalism"
+    ],
+    "domains": [
+      "write",
+      "media"
+    ]
+  },
+  {
+    "skill": "SEO",
+    "aliases": [
+      "seo"
+    ],
+    "domains": [
+      "market",
+      "write"
+    ]
+  },
+  {
+    "skill": "Digital marketing",
+    "aliases": [
+      "digital marketing"
+    ],
+    "domains": [
+      "market"
+    ]
+  },
+  {
+    "skill": "Google Ads",
+    "aliases": [
+      "google ads",
+      "ppc",
+      "paid media"
+    ],
+    "domains": [
+      "market"
+    ]
+  },
+  {
+    "skill": "Social media",
+    "aliases": [
+      "social media"
+    ],
+    "domains": [
+      "market",
+      "media"
+    ]
+  },
+  {
+    "skill": "CRM",
+    "aliases": [
+      "salesforce",
+      "hubspot"
+    ],
+    "domains": [
+      "market",
+      "sales"
+    ]
+  },
+  {
+    "skill": "Sales",
+    "aliases": [
+      "sales",
+      "business development"
+    ],
+    "domains": [
+      "sales"
+    ]
+  },
+  {
+    "skill": "Negotiation",
+    "aliases": [
+      "negotiation"
+    ],
+    "domains": [
+      "sales",
+      "legal"
+    ]
+  },
+  {
+    "skill": "Financial modelling",
+    "aliases": [
+      "financial modelling",
+      "financial modeling"
+    ],
+    "domains": [
+      "fin"
+    ]
+  },
+  {
+    "skill": "Valuation",
+    "aliases": [
+      "valuation"
+    ],
+    "domains": [
+      "fin"
+    ]
+  },
+  {
+    "skill": "Financial analysis",
+    "aliases": [
+      "financial analysis"
+    ],
+    "domains": [
+      "fin",
+      "acct"
+    ]
+  },
+  {
+    "skill": "Bloomberg",
+    "aliases": [
+      "bloomberg"
+    ],
+    "domains": [
+      "fin"
+    ]
+  },
+  {
+    "skill": "Risk management",
+    "aliases": [
+      "risk management"
+    ],
+    "domains": [
+      "fin"
+    ]
+  },
+  {
+    "skill": "Accounting",
+    "aliases": [
+      "accounting",
+      "bookkeeping"
+    ],
+    "domains": [
+      "acct"
+    ]
+  },
+  {
+    "skill": "Financial reporting",
+    "aliases": [
+      "financial reporting"
+    ],
+    "domains": [
+      "acct"
+    ]
+  },
+  {
+    "skill": "Audit",
+    "aliases": [
+      "audit",
+      "auditing"
+    ],
+    "domains": [
+      "acct"
+    ]
+  },
+  {
+    "skill": "Tax",
+    "aliases": [
+      "taxation"
+    ],
+    "domains": [
+      "acct"
+    ]
+  },
+  {
+    "skill": "Xero",
+    "aliases": [
+      "xero",
+      "sage",
+      "quickbooks"
+    ],
+    "domains": [
+      "acct"
+    ]
+  },
+  {
+    "skill": "Econometrics",
+    "aliases": [
+      "econometrics"
+    ],
+    "domains": [
+      "econ"
+    ]
+  },
+  {
+    "skill": "Forecasting",
+    "aliases": [
+      "forecasting"
+    ],
+    "domains": [
+      "econ",
+      "fin",
+      "data"
+    ]
+  },
+  {
+    "skill": "Legal research",
+    "aliases": [
+      "legal research"
+    ],
+    "domains": [
+      "legal"
+    ]
+  },
+  {
+    "skill": "Litigation",
+    "aliases": [
+      "litigation"
+    ],
+    "domains": [
+      "legal"
+    ]
+  },
+  {
+    "skill": "Contract law",
+    "aliases": [
+      "contract law"
+    ],
+    "domains": [
+      "legal"
+    ]
+  },
+  {
+    "skill": "Due diligence",
+    "aliases": [
+      "due diligence"
+    ],
+    "domains": [
+      "legal",
+      "fin"
+    ]
+  },
+  {
+    "skill": "Compliance",
+    "aliases": [
+      "compliance"
+    ],
+    "domains": [
+      "legal",
+      "fin"
+    ]
+  },
+  {
+    "skill": "Patient care",
+    "aliases": [
+      "patient care",
+      "clinical"
+    ],
+    "domains": [
+      "clin"
+    ]
+  },
+  {
+    "skill": "Nursing",
+    "aliases": [
+      "nursing"
+    ],
+    "domains": [
+      "clin",
+      "care"
+    ]
+  },
+  {
+    "skill": "Safeguarding",
+    "aliases": [
+      "safeguarding"
+    ],
+    "domains": [
+      "clin",
+      "care",
+      "teach"
+    ]
+  },
+  {
+    "skill": "First aid",
+    "aliases": [
+      "first aid"
+    ],
+    "domains": [
+      "clin",
+      "safety"
+    ]
+  },
+  {
+    "skill": "Support work",
+    "aliases": [
+      "support work",
+      "care work"
+    ],
+    "domains": [
+      "care"
+    ]
+  },
+  {
+    "skill": "Mental health",
+    "aliases": [
+      "mental health"
+    ],
+    "domains": [
+      "care",
+      "clin"
+    ]
+  },
+  {
+    "skill": "Teaching",
+    "aliases": [
+      "teaching",
+      "lesson planning"
+    ],
+    "domains": [
+      "teach"
+    ]
+  },
+  {
+    "skill": "Curriculum",
+    "aliases": [
+      "curriculum"
+    ],
+    "domains": [
+      "teach"
+    ]
+  },
+  {
+    "skill": "Research",
+    "aliases": [
+      "research",
+      "literature review"
+    ],
+    "domains": [
+      "research"
+    ]
+  },
+  {
+    "skill": "Laboratory",
+    "aliases": [
+      "laboratory",
+      "lab techniques"
+    ],
+    "domains": [
+      "lab"
+    ]
+  },
+  {
+    "skill": "CAD",
+    "aliases": [
+      "autocad",
+      "solidworks"
+    ],
+    "domains": [
+      "engmech",
+      "engelec"
+    ]
+  },
+  {
+    "skill": "Revit",
+    "aliases": [
+      "revit"
+    ],
+    "domains": [
+      "engciv",
+      "design"
+    ]
+  },
+  {
+    "skill": "PLC",
+    "aliases": [
+      "control systems"
+    ],
+    "domains": [
+      "engelec"
+    ]
+  },
+  {
+    "skill": "Electrical installation",
+    "aliases": [
+      "electrical installation",
+      "wiring"
+    ],
+    "domains": [
+      "telec"
+    ]
+  },
+  {
+    "skill": "Plumbing",
+    "aliases": [
+      "plumbing"
+    ],
+    "domains": [
+      "tplumb"
+    ]
+  },
+  {
+    "skill": "Gas Safe",
+    "aliases": [
+      "gas safe"
+    ],
+    "domains": [
+      "tplumb"
+    ]
+  },
+  {
+    "skill": "Welding",
+    "aliases": [
+      "welding",
+      "fabrication"
+    ],
+    "domains": [
+      "tconstruct",
+      "tmech"
+    ]
+  },
+  {
+    "skill": "Carpentry",
+    "aliases": [
+      "carpentry",
+      "joinery"
+    ],
+    "domains": [
+      "tconstruct"
+    ]
+  },
+  {
+    "skill": "Bricklaying",
+    "aliases": [
+      "bricklaying"
+    ],
+    "domains": [
+      "tconstruct"
+    ]
+  },
+  {
+    "skill": "NVQ",
+    "aliases": [
+      "nvq"
+    ],
+    "domains": [
+      "telec",
+      "tplumb",
+      "tconstruct",
+      "tmech"
+    ]
+  },
+  {
+    "skill": "CSCS",
+    "aliases": [
+      "cscs"
+    ],
+    "domains": [
+      "tconstruct"
+    ]
+  },
+  {
+    "skill": "MS Office",
+    "aliases": [
+      "microsoft office",
+      "powerpoint"
+    ],
+    "domains": [
+      "admin"
+    ]
+  },
+  {
+    "skill": "Leadership",
+    "aliases": [
+      "leadership",
+      "team management",
+      "line management"
+    ],
+    "domains": [
+      "pm",
+      "sales",
+      "hr"
+    ]
+  },
+  {
+    "skill": "Customer service",
+    "aliases": [
+      "customer service"
+    ],
+    "domains": [
+      "sales",
+      "admin",
+      "care"
+    ]
+  }
+]

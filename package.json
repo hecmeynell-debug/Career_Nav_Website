@@ -1,0 +1,20 @@
+{
+  "name": "career-navigator",
+  "version": "0.1.0",
+  "description": "An interactive, honesty-first UK careers explorer: match, report, compare, and CV-to-pivot analysis over 120 careers.",
+  "type": "commonjs",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-data.js",
+    "test": "node --test",
+    "ingest:mock": "node scripts/ingest-ashe.js --mock",
+    "ingest": "node scripts/ingest-ashe.js",
+    "build": "node scripts/build-careers.js",
+    "build:site": "node scripts/build-site.js",
+    "check": "npm run validate && npm test && npm run build"
+  },
+  "license": "UNLICENSED"
+}

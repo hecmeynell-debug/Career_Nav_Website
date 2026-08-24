@@ -1,0 +1,56 @@
+{
+  "Money-first": {
+    "pay": 10,
+    "speed": 7,
+    "secure": 6,
+    "future": 5,
+    "entry": 4,
+    "life": 4,
+    "option": 4
+  },
+  "Security-first": {
+    "secure": 10,
+    "future": 9,
+    "pay": 5,
+    "life": 6,
+    "entry": 5,
+    "speed": 3,
+    "option": 5
+  },
+  "Balanced": {
+    "pay": 6,
+    "future": 6,
+    "secure": 6,
+    "entry": 6,
+    "speed": 6,
+    "life": 6,
+    "option": 6
+  },
+  "Work-life": {
+    "life": 10,
+    "secure": 7,
+    "option": 7,
+    "pay": 5,
+    "future": 6,
+    "entry": 6,
+    "speed": 3
+  },
+  "Fast earner": {
+    "speed": 10,
+    "pay": 9,
+    "entry": 7,
+    "secure": 5,
+    "future": 4,
+    "life": 5,
+    "option": 5
+  },
+  "Independence": {
+    "option": 10,
+    "life": 7,
+    "future": 6,
+    "pay": 6,
+    "entry": 6,
+    "secure": 5,
+    "speed": 4
+  }
+}

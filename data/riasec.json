@@ -1,0 +1,42 @@
+{
+  "order": [
+    "R",
+    "I",
+    "A",
+    "S",
+    "E",
+    "C"
+  ],
+  "labels": [
+    {
+      "code": "R",
+      "label": "Practical / hands-on",
+      "phrase": "hands-on builders who like tangible, physical results"
+    },
+    {
+      "code": "I",
+      "label": "Analytical / investigative",
+      "phrase": "analytical problem-solvers and deep thinkers"
+    },
+    {
+      "code": "A",
+      "label": "Creative / expressive",
+      "phrase": "creative, expressive originals who value self-expression"
+    },
+    {
+      "code": "S",
+      "label": "People / helping",
+      "phrase": "people-people energised by helping others directly"
+    },
+    {
+      "code": "E",
+      "label": "Leading / persuading",
+      "phrase": "persuasive self-starters who like to lead and influence"
+    },
+    {
+      "code": "C",
+      "label": "Organised / structured",
+      "phrase": "organised, detail-focused planners who like structure"
+    }
+  ]
+}

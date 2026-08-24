@@ -1,0 +1,23 @@
+[
+  {
+    "id": "you",
+    "name": "(sample)",
+    "soc2020": "EX01",
+    "socTitle": "Example",
+    "status": "example"
+  },
+  {
+    "id": "de",
+    "name": "(sample)",
+    "soc2020": "EX02",
+    "socTitle": "Example",
+    "status": "example"
+  },
+  {
+    "id": "ds",
+    "name": "(sample)",
+    "soc2020": "EX03",
+    "socTitle": "Example",
+    "status": "example"
+  }
+]

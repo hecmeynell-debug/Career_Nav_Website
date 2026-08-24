@@ -1,0 +1,4 @@
+soc,occupation,p10,p25,median,p75,p90
+EX01,Example software role,32000,44000,58000,78000,98000
+EX02,Example nursing role,26000,30000,37000,45000,55000
+EX03,Example electrician role,22000,30000,39000,50000,66000

@@ -1,0 +1,166 @@
+{
+  "prog": [
+    "Programming",
+    "build a coding portfolio in a mainstream language (Python, JavaScript)"
+  ],
+  "data": [
+    "Data",
+    "learn SQL and a BI tool, and publish a data project"
+  ],
+  "cloud": [
+    "Cloud / DevOps",
+    "earn an AWS or Azure certification and ship a deployed project"
+  ],
+  "ml": [
+    "Machine learning",
+    "complete an applied ML course and a modelling project"
+  ],
+  "cyber": [
+    "Cybersecurity",
+    "work toward Security+ or a SOC-analyst apprenticeship"
+  ],
+  "web": [
+    "Web development",
+    "build and deploy a full-stack web app"
+  ],
+  "design": [
+    "Design",
+    "build a design portfolio in Figma/Adobe"
+  ],
+  "ux": [
+    "UX",
+    "produce two end-to-end UX case studies"
+  ],
+  "product": [
+    "Product",
+    "run a project end-to-end and learn agile/roadmapping"
+  ],
+  "pm": [
+    "Project management",
+    "take PRINCE2 or a project-management apprenticeship"
+  ],
+  "write": [
+    "Writing",
+    "build a portfolio of published pieces"
+  ],
+  "media": [
+    "Media",
+    "build a body of published creative work"
+  ],
+  "market": [
+    "Marketing",
+    "earn Google/Meta certifications and run a live campaign"
+  ],
+  "sales": [
+    "Sales",
+    "take a commission-based role to build a track record"
+  ],
+  "fin": [
+    "Finance",
+    "study toward the CFA and learn financial modelling"
+  ],
+  "acct": [
+    "Accounting",
+    "start AAT or an ACA/ACCA training contract"
+  ],
+  "econ": [
+    "Economics",
+    "strengthen econometrics and quantitative analysis"
+  ],
+  "legal": [
+    "Legal",
+    "take the SQE, or a paralegal role to build experience"
+  ],
+  "clin": [
+    "Clinical",
+    "a registered healthcare qualification (HCPC/NMC/GMC route)"
+  ],
+  "care": [
+    "Care",
+    "gain the Care Certificate and frontline experience"
+  ],
+  "teach": [
+    "Teaching",
+    "train for QTS via a PGCE or school-based route"
+  ],
+  "research": [
+    "Research",
+    "build research output and quantitative methods"
+  ],
+  "lab": [
+    "Laboratory",
+    "gain accredited lab experience (IBMS route)"
+  ],
+  "engmech": [
+    "Mechanical engineering",
+    "an accredited engineering degree + chartership"
+  ],
+  "engelec": [
+    "Electrical engineering",
+    "an accredited engineering degree + chartership"
+  ],
+  "engciv": [
+    "Civil engineering",
+    "an accredited engineering degree + chartership"
+  ],
+  "telec": [
+    "Electrical trade",
+    "an electrical apprenticeship → NVQ3 + Part P"
+  ],
+  "tplumb": [
+    "Plumbing / gas",
+    "a plumbing apprenticeship, adding Gas Safe registration"
+  ],
+  "tconstruct": [
+    "Construction trade",
+    "a construction apprenticeship → NVQ + CSCS"
+  ],
+  "tmech": [
+    "Vehicle trade",
+    "a motor-vehicle apprenticeship, ideally with EV training"
+  ],
+  "culinary": [
+    "Culinary",
+    "work up a kitchen brigade; culinary college optional"
+  ],
+  "fitness": [
+    "Fitness / rehab",
+    "a Level 3 PT qualification, or a clinical rehab degree"
+  ],
+  "admin": [
+    "Administration",
+    "build organisational and office-software skills"
+  ],
+  "hr": [
+    "HR",
+    "earn CIPD and gain people-operations experience"
+  ],
+  "aviation": [
+    "Aviation",
+    "a licensed training pathway (flight school / ATC selection)"
+  ],
+  "safety": [
+    "Public safety",
+    "a service selection and training pathway"
+  ],
+  "property": [
+    "Property",
+    "a RICS route + APC, or an estate-agency role"
+  ],
+  "env": [
+    "Environment",
+    "an environmental science degree + chartership"
+  ],
+  "transport": [
+    "Transport / driving",
+    "a vocational licence (HGV/PCV) via a training course"
+  ],
+  "horticulture": [
+    "Horticulture",
+    "a horticultural apprenticeship or course, building a client base"
+  ],
+  "beauty": [
+    "Beauty / hair",
+    "a Level 2/3 qualification or apprenticeship, then build clients"
+  ]
+}

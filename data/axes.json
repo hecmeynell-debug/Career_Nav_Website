@@ -1,0 +1,70 @@
+{
+  "keys": [
+    "pay",
+    "future",
+    "secure",
+    "entry",
+    "speed",
+    "life",
+    "option"
+  ],
+  "definitions": [
+    {
+      "key": "pay",
+      "label": "Pay",
+      "meaning": "high pay & a strong earning ceiling",
+      "high": "pays very well",
+      "low": "has a modest ceiling",
+      "prefersPhrase": "you want a high ceiling"
+    },
+    {
+      "key": "future",
+      "label": "Future-proof",
+      "meaning": "resistance to AI & automation",
+      "high": "is highly AI-resistant",
+      "low": "is exposed to automation",
+      "prefersPhrase": "you want AI-resistance"
+    },
+    {
+      "key": "secure",
+      "label": "Job security",
+      "meaning": "stability & recession-resistance",
+      "high": "is very stable",
+      "low": "can be insecure",
+      "prefersPhrase": "you want stability"
+    },
+    {
+      "key": "entry",
+      "label": "Easy entry",
+      "meaning": "a low, accessible barrier to entry",
+      "high": "is easy to enter",
+      "low": "has a steep, costly entry",
+      "prefersPhrase": "you need an accessible route in"
+    },
+    {
+      "key": "speed",
+      "label": "Fast progress",
+      "meaning": "reaching peak pay quickly",
+      "high": "pays off fast",
+      "low": "is slow to reach peak pay",
+      "prefersPhrase": "you want to earn sooner"
+    },
+    {
+      "key": "life",
+      "label": "Work-life",
+      "meaning": "sane hours & sustainability",
+      "high": "has good work-life balance",
+      "low": "is demanding on hours",
+      "prefersPhrase": "you want work-life balance"
+    },
+    {
+      "key": "option",
+      "label": "Independence",
+      "meaning": "freedom to go solo or own it",
+      "high": "lets you go independent",
+      "low": "ties you to employers",
+      "prefersPhrase": "you want independence"
+    }
+  ],
+  "note": "These 0-10 scores are structured judgement, not measured data. The \"future\" axis is a forecast about automation."
+}

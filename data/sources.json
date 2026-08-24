@@ -1,0 +1,52 @@
+{
+  "ashe": {
+    "name": "ONS Annual Survey of Hours and Earnings (ASHE)",
+    "publisher": "Office for National Statistics",
+    "url": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation4digitsoc2020ashetable14",
+    "dataset": "Table 14 - Occupation (4-digit SOC 2020)",
+    "licence": "Open Government Licence v3.0",
+    "feeds": "data/salaries.json",
+    "notes": "Gross annual pay percentiles by occupation. Some cells are suppressed for reliability; the pipeline must handle blanks."
+  },
+  "soc2020": {
+    "name": "Standard Occupational Classification 2020",
+    "publisher": "Office for National Statistics",
+    "url": "https://www.ons.gov.uk/methodology/classificationsandstandards/standardoccupationalclassificationsoc/soc2020",
+    "licence": "Open Government Licence v3.0",
+    "feeds": "data/soc-mapping.json",
+    "notes": "Use the ONS SOC 2020 search/coding tool to assign each career a 4-digit unit group."
+  },
+  "freyOsborne": {
+    "name": "The Future of Employment: How Susceptible Are Jobs to Computerisation?",
+    "authors": "Frey, C. B. and Osborne, M. A.",
+    "year": 2017,
+    "publication": "Technological Forecasting and Social Change, vol. 114, pp. 254-280",
+    "url": "https://doi.org/10.1016/j.techfore.2016.08.019",
+    "feeds": "data/automation-risk.json",
+    "notes": "Per-occupation probability of computerisation, keyed to US SOC. Cross-walk to UK SOC 2020 is approximate and must be labelled as such."
+  },
+  "oecd": {
+    "name": "Automation, skills use and training",
+    "authors": "Nedelkoska, L. and Quintini, G.",
+    "year": 2018,
+    "publication": "OECD Social, Employment and Migration Working Papers No. 202",
+    "url": "https://doi.org/10.1787/2e2f4eea-en",
+    "feeds": "data/automation-risk.json",
+    "notes": "Task-based automation risk. More conservative than Frey-Osborne; useful as a cross-check."
+  },
+  "pwc": {
+    "name": "Will robots really steal our jobs?",
+    "publisher": "PwC",
+    "year": 2018,
+    "url": "https://www.pwc.co.uk/services/economics/insights/the-impact-of-automation-on-jobs.html",
+    "feeds": "data/automation-risk.json",
+    "notes": "UK-focused automation exposure by sector and wave; useful for the UK cross-walk."
+  },
+  "hmrc": {
+    "name": "Income Tax rates and Personal Allowances; National Insurance rates",
+    "publisher": "HM Revenue & Customs / gov.uk",
+    "url": "https://www.gov.uk/income-tax-rates",
+    "feeds": "src/tax.js",
+    "notes": "2026/27 England thresholds. Verified. Update each tax year."
+  }
+}
