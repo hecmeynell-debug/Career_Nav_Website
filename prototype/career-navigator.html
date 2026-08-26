@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Career Navigator</title>
@@ -184,6 +185,19 @@
 </style>
 </head>
 <body>
+  <div id="authBar" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+       padding:8px 14px;background:var(--paper-2);border-bottom:1px solid var(--line);
+       font-family:'IBM Plex Mono',monospace;font-size:12px">
+    <span id="authStatus" style="color:var(--ink-soft)">Not signed in</span>
+    <input id="authEmail" type="email" placeholder="email"
+           style="padding:5px 8px;border:1px solid var(--line);border-radius:6px;font:inherit">
+    <input id="authPass" type="password" placeholder="password"
+           style="padding:5px 8px;border:1px solid var(--line);border-radius:6px;font:inherit">
+    <button id="authSignup" class="qbtn">Sign up</button>
+    <button id="authSignin" class="qbtn">Sign in</button>
+    <button id="authSignout" class="qbtn" style="display:none">Sign out</button>
+    <span id="authMsg"></span>
+  </div>
   <div class="eyebrow">Career Navigator · prototype · UK · 2026</div>
   <h1>Career<br>Navigator<span>find your match · read the route in · overlay any careers</span></h1>
   <p class="lede">Take the quiz, get ranked matches across <b>120 careers</b>, open any for a full report and step-by-step route in, or overlay several on one radar and salary chart to compare them directly.</p>
@@ -444,7 +458,7 @@ function buildQuiz(){const box=document.getElementById('quizBlock');box.innerHTM
   d.appendChild(lk);box.appendChild(d);});
  const btn=document.createElement('button');btn.className='qbtn';btn.textContent='See my matches \u2192';btn.onclick=submitQuiz;box.appendChild(btn);}
 function computeProfile(){const pri={pay:0,future:0,secure:0,entry:0,speed:0,life:0,option:0};const ria={R:0,I:0,A:0,S:0,E:0,C:0};let answered=0;QUIZ.forEach((q,qi)=>{const v=quizAns[qi];if(v==null)return;answered++;const s=v-3;for(const k in q.w){if(k in pri)pri[k]+=q.w[k]*s;else ria[k]+=q.w[k]*s;}});imp={};for(const k in pri)imp[k]=Math.max(0,Math.min(10,Math.round(5+pri[k]*0.9)));userRia=RKEYS.map(k=>Math.max(0,Math.min(10,Math.round(5+ria[k]*0.8))));quizTaken=answered>0;}
-function submitQuiz(){computeProfile();buildImps();document.querySelectorAll('.persona').forEach(x=>x.classList.remove('on'));setMode('manual');renderMatch();document.getElementById('resultHead').scrollIntoView({behavior:'smooth',block:'start'});}
+function submitQuiz(){computeProfile();buildImps();document.querySelectorAll('.persona').forEach(x=>x.classList.remove('on'));setMode('manual');renderMatch();document.getElementById('resultHead').scrollIntoView({behavior:'smooth',block:'start'});if(window.sb&&window.saveMyData){window.sb.auth.getSession().then(({data})=>{if(data.session)window.saveMyData({quiz:quizAns});});}}
 function buildMbti(){const sel=document.getElementById('mbtiSel');MBTITYPES.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;sel.appendChild(o);});sel.onchange=()=>{userMbti=sel.value;if(document.getElementById('resultHead').style.display!=='none')renderMatch();};}
 function setMode(v){document.querySelectorAll('#matchMode button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));document.getElementById('quizBlock').style.display=v==='quiz'?'block':'none';document.getElementById('sliderBlock').style.display=v==='manual'?'block':'none';}
 document.querySelectorAll('#matchMode button').forEach(b=>b.onclick=()=>setMode(b.dataset.v));
@@ -536,6 +550,80 @@ document.getElementById('zoomClose').onclick=closeZoom;
 document.getElementById('zoomOverlay').onclick=(e)=>{if(e.target.id==='zoomOverlay')closeZoom();};
 document.addEventListener('keydown',(e)=>{if(e.key==='Escape')closeZoom();});
 initHash();
+</script>
+
+<script>
+(function () {
+  const SUPABASE_URL = 'https://wkotdcjrzrpndtjutvdu.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_Dmz7mHGsXAa746_hb5VC_A_JVBXcbxw';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const $ = (id) => document.getElementById(id);
+  const msg = (t, err) => { $('authMsg').textContent = t || ''; $('authMsg').style.color = err ? '#B0472E' : 'var(--ink-soft)'; };
+
+  let quizLoaded = false;
+  function render(session) {
+    const user = session && session.user;
+    $('authStatus').textContent = user ? ('Signed in as ' + user.email) : 'Not signed in';
+    ['authEmail', 'authPass', 'authSignup', 'authSignin'].forEach((id) => $(id).style.display = user ? 'none' : '');
+    $('authSignout').style.display = user ? '' : 'none';
+    if (user && !quizLoaded && window.loadMyData) {
+      quizLoaded = true;
+      window.loadMyData().then((saved) => { if (saved && saved.quiz && window.applySavedQuiz) window.applySavedQuiz(saved.quiz); });
+    }
+    if (!user) quizLoaded = false;
+  }
+
+  $('authSignup').onclick = async () => {
+    msg('Creating account...');
+    const { error } = await sb.auth.signUp({ email: $('authEmail').value, password: $('authPass').value });
+    msg(error ? error.message : 'Account created and signed in.', !!error);
+  };
+  $('authSignin').onclick = async () => {
+    msg('Signing in...');
+    const { error } = await sb.auth.signInWithPassword({ email: $('authEmail').value, password: $('authPass').value });
+    msg(error ? error.message : '', !!error);
+  };
+  $('authSignout').onclick = async () => { await sb.auth.signOut(); msg(''); };
+
+  sb.auth.onAuthStateChange((_e, session) => render(session));
+  sb.auth.getSession().then(({ data }) => render(data.session));
+  window.sb = sb; // reused in the next step for saving data
+})();
+</script>
+
+<script>
+async function saveMyData(obj) {
+  const { data: s } = await window.sb.auth.getSession();
+  if (!s.session) return alert('Sign in first');
+  const { error } = await window.sb.from('profiles')
+    .upsert({ id: s.session.user.id, data: obj, updated_at: new Date() });
+  alert(error ? error.message : 'Saved.');
+}
+async function loadMyData() {
+  const { data: s } = await window.sb.auth.getSession();
+  if (!s.session) return null;
+  const { data } = await window.sb.from('profiles')
+    .select('data').eq('id', s.session.user.id).single();
+  return data ? data.data : null;
+}
+function applySavedQuiz(saved) {
+  Object.assign(quizAns, saved);
+  const groups = document.querySelectorAll('#quizBlock .likert');
+  groups.forEach((lk, qi) => {
+    const boxes = lk.querySelectorAll('.lk');
+    boxes.forEach((x) => x.classList.remove('on'));
+    const v = quizAns[qi];
+    if (v != null && boxes[v]) boxes[v].classList.add('on');
+  });
+  computeProfile();
+  buildImps();
+  document.querySelectorAll('.persona').forEach((x) => x.classList.remove('on'));
+  setMode('manual');
+  renderMatch();
+}
+window.saveMyData = saveMyData;
+window.loadMyData = loadMyData;
+window.applySavedQuiz = applySavedQuiz;
 </script>
 </body>
 </html>
