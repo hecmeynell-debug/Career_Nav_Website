@@ -4,41 +4,69 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Career Navigator</title>
+<title>120CAREERS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--paper:#E8EBE6;--paper-2:#F3F5F1;--ink:#16202A;--ink-soft:#4E5A62;--line:rgba(22,32,42,.14);--track:rgba(22,32,42,.075);--s:#B07A2B;--a:#2C7B5B;--b:#356BA2;--c:#69737E;--d:#9A8A7B;--you:#1D62B0;}
-  *{box-sizing:border-box;margin:0;padding:0}html{-webkit-text-size-adjust:100%}
-  body{background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;line-height:1.5;padding:22px 15px 70px;max-width:880px;margin:0 auto}
+  :root{--paper:#E8EBE6;--paper-2:#F3F5F1;--ink:#16202A;--ink-soft:#4E5A62;--line:rgba(22,32,42,.14);--track:rgba(22,32,42,.075);--s:#B07A2B;--a:#2C7B5B;--b:#356BA2;--c:#69737E;--d:#9A8A7B;--you:#1D62B0;
+    --btn:#F3F5F1;--btn-line:rgba(22,32,42,.16);--btn-hi:rgba(22,32,42,.05);
+    --grid:rgba(22,32,42,.16);--grid-2:rgba(22,32,42,.42);
+    --sb-thumb:rgba(22,32,42,.28);--sb-track:var(--track);
+    --svg-filter:none;--ink-70:color-mix(in oklab, var(--ink) 70%, var(--ink-soft) 30%);
+    --surf-shadow:0 1px 2px rgba(22,32,42,.10),inset 0 1px 0 rgba(255,255,255,.6);}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14181C;--paper-2:#1D2227;--ink:#ECEFEA;--ink-soft:#A7B0B6;--line:rgba(236,239,234,.14);--track:rgba(236,239,234,.08);
+      --s:#D9A650;--a:#57B98B;--b:#6EA3DC;--c:#9AA3AB;--d:#C3AE98;--you:#5C9CE3;
+      --btn:#232830;--btn-line:rgba(236,239,234,.18);--btn-hi:rgba(236,239,234,.07);
+      --grid:rgba(236,239,234,.2);--grid-2:rgba(236,239,234,.55);
+      --sb-thumb:rgba(236,239,234,.3);
+      --svg-filter:brightness(1.42) saturate(1.08);
+      --surf-shadow:inset 0 1px 0 rgba(236,239,234,.09),inset 0 -1px 0 rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14181C;--paper-2:#1D2227;--ink:#ECEFEA;--ink-soft:#A7B0B6;--line:rgba(236,239,234,.14);--track:rgba(236,239,234,.08);
+    --s:#D9A650;--a:#57B98B;--b:#6EA3DC;--c:#9AA3AB;--d:#C3AE98;--you:#5C9CE3;
+    --btn:#232830;--btn-line:rgba(236,239,234,.18);--btn-hi:rgba(236,239,234,.07);
+    --grid:rgba(236,239,234,.2);--grid-2:rgba(236,239,234,.55);
+    --sb-thumb:rgba(236,239,234,.3);
+    --svg-filter:brightness(1.42) saturate(1.08);
+    --surf-shadow:inset 0 1px 0 rgba(236,239,234,.09),inset 0 -1px 0 rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}html{-webkit-text-size-adjust:100%;overflow-x:hidden}
+  body{background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;line-height:1.5;padding:22px 15px 70px;max-width:880px;margin:0 auto;overflow-x:hidden;transition:background .2s ease,color .2s ease}
+  #themeToggle{position:fixed;top:14px;right:14px;z-index:30;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border:1px solid var(--btn-line);border-radius:20px;background:var(--btn);color:var(--ink-soft);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.08),inset 0 1px 0 var(--btn-hi)}
   .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
   h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;line-height:.9;letter-spacing:-.01em;font-size:clamp(40px,11vw,66px);letter-spacing:-.03em;text-transform:uppercase;margin-bottom:12px}
   h1 span{display:block;color:var(--ink-soft);font-weight:600}
-  .lede{font-size:15px;color:var(--ink-soft);max-width:60ch;margin-bottom:14px}.lede b{color:var(--ink);font-weight:600}
-  details.prov{border:1px dashed var(--line);border-radius:8px;padding:10px 12px;margin-bottom:22px;font-size:12.5px;color:var(--ink-soft)}
+  .lede{font-size:16.5px;line-height:1.6;color:var(--ink-70);max-width:60ch;margin-bottom:14px}.lede b{color:var(--ink);font-weight:600}
+  details.prov{border:1px dashed var(--line);border-radius:8px;padding:10px 12px;margin-bottom:22px;font-size:13.5px;line-height:1.6;color:var(--ink-70)}
   details.prov summary{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
   details.prov p{margin-top:8px}details.prov b{color:var(--ink)}
-  .tabs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:24px;position:sticky;top:0;background:var(--paper);padding:8px 0;z-index:20;border-bottom:1px solid var(--line)}
-  .tab{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:16px;letter-spacing:.02em;text-transform:uppercase;padding:9px 15px;border:1px solid var(--line);border-radius:7px;background:var(--paper-2);color:var(--ink-soft);cursor:pointer}
+  .tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:24px;position:sticky;top:0;background:var(--paper);padding:8px;z-index:20;border:1px solid var(--line);border-radius:16px;box-shadow:0 2px 10px rgba(22,32,42,.06)}
+  @media(max-width:660px){.tabs{grid-template-columns:repeat(2,1fr)}}
+  .tab{display:flex;align-items:center;justify-content:center;text-align:center;height:100%}
+  .tab{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:16px;letter-spacing:.02em;text-transform:uppercase;padding:9px 15px;border:1px solid var(--btn-line);border-radius:10px;background:var(--btn);color:var(--ink-soft);cursor:pointer;box-shadow:var(--surf-shadow)}
   .tab.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .panel{display:none}.panel.on{display:block}
   .vh{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;text-transform:uppercase;font-size:24px;margin-bottom:4px}
-  .vsub{font-size:13.5px;color:var(--ink-soft);max-width:62ch;margin-bottom:18px}.vsub b{color:var(--ink)}
+  .vsub{font-size:15px;line-height:1.6;color:var(--ink-70);max-width:62ch;margin-bottom:18px}.vsub b{color:var(--ink)}
   .subseg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden;margin-bottom:18px}
-  .subseg button{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:8px 14px;background:var(--paper-2);color:var(--ink-soft);border:none;cursor:pointer}
+  .subseg button{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:8px 14px;background:var(--btn);color:var(--ink-soft);border:none;cursor:pointer;box-shadow:var(--surf-shadow)}
   .subseg button.on{background:var(--ink);color:var(--paper)}
   .quizq{background:var(--paper-2);border:1px solid var(--line);border-radius:9px;padding:13px 14px;margin-bottom:10px}
   .quizq .qn{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;color:var(--ink-soft);margin-bottom:6px}
   .quizq .qt{font-weight:600;font-size:15px;margin-bottom:9px}
   .qopts{display:flex;flex-wrap:wrap;gap:6px}
-  .qopt{font-size:13px;padding:7px 12px;border:1px solid var(--line);border-radius:20px;background:#fff;color:var(--ink);cursor:pointer}
+  .qopt{font-size:13px;padding:7px 12px;border:1px solid var(--btn-line);border-radius:20px;background:var(--btn);color:var(--ink);cursor:pointer;box-shadow:var(--surf-shadow)}
   .qopt.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .qbtn{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;text-transform:uppercase;font-size:17px;letter-spacing:.02em;padding:12px 20px;border:none;border-radius:8px;background:var(--you);color:#fff;cursor:pointer;margin-top:6px}
   .qintro{font-size:12.5px;color:var(--ink-soft);margin-bottom:12px;padding:9px 11px;border:1px dashed var(--line);border-radius:8px}
   .qintro b{color:var(--ink)}
   .likert{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
-  .lk{width:34px;height:34px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink-soft);font-family:"IBM Plex Mono",monospace;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .lk{width:34px;height:34px;border:1px solid var(--btn-line);border-radius:7px;background:var(--btn);color:var(--ink-soft);font-family:"IBM Plex Mono",monospace;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--surf-shadow)}
   .lk.on{background:var(--you);color:#fff;border-color:var(--you)}
   .lkends{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--ink-soft);white-space:nowrap}
   .lkclear{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--ink-soft);cursor:pointer;text-decoration:underline;margin-left:4px}
@@ -79,7 +107,7 @@
   .progstat .pvsub{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-soft);margin-top:2px}
   @media(max-width:520px){.progstat{grid-template-columns:1fr}}
   .personas{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
-  .persona{font-family:"IBM Plex Mono",monospace;font-size:11px;padding:7px 11px;border:1px solid var(--line);border-radius:20px;background:var(--paper-2);color:var(--ink);cursor:pointer}
+  .persona{font-family:"IBM Plex Mono",monospace;font-size:11px;padding:7px 11px;border:1px solid var(--btn-line);border-radius:20px;background:var(--btn);color:var(--ink);cursor:pointer;box-shadow:var(--surf-shadow)}
   .persona.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .imps{display:grid;grid-template-columns:1fr;gap:11px;margin-bottom:22px}
   @media(min-width:600px){.imps{grid-template-columns:1fr 1fr}}
@@ -117,29 +145,43 @@
   .rstep .st{font-weight:600;font-size:13.5px}.rstep .sd{font-size:12.5px;color:var(--ink-soft)}
   .ralt{font-size:12.5px;color:var(--ink-soft);margin-top:10px;padding-top:9px;border-top:1px dashed var(--line)}.ralt b{color:var(--ink)}
   .controls{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-  .chip{font-family:"IBM Plex Mono",monospace;font-size:11px;padding:5px 9px;border:1px solid var(--line);border-radius:20px;background:var(--paper-2);color:var(--ink-soft);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
-  .chip .dot{width:9px;height:9px;border-radius:50%;background:currentColor;opacity:.35}
-  .chip.on{color:var(--ink);border-color:currentColor;background:#fff}.chip.on .dot{opacity:1}
+  .chip{font-family:"IBM Plex Mono",monospace;font-size:11px;padding:5px 9px;border:1px solid var(--btn-line);border-radius:20px;background:var(--btn);color:var(--ink-soft);cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:var(--surf-shadow)}
+  .chip .dot{width:9px;height:9px;border-radius:50%;background:var(--sw,currentColor);opacity:.55}
+  .chip.on{color:var(--ink);border-color:var(--sw,var(--you));background:color-mix(in oklab, var(--sw,var(--you)) 16%, var(--paper))}.chip.on .dot{opacity:1}
+  #cmpChipsWrap{max-height:184px;overflow-y:auto;margin-bottom:6px;scrollbar-width:thin;scrollbar-color:var(--sb-thumb) transparent}
+  #cmpChipsWrap::-webkit-scrollbar{width:9px}
+  #cmpChipsWrap::-webkit-scrollbar-track{background:var(--track);border-radius:5px}
+  #cmpChipsWrap::-webkit-scrollbar-thumb{background-color:var(--sb-thumb);border-radius:5px;background-clip:content-box;border:2px solid transparent}
+  .sectorchip{font-family:"IBM Plex Mono",monospace;font-size:11px;padding:6px 10px;border:1px solid var(--sc,var(--btn-line));border-radius:20px;background:var(--btn);color:var(--ink-soft);cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:var(--surf-shadow)}
+  .sectorchip .dot{width:8px;height:8px;border-radius:50%;background:var(--sc,currentColor)}
+  .sectorchip .n{opacity:.65;font-size:10px}
+  .sectorchip.on{color:#16202A;border-color:var(--sc,var(--you));background:color-mix(in oklab, var(--sc,var(--you)) 78%, white)}
+  #cmpMeta button{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--you);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0}
   .seg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden;margin-left:auto}
-  .seg button{font-family:"IBM Plex Mono",monospace;font-size:11px;text-transform:uppercase;padding:6px 11px;background:var(--paper-2);color:var(--ink-soft);border:none;cursor:pointer}
+  .seg button{font-family:"IBM Plex Mono",monospace;font-size:11px;text-transform:uppercase;padding:6px 11px;background:var(--btn);color:var(--ink-soft);border:none;cursor:pointer;box-shadow:var(--surf-shadow)}
   .seg button.on{background:var(--ink);color:var(--paper)}
   .chartwrap{background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:14px 10px 8px;overflow:hidden}
-  svg{display:block;width:100%;height:auto;font-family:"IBM Plex Mono",monospace}
+  svg{display:block;width:100%;height:auto;font-family:"IBM Plex Mono",monospace;filter:var(--svg-filter)}
   .gridline{stroke:var(--line);stroke-width:1}.axtext{fill:var(--ink-soft);font-size:11px}.axtext.b{fill:var(--ink);font-weight:600}
   .lbl{fill:var(--ink);font-size:11px;font-weight:600;font-family:"IBM Plex Sans",sans-serif}
-  .legend-note{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-soft);margin-top:8px;text-align:center}
-  .cmptbl-wrap{overflow-x:auto;margin-top:16px;border:1px solid var(--line);border-radius:10px}
+  .legend-note{font-family:"IBM Plex Mono",monospace;font-size:12px;line-height:1.6;color:var(--ink-70);margin-top:8px;text-align:center}
+  .cmptbl-wrap{overflow-x:auto;margin-top:16px;border:1px solid var(--line);border-radius:10px;background:color-mix(in oklab, var(--paper) 92%, transparent);backdrop-filter:blur(8px)}
   .cmptbl{width:100%;border-collapse:collapse;font-size:12.5px;min-width:560px}
-  .cmptbl th{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);text-align:right;padding:8px 9px;border-bottom:1px solid var(--line);background:var(--paper-2)}
+  .cmptbl th{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);text-align:right;padding:8px 9px;border-bottom:1px solid var(--line);background:color-mix(in oklab, var(--you) 10%, var(--paper-2));cursor:pointer;user-select:none;white-space:nowrap}
   .cmptbl th:first-child{text-align:left}
+  .cmptbl th .arrow{font-size:9px;margin-left:3px;opacity:.7}
+  .cmptbl th:focus-visible{outline:2px solid var(--you);outline-offset:-2px}
   .cmptbl td{padding:8px 9px;text-align:right;border-bottom:1px solid var(--line);font-family:"IBM Plex Mono",monospace}
   .cmptbl td:first-child{text-align:left;font-family:"IBM Plex Sans",sans-serif;font-weight:500}
   .cmptbl tr:last-child td{border-bottom:none}
+  .cmptbl tbody tr:nth-child(even){background:color-mix(in oklab, var(--paper-2) 55%, transparent)}
+  .cmptbl a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--ink-soft)}
+  .cmptbl a:hover,.cmptbl a:focus-visible{color:var(--you);border-bottom-color:var(--you)}
   .cmptbl .sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:7px;vertical-align:middle}
   .cmptbl .hi{color:var(--a);font-weight:600}.cmptbl .lo{color:#9A5B34}
   footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line)}
   footer h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;text-transform:uppercase;font-size:19px;margin-bottom:10px}
-  footer p{font-size:13px;color:var(--ink-soft);margin-bottom:10px;max-width:64ch}footer b{color:var(--ink)}
+  footer p{font-size:14.5px;line-height:1.6;color:var(--ink-70);margin-bottom:10px;max-width:64ch}footer b{color:var(--ink)}
   /* ===== visual overhaul: instrument identity, motion, interaction ===== */
   body{background-color:var(--paper);background-image:linear-gradient(rgba(24,34,44,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(24,34,44,.035) 1px,transparent 1px);background-size:27px 27px;background-position:center top}
   @keyframes cardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -185,6 +227,7 @@
 </style>
 </head>
 <body>
+  <button id="themeToggle" type="button" aria-label="Toggle dark mode">Dark</button>
   <div id="authBar" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;
        padding:8px 14px;background:var(--paper-2);border-bottom:1px solid var(--line);
        font-family:'IBM Plex Mono',monospace;font-size:12px">
@@ -198,8 +241,8 @@
     <button id="authSignout" class="qbtn" style="display:none">Sign out</button>
     <span id="authMsg"></span>
   </div>
-  <div class="eyebrow">Career Navigator · prototype · UK · 2026</div>
-  <h1>Career<br>Navigator<span>find your match · read the route in · overlay any careers</span></h1>
+  <div class="eyebrow">120CAREERS · prototype · UK · 2026</div>
+  <h1>120<br>Careers<span>find your match · read the route in · overlay any careers</span></h1>
   <p class="lede">Take the quiz, get ranked matches across <b>120 careers</b>, open any for a full report and step-by-step route in, or overlay several on one radar and salary chart to compare them directly.</p>
   <details class="prov"><summary>About these numbers, read me</summary>
     <p><b>Where figures are anchored, they are cited.</b> Take-home pay uses HMRC income tax and National Insurance rules for 2026/27, and the entry routes reflect the requirements set by the relevant UK professional bodies (for example ACCA, RICS, the GMC and HCPC). Salary figures are currently indicative estimates, being migrated to cited data from the ONS Annual Survey of Hours and Earnings. The seven 0-10 scores that drive matching are <b>structured judgement, not measured data</b>, and the future-proofing score is a forecast about automation. The <b>MBTI compatibility</b> is included because it's popular, but it is psychometrically weak, so treat it as a conversation-starter, not a verdict.</p>
@@ -239,7 +282,9 @@
     <div class="vh">Overlay &amp; compare</div>
     <p class="vsub">Select any careers to <b>overlay their profiles</b> on one radar, chart their salary curves together, and read a side-by-side stats table. Use the filter to find them fast.</p>
     <input class="filter" id="cmpFilter" placeholder="Filter careers... (e.g. electrician, nurse, quant)">
-    <div class="controls" id="cmpChips"></div>
+    <div class="controls" id="sectorChips"></div>
+    <div id="cmpChipsWrap"><div class="controls" id="cmpChips"></div></div>
+    <div class="legend-note" id="cmpMeta" style="text-align:left;display:flex;justify-content:space-between;align-items:center;gap:8px"></div>
     <div class="chartwrap"><svg id="radarSvg" viewBox="0 0 820 560"></svg></div>
     <div class="legend-note">Seven-axis profile overlay, the bigger and rounder the shape, the stronger the all-rounder</div>
     <div style="height:16px"></div>
@@ -261,7 +306,7 @@
 
   <footer>
     <h3>From prototype to product</h3>
-    <p>120 careers is a strong prototype library; a public build would push to hundreds, each with <b>independently-sourced, cited</b> salary and route data verified against the professional bodies, plus <b>crowd-calibrated</b> axis scores rather than one person's judgement, accounts to save results, and hosting. The honesty layer stays load-bearing, it's what separates this from the confident-but-hollow quizzes already out there.</p>
+    <p>120 careers is a strong prototype library; a public build would push to hundreds, each with <b>independently-sourced, cited</b> salary and route data verified against the professional bodies, plus <b>crowd-calibrated</b> axis scores rather than one person's judgement, accounts to save results, and hosting.</p>
   </footer>
 
   <div class="zoom-overlay" id="zoomOverlay" role="dialog" aria-modal="true" aria-label="Enlarged profile chart">
@@ -432,6 +477,51 @@ const QUIZ=[
 ];
 const RIA=[['R','Practical / hands-on','hands-on builders who like tangible, physical results'],['I','Analytical / investigative','analytical problem-solvers and deep thinkers'],['A','Creative / expressive','creative, expressive originals who value self-expression'],['S','People / helping','people-people energised by helping others directly'],['E','Leading / persuading','persuasive self-starters who like to lead and influence'],['C','Organised / structured','organised, detail-focused planners who like structure']];
 const RKEYS=['R','I','A','S','E','C'];
+// 12 broad sector groupings, each with a base oklch hue. This classification is
+// Claude's own categorisation of the 120 careers, not sourced data — same honesty
+// rule as the rest of the app: it's structured judgement, worth a spot-check, not a claim.
+const SECTORS={
+ tech:['Tech',252],finance:['Finance',92],medicine:['Medicine',358],care:['Care',330],
+ law:['Law',280],engineering:['Engineering',205],trades:['Trades',45],transport:['Transport',175],
+ creative:['Creative',305],media:['Media',22],education:['Education',130],service:['Service',70]
+};
+const SECTOR_OF={
+ you:'tech',de:'tech',ds:'tech',analyst:'tech',swe:'tech',devops:'tech',cyber:'tech',ux:'tech',itsupport:'tech',pm:'tech',mobiledev:'tech',gamedev:'tech',qaeng:'tech',networkeng:'tech',solarch:'tech',techwriter:'tech',businessanalyst:'tech',statistician:'tech',
+ quant:'finance',ib:'finance',consult:'finance',finanalyst:'finance',account:'finance',auditor:'finance',economist:'finance',underwriter:'finance',actuary:'finance',ifa:'finance',taxadviser:'finance',compliance:'finance',insbroker:'finance',
+ doctor:'medicine',surgeon:'medicine',psychiatrist:'medicine',dentist:'medicine',nurse:'medicine',midwife:'medicine',physio:'medicine',ot:'medicine',radiographer:'medicine',pharma:'medicine',optometrist:'medicine',vet:'medicine',psych:'medicine',paramedic:'medicine',dietitian:'medicine',slt:'medicine',podiatrist:'medicine',dentalhyg:'medicine',pharmtech:'medicine',labtech:'medicine',
+ careworker:'care',socialworker:'care',therapist:'care',counsellor:'care',
+ lawyer:'law',barrister:'law',paralegal:'law',cilex:'law',
+ civileng:'engineering',mecheng:'engineering',eleceng:'engineering',aeroeng:'engineering',chemeng:'engineering',biomedeng:'engineering',roboticseng:'engineering',researchsci:'engineering',envsci:'engineering',geologist:'engineering',surveyor:'engineering',quantsurveyor:'engineering',townplanner:'engineering',
+ electrician:'trades',plumber:'trades',gaseng:'trades',carpenter:'trades',welder:'trades',bricklayer:'trades',painter:'trades',roofer:'trades',plasterer:'trades',mechanic:'trades',landscaper:'trades',
+ pilot:'transport',atc:'transport',traindriver:'transport',hgvdriver:'transport',
+ architect:'creative',interiordesign:'creative',gdesign:'creative',photographer:'creative',fashiondesigner:'creative',industrialdesigner:'creative',videoeditor:'creative',animator:'creative',
+ journalist:'media',copywriter:'media',creator:'media',marketer:'media',prmanager:'media',translator:'media',
+ teacher:'education',lecturer:'education',
+ hr:'service',recruiter:'service',civilservant:'service',police:'service',firefighter:'service',prisonofficer:'service',probation:'service',diplomat:'service',intelanalyst:'service',eho:'service',estateagent:'service',opsmanager:'service',supplychain:'service',chef:'service',pt:'service',hairdresser:'service',baker:'service'
+};
+// Skill-domain tags per career, pulled from data/careers.json (the project's actual
+// sourced dataset) rather than invented here — used for the proximate-careers Jaccard score.
+const TAGS_OF={"you":["ml","data","prog","cloud"],"de":["data","prog","cloud"],"ds":["data","ml","prog"],"analyst":["data","prog"],"swe":["prog","web","cloud"],"devops":["cloud","prog","cyber"],"cyber":["cyber","prog","cloud"],"ux":["ux","design","product"],"itsupport":["admin","cloud","cyber"],"pm":["pm","product"],"quant":["ml","data","fin","prog"],"ib":["fin"],"consult":["pm","fin","data"],"finanalyst":["fin","data"],"account":["acct","fin"],"auditor":["acct","fin"],"hr":["hr","admin"],"recruiter":["sales","hr"],"economist":["econ","data","research"],"underwriter":["fin","acct"],"doctor":["clin","research"],"surgeon":["clin"],"psychiatrist":["clin"],"dentist":["clin"],"nurse":["clin","care"],"midwife":["clin","care"],"physio":["clin","fitness"],"ot":["clin","care"],"radiographer":["clin","lab"],"pharma":["clin","lab"],"optometrist":["clin"],"vet":["clin","research"],"psych":["clin","research"],"therapist":["clin","care"],"paramedic":["clin","safety"],"careworker":["care"],"socialworker":["care","admin"],"actuary":["fin","data","acct"],"lawyer":["legal"],"barrister":["legal"],"paralegal":["legal","admin"],"surveyor":["property","engciv"],"townplanner":["property","env","admin"],"civileng":["engciv","engmech"],"mecheng":["engmech"],"eleceng":["engelec","engmech"],"aeroeng":["engmech","engelec"],"researchsci":["research","lab"],"labtech":["lab","research"],"envsci":["env","research","lab"],"pilot":["aviation"],"atc":["aviation","safety"],"traindriver":["safety"],"electrician":["telec"],"plumber":["tplumb"],"gaseng":["tplumb","telec"],"carpenter":["tconstruct"],"welder":["tconstruct","tmech"],"bricklayer":["tconstruct"],"painter":["tconstruct"],"mechanic":["tmech"],"chef":["culinary"],"pt":["fitness","care"],"teacher":["teach"],"lecturer":["teach","research"],"civilservant":["admin","pm"],"police":["safety"],"firefighter":["safety"],"architect":["design","engciv","property"],"interiordesign":["design"],"marketer":["market","media","sales"],"journalist":["write","media"],"copywriter":["write","market"],"photographer":["media","design"],"gdesign":["design","media"],"estateagent":["sales","property"],"creator":["media","write","design"],"businessanalyst":["data","pm"],"mobiledev":["prog","web"],"gamedev":["prog","web"],"qaeng":["prog"],"networkeng":["cloud","cyber"],"solarch":["cloud","prog"],"techwriter":["write"],"dietitian":["clin"],"slt":["clin","care"],"podiatrist":["clin"],"dentalhyg":["clin"],"pharmtech":["clin","lab"],"counsellor":["care","clin"],"ifa":["fin","sales"],"taxadviser":["acct","fin"],"compliance":["fin","legal"],"insbroker":["fin","sales"],"cilex":["legal","admin"],"prisonofficer":["safety"],"probation":["safety","care"],"diplomat":["admin","legal"],"intelanalyst":["research","cyber","data"],"eho":["env","safety","admin"],"chemeng":["engmech","lab"],"biomedeng":["engmech","lab"],"roboticseng":["engmech","engelec","prog"],"quantsurveyor":["property","engciv"],"geologist":["env","research","lab"],"statistician":["data","research"],"videoeditor":["media","design"],"animator":["design","media"],"fashiondesigner":["design"],"industrialdesigner":["design","engmech"],"prmanager":["media","market","write"],"translator":["write"],"roofer":["tconstruct"],"plasterer":["tconstruct"],"landscaper":["horticulture"],"hgvdriver":["transport"],"hairdresser":["beauty"],"baker":["culinary"],"opsmanager":["pm","admin"],"supplychain":["pm","data"]};
+// UK professional regulator per career, where one applies (Claude's own mapping against
+// the named bodies — worth a spot check, same honesty rule as the rest of this data).
+// A career with no entry here isn't statutorily regulated by title in the UK.
+const REGULATOR_OF={
+ doctor:'GMC',surgeon:'GMC',psychiatrist:'GMC',dentist:'GDC',optometrist:'GOC',vet:'RCVS',nurse:'NMC',midwife:'NMC',
+ physio:'HCPC',ot:'HCPC',radiographer:'HCPC',paramedic:'HCPC',psych:'HCPC',slt:'HCPC',podiatrist:'HCPC',dietitian:'HCPC',
+ pharma:'GPhC',pharmtech:'GPhC',lawyer:'SRA',barrister:'BSB',cilex:'CILEX',teacher:'QTS',pilot:'CAA',atc:'CAA',
+ socialworker:'Social Work England',gaseng:'Gas Safe',electrician:'NICEIC'
+};
+// Recolors every career onto its sector's oklch hue band (L=62-14t, C=0.175-0.045t,
+// H=base-14+28t), spreading members across the band so a sector's careers read as a
+// family without being identical. Replaces the old hand-picked hex per career.
+(function recolorBySector(){
+ const bySector={};
+ C.forEach(c=>{c.tags=TAGS_OF[c.id]||[];const s=SECTOR_OF[c.id]||'service';(bySector[s]=bySector[s]||[]).push(c);});
+ Object.keys(bySector).forEach(s=>{
+  const list=bySector[s],base=SECTORS[s][1];
+  list.forEach((c,i)=>{const t=list.length>1?i/(list.length-1):0;const L=62-14*t,Ch=0.175-0.045*t,H=base-14+28*t;c.col='oklch('+L.toFixed(1)+'% '+Ch.toFixed(3)+' '+H.toFixed(1)+')';c.sector=s;});
+ });
+})();
 // per-career work-style code [R,I,A,S,E,C], 0-9, a light heuristic, scales to 200+ as a compact field
 const W={you:[3,9,4,2,4,6],de:[4,7,2,2,3,7],ds:[2,9,3,2,3,6],analyst:[2,7,2,3,3,7],swe:[3,8,4,2,3,6],devops:[5,7,2,2,3,7],cyber:[4,8,3,2,4,7],ux:[2,6,8,5,4,4],itsupport:[5,5,2,5,2,6],pm:[2,6,5,6,8,5],quant:[1,9,3,1,4,7],ib:[1,6,2,3,9,6],consult:[1,7,4,5,8,5],finanalyst:[1,7,2,2,6,8],account:[1,5,1,3,5,9],auditor:[1,5,1,3,4,9],hr:[1,3,3,8,5,6],recruiter:[1,3,3,7,9,4],economist:[1,9,3,3,5,6],underwriter:[1,6,1,3,4,9],doctor:[4,8,2,8,4,6],surgeon:[7,8,2,6,5,6],psychiatrist:[2,8,3,9,4,5],dentist:[7,6,3,6,6,6],nurse:[5,4,2,9,3,6],midwife:[5,4,2,9,3,5],physio:[6,5,2,8,4,4],ot:[5,5,4,9,4,5],radiographer:[6,6,2,6,2,7],pharma:[3,6,1,6,4,8],optometrist:[5,6,2,6,5,6],vet:[6,7,2,7,5,5],psych:[1,8,4,9,3,5],therapist:[1,6,5,9,3,4],paramedic:[7,5,2,8,4,5],careworker:[4,2,2,9,2,4],socialworker:[2,4,3,9,4,5],actuary:[1,9,1,2,5,9],lawyer:[1,7,3,4,8,7],barrister:[1,7,5,5,9,6],paralegal:[1,5,2,4,3,8],surveyor:[6,5,2,4,6,7],townplanner:[3,6,5,6,6,6],civileng:[7,7,3,3,5,7],mecheng:[7,8,3,2,5,6],eleceng:[7,8,3,2,5,6],aeroeng:[6,9,3,2,5,7],researchsci:[3,9,4,2,3,6],labtech:[6,7,1,3,2,8],envsci:[6,7,3,5,4,6],pilot:[7,5,2,4,5,7],atc:[4,6,2,5,4,8],traindriver:[7,3,1,3,2,7],electrician:[9,4,2,4,5,6],plumber:[9,3,2,5,5,5],gaseng:[9,4,2,5,5,6],carpenter:[9,3,5,3,5,5],welder:[9,3,3,2,4,6],bricklayer:[9,2,2,3,4,5],painter:[8,2,5,4,5,4],mechanic:[9,5,2,4,4,6],chef:[7,3,8,5,6,5],pt:[7,3,3,8,7,4],teacher:[2,5,5,9,6,6],lecturer:[1,9,5,6,4,6],civilservant:[1,6,3,6,6,8],police:[6,4,2,7,6,6],firefighter:[9,3,2,7,5,5],architect:[5,6,9,4,6,6],interiordesign:[4,3,9,6,6,5],marketer:[1,4,7,6,8,5],journalist:[2,6,8,6,6,4],copywriter:[1,4,9,4,6,4],photographer:[6,3,9,5,6,3],gdesign:[3,3,9,3,5,4],estateagent:[2,2,3,7,9,4],creator:[3,3,9,6,8,3],businessanalyst:[2,6,3,5,6,7],mobiledev:[3,8,5,2,3,7],gamedev:[4,8,7,2,3,6],qaeng:[4,7,2,3,3,8],networkeng:[5,7,2,3,3,7],solarch:[3,8,3,4,6,7],techwriter:[2,6,6,3,3,7],dietitian:[4,6,3,8,4,6],slt:[3,6,4,9,4,5],podiatrist:[6,5,2,7,5,5],dentalhyg:[6,4,2,7,4,6],pharmtech:[4,4,2,6,3,7],counsellor:[1,5,5,9,3,6],ifa:[1,5,2,7,8,5],taxadviser:[1,7,1,3,5,9],compliance:[1,6,1,4,5,9],insbroker:[1,4,2,6,8,6],cilex:[1,6,2,4,4,8],prisonofficer:[6,3,2,7,5,5],probation:[2,5,3,9,5,4],diplomat:[1,7,3,6,7,5],intelanalyst:[2,9,2,4,4,7],eho:[4,6,2,6,4,7],chemeng:[6,9,2,2,5,7],biomedeng:[6,9,3,4,4,6],roboticseng:[7,9,3,2,4,6],quantsurveyor:[5,5,2,4,6,8],geologist:[6,8,2,3,4,5],statistician:[2,9,2,2,3,7],videoeditor:[5,4,8,4,5,7],animator:[4,4,9,3,4,7],fashiondesigner:[5,4,9,4,6,6],industrialdesigner:[6,6,8,3,5,6],prmanager:[1,4,7,6,8,5],translator:[1,6,6,3,3,9],roofer:[9,2,3,3,5,7],plasterer:[9,2,4,3,5,7],landscaper:[9,3,5,4,5,7],hgvdriver:[8,2,2,3,3,6],hairdresser:[7,2,7,7,6,7],baker:[8,3,6,3,5,7],opsmanager:[3,5,2,6,7,6],supplychain:[3,6,2,4,6,7]};
 const MBTITYPES=['ISTJ','ISFJ','INFJ','INTJ','ISTP','ISFP','INFP','INTP','ESTP','ESFP','ENFP','ENTP','ESTJ','ESFJ','ENFJ','ENTJ'];
@@ -465,8 +555,8 @@ document.querySelectorAll('#matchMode button').forEach(b=>b.onclick=()=>setMode(
 function buildPersonas(){const box=document.getElementById('personas');box.innerHTML='';Object.keys(PERSONAS).forEach(k=>{const b=document.createElement('div');b.className='persona';b.textContent=k;b.onclick=()=>{document.querySelectorAll('.persona').forEach(x=>x.classList.remove('on'));b.classList.add('on');imp={pay:0,future:0,secure:0,entry:0,speed:0,life:0,option:0};Object.assign(imp,PERSONAS[k]);quizTaken=false;buildImps();renderMatch();};box.appendChild(b);});}
 function buildImps(){const box=document.getElementById('imps');box.innerHTML='';AX.forEach(a=>{const w=document.createElement('div');w.className='imp';w.innerHTML='<label>'+a[2].replace(/^./,c=>c.toUpperCase())+' <b id="iv_'+a[0]+'">'+imp[a[0]]+'</b></label>';const inp=document.createElement('input');inp.type='range';inp.min=0;inp.max=10;inp.value=imp[a[0]];inp.oninput=()=>{imp[a[0]]=+inp.value;document.getElementById('iv_'+a[0]).textContent=inp.value;document.querySelectorAll('.persona').forEach(x=>x.classList.remove('on'));renderMatch();};w.appendChild(inp);box.appendChild(w);});}
 function styleFit(id){const w=W[id]||[5,5,5,5,5,5];let s=0;for(let i=0;i<6;i++)s+=Math.abs(userRia[i]-w[i]*10/9);return Math.max(0,Math.min(100,Math.round(100-(s/6)*11)));}
-function renderMatch(){document.getElementById('resultHead').style.display='block';const tot=Object.values(imp).reduce((a,b)=>a+b,0)||1;
- const rows=C.map(c=>{let s=0;const cb=[];AX.forEach(a=>{const cc=imp[a[0]]*c.ax[a[0]];s+=cc;cb.push([a,cc]);});const outcome=s/tot*10;const sf=styleFit(c.id);const mf=mbtiCompat(c.id,userMbti);let fit;if(userMbti&&quizTaken)fit=outcome*0.5+sf*0.3+mf*0.2;else if(quizTaken)fit=outcome*0.6+sf*0.4;else if(userMbti)fit=outcome*0.8+mf*0.2;else fit=outcome;fit=Math.round(fit);cb.sort((x,y)=>y[1]-x[1]);const tops=cb.slice(0,2).filter(x=>imp[x[0][0]]>0).map(x=>x[0][1]);const flags=AX.filter(a=>imp[a[0]]>=7&&c.ax[a[0]]<=4.5).map(a=>a[1]);return{c,fit,tops,flags,sf,mf};}).sort((a,b)=>b.fit-a.fit);
+function renderMatch(){document.getElementById('resultHead').style.display='block';
+ const rows=C.map(c=>{const of=outcomeFor(c);const outcome=of.outcome;const sf=styleFit(c.id);const mf=mbtiCompat(c.id,userMbti);let fit;if(userMbti&&quizTaken)fit=outcome*0.5+sf*0.3+mf*0.2;else if(quizTaken)fit=outcome*0.6+sf*0.4;else if(userMbti)fit=outcome*0.8+mf*0.2;else fit=outcome;fit=Math.round(fit);const tops=of.tops;const flags=AX.filter(a=>imp[a[0]]>=7&&c.ax[a[0]]<=4.5).map(a=>a[1]);return{c,fit,tops,flags,sf,mf};}).sort((a,b)=>b.fit-a.fit);
  const box=document.getElementById('matchList');box.innerHTML='';const max=rows[0].fit||1;
  rows.forEach((r,i)=>{const col=fitCol(r.fit);const d=document.createElement('div');d.className='match'+(r.c.you?' you':'');d.style.borderLeftColor=col;let tag=i===0?'<span class="tag tm">TOP MATCH</span>':'';let why='Delivers on the '+(r.tops.join(' and ')||'basics')+' you rated highly.';if(r.flags.length)why+=' <span class="flag">But weak on '+r.flags.join(' & ')+', which you said matters.</span>';let sub='';if(quizTaken)sub+='work-style fit '+r.sf+'%';if(userMbti&&r.mf!=null)sub+=(sub?' · ':'')+'MBTI '+r.mf+'%';d.innerHTML='<div class="mtop"><div class="mname">'+(i+1)+'. '+r.c.name+tag+'</div><div class="mfit">'+r.fit+'<span style="font-size:11px;color:var(--ink-soft)">/100</span></div></div><div class="mbar"><i style="width:'+(r.fit/max*100).toFixed(0)+'%;background:'+col+'"></i></div><div class="mwhy">'+why+'</div>'+(sub?'<div class="fitline">'+sub+'</div>':'')+'<span class="mlink" data-id="'+r.c.id+'">See full report & route \u2192</span>';box.appendChild(d);});
  box.querySelectorAll('.mlink').forEach(l=>l.onclick=()=>goReport(l.dataset.id));}
@@ -480,6 +570,70 @@ function lifeWord(v){return v>=8?'Excellent, autonomy, sane hours':v>=6.5?'Good 
 function roleWord(c,i){if(i<4)return['Trainee / junior','Establishing yourself','Experienced practitioner','Senior / specialist'][i];return c.ax.option>=7?'Top of field, often your own business or practice':'Top of field, senior leadership';}
 function drawProg(c,i){const svg=document.getElementById('progSvg');if(!svg)return;svg.innerHTML='';const W=640,H=200,L=48,R=20,T=14,B=34,pw=W-L-R,ph=H-T-B;const ymax=Math.max(60,Math.ceil(c.sal[4]/50)*50),step=ymax>250?100:50;const x=k=>L+pw*(k/4),y=v=>T+ph*(1-v/ymax);for(let g=0;g<=ymax;g+=step){svg.appendChild(el('line',{class:'gridline',x1:L,y1:y(g),x2:L+pw,y2:y(g)}));const tx=el('text',{class:'axtext',x:L-8,y:y(g)+4,'text-anchor':'end'});tx.textContent='£'+g+'k';svg.appendChild(tx);}svg.appendChild(el('line',{x1:x(i),y1:T,x2:x(i),y2:T+ph,stroke:'var(--you)','stroke-width':1,'stroke-dasharray':'3 3',opacity:.5}));let d='';c.sal.forEach((v,k)=>{d+=(k?'L':'M')+x(k)+' '+y(v)+' ';});svg.appendChild(el('path',{d,fill:'none',stroke:c.col,'stroke-width':2.5,'stroke-linejoin':'round'}));c.sal.forEach((v,k)=>{const s=k===i;svg.appendChild(el('circle',{cx:x(k),cy:y(v),r:s?6:3.5,fill:s?'var(--you)':c.col,stroke:s?'#fff':'none','stroke-width':s?2:0}));const t=takeHome(v);const hit=el('circle',{cx:x(k),cy:y(v),r:11,fill:'transparent',class:'chart-node'});attachTip(hit,STAGES[k][0]+' ('+STAGES[k][1]+') \u00b7 \u00a3'+v+'k gross \u00b7 \u00a3'+t.net.toFixed(0)+'k net');svg.appendChild(hit);});STAGES.forEach((s,k)=>{const tx=el('text',{class:'axtext'+(k===i?' b':''),x:x(k),y:H-B+20,'text-anchor':'middle'});tx.textContent=s[0];svg.appendChild(tx);});}
 function updateProgDetail(c,i){const box=document.getElementById('progDetail');if(!box)return;const g=c.sal[i],t=takeHome(g),lf=stageLife(c,i),lc=lf>=6.5?'var(--a)':lf>=4?'var(--s)':'#9A5B34';box.innerHTML='<div class="rtop2" style="margin:8px 0 10px"><span class="meta"><b>STAGE</b> '+STAGES[i][0]+' · '+STAGES[i][1]+'</span><span class="meta"><b>ROLE</b> '+roleWord(c,i)+'</span></div><div class="progstat"><div><div class="pk">Earnings</div><div class="pv">£'+g+'k</div><div class="pvsub">gross · £'+t.net.toFixed(0)+'k take-home ('+t.eff.toFixed(0)+'% tax)</div></div><div><div class="pk">Lifestyle</div><div class="bd" style="margin:4px 0 0"><span class="bdtrack"><i style="width:'+(lf*10)+'%;background:'+lc+'"></i></span><span class="bdval">'+lf.toFixed(1)+'/10</span></div><div class="pvsub">'+lifeWord(lf)+'</div></div></div>';}
+// "The sector" content per sector: how work is structured, major UK employers, job
+// boards. This is Claude's own generic, structural write-up (not cited data) — the same
+// judgement tier as the axis scores elsewhere in the app, not the sourced-salary tier.
+const SECTOR_INFO={
+ tech:{para:"Mostly project- and product-cycle work (sprints, releases) rather than fixed rotas. Entry is portfolio- and interview-led, not licence-gated, so the barrier is skill, not paperwork. The pay ceiling comes from equity, scale and a handful of high-paying sectors (finance, big tech) bidding for the same skills. London dominates, with real clusters in Manchester, Bristol, Cambridge and Edinburgh.",employers:["Google","Amazon","Microsoft","BT","ARM","Revolut"],boards:["Indeed","LinkedIn","CWJobs","Otta"]},
+ finance:{para:"Deal- and reporting-cycle driven — month-end, audit season, deal timetables — rather than shift rotas, with hours that spike hard around those cycles. Entry is qualification-gated for the professional tracks (ACA, ACCA, CFA), less so for sales and operations roles. The pay ceiling is set by City bonus structures at the top end. Heavily concentrated in London (the City, Canary Wharf), with Edinburgh and Leeds as real secondary hubs.",employers:["Barclays","HSBC","Lloyds Banking Group","Deloitte","PwC","Goldman Sachs"],boards:["eFinancialCareers","Indeed","Totaljobs","LinkedIn"]},
+ medicine:{para:"Rota-based, often with nights and on-call built in from early training. Entry is the most gated of any sector here — a medical or clinical degree plus statutory registration and, for doctors, years of postgraduate training. The pay ceiling is mostly set by NHS national pay scales, with private practice lifting it further for some specialties. Work exists everywhere people live, but training posts and teaching hospitals cluster in major cities.",employers:["NHS trusts","Bupa","Nuffield Health","Spire Healthcare"],boards:["NHS Jobs","BMJ Careers","Health Careers","Indeed"]},
+ care:{para:"Shift and rota-based, built around the person being cared for rather than a project deadline. Entry is low-gated for front-line roles and rising fast for the professional ones (social work now needs a degree and Social Work England registration). The pay ceiling is capped by local-authority and NHS funding rather than market rates, which is the sector's honest weak spot. Demand tracks population, with the sharpest shortages where the population is oldest.",employers:["Local authorities","NHS","Barchester Healthcare","Mears Group"],boards:["Indeed","Community Care Jobs","Totaljobs","gov.uk Find a Job"]},
+ law:{para:"Matter- and case-driven rather than shift-based, with hours that concentrate around deadlines and trial dates. Entry is qualification-gated (the SQE route for solicitors, the Bar course for barristers, CILEX's own route for legal executives), and that gate is the main reason it's slower to enter than it looks. The pay ceiling is set by City firm partnership tracks at the top and is far flatter in high-street and legal-aid practice. London-concentrated at the top end, with a real regional profession everywhere else.",employers:["Magic Circle firms","Crown Prosecution Service","local authorities","high-street practices"],boards:["LawCareers.net","Indeed","Totaljobs","LinkedIn"]},
+ engineering:{para:"Project-based — a build, a design phase, a commissioning stage — with hours that follow the project rather than a fixed rota. Entry is a numerate degree plus, for the chartered end, years working toward chartership (ICE, IMechE, IET and equivalents). The pay ceiling comes from chartership plus sector: oil & gas and aerospace historically pay more than public infrastructure. Concentrated around industrial and infrastructure hubs rather than any one city.",employers:["Arup","Rolls-Royce","National Grid","BAE Systems","Balfour Beatty"],boards:["Indeed","New Civil Engineer Jobs","Totaljobs","LinkedIn"]},
+ trades:{para:"Job- and callout-based rather than a fixed rota once qualified, often self-employed. Entry is apprenticeship-led (paid while you train), with some trades legally gated by a licence to work unsupervised (Gas Safe for gas engineers, an approved scheme for electricians). The pay ceiling comes from going self-employed or building a small firm, not from climbing an employer's ladder. Work exists everywhere, with the strongest day rates in London and the South East.",employers:["National Grid","local building firms","housebuilders (Barratt, Persimmon)","self-employment"],boards:["Indeed","Totaljobs","CV-Library","Reed"]},
+ transport:{para:"Roster-based and safety-critical, with duty-hour limits set by regulation rather than the employer. Entry is licence-gated (a commercial pilot's licence, ATC training, a train operator's own driver programme), which is slow and often costly regardless of degree background. The pay ceiling is set by seniority and type rating, not by employer alone. Bases cluster around airports, control centres and rail depots rather than any one region.",employers:["British Airways","National Air Traffic Services","Network Rail","train operating companies"],boards:["Indeed","Totaljobs","CV-Library","Reed"]},
+ creative:{para:"Brief- and project-based, frequently freelance or agency-side rather than a fixed rota. Entry is portfolio-led rather than licence-gated, which makes it accessible but also crowded and reliant on a strong body of work. The pay ceiling comes from senior/creative-director roles or running your own studio, and is capped for most by how design and content work is commissioned and priced. Heavily London-weighted, with agency clusters in Manchester and Bristol too.",employers:["design and ad agencies","in-house brand teams","the BBC","self-employment / freelance"],boards:["Indeed","The Dots","Creativepool","LinkedIn"]},
+ media:{para:"Deadline- and publication-cycle driven rather than a fixed rota, and increasingly freelance/portfolio-based across journalism, PR and content. Entry has no formal licence gate, but is competitive and often starts with unpaid or low-paid placements. The pay ceiling is set by seniority (editor, PR director) or by building an independent audience, and has been squeezed as advertising has shifted online. London-dominated for national outlets, with strong regional and trade press elsewhere.",employers:["the BBC","national newspaper groups","PR agencies","in-house comms teams"],boards:["Indeed","Guardian Jobs","journalism.co.uk","LinkedIn"]},
+ education:{para:"Term-time and timetable-driven, one of the few sectors here with a genuinely fixed annual rhythm. Entry is qualification-gated (a degree plus QTS for school teaching; a PhD is the norm for university lecturing). The pay ceiling is set by national pay scales for schools and by seniority/research profile in universities. Distributed everywhere there are schools, with universities clustering in larger towns and cities.",employers:["local authorities and academy trusts","universities","further-education colleges"],boards:["Teaching Vacancies (DfE)","TES Jobs","Indeed","gov.uk Find a Job"]},
+ service:{para:"A genuine mix — shift-based in hospitality and policing, office-based in HR and operations, project-based in consulting-adjacent roles like supply chain. Entry ranges from open (hospitality, retail) to formally gated (police, prison, diplomatic and civil-service roles all have structured selection processes). The pay ceiling depends heavily on which corner of the sector: public-sector and uniformed roles are capped by pay scales, private-sector operations and HR roles less so. Spread everywhere, with public-sector hubs around Whitehall and regional government centres.",employers:["the Civil Service","the Metropolitan Police","large retailers and hospitality groups","logistics operators"],boards:["Civil Service Jobs","Indeed","Reed","Totaljobs"]}
+};
+function sectorBlockHtml(c){
+ const info=SECTOR_INFO[c.sector];if(!info)return'';
+ const q=(site)=>'https://www.google.com/search?q=site:'+encodeURIComponent(site)+'+'+encodeURIComponent(c.name.split(' (')[0]);
+ const boardSites={'Indeed':'indeed.co.uk','LinkedIn':'linkedin.com/jobs','CWJobs':'cwjobs.co.uk','Otta':'otta.com','eFinancialCareers':'efinancialcareers.co.uk','Totaljobs':'totaljobs.com','NHS Jobs':'jobs.nhs.uk','BMJ Careers':'careers.bmj.com','Health Careers':'healthcareers.nhs.uk','Community Care Jobs':'communitycare.co.uk/jobs','gov.uk Find a Job':'gov.uk/find-a-job','LawCareers.net':'lawcareers.net','New Civil Engineer Jobs':'nce.co.uk/jobs','CV-Library':'cv-library.co.uk','Reed':'reed.co.uk','The Dots':'the-dots.com','Creativepool':'creativepool.com','Guardian Jobs':'jobs.theguardian.com','journalism.co.uk':'jobs.journalism.co.uk','Teaching Vacancies (DfE)':'teaching-vacancies.service.gov.uk','TES Jobs':'jobs.tes.com','Civil Service Jobs':'civilservicejobs.service.gov.uk'};
+ return '<div class="rblock" style="margin-top:16px"><h5>The sector: '+SECTORS[c.sector][0]+'</h5><p>'+info.para+'</p>'+
+  '<div style="margin-top:8px"><span style="font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)">Major UK employers</span><div class="chipset" style="margin-top:5px">'+info.employers.map(e=>'<span class="pill">'+e+'</span>').join('')+'</div></div>'+
+  '<div style="margin-top:8px"><span style="font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)">Where to look</span><div class="links" style="margin-top:5px">'+info.boards.map(b=>'<a href="'+q(boardSites[b]||b)+'" target="_blank" rel="noopener">'+b+' ↗</a>').join('')+'</div></div></div>';
+}
+const TAGLABEL={"prog":"Programming","data":"Data","cloud":"Cloud / DevOps","ml":"Machine learning","cyber":"Cybersecurity","web":"Web development","design":"Design","ux":"UX","product":"Product","pm":"Project management","write":"Writing","media":"Media","market":"Marketing","sales":"Sales","fin":"Finance","acct":"Accounting","econ":"Economics","legal":"Legal","clin":"Clinical","care":"Care","teach":"Teaching","research":"Research","lab":"Laboratory","engmech":"Mechanical engineering","engelec":"Electrical engineering","engciv":"Civil engineering","telec":"Electrical trade","tplumb":"Plumbing / gas","tconstruct":"Construction trade","tmech":"Vehicle trade","culinary":"Culinary","fitness":"Fitness / rehab","admin":"Administration","hr":"HR","aviation":"Aviation","safety":"Public safety","property":"Property","env":"Environment","transport":"Transport / driving","horticulture":"Horticulture","beauty":"Beauty / hair"};
+function jaccard(a,b){const A=new Set(a||[]),B=new Set(b||[]);if(!A.size&&!B.size)return 0;let inter=0;A.forEach(x=>{if(B.has(x))inter++;});const union=new Set([...A,...B]).size||1;return inter/union;}
+function riasecSim(idA,idB){const wa=W[idA]||[5,5,5,5,5,5],wb=W[idB]||[5,5,5,5,5,5];let s=0;for(let i=0;i<6;i++)s+=Math.abs(wa[i]-wb[i]);return Math.max(0,1-(s/6)/9);}
+function axisSim(a,b){let s=0;AX.forEach(x=>s+=Math.abs(a.ax[x[0]]-b.ax[x[0]]));return Math.max(0,1-(s/AX.length)/10);}
+// Five ranked sideways moves per career: shared skill tags (Jaccard 0.40), RIASEC/work-style
+// similarity (0.30), axis-profile similarity (0.17), a same-sector bonus (0.11), minus an
+// education-step penalty (harder entry than the source) and a new-certificate penalty (the
+// target requires a licence the source doesn't already hold). Capped at 3 per sector, floor 0.18.
+function proximateCareers(c){
+ const scored=C.filter(o=>o.id!==c.id).map(o=>{
+  const jac=jaccard(c.tags,o.tags),rsim=riasecSim(c.id,o.id),asim=axisSim(c,o),sameSector=o.sector===c.sector?1:0;
+  let score=0.40*jac+0.30*rsim+0.17*asim+0.11*sameSector;
+  const entryGap=Math.max(0,c.ax.entry-o.ax.entry);score-=0.02*entryGap;
+  const srcReg=REGULATOR_OF[c.id],tgtReg=REGULATOR_OF[o.id];
+  const needsNewCert=!!(tgtReg&&tgtReg!==srcReg);
+  if(needsNewCert)score-=0.20;
+  let label='Lateral move';
+  if(needsNewCert)label='New licence required';else if(srcReg&&tgtReg&&srcReg===tgtReg)label='Further training';
+  return{o,score,label,shared:(c.tags||[]).filter(t=>(o.tags||[]).includes(t))};
+ }).filter(r=>r.score>=0.18).sort((a,b)=>b.score-a.score);
+ const picked=[],perSector={};
+ for(const r of scored){const s=r.o.sector;perSector[s]=perSector[s]||0;if(perSector[s]>=3)continue;picked.push(r);perSector[s]++;if(picked.length>=5)break;}
+ return picked;
+}
+function proximateBlockHtml(c){
+ const rows=proximateCareers(c);if(!rows.length)return'';
+ const items=rows.map(r=>{
+  const delta=r.o.sal[4]-c.sal[4];
+  const deltaHtml=delta===0?'<span style="color:var(--ink-soft)">no peak-pay change</span>':(delta>0?'<span class="good">+£'+delta+'k peak</span>':'<span style="color:var(--s)">−£'+Math.abs(delta)+'k peak</span>');
+  const carries=r.shared.length?r.shared.map(t=>TAGLABEL[t]||t).join(', '):'transferable working style, not specific skills';
+  const add=[...new Set((r.o.tags||[]).filter(t=>!(c.tags||[]).includes(t)))].slice(0,4).map(t=>TAGLABEL[t]||t);
+  const labelStyle=r.label==='New licence required'?'background:rgba(154,91,52,.16);color:#9A5B34':'';
+  return '<div class="rstep" style="align-items:flex-start"><div class="num" style="font-size:13px;color:var(--ink-soft)">'+Math.round(Math.max(0,r.score)*100)+'%</div><div style="flex:1">'+
+   '<div class="st" style="display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:6px"><a href="#" data-id="'+r.o.id+'" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-soft)">'+r.o.name+'</a><span class="mtag hit" style="'+labelStyle+'">'+r.label+'</span>'+deltaHtml+'</div>'+
+   '<div class="sd" style="margin-top:3px">Carries over: '+carries+'.'+(add.length?' Add: '+add.join(', ')+'.':'')+'</div>'+
+   '</div></div>';
+ }).join('');
+ return '<div class="rblock" style="margin-top:16px"><h5>Proximate careers</h5><p style="font-size:12.5px;color:var(--ink-soft);margin-bottom:6px">Computed sideways moves — shared skills, similar working style, comparable axis scores — not a claim any of these are easy.</p>'+items+'</div>';
+}
 function ukLinks(c){const q=encodeURIComponent(c.name.split(' (')[0]);return[['National Careers Service','https://www.google.com/search?q=site:nationalcareers.service.gov.uk+'+q],['Prospects.ac.uk','https://www.google.com/search?q=site:prospects.ac.uk+'+q],['Day in the life','https://www.google.com/search?q='+q+'+day+in+the+life+UK']];}
 function stepDiff(c,i){const base=Math.max(1,Math.min(5,Math.round(6-c.ax.entry/2)));return Math.max(1,Math.min(5,base+(i===1?1:0)));}
 function dots(n){return '<span style="color:var(--you)">'+'\u25CF'.repeat(n)+'</span><span style="color:rgba(24,34,44,.22)">'+'\u25CB'.repeat(5-n)+'</span>';}
@@ -490,17 +644,77 @@ function renderReport(id){const c=C.find(x=>x.id===id);const t=takeHome(c.sal[4]
  const vb=viability(c);const viabHtml='<div class="rblock"><h5>Viability for you</h5>'+(vb?'<div class="viab">'+vb+'</div>':'<p style="color:var(--ink-soft);font-size:12.5px">Take the questionnaire or set your priorities, and this becomes a read tailored to your profile.</p>')+'</div>';
  const rt=c.route;let steps='';rt.steps.forEach((s,i)=>{const df=stepDiff(c,i),cst=stepCost(s);steps+='<div class="rstep"><div class="num">'+(i+1)+'</div><div><div class="st">'+s[0]+'</div><div class="sd">'+s[1]+'</div><div class="diff">difficulty '+dots(df)+' &nbsp;·&nbsp; <b style="color:'+cst[1]+'">'+cst[0]+'</b></div></div></div>';});
  const linksHtml='<div class="rblock" style="margin-top:16px"><h5>Find out more (UK)</h5><div class="links">'+ukLinks(c).map(l=>'<a href="'+l[1]+'" target="_blank" rel="noopener">'+l[0]+' \u2197</a>').join('')+'</div></div>';
- const box=document.getElementById('reportBody');box.innerHTML='<div class="report"><div class="rhead"><div class="rtitle">'+c.name+'</div><div class="rmoney">peak pay<br><b>\u00a3'+c.sal[4]+'k</b> gross<br>\u00a3'+t.net.toFixed(0)+'k take-home</div></div><div class="rsummary">'+c.blurb+'</div><div class="rgrid"><div class="rsvgwrap"><span class="zoomhint">click to zoom</span><svg id="repRadar" viewBox="0 0 220 220"></svg><svg id="repSpark" viewBox="0 0 220 70"></svg></div><div><div class="rblock"><h5>Money shape</h5><p>Peak \u00a3'+c.sal[4]+'k (\u2248\u00a3'+t.net.toFixed(0)+'k after tax, '+t.eff.toFixed(0)+'% effective). The curve is '+shapeOf(c)+'.</p></div><div class="rblock"><h5>Strengths</h5><p>'+strongTxt+'</p></div><div class="rblock"><h5>Weak spots</h5><p>'+weakTxt+'</p></div><div class="rblock"><h5>Best if</h5><p class="good">'+bestIf+'.</p></div><div class="rblock"><h5>Verdict</h5><p class="bad">'+twiceIf+'</p></div>'+viabHtml+'</div></div>'+psychHtml+PROGBLOCK+'<div class="rblock" style="margin-top:16px"><h5>The route in</h5><p style="margin-bottom:8px">'+rt.summary+'</p><div class="route"><div class="rtop2"><span class="meta"><b>TIME</b> '+rt.time+'</span><span class="meta"><b>OVERALL COST</b> '+rt.cost+'</span></div>'+steps+'<div class="ralt"><b>Other doors:</b> '+rt.alt+'</div></div></div>'+linksHtml+'</div>';drawRepRadar(c);drawRepSpark(c);const sl=document.getElementById('progSlider');if(sl){drawProg(c,+sl.value);updateProgDetail(c,+sl.value);sl.oninput=()=>{drawProg(c,+sl.value);updateProgDetail(c,+sl.value);};}}
+ const box=document.getElementById('reportBody');box.innerHTML='<div class="report"><div class="rhead"><div class="rtitle">'+c.name+'</div><div class="rmoney">peak pay<br><b>\u00a3'+c.sal[4]+'k</b> gross<br>\u00a3'+t.net.toFixed(0)+'k take-home</div></div><div class="rsummary">'+c.blurb+'</div><div class="rgrid"><div class="rsvgwrap"><span class="zoomhint">click to zoom</span><svg id="repRadar" viewBox="0 0 220 220"></svg><svg id="repSpark" viewBox="0 0 220 70"></svg></div><div><div class="rblock"><h5>Money shape</h5><p>Peak \u00a3'+c.sal[4]+'k (\u2248\u00a3'+t.net.toFixed(0)+'k after tax, '+t.eff.toFixed(0)+'% effective). The curve is '+shapeOf(c)+'.</p></div><div class="rblock"><h5>Strengths</h5><p>'+strongTxt+'</p></div><div class="rblock"><h5>Weak spots</h5><p>'+weakTxt+'</p></div><div class="rblock"><h5>Best if</h5><p class="good">'+bestIf+'.</p></div><div class="rblock"><h5>Verdict</h5><p class="bad">'+twiceIf+'</p></div>'+viabHtml+'</div></div>'+psychHtml+PROGBLOCK+'<div class="rblock" style="margin-top:16px"><h5>The route in</h5><p style="margin-bottom:8px">'+rt.summary+'</p><div class="route"><div class="rtop2"><span class="meta"><b>TIME</b> '+rt.time+'</span><span class="meta"><b>OVERALL COST</b> '+rt.cost+'</span></div>'+steps+'<div class="ralt"><b>Other doors:</b> '+rt.alt+'</div></div></div>'+sectorBlockHtml(c)+proximateBlockHtml(c)+linksHtml+'</div>';drawRepRadar(c);drawRepSpark(c);const sl=document.getElementById('progSlider');if(sl){drawProg(c,+sl.value);updateProgDetail(c,+sl.value);sl.oninput=()=>{drawProg(c,+sl.value);updateProgDetail(c,+sl.value);};}box.querySelectorAll('[data-id]').forEach(a=>{a.onclick=(e)=>{e.preventDefault();goReport(a.dataset.id);};});}
 function drawRepRadar(c){const svg=document.getElementById('repRadar');svg.innerHTML='';const cx=110,cy=110,R=76,n=AX.length;const ang=i=>(-90+i*360/n)*Math.PI/180;const pt=(i,v)=>[cx+Math.cos(ang(i))*R*v/10,cy+Math.sin(ang(i))*R*v/10];for(let ring=2;ring<=10;ring+=2){let d='';for(let i=0;i<n;i++){const p=pt(i,ring);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';}d+='Z';svg.appendChild(el('path',{d,fill:'none',stroke:'rgba(24,34,44,.10)','stroke-width':1}));}AX.forEach((a,i)=>{const p=pt(i,11.5);const tx=el('text',{x:p[0],y:p[1]+3,'text-anchor':'middle',fill:'#4A5560','font-size':'7.5'});tx.textContent=a[1].slice(0,6);svg.appendChild(tx);});let d='';AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';});d+='Z';svg.appendChild(el('path',{d,fill:c.col,'fill-opacity':.2,stroke:c.col,'stroke-width':2}));AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);svg.appendChild(el('circle',{cx:p[0],cy:p[1],r:2.4,fill:c.col}));const hit=el('circle',{cx:p[0],cy:p[1],r:9,fill:'transparent',class:'chart-node'});attachTip(hit,a[1]+' '+c.ax[a[0]].toFixed(1)+' / 10');svg.appendChild(hit);});svg.setAttribute('role','img');svg.setAttribute('aria-label',c.name+' profile across seven axes; click to enlarge and read each score.');svg.onclick=()=>openZoom(c);}
 function drawRepSpark(c){const svg=document.getElementById('repSpark');svg.innerHTML='';const W=220,H=70,L=6,R=6,T=8,B=14,pw=W-L-R,ph=H-T-B,max=360;const x=i=>L+pw*(i/4),y=v=>T+ph*(1-v/max);const nm=['Entry','Early','Mid','Senior','Peak'];let d='';c.sal.forEach((v,i)=>{d+=(i?'L':'M')+x(i)+' '+y(v)+' ';});svg.appendChild(el('path',{d,fill:'none',stroke:c.col,'stroke-width':2}));c.sal.forEach((v,i)=>{svg.appendChild(el('circle',{cx:x(i),cy:y(v),r:2.5,fill:c.col}));const hit=el('circle',{cx:x(i),cy:y(v),r:8,fill:'transparent',class:'chart-node'});attachTip(hit,nm[i]+' \u00b7 \u00a3'+v+'k gross');svg.appendChild(hit);});['Entry','','Mid','','Peak'].forEach((s,i)=>{if(!s)return;const tx=el('text',{x:x(i),y:H-3,'text-anchor':'middle',fill:'#4A5560','font-size':'8'});tx.textContent=s;svg.appendChild(tx);});svg.setAttribute('role','img');svg.setAttribute('aria-label',c.name+' salary from \u00a3'+c.sal[0]+'k at entry to \u00a3'+c.sal[4]+'k at peak.');}
 
-let cmpActive=new Set(['you','de','electrician','doctor','quant']);let metric='salary';let cmpFilter='';
-function buildCmpChips(){const box=document.getElementById('cmpChips');box.innerHTML='';C.filter(c=>c.name.toLowerCase().includes(cmpFilter)).forEach(c=>{const ch=document.createElement('div');ch.className='chip'+(cmpActive.has(c.id)?' on':'');ch.style.color=c.col;ch.innerHTML='<span class="dot"></span>'+c.name;ch.onclick=()=>{cmpActive.has(c.id)?cmpActive.delete(c.id):cmpActive.add(c.id);buildCmpChips();renderRadar();renderLine();renderTable();};box.appendChild(ch);});}
+let cmpActive=new Set(['you','de','electrician','doctor','quant']);let metric='salary';let cmpFilter='';let cmpSector='all';
+function sectorCounts(){const cnt={};C.forEach(c=>{cnt[c.sector]=(cnt[c.sector]||0)+1;});return cnt;}
+function buildSectorChips(){
+ const box=document.getElementById('sectorChips');if(!box)return;box.innerHTML='';
+ const cnt=sectorCounts();
+ const defs=[['all','All careers',null,C.length],['selected','Selected',null,cmpActive.size]].concat(Object.keys(SECTORS).map(k=>[k,SECTORS[k][0],SECTORS[k][1],cnt[k]||0]));
+ defs.forEach(([key,label,hue,count])=>{
+  const ch=document.createElement('div');ch.className='sectorchip'+(cmpSector===key?' on':'');
+  if(hue!=null)ch.style.setProperty('--sc','oklch(58% 0.14 '+hue+')');
+  ch.innerHTML='<span class="dot"></span>'+label+' <span class="n">'+count+'</span>';
+  ch.onclick=()=>{cmpSector=key;buildSectorChips();buildCmpChips();};
+  box.appendChild(ch);
+ });
+}
+// Sector-scoped search: the search box filters within whichever sector chip is active,
+// not the flat 120-item list (unless "All careers" is selected).
+function visibleCareers(){
+ return C.filter(c=>{
+  if(cmpSector==='selected'&&!cmpActive.has(c.id))return false;
+  if(cmpSector!=='all'&&cmpSector!=='selected'&&c.sector!==cmpSector)return false;
+  return c.name.toLowerCase().includes(cmpFilter);
+ });
+}
+function buildCmpChips(){
+ const box=document.getElementById('cmpChips');box.innerHTML='';
+ const list=visibleCareers();
+ list.forEach(c=>{
+  const ch=document.createElement('div');ch.className='chip'+(cmpActive.has(c.id)?' on':'');
+  ch.style.setProperty('--sw',c.col);
+  ch.innerHTML='<span class="dot"></span>'+c.name;
+  ch.onclick=()=>{cmpActive.has(c.id)?cmpActive.delete(c.id):cmpActive.add(c.id);buildCmpChips();buildSectorChips();renderRadar();renderLine();renderTable();};
+  box.appendChild(ch);
+ });
+ const meta=document.getElementById('cmpMeta');
+ if(meta){meta.innerHTML='<span>Showing '+list.length+' of '+C.length+' · '+cmpActive.size+' overlaid</span>'+(cmpActive.size?'<button id="cmpClear" type="button">Clear selection</button>':'<span></span>');
+  const clearBtn=document.getElementById('cmpClear');if(clearBtn)clearBtn.onclick=()=>{cmpActive.clear();buildCmpChips();buildSectorChips();renderRadar();renderLine();renderTable();};}
+}
 document.getElementById('cmpFilter').oninput=function(){cmpFilter=this.value.toLowerCase();buildCmpChips();};
 function activeList(){return C.filter(c=>cmpActive.has(c.id));}
-function renderRadar(){const svg=document.getElementById('radarSvg');svg.innerHTML='';const W=820,cx=410,cy=250,R=185,n=AX.length;const ang=i=>(-90+i*360/n)*Math.PI/180;const pt=(i,v)=>[cx+Math.cos(ang(i))*R*v/10,cy+Math.sin(ang(i))*R*v/10];for(let ring=2;ring<=10;ring+=2){let d='';for(let i=0;i<n;i++){const p=pt(i,ring);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';}d+='Z';svg.appendChild(el('path',{d,fill:'none',stroke:'rgba(24,34,44,.10)','stroke-width':1}));}AX.forEach((a,i)=>{const p=pt(i,10);svg.appendChild(el('line',{x1:cx,y1:cy,x2:p[0],y2:p[1],stroke:'rgba(24,34,44,.14)','stroke-width':1}));const lp=pt(i,11.4);const tx=el('text',{class:'axtext b',x:lp[0],y:lp[1]+4,'text-anchor':'middle'});tx.textContent=a[1];svg.appendChild(tx);});activeList().forEach(c=>{let d='';AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';});d+='Z';svg.appendChild(el('path',{d,fill:c.col,'fill-opacity':c.you?.14:.08,stroke:c.col,'stroke-width':c.you?3:2,'stroke-linejoin':'round'}));AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);svg.appendChild(el('circle',{cx:p[0],cy:p[1],r:2,fill:c.col}));const hit=el('circle',{cx:p[0],cy:p[1],r:8,fill:'transparent',class:'chart-node'});attachTip(hit,c.name.split(' (')[0]+' \u00b7 '+a[1]+' '+c.ax[a[0]].toFixed(1));svg.appendChild(hit);});});let lx=30,ly=505;activeList().forEach(c=>{svg.appendChild(el('rect',{x:lx,y:ly-9,width:12,height:12,rx:2,fill:c.col}));const tx=el('text',{class:'lbl',x:lx+17,y:ly+1,fill:c.col});tx.textContent=c.name.split(' (')[0];svg.appendChild(tx);const w=34+c.name.split(' (')[0].length*7;if(lx+w>760){lx=30;ly+=22;}else lx+=w;});}
-function renderLine(){const svg=document.getElementById('lineSvg');svg.innerHTML='';const W=820,H=430,L=56,R=152,T=16,B=52,pw=W-L-R,ph=H-T-B,ymax=360;const x=i=>L+pw*(i/4),y=v=>T+ph*(1-v/ymax);for(let g=0;g<=ymax;g+=50){svg.appendChild(el('line',{class:'gridline',x1:L,y1:y(g),x2:L+pw,y2:y(g)}));const tx=el('text',{class:'axtext',x:L-8,y:y(g)+4,'text-anchor':'end'});tx.textContent='\u00a3'+g+'k';svg.appendChild(tx);}['Entry','Early','Mid','Senior','Peak'].forEach((s,i)=>{const tx=el('text',{class:'axtext b',x:x(i),y:H-B+18,'text-anchor':'middle'});tx.textContent=s;svg.appendChild(tx);});activeList().forEach(c=>{const data=metric==='net'?c.sal.map(g=>+takeHome(g).net.toFixed(1)):c.sal;let d='';data.forEach((v,i)=>{d+=(i?'L':'M')+x(i)+' '+y(v)+' ';});svg.appendChild(el('path',{d,fill:'none',stroke:c.col,'stroke-width':c.you?3.4:2,'stroke-linejoin':'round','stroke-linecap':'round',opacity:c.you?1:.85}));data.forEach((v,i)=>{const dot=el('circle',{cx:x(i),cy:y(v),r:c.you?4.5:3.5,fill:c.col});svg.appendChild(dot);const hit=el('circle',{cx:x(i),cy:y(v),r:9,fill:'transparent',class:'chart-node'});attachTip(hit,c.name.split(' (')[0]+' \u00b7 '+['Entry','Early','Mid','Senior','Peak'][i]+' \u00a3'+Math.round(v)+'k');svg.appendChild(hit);});const lv=data[4];const lab=el('text',{class:'lbl',x:x(4)+9,y:y(lv)+4,fill:c.col});lab.textContent=c.name.split(' (')[0]+' \u00a3'+Math.round(lv)+'k';svg.appendChild(lab);});}
-function renderTable(){const box=document.getElementById('cmpTable');const rows=activeList();let h='<thead><tr><th>Career</th><th>Peak £</th><th>Net £</th>'+AX.map(a=>'<th>'+a[1].slice(0,4)+'</th>').join('')+'</tr></thead><tbody>';if(!rows.length)h+='<tr><td colspan="10" style="text-align:center;color:var(--ink-soft)">Select careers above to compare.</td></tr>';rows.sort((a,b)=>b.sal[4]-a.sal[4]).forEach(c=>{const t=takeHome(c.sal[4]);h+='<tr><td><span class="sw" style="background:'+c.col+'"></span>'+c.name+'</td><td>\u00a3'+c.sal[4]+'k</td><td>\u00a3'+t.net.toFixed(0)+'k</td>'+AX.map(a=>{const v=c.ax[a[0]];const cl=v>=8?' class="hi"':(v<=4.5?' class="lo"':'');return '<td'+cl+'>'+v+'</td>';}).join('')+'</tr>';});h+='</tbody>';box.innerHTML=h;}
+function renderRadar(){const svg=document.getElementById('radarSvg');svg.innerHTML='';const W=820,cx=410,cy=250,R=185,n=AX.length;const ang=i=>(-90+i*360/n)*Math.PI/180;const pt=(i,v)=>[cx+Math.cos(ang(i))*R*v/10,cy+Math.sin(ang(i))*R*v/10];for(let ring=2;ring<=10;ring+=2){let d='';for(let i=0;i<n;i++){const p=pt(i,ring);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';}d+='Z';svg.appendChild(el('path',{d,fill:'none',stroke:'rgba(24,34,44,.10)','stroke-width':1}));}AX.forEach((a,i)=>{const p=pt(i,10);svg.appendChild(el('line',{x1:cx,y1:cy,x2:p[0],y2:p[1],stroke:'rgba(24,34,44,.14)','stroke-width':1}));const lp=pt(i,11.4);const tx=el('text',{class:'axtext b',x:lp[0],y:lp[1]+4,'text-anchor':'middle'});tx.textContent=a[1];svg.appendChild(tx);});activeList().forEach(c=>{let d='';AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';});d+='Z';svg.appendChild(el('path',{d,fill:c.col,'fill-opacity':c.you?.14:.08,stroke:c.col,'stroke-width':c.you?3:2,'stroke-linejoin':'round'}));AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);svg.appendChild(el('circle',{cx:p[0],cy:p[1],r:2,fill:c.col}));const hit=el('circle',{cx:p[0],cy:p[1],r:8,fill:'transparent',class:'chart-node'});attachTip(hit,c.name.split(' (')[0]+' \u00b7 '+a[1]+' '+c.ax[a[0]].toFixed(1));svg.appendChild(hit);});});let lx=30,ly=505;activeList().forEach(c=>{svg.appendChild(el('rect',{x:lx,y:ly-9,width:12,height:12,rx:2,fill:c.col}));const tx=el('text',{class:'lbl',x:lx+17,y:ly+1,fill:c.col,tabindex:'0',role:'link','aria-label':'Open report for '+c.name,style:'cursor:pointer'});tx.textContent=c.name.split(' (')[0];tx.onclick=()=>goReport(c.id);tx.onkeydown=(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goReport(c.id);}};svg.appendChild(tx);const w=34+c.name.split(' (')[0].length*7;if(lx+w>760){lx=30;ly+=22;}else lx+=w;});}
+function renderLine(){const svg=document.getElementById('lineSvg');svg.innerHTML='';const W=820,H=430,L=56,R=152,T=16,B=52,pw=W-L-R,ph=H-T-B,ymax=360;const x=i=>L+pw*(i/4),y=v=>T+ph*(1-v/ymax);for(let g=0;g<=ymax;g+=50){svg.appendChild(el('line',{class:'gridline',x1:L,y1:y(g),x2:L+pw,y2:y(g)}));const tx=el('text',{class:'axtext',x:L-8,y:y(g)+4,'text-anchor':'end'});tx.textContent='\u00a3'+g+'k';svg.appendChild(tx);}['Entry','Early','Mid','Senior','Peak'].forEach((s,i)=>{const tx=el('text',{class:'axtext b',x:x(i),y:H-B+18,'text-anchor':'middle'});tx.textContent=s;svg.appendChild(tx);});
+ const endLabels=[];
+ activeList().forEach(c=>{const data=metric==='net'?c.sal.map(g=>+takeHome(g).net.toFixed(1)):c.sal;let d='';data.forEach((v,i)=>{d+=(i?'L':'M')+x(i)+' '+y(v)+' ';});svg.appendChild(el('path',{d,fill:'none',stroke:c.col,'stroke-width':c.you?3.4:2,'stroke-linejoin':'round','stroke-linecap':'round',opacity:c.you?1:.85}));data.forEach((v,i)=>{const dot=el('circle',{cx:x(i),cy:y(v),r:c.you?4.5:3.5,fill:c.col});svg.appendChild(dot);const hit=el('circle',{cx:x(i),cy:y(v),r:9,fill:'transparent',class:'chart-node'});attachTip(hit,c.name.split(' (')[0]+' \u00b7 '+['Entry','Early','Mid','Senior','Peak'][i]+' \u00a3'+Math.round(v)+'k');svg.appendChild(hit);});const lv=data[4];endLabels.push({id:c.id,y:y(lv)+4,col:c.col,text:c.name.split(' (')[0]+' \u00a3'+Math.round(lv)+'k'});});
+ // De-collide end labels: sort top-to-bottom, enforce a 13px minimum gap, then
+ // shift the whole stack up if it overflows the chart's bottom edge.
+ endLabels.sort((a,b)=>a.y-b.y);
+ for(let i=1;i<endLabels.length;i++){const minY=endLabels[i-1].y+13;if(endLabels[i].y<minY)endLabels[i].y=minY;}
+ const bottomLimit=T+ph+8;
+ if(endLabels.length){const overflow=endLabels[endLabels.length-1].y-bottomLimit;if(overflow>0)endLabels.forEach(lb=>lb.y-=overflow);}
+ endLabels.forEach(lb=>{const lab=el('text',{class:'lbl',x:x(4)+9,y:lb.y,fill:lb.col,tabindex:'0',role:'link','aria-label':'Open report for '+lb.text,style:'cursor:pointer'});lab.textContent=lb.text;lab.onclick=()=>goReport(lb.id);lab.onkeydown=(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goReport(lb.id);}};svg.appendChild(lab);});
+}
+const TABLE_COLS=[{key:'name',label:'Career',type:'alpha',get:c=>c.name},{key:'peak',label:'Peak £',type:'num',get:c=>c.sal[4]},{key:'net',label:'Net £',type:'num',get:c=>takeHome(c.sal[4]).net}].concat(AX.map(a=>({key:a[0],label:a[1].slice(0,4),type:'num',get:c=>c.ax[a[0]]})));
+let tblSort={key:null,dir:null};
+function renderTable(){
+ const box=document.getElementById('cmpTable');const rows=activeList();let sorted=rows.slice();
+ if(tblSort.key){const col=TABLE_COLS.find(cc=>cc.key===tblSort.key);sorted.sort((a,b)=>{const av=col.get(a),bv=col.get(b);const cmp=col.type==='alpha'?String(av).localeCompare(String(bv)):(av-bv);return tblSort.dir==='asc'?cmp:-cmp;});}
+ else{sorted.sort((a,b)=>b.sal[4]-a.sal[4]);}
+ let h='<thead><tr>'+TABLE_COLS.map(col=>{const active=tblSort.key===col.key;const arrow=active?(tblSort.dir==='asc'?' <span class="arrow">▲</span>':' <span class="arrow">▼</span>'):'';return '<th data-key="'+col.key+'" tabindex="0" role="button" aria-label="Sort by '+col.label+'">'+col.label+arrow+'</th>';}).join('')+'</tr></thead><tbody>';
+ if(!sorted.length)h+='<tr><td colspan="10" style="text-align:center;color:var(--ink-soft)">Select careers above to compare.</td></tr>';
+ sorted.forEach(c=>{const t=takeHome(c.sal[4]);h+='<tr><td><span class="sw" style="background:'+c.col+'"></span><a href="#" data-id="'+c.id+'">'+c.name+'</a></td><td>£'+c.sal[4]+'k</td><td>£'+t.net.toFixed(0)+'k</td>'+AX.map(a=>{const v=c.ax[a[0]];const cl=v>=8?' class="hi"':(v<=4.5?' class="lo"':'');return '<td'+cl+'>'+v+'</td>';}).join('')+'</tr>';});
+ h+='</tbody>';box.innerHTML=h;
+ box.querySelectorAll('th[data-key]').forEach(th=>{
+  const cycle=()=>{const key=th.dataset.key;if(tblSort.key!==key)tblSort={key,dir:'desc'};else if(tblSort.dir==='desc')tblSort.dir='asc';else tblSort={key:null,dir:null};renderTable();};
+  th.onclick=cycle;th.onkeydown=(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();cycle();}};
+ });
+ box.querySelectorAll('td a[data-id]').forEach(a=>{a.onclick=(e)=>{e.preventDefault();goReport(a.dataset.id);};});
+}
 document.querySelectorAll('#cmpSeg button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#cmpSeg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');metric=b.dataset.m;renderLine();});
 
 /* ===== CV ANALYSER (Tier 1 heuristic, swappable functions for a future LLM backend) ===== */
@@ -514,7 +728,34 @@ function extractCV(text){const t=(text||'').toLowerCase();const wc=t.split(/\s+/
 function scoreCVQuality(cv,raw){const lines=raw.split(/\n/).map(l=>l.trim()).filter(Boolean);const numLines=lines.filter(l=>/\d+%|£|\$|\b\d{2,}\b/.test(l)).length;const quant=Math.min(25,numLines*3);const verbs=['led','built','designed','developed','delivered','managed','created','launched','increased','reduced','improved','implemented','achieved','drove','analysed','optimised','coordinated','established','spearheaded','oversaw'];let vh=0;lines.forEach(l=>{const w0=l.toLowerCase().replace(/^[^a-z]*/,'').split(/\s+/)[0];if(verbs.includes(w0))vh++;});const verb=Math.min(20,vh*3);const sec=['experience','education','skills','summary','profile','employment','qualifications'];const secN=sec.filter(s=>new RegExp('\\b'+s+'\\b').test(cv.text)).length;const secS=Math.min(20,secN*5);let len;if(cv.wc<180)len=6;else if(cv.wc<=700)len=20;else if(cv.wc<=1000)len=14;else len=8;const sk=Math.min(15,cv.skills.length*2);const total=quant+verb+secS+len+sk;return{score:Math.round(total),parts:[['Quantified impact',quant,25],['Action verbs',verb,20],['Section coverage',secS,20],['Length',len,20],['Skill breadth',sk,15]]};}
 function careerReq(id){const c=C.find(x=>x.id===id);const rt=c.route;const txt=(rt.summary+' '+rt.steps.map(s=>s[0]+' '+s[1]).join(' ')+' '+rt.alt+' '+c.blurb).toLowerCase();let edu;if(/doctorate|phd|dclinpsy|dphil|medical school|dental school|veterinary/.test(txt))edu=3;else if(/msc|master|mpharm|march|postgrad|llm/.test(txt))edu=2;else if(/apprentic|no degree|degree optional|no formal|any background|portfolio|self-taught|self-taught|no barrier/.test(txt))edu=0.7;else if(/degree/.test(txt))edu=1.5;else edu=1;const rc=new Set();KNOWNCERTS.forEach(k=>{if(k[1].some(a=>txt.includes(a)))rc.add(k[0]);});return{edu,tags:new Set(TAGS[id]||[]),certs:rc};}
 function cvFit(cv,id){const req=careerReq(id);const need=[...req.tags];const have=need.filter(x=>cv.tagSet.has(x));const miss=need.filter(x=>!cv.tagSet.has(x));const tagFit=need.length?have.length/need.length:0.5;const eduFit=cv.edu>=req.edu?1:(req.edu>0?Math.max(0,cv.edu/req.edu):1);const nc=[...req.certs];const hc=nc.filter(x=>[...cv.certs].some(cc=>cc.toLowerCase().includes(x.split(' ')[0].toLowerCase())));const mc=nc.filter(x=>!hc.includes(x));const certFit=nc.length?hc.length/nc.length:null;let fit;if(certFit!=null)fit=tagFit*0.5+eduFit*0.2+certFit*0.3;else fit=tagFit*0.7+eduFit*0.3;return{fit:Math.round(fit*100),have,miss,eduNeed:req.edu,haveCerts:hc,missCerts:mc};}
-function desirability(id){const c=C.find(x=>x.id===id);if(quizTaken||userMbti){const tot=Object.values(imp).reduce((a,b)=>a+b,0)||1;let s=0;AX.forEach(a=>s+=imp[a[0]]*c.ax[a[0]]);const outcome=s/tot*10;const sf=styleFit(id);const mf=mbtiCompat(id,userMbti);if(userMbti&&quizTaken)return outcome*0.5+sf*0.3+mf*0.2;if(quizTaken)return outcome*0.6+sf*0.4;return outcome*0.8+mf*0.2;}return(c.ax.pay+c.ax.future+c.ax.secure+c.ax.option)/4*10;}
+// Axis stats (mean/std) computed once across all 120 careers, used to z-score
+// how a career's axis scores compare to the field rather than reading raw 0-10s.
+const AXSTATS=(()=>{const st={};AX.forEach(a=>{const k=a[0];const vals=C.map(c=>c.ax[k]);const n=vals.length;const mean=vals.reduce((x,y)=>x+y,0)/n;const variance=vals.reduce((x,y)=>x+(y-mean)*(y-mean),0)/n;const std=Math.sqrt(variance)||1;st[k]={mean,std};});return st;})();
+// Importance-weighted, z-scored outcome for one career against the user's current
+// imp sliders. Importance is centred on the user's OWN mean rating first, so an
+// axis rated below their own average contributes nothing (or drags the score down)
+// even if the career happens to be strong there — this is what stops a career that's
+// merely "good at everything" (e.g. electrician: decent pay, secure, easy entry)
+// from beating a career that's excellent specifically at what the user asked for.
+function outcomeFor(c){
+  const impVals=Object.values(imp);const impMean=impVals.reduce((a,b)=>a+b,0)/(impVals.length||1);
+  let posSum=0;
+  const per=AX.map(a=>{const k=a[0];const zAx=(c.ax[k]-AXSTATS[k].mean)/AXSTATS[k].std;const impC=imp[k]-impMean;const w=Math.max(0,impC);posSum+=w;return{a,k,zAx,impC,w};});
+  // Neutral-profile fallback: if the user hasn't actually differentiated their
+  // priorities (every axis rated about the same), there's no "above-average
+  // priority" to weight by — fall back to an unweighted read of the field.
+  const weightedZ=posSum>0?per.reduce((s,p)=>s+p.w*p.zAx,0)/posSum:per.reduce((s,p)=>s+p.zAx,0)/per.length;
+  let outcome=50+weightedZ*12;
+  per.forEach(p=>{if(imp[p.k]>=8){if(c.ax[p.k]<=4.5)outcome-=5;else if(c.ax[p.k]>=8)outcome+=2;}});
+  outcome=Math.max(0,Math.min(100,outcome));
+  const relTot=posSum||1;
+  // Only name an axis in the "why" line if it's both a real share of what the user
+  // cares about (relW>0.4) and the career is genuinely strong on it (zAx>0.15) —
+  // so a de-prioritised strength can never get credited as a reason to match.
+  const tops=per.filter(p=>(p.w/relTot)>0.4&&p.zAx>0.15).sort((x,y)=>y.zAx-x.zAx).map(p=>p.a[1]);
+  return{outcome,tops};
+}
+function desirability(id){const c=C.find(x=>x.id===id);if(quizTaken||userMbti){const outcome=outcomeFor(c).outcome;const sf=styleFit(id);const mf=mbtiCompat(id,userMbti);if(userMbti&&quizTaken)return outcome*0.5+sf*0.3+mf*0.2;if(quizTaken)return outcome*0.6+sf*0.4;return outcome*0.8+mf*0.2;}return(c.ax.pay+c.ax.future+c.ax.secure+c.ax.option)/4*10;}
 function pivotRank(cv){return C.map(c=>{const f=cvFit(cv,c.id);const d=Math.round(desirability(c.id));const pivot=Math.round(f.fit*0.5+d*0.5);const b=c.ax.entry;let eff;if(b<=3.5)eff=[f.fit>=60?'Long retrain':'Full retrain','#7A2E3A'];else if(f.fit>=72&&b>=5.5)eff=['Short hop','var(--a)'];else if(f.fit>=50)eff=['Moderate reskill','#9A5B34'];else eff=['Full retrain','#7A2E3A'];return{c,fit:f.fit,desir:d,pivot,eff,miss:f.miss,missCerts:f.missCerts};}).sort((a,b)=>b.pivot-a.pivot);}
 function pivotRow(p){return '<div class="match" style="border-left-color:'+p.eff[1]+'"><div class="mtop"><div class="mname">'+p.c.name+' <span class="mtag" style="background:'+p.eff[1]+';color:#fff">'+p.eff[0]+'</span></div><div class="mfit">'+p.fit+'<span style="font-size:11px;color:var(--ink-soft)">% fit</span></div></div><div class="mwhy">'+(p.missCerts.length?'Needs: '+p.missCerts.join(', ')+'. ':'')+(p.miss.length?'Build: '+p.miss.slice(0,3).map(d=>DOMAINS[d]?DOMAINS[d][0]:d).join(', ')+'.':'Strong overlap with your current skills.')+'</div><span class="mlink" data-id="'+p.c.id+'">See report & route \u2192</span></div>';}
 function renderCV(){const text=document.getElementById('cvText').value;const box=document.getElementById('cvBody');if(!text.trim()){box.innerHTML='<p style="color:var(--ink-soft);font-size:13px">Paste your CV text above (or upload a .txt) and press Analyse.</p>';return;}const cv=extractCV(text);const q=scoreCVQuality(cv,text);let html='<div class="report">';html+='<div class="rblock"><h5>CV quality (heuristic)</h5><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div class="scorenum" style="color:'+fitCol(q.score)+'">'+q.score+'<span style="font-size:14px;color:var(--ink-soft)">/100</span></div><div style="flex:1;min-width:230px">'+q.parts.map(p=>'<div class="bd"><span class="bdlabel">'+p[0]+'</span><span class="bdtrack"><i style="width:'+(p[1]/p[2]*100)+'%"></i></span><span class="bdval">'+p[1]+'/'+p[2]+'</span></div>').join('')+'</div></div></div>';const eduTxt=cv.edu>=3?'Doctorate':cv.edu>=2?'Master\u2019s':cv.edu>=1.5?'Degree'+(cv.cls?' ('+cv.cls+')':''):cv.edu>=0.7?'Pre-degree / vocational':'Not detected';html+='<div class="rblock"><h5>What we read from it</h5><p style="margin-bottom:6px"><b>Education:</b> '+eduTxt+' &nbsp;·&nbsp; <b>Experience:</b> '+(cv.years?cv.years+' yr'+(cv.years>1?'s':''):'not detected')+(cv.senior?' · senior-level signals':'')+'</p><div class="chipset">'+(cv.skills.length?cv.skills.map(s=>'<span class="pill">'+s+'</span>').join(''):'<span style="color:var(--ink-soft);font-size:12.5px">No known skills detected, paste the full skills/experience sections for a better read.</span>')+'</div>'+(cv.certs.size?'<div class="chipset" style="margin-top:6px">'+[...cv.certs].map(c=>'<span class="mtag hit">'+c+'</span>').join('')+'</div>':'')+'</div>';const tid=document.getElementById('cvTarget').value;const tc=C.find(x=>x.id===tid);const f=cvFit(cv,tid);html+='<div class="rblock" style="margin-top:14px"><h5>Fit with '+tc.name+'</h5><div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><div class="scorenum" style="font-size:32px;color:'+fitCol(f.fit)+'">'+f.fit+'<span style="font-size:13px;color:var(--ink-soft)">/100</span></div><div style="font-size:12.5px;color:var(--ink-soft)">'+(f.fit>=70?'You\u2019re most of the way there.':f.fit>=45?'A realistic reskill from here.':'A significant retrain from where you are now.')+'</div></div>';if(f.have.length)html+='<p style="font-size:12.5px;margin-bottom:6px"><b>Already there:</b> '+f.have.map(d=>DOMAINS[d]?DOMAINS[d][0]:d).join(', ')+(f.haveCerts.length?', '+f.haveCerts.join(', '):'')+'.</p>';const plan=[];if(cv.edu<f.eduNeed)plan.push(f.eduNeed>=3?'Meet the postgraduate/doctorate requirement for this route':f.eduNeed>=2?'Gain the master\u2019s-level qualification this route expects':'Complete the degree this route typically requires');f.missCerts.forEach(c=>plan.push('Obtain '+c));f.miss.forEach(d=>{if(DOMAINS[d])plan.push(DOMAINS[d][1]);});html+='<h5 style="margin-top:8px">Upskilling plan</h5>'+(plan.length?'<ol class="plan">'+plan.map(p=>'<li>'+p+'</li>').join('')+'</ol>':'<p class="good" style="font-size:13px">No major gaps detected, your profile already lines up with this route.</p>')+'<div class="links" style="margin-top:8px">'+ukLinks(tc).map(l=>'<a href="'+l[1]+'" target="_blank" rel="noopener">'+l[0]+' \u2197</a>').join('')+'</div></div>';const pv=pivotRank(cv);const adjacent=pv.slice().sort((a,b)=>b.fit-a.fit).filter(p=>p.c.id!==tid&&p.c.ax.entry>3.5).slice(0,5);const aspir=pv.slice().sort((a,b)=>b.desir-a.desir).filter(p=>p.fit<65&&p.c.id!==tid).slice(0,5);html+='<div class="rblock" style="margin-top:16px"><h5>Where you\u2019d slot in now, smallest jump</h5>'+adjacent.map(pivotRow).join('')+'</div>';html+='<div class="rblock" style="margin-top:12px"><h5>Worth the retrain, best fit with what you want'+(quizTaken||userMbti?'':' · take the questionnaire to personalise this')+'</h5>'+aspir.map(pivotRow).join('')+'</div>';html+='</div>';box.innerHTML=html;box.querySelectorAll('.mlink').forEach(l=>l.onclick=()=>goReport(l.dataset.id));}
@@ -542,7 +783,7 @@ function initHash(){const h=location.hash.replace(/^#/,'');if(!h)return;const pa
 
 buildQuiz();buildPersonas();buildImps();buildMbti();
 buildReportSelect();renderReport('you');
-buildCmpChips();renderRadar();renderLine();renderTable();
+buildSectorChips();buildCmpChips();renderRadar();renderLine();renderTable();
 buildCv();
 
 initReveal();
@@ -550,6 +791,13 @@ document.getElementById('zoomClose').onclick=closeZoom;
 document.getElementById('zoomOverlay').onclick=(e)=>{if(e.target.id==='zoomOverlay')closeZoom();};
 document.addEventListener('keydown',(e)=>{if(e.key==='Escape')closeZoom();});
 initHash();
+(function initTheme(){
+  const root=document.documentElement,btn=document.getElementById('themeToggle');
+  function apply(t){root.setAttribute('data-theme',t);btn.textContent=t==='dark'?'Light':'Dark';try{localStorage.setItem('cn-theme',t);}catch(e){}}
+  let saved;try{saved=localStorage.getItem('cn-theme');}catch(e){}
+  apply(saved||(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  btn.onclick=()=>apply(root.getAttribute('data-theme')==='dark'?'light':'dark');
+})();
 </script>
 
 <script>
