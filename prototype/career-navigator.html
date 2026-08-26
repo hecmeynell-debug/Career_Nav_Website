@@ -38,6 +38,17 @@
   *{box-sizing:border-box;margin:0;padding:0}html{-webkit-text-size-adjust:100%;overflow-x:hidden}
   body{background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;line-height:1.5;padding:22px 15px 70px;max-width:880px;margin:0 auto;overflow-x:hidden;transition:background .2s ease,color .2s ease}
   #themeToggle{position:fixed;top:14px;right:14px;z-index:30;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border:1px solid var(--btn-line);border-radius:20px;background:var(--btn);color:var(--ink-soft);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.08),inset 0 1px 0 var(--btn-hi)}
+  #authBar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:9px 15px;background:var(--paper-2);border-bottom:1px solid var(--line)}
+  .authstatus{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.02em;color:var(--ink-soft);margin-right:2px;white-space:nowrap}
+  .authfield{font-family:"IBM Plex Mono",monospace;font-size:12px;padding:6px 10px;border:1px solid var(--btn-line);border-radius:7px;background:var(--btn);color:var(--ink);width:130px;max-width:38vw;box-shadow:var(--surf-shadow)}
+  .authfield::placeholder{color:var(--ink-soft);opacity:.75}
+  .authfield:focus{outline:none;border-color:var(--you)}
+  .authbtn{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:7px 13px;border-radius:7px;cursor:pointer;border:1px solid transparent;transition:border-color .15s ease,color .15s ease,filter .15s ease}
+  .authbtn.primary{background:var(--you);color:#fff;border-color:var(--you)}
+  .authbtn.primary:hover{filter:brightness(1.08)}
+  .authbtn.ghost{background:transparent;border-color:var(--btn-line);color:var(--ink-soft)}
+  .authbtn.ghost:hover{border-color:var(--ink-soft);color:var(--ink)}
+  #authMsg{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-soft)}
   .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
   h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;line-height:.9;letter-spacing:-.01em;font-size:clamp(40px,11vw,66px);letter-spacing:-.03em;text-transform:uppercase;margin-bottom:12px}
   h1 span{display:block;color:var(--ink-soft);font-weight:600}
@@ -228,17 +239,13 @@
 </head>
 <body>
   <button id="themeToggle" type="button" aria-label="Toggle dark mode">Dark</button>
-  <div id="authBar" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;
-       padding:8px 14px;background:var(--paper-2);border-bottom:1px solid var(--line);
-       font-family:'IBM Plex Mono',monospace;font-size:12px">
-    <span id="authStatus" style="color:var(--ink-soft)">Not signed in</span>
-    <input id="authEmail" type="email" placeholder="email"
-           style="padding:5px 8px;border:1px solid var(--line);border-radius:6px;font:inherit">
-    <input id="authPass" type="password" placeholder="password"
-           style="padding:5px 8px;border:1px solid var(--line);border-radius:6px;font:inherit">
-    <button id="authSignup" class="qbtn">Sign up</button>
-    <button id="authSignin" class="qbtn">Sign in</button>
-    <button id="authSignout" class="qbtn" style="display:none">Sign out</button>
+  <div id="authBar">
+    <span id="authStatus" class="authstatus">Not signed in</span>
+    <input id="authEmail" class="authfield" type="email" placeholder="email" autocomplete="email">
+    <input id="authPass" class="authfield" type="password" placeholder="password" autocomplete="current-password">
+    <button id="authSignup" class="authbtn ghost" type="button">Sign up</button>
+    <button id="authSignin" class="authbtn primary" type="button">Sign in</button>
+    <button id="authSignout" class="authbtn ghost" type="button" style="display:none">Sign out</button>
     <span id="authMsg"></span>
   </div>
   <div class="eyebrow">120CAREERS · prototype · UK · 2026</div>
