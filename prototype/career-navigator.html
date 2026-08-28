@@ -93,6 +93,19 @@
   .subseg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden;margin-bottom:18px}
   .subseg button{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:8px 14px;background:var(--btn);color:var(--ink-soft);border:none;cursor:pointer;box-shadow:var(--surf-shadow)}
   .subseg button.on{background:var(--ink);color:var(--paper)}
+  /* questionnaire: stepped, resumable, with a real progress readout */
+  .qprog{margin-bottom:13px}
+  .qprogmeta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.04em;color:var(--ink-soft)}
+  .quizstep{border:none;padding:0;margin:0;min-width:0}
+  .quizstep legend{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;text-transform:uppercase;font-size:18px;color:var(--ink);padding:0}
+  .qsblurb{font-size:13.5px;color:var(--ink-70);margin:2px 0 12px}
+  .qnav{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px}
+  .qnav .mlink{margin-top:0;margin-left:auto}
+  .qdone{background:var(--paper-2);border:1px solid var(--line);border-left:3px solid var(--a);border-radius:9px;padding:13px 15px;margin:18px 0 4px;font-size:13.5px;line-height:1.6;color:var(--ink-70)}
+  .qdone b{color:var(--ink)}
+  .qdone h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;text-transform:uppercase;font-size:17px;color:var(--ink);margin-bottom:4px}
+  .qdone ul{margin:7px 0 9px 17px}.qdone li{margin-bottom:3px}
+  .qdone .qdactions{display:flex;flex-wrap:wrap;gap:9px;margin-top:4px}
   .quizq{background:var(--paper-2);border:1px solid var(--line);border-radius:9px;padding:13px 14px;margin-bottom:10px}
   .quizq .qn{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;color:var(--ink-soft);margin-bottom:6px}
   .quizq .qt{font-weight:600;font-size:15px;margin-bottom:9px}
@@ -640,17 +653,130 @@ document.querySelectorAll('.tab').forEach(t=>{
 });
 
 let imp={pay:5,future:5,secure:5,entry:5,speed:5,life:5,option:5};let quizAns={};let userRia=[5,5,5,5,5,5];let userMbti='';let quizTaken=false;
-function buildQuiz(){const box=document.getElementById('quizBlock');box.innerHTML='';
- const intro=document.createElement('div');intro.className='qintro';intro.innerHTML='<b>'+QUIZ.length+' statements.</b> Rate each 0-5, <b>0</b> strongly disagree, <b>3</b> neutral, <b>5</b> strongly agree. Skip any that don\u2019t resonate; blanks simply don\u2019t count. The more you answer, the sharper your matches.';box.appendChild(intro);
- QUIZ.forEach((q,qi)=>{const d=document.createElement('div');d.className='quizq';d.innerHTML='<div class="qn">'+(qi+1)+' / '+QUIZ.length+'</div><div class="qt">'+q.q+'</div>';
-  const lk=document.createElement('div');lk.className='likert';const s0=document.createElement('span');s0.className='lkends';s0.textContent='disagree';lk.appendChild(s0);
-  for(let v=0;v<=5;v++){const b=document.createElement('div');b.className='lk';b.textContent=v;b.onclick=()=>{quizAns[qi]=v;lk.querySelectorAll('.lk').forEach(x=>x.classList.remove('on'));b.classList.add('on');};lk.appendChild(b);}
-  const s1=document.createElement('span');s1.className='lkends';s1.textContent='agree';lk.appendChild(s1);
-  const cl=document.createElement('span');cl.className='lkclear';cl.textContent='clear';cl.onclick=()=>{delete quizAns[qi];lk.querySelectorAll('.lk').forEach(x=>x.classList.remove('on'));};lk.appendChild(cl);
-  d.appendChild(lk);box.appendChild(d);});
- const btn=document.createElement('button');btn.className='qbtn';btn.textContent='See my matches \u2192';btn.onclick=submitQuiz;box.appendChild(btn);}
+// The 22 statements grouped into five short themes. Grouping is presentational only: the
+// indices are the original QUIZ positions, so scoring, saved answers and the account restore
+// all keep working against the same array.
+const QUIZ_STEPS=[
+ {t:'What matters most',b:'Pay, security, hours, and how fast you want to get there.',qs:[2,7,8,13,18]},
+ {t:'Risk, independence and purpose',b:'How much uncertainty you will take, and what the work is for.',qs:[9,15,17,11]},
+ {t:'How you like to work',b:'Structure, routine, teams and detail.',qs:[5,10,19,20,21]},
+ {t:'What draws you in',b:'The kind of work you are pulled towards.',qs:[1,3,6,12,16]},
+ {t:'How you think',b:'Ideas, people and abstraction.',qs:[0,4,14]}
+];
+const LIKERT_MEANING=['strongly disagree','disagree','slightly disagree','slightly agree','agree','strongly agree'];
+let quizStep=0;const quizSkipped=new Set();
+// localStorage is best-effort: private windows and blocked site data both throw, and a saved
+// blob from an older build may not match. Every path falls back to an empty questionnaire.
+const QUIZ_KEY='cn-quiz-v1';
+function saveQuizLocal(){try{localStorage.setItem(QUIZ_KEY,JSON.stringify({a:quizAns,s:[...quizSkipped],step:quizStep}));}catch(e){}}
+function loadQuizLocal(){
+ try{
+  const raw=localStorage.getItem(QUIZ_KEY);if(!raw)return false;
+  const d=JSON.parse(raw);if(!d||typeof d.a!=='object')return false;
+  let n=0;
+  Object.keys(d.a).forEach(k=>{const i=+k,v=d.a[k];if(Number.isInteger(i)&&i>=0&&i<QUIZ.length&&Number.isInteger(v)&&v>=0&&v<=5){quizAns[i]=v;n++;}});
+  (Array.isArray(d.s)?d.s:[]).forEach(i=>{if(Number.isInteger(i)&&i>=0&&i<QUIZ.length)quizSkipped.add(i);});
+  quizStep=Number.isInteger(d.step)?Math.max(0,Math.min(QUIZ_STEPS.length-1,d.step)):0;
+  return n>0;
+ }catch(e){return false;}
+}
+function clearQuizLocal(){try{localStorage.removeItem(QUIZ_KEY);}catch(e){}}
+function quizAnswered(){return QUIZ.reduce((n,q,i)=>n+(quizAns[i]!=null?1:0),0);}
+function buildQuiz(){
+ const box=document.getElementById('quizBlock');box.innerHTML='';
+ const restored=loadQuizLocal();
+ box.innerHTML='<div class="qprog"><div class="mbar"><i id="qBar"></i></div><p class="qprogmeta" id="qMeta"></p></div>'
+  +(restored?'<div class="qintro" id="qRestored"><b>Picked up where you left off.</b> Your previous answers were restored from this browser. <button type="button" class="mlink" id="qReset">Start the questionnaire again</button></div>':'')
+  +'<div id="qStep"></div>'
+  +'<div class="qnav"><button type="button" class="cta2" id="qBack">Back</button><button type="button" class="qbtn" id="qNext" style="margin-top:0">Next</button><button type="button" class="mlink" id="qJump">Skip the rest and see my matches</button></div>';
+ const reset=document.getElementById('qReset');
+ if(reset)reset.onclick=resetQuiz;
+ document.getElementById('qBack').onclick=()=>gotoStep(quizStep-1);
+ document.getElementById('qNext').onclick=()=>{if(quizStep<QUIZ_STEPS.length-1)gotoStep(quizStep+1);else submitQuiz();};
+ document.getElementById('qJump').onclick=submitQuiz;
+ if(restored)computeProfile();
+ renderQuizStep();
+}
+function gotoStep(n){
+ quizStep=Math.max(0,Math.min(QUIZ_STEPS.length-1,n));
+ saveQuizLocal();renderQuizStep();
+ const h=document.querySelector('#qStep legend');if(h)h.scrollIntoView({behavior:'smooth',block:'nearest'});
+ const first=document.querySelector('#qStep .lk');if(first)first.focus({preventScroll:true});
+ announce('Step '+(quizStep+1)+' of '+QUIZ_STEPS.length+', '+QUIZ_STEPS[quizStep].t+'.');
+}
+function resetQuiz(){
+ for(const k in quizAns)delete quizAns[k];
+ quizSkipped.clear();quizStep=0;quizTaken=false;clearQuizLocal();
+ imp={pay:5,future:5,secure:5,entry:5,speed:5,life:5,option:5};
+ document.getElementById('resultHead').style.display='none';
+ document.getElementById('matchList').innerHTML='';
+ const done=document.getElementById('quizDone');if(done)done.remove();
+ buildQuiz();buildImps();setMode('quiz');
+ announce('Questionnaire reset. No answers saved.');
+}
+function renderQuizStep(){
+ const step=QUIZ_STEPS[quizStep],host=document.getElementById('qStep');
+ document.getElementById('qBar').style.background='var(--you)';
+ let h='<fieldset class="quizstep"><legend>'+step.t+'</legend><p class="qsblurb">'+step.b+'</p>';
+ step.qs.forEach(qi=>{
+  const v=quizAns[qi],sk=quizSkipped.has(qi);
+  h+='<div class="quizq"><div class="qn">Question '+(qi+1)+' of '+QUIZ.length+'</div><p class="qt" id="qt'+qi+'">'+QUIZ[qi].q+'</p>'
+   +'<div class="likert" role="group" aria-labelledby="qt'+qi+'"><span class="lkends" aria-hidden="true">strongly disagree</span>';
+  for(let n=0;n<=5;n++)h+='<button type="button" class="lk'+(v===n?' on':'')+'" data-q="'+qi+'" data-v="'+n+'" aria-pressed="'+(v===n)+'" aria-label="'+n+', '+LIKERT_MEANING[n]+'">'+n+'</button>';
+  h+='<span class="lkends" aria-hidden="true">strongly agree</span>'
+   +'<button type="button" class="qopt'+(sk?' on':'')+'" data-skip="'+qi+'" aria-pressed="'+sk+'">Not sure</button></div></div>';
+ });
+ h+='</fieldset>';
+ host.innerHTML=h;
+ document.getElementById('qBack').disabled=quizStep===0;
+ document.getElementById('qBack').style.visibility=quizStep===0?'hidden':'';
+ document.getElementById('qNext').textContent=quizStep===QUIZ_STEPS.length-1?'See my matches \u2192':'Next \u2192';
+ syncQuizProgress();
+}
+// Repaint one question's buttons and the progress readout. Re-rendering the whole step on
+// every rating destroyed and rebuilt five questions of DOM, threw away focus, and detached
+// the node the user had just pressed.
+function syncQuestion(qi){
+ const v=quizAns[qi],sk=quizSkipped.has(qi);
+ document.querySelectorAll('.lk[data-q="'+qi+'"]').forEach(b=>{const on=+b.dataset.v===v;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on?'true':'false');});
+ const s=document.querySelector('[data-skip="'+qi+'"]');
+ if(s){s.classList.toggle('on',sk);s.setAttribute('aria-pressed',sk?'true':'false');}
+ syncQuizProgress();
+}
+function syncQuizProgress(){
+ const done=quizAnswered(),step=QUIZ_STEPS[quizStep];
+ const bar=document.getElementById('qBar');if(bar)bar.style.width=Math.round(done/QUIZ.length*100)+'%';
+ const meta=document.getElementById('qMeta');
+ if(meta)meta.textContent='Step '+(quizStep+1)+' of '+QUIZ_STEPS.length+' \u00b7 '+step.t+' \u00b7 '+done+' of '+QUIZ.length+' answered';
+ const jump=document.getElementById('qJump');
+ if(jump)jump.style.display=(done>0&&quizStep<QUIZ_STEPS.length-1)?'':'none';
+}
+// One delegated listener for the whole questionnaire rather than a handler per button.
+document.getElementById('quizBlock').addEventListener('click',(e)=>{
+ const rate=e.target.closest('.lk[data-q]');
+ if(rate){const qi=+rate.dataset.q,v=+rate.dataset.v;
+  if(quizAns[qi]===v)delete quizAns[qi];else quizAns[qi]=v;
+  quizSkipped.delete(qi);saveQuizLocal();syncQuestion(qi);return;}
+ const skip=e.target.closest('[data-skip]');
+ if(skip){const qi=+skip.dataset.skip;
+  if(quizSkipped.has(qi))quizSkipped.delete(qi);else{quizSkipped.add(qi);delete quizAns[qi];}
+  saveQuizLocal();syncQuestion(qi);}
+});
+// Answering nothing is allowed and must not be dressed up as a personalised result, so the
+// completion panel says which of the two the ranking underneath actually is.
+function showQuizDone(){
+ const old=document.getElementById('quizDone');if(old)old.remove();
+ const n=quizAnswered(),d=document.createElement('div');d.className='qdone';d.id='quizDone';
+ d.innerHTML=n
+  ?'<h3>Your answers are in</h3><p><b>Ranked against '+n+' of '+QUIZ.length+' statements.</b> The sliders below show the priorities read from your answers, and you can move any of them directly to see the ranking change.</p><ul><li>Open a match to read its full report and route in.</li><li>Add two or three to <b>Overlay &amp; compare</b> to see them side by side.</li><li>Paste your CV under <b>CV &amp; pivot</b> to see how close you already are.</li></ul>'
+  :'<h3>Nothing answered yet</h3><p><b>The ranking below is not personalised.</b> With no answers to weight, it falls back to an unweighted read of the field. Answer even a few statements and it becomes yours.</p>';
+ d.innerHTML+='<div class="qdactions"><button type="button" class="cta2" id="qdEdit">'+(n?'Edit my answers':'Go to the questionnaire')+'</button>'+(n?'<button type="button" class="cta2" id="qdReset">Start again</button>':'')+'</div>';
+ const head=document.getElementById('resultHead');head.parentNode.insertBefore(d,head);
+ document.getElementById('qdEdit').onclick=()=>{setMode('quiz');renderQuizStep();document.getElementById('quizBlock').scrollIntoView({behavior:'smooth',block:'start'});};
+ const r=document.getElementById('qdReset');if(r)r.onclick=resetQuiz;
+}
 function computeProfile(){const pri={pay:0,future:0,secure:0,entry:0,speed:0,life:0,option:0};const ria={R:0,I:0,A:0,S:0,E:0,C:0};let answered=0;QUIZ.forEach((q,qi)=>{const v=quizAns[qi];if(v==null)return;answered++;const s=v-3;for(const k in q.w){if(k in pri)pri[k]+=q.w[k]*s;else ria[k]+=q.w[k]*s;}});imp={};for(const k in pri)imp[k]=Math.max(0,Math.min(10,Math.round(5+pri[k]*0.9)));userRia=RKEYS.map(k=>Math.max(0,Math.min(10,Math.round(5+ria[k]*0.8))));quizTaken=answered>0;}
-function submitQuiz(){computeProfile();buildImps();document.querySelectorAll('.persona').forEach(x=>x.classList.remove('on'));setMode('manual');renderMatch();document.getElementById('resultHead').scrollIntoView({behavior:'smooth',block:'start'});if(window.sb&&window.saveMyData){window.sb.auth.getSession().then(({data})=>{if(data.session)window.saveMyData({quiz:quizAns});});}}
+function submitQuiz(){computeProfile();buildImps();document.querySelectorAll('.persona').forEach(x=>{x.classList.remove('on');x.setAttribute('aria-pressed','false');});setMode('manual');renderMatch();showQuizDone();saveQuizLocal();document.getElementById('quizDone').scrollIntoView({behavior:'smooth',block:'start'});if(window.sb&&window.saveMyData){window.sb.auth.getSession().then(({data})=>{if(data.session)window.saveMyData({quiz:quizAns});});}}
 function buildMbti(){const sel=document.getElementById('mbtiSel');MBTITYPES.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;sel.appendChild(o);});sel.onchange=()=>{userMbti=sel.value;if(document.getElementById('resultHead').style.display!=='none')renderMatch();};}
 function setMode(v){document.querySelectorAll('#matchMode button').forEach(x=>{const on=x.dataset.v===v;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on?'true':'false');});document.getElementById('quizBlock').style.display=v==='quiz'?'block':'none';document.getElementById('sliderBlock').style.display=v==='manual'?'block':'none';}
 document.querySelectorAll('#matchMode button').forEach(b=>b.onclick=()=>setMode(b.dataset.v));
@@ -1169,19 +1295,18 @@ async function loadMyData() {
   return data ? data.data : null;
 }
 function applySavedQuiz(saved) {
+  // Answers now live in one place and the questionnaire renders itself from them, so this
+  // no longer has to walk the DOM. Only one step is on screen at a time, which the old
+  // index-by-position walk could not have handled.
   Object.assign(quizAns, saved);
-  const groups = document.querySelectorAll('#quizBlock .likert');
-  groups.forEach((lk, qi) => {
-    const boxes = lk.querySelectorAll('.lk');
-    boxes.forEach((x) => x.classList.remove('on'));
-    const v = quizAns[qi];
-    if (v != null && boxes[v]) boxes[v].classList.add('on');
-  });
+  saveQuizLocal();
+  renderQuizStep();
   computeProfile();
   buildImps();
-  document.querySelectorAll('.persona').forEach((x) => x.classList.remove('on'));
+  document.querySelectorAll('.persona').forEach((x) => { x.classList.remove('on'); x.setAttribute('aria-pressed', 'false'); });
   setMode('manual');
   renderMatch();
+  showQuizDone();
 }
 window.saveMyData = saveMyData;
 window.loadMyData = loadMyData;
