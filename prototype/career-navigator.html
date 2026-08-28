@@ -75,6 +75,16 @@
   .provrow{display:grid;grid-template-columns:1fr;gap:9px;margin-bottom:22px}
   @media(min-width:640px){.provrow{grid-template-columns:1fr 1fr}}
   .provrow details.prov{margin-bottom:0}
+  /* one confidence vocabulary, used everywhere a number appears */
+  .conf{display:inline-flex;align-items:center;gap:5px;font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:4px;border:1px solid var(--line);background:var(--track);color:var(--ink-soft);white-space:nowrap;vertical-align:middle}
+  .conf::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.8;flex:none}
+  .conf.sourced{color:var(--a);border-color:color-mix(in oklab,var(--a) 34%,transparent)}
+  .conf.estimate{color:var(--s);border-color:color-mix(in oklab,var(--s) 34%,transparent)}
+  .conf.judgement{color:var(--c);border-color:color-mix(in oklab,var(--c) 40%,transparent)}
+  .conf.forecast{color:var(--d);border-color:color-mix(in oklab,var(--d) 40%,transparent)}
+  .conf.you{color:var(--you);border-color:color-mix(in oklab,var(--you) 34%,transparent)}
+  .confkey{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+  .confkey span.k{font-size:12px;color:var(--ink-70);display:inline-flex;align-items:center;gap:6px}
   .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
   h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;line-height:.9;letter-spacing:-.01em;font-size:clamp(40px,11vw,66px);letter-spacing:-.03em;text-transform:uppercase;margin-bottom:12px}
   h1 span{display:block;color:var(--ink-soft);font-weight:600}
@@ -316,6 +326,8 @@
     <details class="prov"><summary>Where the numbers come from, and their limits</summary>
       <p><b>Where figures are anchored, they are cited.</b> Take-home pay uses HMRC income tax and National Insurance rules for 2026/27, and the entry routes reflect the requirements set by the relevant UK professional bodies (for example ACCA, RICS, the GMC and HCPC). Salary figures are currently indicative estimates, being migrated to cited data from the ONS Annual Survey of Hours and Earnings. The future-proofing axis is a forecast about automation, not an observation.</p>
       <p><b>This is a work in progress.</b> The full version runs a live data pipeline that continuously refreshes these figures against official sources, so the numbers track both micro conditions (how a specific occupation is paid now) and macro conditions (where the wider market is heading). Until then, treat everything here as a considered starting point rather than the final word, and check the relevant professional body before making a decision.</p>
+      <p><b>What the labels mean.</b> Every figure in the app carries one of five tags, so you can tell at a glance what kind of thing you are reading. Per-field review dates are not tracked yet, so none are shown.</p>
+      <div class="confkey" id="confKey"></div>
     </details>
   </div>
 
@@ -329,13 +341,16 @@
   <section class="panel on" id="match" role="tabpanel" aria-labelledby="tab-match" tabindex="-1">
     <h2 class="vh">Find your match</h2>
     <p class="vsub">Work through the questionnaire, it reads both <b>what you want</b> from work and <b>how you're wired</b> to infer your fit, or set your priorities manually. Optionally add your personality type. Every match shows why it fits and flags anything it's weak on. Tap a match for its full report and route.</p>
-    <div class="mbtiRow">
-      <label for="mbtiSel">Personality type (optional)</label>
-      <select id="mbtiSel"><option value="">Skip</option></select>
-      <span class="hint">Adds an MBTI compatibility layer to your matches. Optional, and deliberately caveated, see "About these numbers" above.</span>
-    </div>
     <div class="subseg" id="matchMode"><button data-v="quiz" class="on">Questionnaire</button><button data-v="manual">Set it manually</button></div>
     <div id="quizBlock"></div>
+    <details class="prov" id="mbtiWrap" style="margin-top:16px">
+      <summary>Add a personality type (optional)</summary>
+      <p>MBTI is an <b>optional reflective input, not a validated measure of career fit</b>. It is popular, and it is psychometrically weak: retest it and many people get a different type. It is soft-weighted here so it can nudge a ranking, never drive one, and it is paired with a work-style read rather than used on its own. Leave it on Skip and nothing is lost.</p>
+      <div class="mbtiRow" style="margin-top:9px;margin-bottom:0">
+        <label for="mbtiSel">Personality type</label>
+        <select id="mbtiSel"><option value="">Skip</option></select>
+      </div>
+    </details>
     <div id="sliderBlock" style="display:none"><div class="personas" id="personas"></div><div class="imps" id="imps"></div></div>
     <h3 class="resulthead" id="resultHead" style="display:none">Your matches</h3>
     <div id="matchList"></div>
@@ -524,7 +539,7 @@ const C=[
 ];
 const AX=[
  ['pay','Pay','high pay & a strong earning ceiling','pays very well','has a modest ceiling','you want a high ceiling'],
- ['future','Future-proof','resistance to AI & automation','is highly AI-resistant','is exposed to automation','you want AI-resistance'],
+ ['future','Resilience','estimated resistance to AI and automation, a forecast rather than an observation','is estimated to resist automation well','is estimated to be exposed to automation','you want resistance to automation'],
  ['secure','Job security','stability & recession-resistance','is very stable','can be insecure','you want stability'],
  ['entry','Easy entry','a low, accessible barrier to entry','is easy to enter','has a steep, costly entry','you need an accessible route in'],
  ['speed','Fast progress','reaching peak pay quickly','pays off fast','is slow to reach peak pay','you want to earn sooner'],
@@ -630,12 +645,24 @@ function takeHome(gk){const g=gk*1000;if(g<=0)return{net:0,eff:0};let pa=12570;i
 // assigned in recolorBySector, so the dot works as a consistent identifier across the matches,
 // the report, the pivots and the compare screen.
 function swatch(c,px){return '<span class="sw" style="background:'+c.col+(px?';width:'+px+'px;height:'+px+'px':'')+'"></span>';}
+// The five things a number in this app can be. Every figure carries one of these, because
+// "structured judgement" and "sourced" being indistinguishable on screen is the failure
+// mode this whole product is trying to avoid.
+const CONF={
+ sourced:['Sourced','Anchored in a published source or a statutory rule.'],
+ estimate:['Indicative estimate','A considered figure, not yet taken from a cited dataset.'],
+ judgement:['Structured judgement','One considered view, scored consistently across all 120 careers.'],
+ forecast:['Forecast','A view about what happens next. Nobody can measure this yet.'],
+ you:['From your answers','Computed from what you told us, so it changes when you do.']
+};
+function confBadge(kind,label){const d=CONF[kind];return '<span class="conf '+kind+'" title="'+d[1]+'">'+(label||d[0])+'</span>';}
 function fitCol(v){return v>=80?'var(--s)':v>=70?'var(--a)':v>=60?'var(--b)':v>=50?'var(--c)':'var(--d)';}
 function goReport(id){document.getElementById('reportSelect').value=id;showTab('report',false);renderReport(id);setHash('report/'+id);window.scrollTo({top:0,behavior:'smooth'});}
 // Real <button role="tab"> elements, so Enter and Space come free. This adds the roving
 // arrow-key movement the tablist pattern expects, plus Home and End.
 // Landing actions. The primary one drops the user straight into the questionnaire and puts
 // focus on it, so keyboard users are not left at the top of the page after pressing it.
+(function buildConfKey(){const k=document.getElementById('confKey');if(!k)return;k.innerHTML=Object.keys(CONF).map(x=>'<span class="k">'+confBadge(x)+CONF[x][1]+'</span>').join('');})();
 document.getElementById('ctaQuiz').onclick=()=>{showTab('match');setMode('quiz');const q=document.getElementById('quizBlock');q.scrollIntoView({behavior:'smooth',block:'start'});const first=q.querySelector('button,input,select');if(first)first.focus({preventScroll:true});};
 document.getElementById('ctaBrowse').onclick=()=>{showTab('report');document.getElementById('reportSelect').focus();};
 document.getElementById('ctaCompare').onclick=()=>{showTab('compare');document.getElementById('cmpFilter').focus();};
@@ -966,7 +993,7 @@ const t=takeHome(c.sal[4]);const strong=AX.filter(a=>c.ax[a[0]]>=7.5),weak=AX.fi
  const compHtml=competitionBlockHtml(c),outHtml=outcomeBlockHtml(c);const vb=viability(c);const viabHtml='<div class="rblock"><h4>Viability for you</h4>'+(vb?'<div class="viab">'+vb+'</div>':'<p style="color:var(--ink-soft);font-size:12.5px">Take the questionnaire or set your priorities, and this becomes a read tailored to your profile.</p>')+'</div>';
  const rt=c.route;let steps='';rt.steps.forEach((s,i)=>{const df=stepDiff(c,i),cst=stepCost(s);steps+='<div class="rstep"><div class="num">'+(i+1)+'</div><div><div class="st">'+s[0]+'</div><div class="sd">'+s[1]+'</div><div class="diff">difficulty '+dots(df)+' &nbsp;·&nbsp; <b style="color:'+cst[1]+'">'+cst[0]+'</b></div></div></div>';});
  const linksHtml='<div class="rblock" style="margin-top:16px"><h4>Find out more (UK)</h4><div class="links">'+ukLinks(c).map(l=>'<a href="'+l[1]+'" target="_blank" rel="noopener">'+l[0]+' \u2197</a>').join('')+'</div></div>';
- announce('Report loaded for '+c.name+'.');const box=document.getElementById('reportBody');box.innerHTML='<div class="report"><div class="rhead"><h3 class="rtitle">'+swatch(c,13)+c.name+'</h3><div class="rmoney">peak pay<br><b>\u00a3'+c.sal[4]+'k</b> gross<br>\u00a3'+t.net.toFixed(0)+'k take-home</div></div><div class="rsummary">'+c.blurb+'</div><div class="rgrid"><div class="rsvgwrap"><span class="zoomhint" aria-hidden="true">click to zoom</span><ul class="vh-only">'+AX.map(a=>'<li>'+a[1]+': '+c.ax[a[0]]+' out of 10</li>').join('')+'<svg id="repRadar" viewBox="0 0 220 220"></svg><svg id="repSpark" viewBox="0 0 220 70"></svg></div><div><div class="rblock"><h4>Money shape</h4><p>Peak \u00a3'+c.sal[4]+'k (\u2248\u00a3'+t.net.toFixed(0)+'k after tax, '+t.eff.toFixed(0)+'% effective). The curve is '+shapeOf(c)+'.</p></div><div class="rblock"><h4>Strengths</h4><p>'+strongTxt+'</p></div><div class="rblock"><h4>Weak spots</h4><p>'+weakTxt+'</p></div><div class="rblock"><h4>Best if</h4><p class="good">'+bestIf+'.</p></div><div class="rblock"><h4>Verdict</h4><p class="bad">'+twiceIf+'</p></div>'+viabHtml+'</div></div>'+compHtml+outHtml+psychHtml+PROGBLOCK+'<div class="rblock" style="margin-top:16px"><h4>The route in</h4><p style="margin-bottom:8px">'+rt.summary+'</p><div class="route"><div class="rtop2"><span class="meta"><b>TIME</b> '+rt.time+'</span><span class="meta"><b>OVERALL COST</b> '+rt.cost+'</span></div>'+steps+'<div class="ralt"><b>Other doors:</b> '+rt.alt+'</div></div></div>'+sectorBlockHtml(c)+proximateBlockHtml(c)+linksHtml+'</div>';drawRepRadar(c);drawRepSpark(c);const sl=document.getElementById('progSlider');if(sl){drawProg(c,+sl.value);updateProgDetail(c,+sl.value);sl.oninput=()=>{drawProg(c,+sl.value);updateProgDetail(c,+sl.value);};}box.querySelectorAll('[data-id]').forEach(a=>{a.onclick=(e)=>{e.preventDefault();goReport(a.dataset.id);};});}
+ announce('Report loaded for '+c.name+'.');const box=document.getElementById('reportBody');box.innerHTML='<div class="report"><div class="rhead"><h3 class="rtitle">'+swatch(c,13)+c.name+'</h3><div class="rmoney">'+confBadge('estimate')+'<br>Gross pay, UK-wide<br><b>\u00a3'+c.sal[0]+'k to \u00a3'+c.sal[4]+'k</b><br>entry to peak, typical range<br>\u00a3'+t.net.toFixed(0)+'k take-home at peak '+confBadge('sourced','HMRC rules')+'</div></div><div class="rsummary">'+c.blurb+'</div><div class="rgrid"><div class="rsvgwrap"><span class="zoomhint" aria-hidden="true">click to zoom</span><ul class="vh-only">'+AX.map(a=>'<li>'+a[1]+': '+c.ax[a[0]]+' out of 10</li>').join('')+'<svg id="repRadar" viewBox="0 0 220 220"></svg><svg id="repSpark" viewBox="0 0 220 70"></svg></div><div><div class="rblock"><h4>Money shape</h4><p><b>Base pay, gross, UK-wide.</b> Around \u00a3'+c.sal[0]+'k entering, around \u00a3'+c.sal[4]+'k at peak. The curve is '+shapeOf(c)+'.</p><p style="margin-top:5px">At peak that is about \u00a3'+t.net.toFixed(0)+'k take-home, a '+t.eff.toFixed(0)+'% effective rate, using income tax and employee National Insurance for England 2026/27. Bonuses, overtime, pension and any regional weighting sit outside these figures.</p><div class="mtags" style="margin-top:7px">'+confBadge('estimate','Salary: indicative estimate')+confBadge('sourced','Tax: HMRC 2026/27')+'</div></div><div class="rblock"><h4>Strengths</h4><p>'+strongTxt+'</p></div><div class="rblock"><h4>Weak spots</h4><p>'+weakTxt+'</p><p style="font-size:12px;color:var(--ink-soft);margin-top:5px">'+confBadge('judgement','Seven axes: structured judgement')+' '+confBadge('forecast','Resilience: forecast')+'</p></div><div class="rblock"><h4>Best if</h4><p class="good">'+bestIf+'.</p></div><div class="rblock"><h4>Verdict</h4><p class="bad">'+twiceIf+'</p></div>'+viabHtml+'</div></div>'+compHtml+outHtml+psychHtml+PROGBLOCK+'<div class="rblock" style="margin-top:16px"><h4>The route in</h4><p style="margin-bottom:8px">'+rt.summary+'</p><div class="route"><div class="rtop2"><span class="meta"><b>TIME</b> '+rt.time+'</span><span class="meta"><b>OVERALL COST</b> '+rt.cost+'</span></div>'+steps+'<div class="ralt"><b>Other doors:</b> '+rt.alt+'</div></div></div>'+sectorBlockHtml(c)+proximateBlockHtml(c)+linksHtml+'</div>';drawRepRadar(c);drawRepSpark(c);const sl=document.getElementById('progSlider');if(sl){drawProg(c,+sl.value);updateProgDetail(c,+sl.value);sl.oninput=()=>{drawProg(c,+sl.value);updateProgDetail(c,+sl.value);};}box.querySelectorAll('[data-id]').forEach(a=>{a.onclick=(e)=>{e.preventDefault();goReport(a.dataset.id);};});}
 function drawRepRadar(c){const svg=document.getElementById('repRadar');svg.innerHTML='';const cx=110,cy=110,R=76,n=AX.length;const ang=i=>(-90+i*360/n)*Math.PI/180;const pt=(i,v)=>[cx+Math.cos(ang(i))*R*v/10,cy+Math.sin(ang(i))*R*v/10];for(let ring=2;ring<=10;ring+=2){let d='';for(let i=0;i<n;i++){const p=pt(i,ring);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';}d+='Z';svg.appendChild(el('path',{d,fill:'none',stroke:'var(--line)','stroke-width':1}));}AX.forEach((a,i)=>{const p=pt(i,11.5);const tx=el('text',{x:p[0],y:p[1]+3,'text-anchor':'middle',fill:'var(--ink-soft)','font-size':'7.5'});tx.textContent=a[1].slice(0,6);svg.appendChild(tx);});let d='';AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';});d+='Z';svg.appendChild(el('path',{d,fill:c.col,'fill-opacity':.2,stroke:c.col,'stroke-width':2}));AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);svg.appendChild(el('circle',{cx:p[0],cy:p[1],r:2.4,fill:c.col}));const hit=el('circle',{cx:p[0],cy:p[1],r:9,fill:'transparent',class:'chart-node'});attachTip(hit,a[1]+' '+c.ax[a[0]].toFixed(1)+' / 10');svg.appendChild(hit);});svg.setAttribute('role','img');svg.setAttribute('aria-label',c.name+' profile across seven axes; click to enlarge and read each score.');svg.onclick=()=>openZoom(c);}
 function drawRepSpark(c){const svg=document.getElementById('repSpark');svg.innerHTML='';const W=220,H=70,L=6,R=6,T=8,B=14,pw=W-L-R,ph=H-T-B,max=360;const x=i=>L+pw*(i/4),y=v=>T+ph*(1-v/max);const nm=['Entry','Early','Mid','Senior','Peak'];let d='';c.sal.forEach((v,i)=>{d+=(i?'L':'M')+x(i)+' '+y(v)+' ';});svg.appendChild(el('path',{d,fill:'none',stroke:c.col,'stroke-width':2}));c.sal.forEach((v,i)=>{svg.appendChild(el('circle',{cx:x(i),cy:y(v),r:2.5,fill:c.col}));const hit=el('circle',{cx:x(i),cy:y(v),r:8,fill:'transparent',class:'chart-node'});attachTip(hit,nm[i]+' \u00b7 \u00a3'+v+'k gross');svg.appendChild(hit);});['Entry','','Mid','','Peak'].forEach((s,i)=>{if(!s)return;const tx=el('text',{x:x(i),y:H-3,'text-anchor':'middle',fill:'var(--ink-soft)','font-size':'8'});tx.textContent=s;svg.appendChild(tx);});svg.setAttribute('role','img');svg.setAttribute('aria-label',c.name+' salary from \u00a3'+c.sal[0]+'k at entry to \u00a3'+c.sal[4]+'k at peak.');}
 
