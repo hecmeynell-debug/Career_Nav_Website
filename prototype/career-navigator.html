@@ -60,6 +60,21 @@
     .lk{width:44px;height:44px}
     .chip,.sectorchip,.persona,.qopt,.authbtn,.seg button,.subseg button{min-height:44px}
   }
+  /* landing: value proposition, actions, then progressive disclosure of the caveats */
+  .herocta{display:flex;flex-wrap:wrap;gap:9px;margin:4px 0 9px}
+  .cta2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;text-transform:uppercase;font-size:15px;letter-spacing:.02em;padding:12px 18px;border:1px solid var(--btn-line);border-radius:8px;background:var(--btn);color:var(--ink);cursor:pointer;box-shadow:var(--surf-shadow);transition:border-color .15s ease,transform .12s ease}
+  .cta2:hover{border-color:var(--ink-soft);transform:translateY(-1px)}
+  .herometa{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.02em;color:var(--ink-soft);margin-bottom:18px}
+  .steps{display:grid;grid-template-columns:1fr;gap:9px;margin:0 0 16px;padding:0;list-style:none;counter-reset:s}
+  @media(min-width:640px){.steps{grid-template-columns:repeat(3,1fr)}}
+  .steps li{counter-increment:s;background:var(--paper-2);border:1px solid var(--line);border-radius:9px;padding:11px 13px;font-size:13.5px;line-height:1.55;color:var(--ink-70)}
+  .steps li::before{content:counter(s);display:block;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:19px;color:var(--you);line-height:1;margin-bottom:3px}
+  .steps li b{color:var(--ink)}
+  .notice{font-size:13.5px;line-height:1.6;color:var(--ink-70);border-left:3px solid var(--you);padding:3px 0 3px 12px;margin-bottom:16px}
+  .notice b{color:var(--ink)}
+  .provrow{display:grid;grid-template-columns:1fr;gap:9px;margin-bottom:22px}
+  @media(min-width:640px){.provrow{grid-template-columns:1fr 1fr}}
+  .provrow details.prov{margin-bottom:0}
   .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
   h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;line-height:.9;letter-spacing:-.01em;font-size:clamp(40px,11vw,66px);letter-spacing:-.03em;text-transform:uppercase;margin-bottom:12px}
   h1 span{display:block;color:var(--ink-soft);font-weight:600}
@@ -264,15 +279,33 @@
     <button id="authSignout" class="authbtn ghost" type="button" style="display:none">Sign out</button>
     <span id="authMsg"></span>
   </div>
-  <div class="eyebrow">120CAREERS · prototype · UK · 2026</div>
-  <h1>120<br>Careers<span>find your match · read the route in · overlay any careers</span></h1>
-  <p class="lede">Take the quiz, get ranked matches across <b>120 careers</b>, open any for a full report and step-by-step route in, or overlay several on one radar and salary chart to compare them directly.</p>
-  <details class="prov"><summary>About these numbers, read me</summary>
-    <p><b>Where figures are anchored, they are cited.</b> Take-home pay uses HMRC income tax and National Insurance rules for 2026/27, and the entry routes reflect the requirements set by the relevant UK professional bodies (for example ACCA, RICS, the GMC and HCPC). Salary figures are currently indicative estimates, being migrated to cited data from the ONS Annual Survey of Hours and Earnings. The seven 0-10 scores that drive matching are <b>structured judgement, not measured data</b>, and the future-proofing score is a forecast about automation. The <b>MBTI compatibility</b> is included because it's popular, but it is psychometrically weak, so treat it as a conversation-starter, not a verdict.</p>
-    <p><b>This is a work in progress.</b> The full version runs a live data pipeline that continuously refreshes these figures against official sources, so the numbers track both micro conditions (how a specific occupation is paid now) and macro conditions (where the wider market is heading). Until then, treat everything here as a considered starting point rather than the final word, and check the relevant professional body before making a decision.</p>
-  </details>
-
   <main id="main">
+  <div class="eyebrow">120CAREERS · prototype · UK · 2026</div>
+  <h1>Find UK careers<span>that fit your priorities</span></h1>
+  <p class="lede">Compare <b>pay, entry routes, skills, work style and long-term outlook</b> across 120 UK careers. Answer a short questionnaire for ranked matches, open any career for a full report and a step-by-step route in, or overlay several to compare them side by side.</p>
+  <div class="herocta">
+    <button type="button" class="qbtn" id="ctaQuiz" style="margin-top:0">Find my career matches</button>
+    <button type="button" class="cta2" id="ctaBrowse">Browse all careers</button>
+    <button type="button" class="cta2" id="ctaCompare">Compare careers</button>
+  </div>
+  <p class="herometa">22 statements &middot; about 3 minutes &middot; you can skip any of them &middot; your answers stay in your browser</p>
+  <ol class="steps">
+    <li><b>Say what matters.</b> Rate short statements about what you want from work and how you like to work. Skip anything that does not apply.</li>
+    <li><b>Read the ranking.</b> Every career is scored against your answers, with the reason it fits and the trade-off it carries.</li>
+    <li><b>Plan the route.</b> Open any career for its entry routes, qualifications, pay shape and realistic next steps.</li>
+  </ol>
+  <p class="notice"><b>This is decision support, not a career recommendation.</b> It ranks careers against the priorities you give it. It cannot know your circumstances, your finances, your local job market or what you would actually enjoy day to day. Use it to find candidates worth researching properly, then check the relevant professional body before you commit to anything.</p>
+  <div class="provrow">
+    <details class="prov"><summary>How the matching works</summary>
+      <p><b>A match score is relative compatibility, not a probability.</b> Each career carries seven 0-10 scores. Your answers set how much you care about each of the seven, and every career is scored against the field on the axes you rated above your own average. A career you rate 84 is a closer fit to your stated priorities than one you rate 60. It is not an 84% chance of getting in, of succeeding, or of being happy.</p>
+      <p><b>Those seven scores are structured judgement, not measured data.</b> They are one considered view of each career, worth a spot-check rather than treated as fact. Competition and attainability are scored separately and shown on each career report. <b>MBTI</b> is optional, soft-weighted and psychometrically weak, so it can nudge a ranking but never drive it.</p>
+    </details>
+    <details class="prov"><summary>Where the numbers come from, and their limits</summary>
+      <p><b>Where figures are anchored, they are cited.</b> Take-home pay uses HMRC income tax and National Insurance rules for 2026/27, and the entry routes reflect the requirements set by the relevant UK professional bodies (for example ACCA, RICS, the GMC and HCPC). Salary figures are currently indicative estimates, being migrated to cited data from the ONS Annual Survey of Hours and Earnings. The future-proofing axis is a forecast about automation, not an observation.</p>
+      <p><b>This is a work in progress.</b> The full version runs a live data pipeline that continuously refreshes these figures against official sources, so the numbers track both micro conditions (how a specific occupation is paid now) and macro conditions (where the wider market is heading). Until then, treat everything here as a considered starting point rather than the final word, and check the relevant professional body before making a decision.</p>
+    </details>
+  </div>
+
   <div class="tabs" role="tablist" aria-label="Sections">
     <button type="button" class="tab on" role="tab" id="tab-match" data-p="match" aria-selected="true" aria-controls="match">Find your match</button>
     <button type="button" class="tab" role="tab" id="tab-report" data-p="report" aria-selected="false" aria-controls="report" tabindex="-1">Career report</button>
@@ -588,6 +621,11 @@ function fitCol(v){return v>=80?'var(--s)':v>=70?'var(--a)':v>=60?'var(--b)':v>=
 function goReport(id){document.getElementById('reportSelect').value=id;showTab('report',false);renderReport(id);setHash('report/'+id);window.scrollTo({top:0,behavior:'smooth'});}
 // Real <button role="tab"> elements, so Enter and Space come free. This adds the roving
 // arrow-key movement the tablist pattern expects, plus Home and End.
+// Landing actions. The primary one drops the user straight into the questionnaire and puts
+// focus on it, so keyboard users are not left at the top of the page after pressing it.
+document.getElementById('ctaQuiz').onclick=()=>{showTab('match');setMode('quiz');const q=document.getElementById('quizBlock');q.scrollIntoView({behavior:'smooth',block:'start'});const first=q.querySelector('button,input,select');if(first)first.focus({preventScroll:true});};
+document.getElementById('ctaBrowse').onclick=()=>{showTab('report');document.getElementById('reportSelect').focus();};
+document.getElementById('ctaCompare').onclick=()=>{showTab('compare');document.getElementById('cmpFilter').focus();};
 document.querySelectorAll('.tab').forEach(t=>{
  t.onclick=()=>showTab(t.dataset.p);
  t.onkeydown=(e)=>{
