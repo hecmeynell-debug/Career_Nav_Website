@@ -490,27 +490,38 @@ const QUIZ=[
 ];
 const RIA=[['R','Practical / hands-on','hands-on builders who like tangible, physical results'],['I','Analytical / investigative','analytical problem-solvers and deep thinkers'],['A','Creative / expressive','creative, expressive originals who value self-expression'],['S','People / helping','people-people energised by helping others directly'],['E','Leading / persuading','persuasive self-starters who like to lead and influence'],['C','Organised / structured','organised, detail-focused planners who like structure']];
 const RKEYS=['R','I','A','S','E','C'];
-// 12 broad sector groupings, each with a base oklch hue. This classification is
+// 14 broad sector groupings, each pinned to a base oklch hue. This classification is
 // Claude's own categorisation of the 120 careers, not sourced data — same honesty
 // rule as the rest of the app: it's structured judgement, worth a spot-check, not a claim.
+//
+// The hue wheel is the colour system. Five families are pinned to the hues the product
+// brief names, and the rest are spaced around what is left so that no two sectors sit
+// closer than roughly 16 degrees apart:
+//   data / AI / software  blue    255      consulting & business  orange  55
+//   finance & fintech     green   150      defence & public       purple  300
+//   research & education  teal    195
+// Colour is never the only channel: every career is also named, and the compare charts
+// add a dash pattern and a marker shape on top of the hue.
 const SECTORS={
- tech:['Tech',252],finance:['Finance',92],medicine:['Medicine',358],care:['Care',330],
- law:['Law',280],engineering:['Engineering',205],trades:['Trades',45],transport:['Transport',175],
- creative:['Creative',305],media:['Media',22],education:['Education',130],service:['Service',70]
+ medicine:['Medicine',15],care:['Care',38],business:['Business',55],service:['Service',78],trades:['Trades',100],
+ finance:['Finance',150],academia:['Education & research',195],engineering:['Engineering',222],tech:['Tech',255],
+ transport:['Transport',278],public:['Public & security',300],law:['Law',322],creative:['Creative',340],media:['Media',356]
 };
 const SECTOR_OF={
  you:'tech',de:'tech',ds:'tech',analyst:'tech',swe:'tech',devops:'tech',cyber:'tech',ux:'tech',itsupport:'tech',pm:'tech',mobiledev:'tech',gamedev:'tech',qaeng:'tech',networkeng:'tech',solarch:'tech',techwriter:'tech',businessanalyst:'tech',statistician:'tech',
- quant:'finance',ib:'finance',consult:'finance',finanalyst:'finance',account:'finance',auditor:'finance',economist:'finance',underwriter:'finance',actuary:'finance',ifa:'finance',taxadviser:'finance',compliance:'finance',insbroker:'finance',
+ quant:'finance',ib:'finance',finanalyst:'finance',account:'finance',auditor:'finance',economist:'finance',underwriter:'finance',actuary:'finance',ifa:'finance',taxadviser:'finance',compliance:'finance',insbroker:'finance',
+ consult:'business',hr:'business',recruiter:'business',opsmanager:'business',supplychain:'business',estateagent:'business',
+ civilservant:'public',police:'public',firefighter:'public',prisonofficer:'public',probation:'public',diplomat:'public',intelanalyst:'public',eho:'public',
+ teacher:'academia',lecturer:'academia',researchsci:'academia',
  doctor:'medicine',surgeon:'medicine',psychiatrist:'medicine',dentist:'medicine',nurse:'medicine',midwife:'medicine',physio:'medicine',ot:'medicine',radiographer:'medicine',pharma:'medicine',optometrist:'medicine',vet:'medicine',psych:'medicine',paramedic:'medicine',dietitian:'medicine',slt:'medicine',podiatrist:'medicine',dentalhyg:'medicine',pharmtech:'medicine',labtech:'medicine',
  careworker:'care',socialworker:'care',therapist:'care',counsellor:'care',
  lawyer:'law',barrister:'law',paralegal:'law',cilex:'law',
- civileng:'engineering',mecheng:'engineering',eleceng:'engineering',aeroeng:'engineering',chemeng:'engineering',biomedeng:'engineering',roboticseng:'engineering',researchsci:'engineering',envsci:'engineering',geologist:'engineering',surveyor:'engineering',quantsurveyor:'engineering',townplanner:'engineering',
+ civileng:'engineering',mecheng:'engineering',eleceng:'engineering',aeroeng:'engineering',chemeng:'engineering',biomedeng:'engineering',roboticseng:'engineering',envsci:'engineering',geologist:'engineering',surveyor:'engineering',quantsurveyor:'engineering',townplanner:'engineering',
  electrician:'trades',plumber:'trades',gaseng:'trades',carpenter:'trades',welder:'trades',bricklayer:'trades',painter:'trades',roofer:'trades',plasterer:'trades',mechanic:'trades',landscaper:'trades',
  pilot:'transport',atc:'transport',traindriver:'transport',hgvdriver:'transport',
  architect:'creative',interiordesign:'creative',gdesign:'creative',photographer:'creative',fashiondesigner:'creative',industrialdesigner:'creative',videoeditor:'creative',animator:'creative',
  journalist:'media',copywriter:'media',creator:'media',marketer:'media',prmanager:'media',translator:'media',
- teacher:'education',lecturer:'education',
- hr:'service',recruiter:'service',civilservant:'service',police:'service',firefighter:'service',prisonofficer:'service',probation:'service',diplomat:'service',intelanalyst:'service',eho:'service',estateagent:'service',opsmanager:'service',supplychain:'service',chef:'service',pt:'service',hairdresser:'service',baker:'service'
+ chef:'service',pt:'service',hairdresser:'service',baker:'service'
 };
 // Skill-domain tags per career, pulled from data/careers.json (the project's actual
 // sourced dataset) rather than invented here — used for the proximate-careers Jaccard score.
@@ -524,15 +535,16 @@ const REGULATOR_OF={
  pharma:'GPhC',pharmtech:'GPhC',lawyer:'SRA',barrister:'BSB',cilex:'CILEX',teacher:'QTS',pilot:'CAA',atc:'CAA',
  socialworker:'Social Work England',gaseng:'Gas Safe',electrician:'NICEIC'
 };
-// Recolors every career onto its sector's oklch hue band (L=62-14t, C=0.175-0.045t,
-// H=base-14+28t), spreading members across the band so a sector's careers read as a
-// family without being identical. Replaces the old hand-picked hex per career.
+// Puts every career on its sector's oklch band. The hue window is deliberately narrow
+// (base ±7) so a sector never bleeds into its neighbour on the wheel; separation *within*
+// a sector comes from lightness instead (L 62 down to 42), which survives a mono print and
+// a colour-vision deficiency in a way a hue shift does not.
 (function recolorBySector(){
  const bySector={};
- C.forEach(c=>{c.tags=TAGS_OF[c.id]||[];const s=SECTOR_OF[c.id]||'service';(bySector[s]=bySector[s]||[]).push(c);});
+ C.forEach(c=>{c.tags=TAGS_OF[c.id]||[];const s=SECTOR_OF[c.id]||'business';(bySector[s]=bySector[s]||[]).push(c);});
  Object.keys(bySector).forEach(s=>{
   const list=bySector[s],base=SECTORS[s][1];
-  list.forEach((c,i)=>{const t=list.length>1?i/(list.length-1):0;const L=62-14*t,Ch=0.175-0.045*t,H=base-14+28*t;c.col='oklch('+L.toFixed(1)+'% '+Ch.toFixed(3)+' '+H.toFixed(1)+')';c.sector=s;});
+  list.forEach((c,i)=>{const t=list.length>1?i/(list.length-1):0;const L=62-20*t,Ch=0.185-0.055*t,H=base-7+14*t;c.col='oklch('+L.toFixed(1)+'% '+Ch.toFixed(3)+' '+H.toFixed(1)+')';c.sector=s;});
  });
 })();
 // per-career work-style code [R,I,A,S,E,C], 0-9, a light heuristic, scales to 200+ as a compact field
@@ -601,13 +613,15 @@ const SECTOR_INFO={
  transport:{para:"Roster-based and safety-critical, with duty-hour limits set by regulation rather than the employer. Entry is licence-gated (a commercial pilot's licence, ATC training, a train operator's own driver programme), which is slow and often costly regardless of degree background. The pay ceiling is set by seniority and type rating, not by employer alone. Bases cluster around airports, control centres and rail depots rather than any one region.",employers:["British Airways","National Air Traffic Services","Network Rail","train operating companies"],boards:["Indeed","Totaljobs","CV-Library","Reed"]},
  creative:{para:"Brief- and project-based, frequently freelance or agency-side rather than a fixed rota. Entry is portfolio-led rather than licence-gated, which makes it accessible but also crowded and reliant on a strong body of work. The pay ceiling comes from senior/creative-director roles or running your own studio, and is capped for most by how design and content work is commissioned and priced. Heavily London-weighted, with agency clusters in Manchester and Bristol too.",employers:["design and ad agencies","in-house brand teams","the BBC","self-employment / freelance"],boards:["Indeed","The Dots","Creativepool","LinkedIn"]},
  media:{para:"Deadline- and publication-cycle driven rather than a fixed rota, and increasingly freelance/portfolio-based across journalism, PR and content. Entry has no formal licence gate, but is competitive and often starts with unpaid or low-paid placements. The pay ceiling is set by seniority (editor, PR director) or by building an independent audience, and has been squeezed as advertising has shifted online. London-dominated for national outlets, with strong regional and trade press elsewhere.",employers:["the BBC","national newspaper groups","PR agencies","in-house comms teams"],boards:["Indeed","Guardian Jobs","journalism.co.uk","LinkedIn"]},
- education:{para:"Term-time and timetable-driven, one of the few sectors here with a genuinely fixed annual rhythm. Entry is qualification-gated (a degree plus QTS for school teaching; a PhD is the norm for university lecturing). The pay ceiling is set by national pay scales for schools and by seniority/research profile in universities. Distributed everywhere there are schools, with universities clustering in larger towns and cities.",employers:["local authorities and academy trusts","universities","further-education colleges"],boards:["Teaching Vacancies (DfE)","TES Jobs","Indeed","gov.uk Find a Job"]},
- service:{para:"A genuine mix — shift-based in hospitality and policing, office-based in HR and operations, project-based in consulting-adjacent roles like supply chain. Entry ranges from open (hospitality, retail) to formally gated (police, prison, diplomatic and civil-service roles all have structured selection processes). The pay ceiling depends heavily on which corner of the sector: public-sector and uniformed roles are capped by pay scales, private-sector operations and HR roles less so. Spread everywhere, with public-sector hubs around Whitehall and regional government centres.",employers:["the Civil Service","the Metropolitan Police","large retailers and hospitality groups","logistics operators"],boards:["Civil Service Jobs","Indeed","Reed","Totaljobs"]}
+ academia:{para:"Term-time and timetable-driven in schools, grant- and publication-cycle driven in universities and institutes, and one of the few corners here with a genuinely fixed annual rhythm at the school end. Entry is qualification-gated: a degree plus QTS for school teaching, a doctorate and a publication record for the academic and research end. The pay ceiling is set by national scales and the academic pay spine, so it is visible from the outset and rises slowly. The real scarcity is the permanent post rather than the qualification. Spread across the country, with research concentrated around the larger universities.",employers:["state and independent schools","universities and research institutes","UKRI-funded centres","learned societies and research charities"],boards:["Teaching Vacancies (DfE)","TES Jobs","jobs.ac.uk","Indeed"]},
+ business:{para:"Client- and cycle-driven: engagements, quarters, headcount plans and deal timetables rather than shift rotas. Entry is degree-led rather than licence-gated for most of it, with consulting running a case-interview process and the specialist functions carrying their own qualifications (CIPD for HR, CIPS for procurement). The pay ceiling is set largely by how close the role sits to revenue, which is why consulting partners and commission-led agents sit far above operations and HR at the same seniority. Concentrated in London and the larger regional commercial centres.",employers:["the Big Four and the strategy firms","large corporates\u2019 internal functions","recruitment and estate agencies","logistics and manufacturing operators"],boards:["Indeed","LinkedIn","Reed","Totaljobs"]},
+ public:{para:"Rota-, posting- or caseload-based, inside selection processes that are formal, slow and published in advance. Entry is gated by vetting and assessment rather than by tuition cost, which makes it unusually open on paper and unusually competitive in practice: the Fast Stream, police recruitment and the intelligence agencies all say what they want and then filter hard. The pay ceiling is set by national pay scales and grade structures, so the top is visible from the start, and the pension carries more of the total value than the salary does. Spread across the country, with a heavy concentration around Whitehall and the regional government hubs.",employers:["the Civil Service and the devolved administrations","police forces and fire and rescue services","HMPPS and the Probation Service","the FCDO and the intelligence agencies"],boards:["Civil Service Jobs","gov.uk Find a Job","Indeed","Totaljobs"]},
+ service:{para:"Shift- and season-based, built around when customers turn up rather than around a project plan. Entry is the most open in this library: kitchens, salons, bakeries and gyms hire on attitude and train on the job, with short certificates rather than degrees. The pay ceiling comes from ownership rather than promotion, which is why a head chef running their own kitchen or a stylist renting their own chair sits well above the employed median. Everywhere there are people, with the top end concentrated in the cities.",employers:["restaurant and hotel groups","independent salons, gyms and bakeries","contract catering firms","leisure and fitness operators"],boards:["Indeed","Caterer.com","Reed","Totaljobs"]}
 };
 function sectorBlockHtml(c){
  const info=SECTOR_INFO[c.sector];if(!info)return'';
  const q=(site)=>'https://www.google.com/search?q=site:'+encodeURIComponent(site)+'+'+encodeURIComponent(c.name.split(' (')[0]);
- const boardSites={'Indeed':'indeed.co.uk','LinkedIn':'linkedin.com/jobs','CWJobs':'cwjobs.co.uk','Otta':'otta.com','eFinancialCareers':'efinancialcareers.co.uk','Totaljobs':'totaljobs.com','NHS Jobs':'jobs.nhs.uk','BMJ Careers':'careers.bmj.com','Health Careers':'healthcareers.nhs.uk','Community Care Jobs':'communitycare.co.uk/jobs','gov.uk Find a Job':'gov.uk/find-a-job','LawCareers.net':'lawcareers.net','New Civil Engineer Jobs':'nce.co.uk/jobs','CV-Library':'cv-library.co.uk','Reed':'reed.co.uk','The Dots':'the-dots.com','Creativepool':'creativepool.com','Guardian Jobs':'jobs.theguardian.com','journalism.co.uk':'jobs.journalism.co.uk','Teaching Vacancies (DfE)':'teaching-vacancies.service.gov.uk','TES Jobs':'jobs.tes.com','Civil Service Jobs':'civilservicejobs.service.gov.uk'};
+ const boardSites={'Indeed':'indeed.co.uk','LinkedIn':'linkedin.com/jobs','CWJobs':'cwjobs.co.uk','Otta':'otta.com','eFinancialCareers':'efinancialcareers.co.uk','Totaljobs':'totaljobs.com','NHS Jobs':'jobs.nhs.uk','BMJ Careers':'careers.bmj.com','Health Careers':'healthcareers.nhs.uk','Community Care Jobs':'communitycare.co.uk/jobs','gov.uk Find a Job':'gov.uk/find-a-job','LawCareers.net':'lawcareers.net','New Civil Engineer Jobs':'nce.co.uk/jobs','CV-Library':'cv-library.co.uk','Reed':'reed.co.uk','The Dots':'the-dots.com','Creativepool':'creativepool.com','Guardian Jobs':'jobs.theguardian.com','journalism.co.uk':'jobs.journalism.co.uk','Teaching Vacancies (DfE)':'teaching-vacancies.service.gov.uk','TES Jobs':'jobs.tes.com','Civil Service Jobs':'civilservicejobs.service.gov.uk','jobs.ac.uk':'jobs.ac.uk','Caterer.com':'caterer.com'};
  return '<div class="rblock" style="margin-top:16px"><h5>The sector: '+SECTORS[c.sector][0]+'</h5><p>'+info.para+'</p>'+
   '<div style="margin-top:8px"><span style="font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)">Major UK employers</span><div class="chipset" style="margin-top:5px">'+info.employers.map(e=>'<span class="pill">'+e+'</span>').join('')+'</div></div>'+
   '<div style="margin-top:8px"><span style="font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)">Where to look</span><div class="links" style="margin-top:5px">'+info.boards.map(b=>'<a href="'+q(boardSites[b]||b)+'" target="_blank" rel="noopener">'+b+' ↗</a>').join('')+'</div></div></div>';
