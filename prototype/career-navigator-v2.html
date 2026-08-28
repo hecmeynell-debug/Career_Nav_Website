@@ -200,7 +200,8 @@ b,strong{font-weight:600;color:var(--ink)}
   border-radius:var(--r-chip);padding:5px 10px;white-space:nowrap
 }
 .navcount b{color:var(--ink);font-variant-numeric:tabular-nums}
-.navtoggle{display:none}
+/* .btn sets inline-flex, so this needs equal weight to win */
+.btn.navtoggle{display:none}
 
 /* ============================ buttons ============================ */
 .btn{
@@ -252,6 +253,7 @@ b,strong{font-weight:600;color:var(--ink)}
 /* ============================ section rhythm ============================ */
 .section{padding:var(--s9) 0;border-top:1px solid var(--line-2);scroll-margin-top:calc(var(--nav-h) + 56px)}
 .section:first-of-type{border-top:none}
+@media(max-width:720px){.section{padding:var(--s7) 0}}
 .sectionhead{margin-bottom:var(--s6);max-width:var(--reading)}
 .sectionhead h2{margin:var(--s2) 0 var(--s2)}
 .sectionhead p{color:var(--ink-2);font-size:var(--fs-sm)}
@@ -709,6 +711,65 @@ footer b{color:var(--ink)}
   .match:hover,.card-interactive:hover{transform:none!important}
 }
 
+/* ============================ hero ============================ */
+.hero{display:grid;grid-template-columns:1fr;gap:var(--s7);align-items:center}
+@media(min-width:980px){.hero{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:var(--s8)}}
+.herocopy h1{font-size:var(--fs-display);letter-spacing:-.025em;margin:var(--s3) 0 var(--s4);max-width:16ch}
+.trustline{display:flex;align-items:flex-start;gap:var(--s2);font-size:var(--fs-xs);line-height:1.55;color:var(--ink-3);background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-panel);padding:var(--s3) var(--s4);max-width:56ch}
+.trustline svg{width:16px;height:16px;flex:none;color:var(--positive);margin-top:1px}
+.trustline b{color:var(--ink-2)}
+
+/* Product preview: a still illustration of the interface, never live data. */
+.hero-preview{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);min-width:0}
+.hp-card{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-panel);padding:var(--s4);box-shadow:var(--e2)}
+.hp-main{grid-column:1/-1}
+.hp-row{display:flex;align-items:center;gap:var(--s2);margin-bottom:var(--s2)}
+.hp-dot{width:9px;height:9px;border-radius:50%;flex:none}
+.hp-t{font-size:var(--fs-sm);font-weight:550;color:var(--ink)}
+.hp-fit{margin-left:auto;font-family:var(--font-mono);font-size:20px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.hp-radar{width:100%;height:auto;display:block}
+.hp-badges{display:flex;gap:6px;margin-top:var(--s2);flex-wrap:wrap}
+.hp-b{font-family:var(--font-mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:var(--r-chip);border:1px solid var(--line-2);color:var(--ink-3)}
+.hp-b.hp-v{color:var(--ev-verified);border-color:color-mix(in oklab,var(--ev-verified) 30%,transparent)}
+.hp-b.hp-e{color:var(--ev-estimate);border-color:color-mix(in oklab,var(--ev-estimate) 30%,transparent)}
+.hp-b.hp-f{color:var(--ev-forecast);border-color:color-mix(in oklab,var(--ev-forecast) 30%,transparent)}
+.hp-scatter{grid-column:1/-1}
+.hp-lab{font-family:var(--font-mono);font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:var(--s2)}
+.hp-scatter svg{width:100%;height:auto;display:block}
+.hp-mini{display:flex;align-items:center;gap:var(--s2);font-size:var(--fs-xs);color:var(--ink-2);padding:var(--s3)}
+.hp-mini b{margin-left:auto;font-family:var(--font-mono);color:var(--ink);font-variant-numeric:tabular-nums}
+.hp-mini i{font-style:normal;font-family:var(--font-mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+@media(max-width:520px){.hero-preview{grid-template-columns:1fr}.hp-mini{display:none}}
+
+/* ============================ nav behaviour ============================ */
+.navtab{flex:none;padding:8px 13px;font-size:var(--fs-sm)}
+#navCounts:empty{display:none}
+@media(max-width:1040px){
+  .btn.navtoggle{display:inline-flex}
+  .navlinks{
+    position:absolute;top:var(--nav-h);left:0;right:0;flex-direction:column;align-items:stretch;
+    gap:var(--s1);background:var(--canvas-2);border-bottom:1px solid var(--line);
+    padding:var(--s3);box-shadow:var(--e3);margin-left:0;display:none
+  }
+  .navlinks.open{display:flex}
+  .navtab{width:100%;text-align:left;justify-content:flex-start}
+  #navCounts{display:none}
+}
+@media(max-width:640px){#accountToggle{display:none}}
+
+/* the in-page section markers driven by the sticky sub-nav */
+.subnav .eyebrow{flex:none;padding-right:var(--s3);border-right:1px solid var(--line-2);white-space:nowrap}
+.subnavlink{
+  font-family:var(--font-mono);font-size:var(--fs-label);letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-3);background:none;border:1px solid transparent;border-radius:var(--r-chip);
+  padding:6px 11px;cursor:pointer;white-space:nowrap;appearance:none;-webkit-appearance:none
+}
+.subnavlink:hover{color:var(--ink);background:var(--surface)}
+.subnavlink[aria-current="true"]{color:var(--ink);background:var(--surface-2);border-color:var(--line-2)}
+@media(pointer:coarse){.subnavlink{min-height:44px}}
+#authBar[hidden]{display:none}
+#authBar{border-bottom:1px solid var(--line-2);background:var(--canvas-2)}
+
 /* --- print --- */
 @media print{
   #authBar,#themeToggle,.skiplink,.tabs,.navbar,.subnav,.herocta,.herometa,.steps,.notice,.provrow,.lede,footer,.zoom-overlay,.recentbar,#printReport,.vsub,.hero-preview{display:none!important}
@@ -726,8 +787,32 @@ footer b{color:var(--ink)}
   <noscript><p style="padding:14px 15px;border:1px solid var(--line);border-radius:9px;background:var(--paper-2);font-size:15px;line-height:1.6">This tool scores careers against your answers in your browser, so it needs JavaScript switched on. Nothing is sent to a server: with JavaScript off there is nothing to show.</p></noscript>
   <a class="skiplink" href="#main">Skip to content</a>
   <p id="srStatus" role="status" aria-live="polite" class="vh-only"></p>
-  <button id="themeToggle" type="button" aria-label="Toggle dark mode">Dark</button>
-  <div id="authBar">
+  <header class="navbar" id="top">
+    <div class="shell">
+      <a class="brand" href="#discover">
+        <svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="10.2" fill="none" stroke="currentColor" stroke-opacity=".28" stroke-width="1.3"/>
+          <path d="M12 2.4 20.2 7v9.4L12 21.6 3.8 16.4V7z" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M6.6 14.6 10 10.4l3 2.6 4.4-5.6" fill="none" stroke="var(--positive)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Career Intelligence<span class="sub">UK · prototype</span>
+      </a>
+      <nav class="navlinks" id="navLinks" role="tablist" aria-label="Primary">
+        <button type="button" class="tab navtab" role="tab" id="tab-discover" data-p="discover" aria-selected="false" aria-controls="discover">Discover</button>
+        <button type="button" class="tab navtab on" role="tab" id="tab-match" data-p="match" aria-selected="true" aria-controls="match">Matches</button>
+        <button type="button" class="tab navtab" role="tab" id="tab-report" data-p="report" aria-selected="false" aria-controls="report" tabindex="-1">Career report</button>
+        <button type="button" class="tab navtab" role="tab" id="tab-compare" data-p="compare" aria-selected="false" aria-controls="compare" tabindex="-1">Compare</button>
+        <button type="button" class="tab navtab" role="tab" id="tab-cv" data-p="cv" aria-selected="false" aria-controls="cv" tabindex="-1">CV &amp; pivot</button>
+      </nav>
+      <div class="navtools">
+        <span class="navcount" id="navCounts"></span>
+        <button id="themeToggle" type="button" aria-label="Switch to light theme">Light</button>
+        <button class="btn btn-sm btn-quiet" id="accountToggle" type="button" aria-expanded="false" aria-controls="authBar">Account</button>
+        <button class="btn btn-sm navtoggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation">Menu</button>
+      </div>
+    </div>
+  </header>
+  <div id="authBar" hidden>
     <span id="authStatus" class="authstatus">Not signed in</span>
     <label class="vh-only" for="authEmail">Email address</label>
     <input id="authEmail" class="authfield" type="email" placeholder="email" autocomplete="email">
@@ -739,39 +824,59 @@ footer b{color:var(--ink)}
     <span id="authMsg"></span>
   </div>
   <main id="main">
-  <div class="eyebrow">120CAREERS · prototype · UK · 2026</div>
-  <h1>Find UK careers<span>that fit your priorities</span></h1>
-  <p class="lede">Compare <b>pay, entry routes, skills, work style and long-term outlook</b> across 120 UK careers. Answer a short questionnaire for ranked matches, open any career for a full report and a step-by-step route in, or overlay several to compare them side by side.</p>
-  <div class="herocta">
-    <button type="button" class="qbtn" id="ctaQuiz" style="margin-top:0">Find my career matches</button>
-    <button type="button" class="cta2" id="ctaBrowse">Browse all careers</button>
-    <button type="button" class="cta2" id="ctaCompare">Compare careers</button>
-  </div>
-  <p class="herometa">22 statements &middot; about 3 minutes &middot; you can skip any of them &middot; your answers stay in your browser</p>
-  <ol class="steps">
-    <li><b>Say what matters.</b> Rate short statements about what you want from work and how you like to work. Skip anything that does not apply.</li>
-    <li><b>Read the ranking.</b> Every career is scored against your answers, with the reason it fits and the trade-off it carries.</li>
-    <li><b>Plan the route.</b> Open any career for its entry routes, qualifications, pay shape and realistic next steps.</li>
-  </ol>
-  <p class="notice"><b>This is decision support, not a career recommendation.</b> It ranks careers against the priorities you give it. It cannot know your circumstances, your finances, your local job market or what you would actually enjoy day to day. Use it to find candidates worth researching properly, then check the relevant professional body before you commit to anything.</p>
-  <div class="provrow">
-    <details class="prov"><summary>How the matching works</summary>
-      <p><b>A match score is relative compatibility, not a probability.</b> Each career carries seven 0-10 scores. Your answers set how much you care about each of the seven, and every career is scored against the field on the axes you rated above your own average. A career you rate 84 is a closer fit to your stated priorities than one you rate 60. It is not an 84% chance of getting in, of succeeding, or of being happy.</p>
-      <p><b>Those seven scores are structured judgement, not measured data.</b> They are one considered view of each career, worth a spot-check rather than treated as fact. Competition and attainability are scored separately and shown on each career report. <b>MBTI</b> is optional, soft-weighted and psychometrically weak, so it can nudge a ranking but never drive it.</p>
-    </details>
-    <details class="prov"><summary>Where the numbers come from, and their limits</summary>
-      <p><b>Where figures are anchored, they are cited.</b> Take-home pay uses HMRC income tax and National Insurance rules for 2026/27, and the entry routes reflect the requirements set by the relevant UK professional bodies (for example ACCA, RICS, the GMC and HCPC). Salary figures are currently indicative estimates, being migrated to cited data from the ONS Annual Survey of Hours and Earnings. The future-proofing axis is a forecast about automation, not an observation.</p>
-      <p><b>This is a work in progress.</b> The full version runs a live data pipeline that continuously refreshes these figures against official sources, so the numbers track both micro conditions (how a specific occupation is paid now) and macro conditions (where the wider market is heading). Until then, treat everything here as a considered starting point rather than the final word, and check the relevant professional body before making a decision.</p>
-      <p><b>What the labels mean.</b> Every figure in the app carries one of five tags, so you can tell at a glance what kind of thing you are reading. Per-field review dates are not tracked yet, so none are shown.</p>
-      <div class="confkey" id="confKey"></div>
-    </details>
-  </div>
 
-  <div class="tabs" role="tablist" aria-label="Sections">
-    <button type="button" class="tab on" role="tab" id="tab-match" data-p="match" aria-selected="true" aria-controls="match">Find your match</button>
-    <button type="button" class="tab" role="tab" id="tab-report" data-p="report" aria-selected="false" aria-controls="report" tabindex="-1">Career report</button>
-    <button type="button" class="tab" role="tab" id="tab-compare" data-p="compare" aria-selected="false" aria-controls="compare" tabindex="-1">Overlay &amp; compare</button>
-    <button type="button" class="tab" role="tab" id="tab-cv" data-p="cv" aria-selected="false" aria-controls="cv" tabindex="-1">CV &amp; pivot</button>
+  <section class="section" id="discover" aria-labelledby="heroTitle">
+    <div class="hero">
+      <div class="herocopy">
+        <p class="eyebrow">UK Career Intelligence</p>
+        <h1 id="heroTitle">Find careers that fit how you want to work</h1>
+        <p class="lede">Compare <b>pay, entry barriers, market demand, work style, skills and long-term prospects</b> across 120 UK careers. Answer a short assessment for ranked matches, open any career for a full intelligence briefing, or overlay several to compare them directly.</p>
+        <div class="herocta">
+          <button type="button" class="qbtn" id="ctaQuiz">Find my matches</button>
+          <button type="button" class="cta2" id="ctaBrowse">Explore careers</button>
+          <button type="button" class="cta2" id="ctaCompare">Compare careers</button>
+        </div>
+        <p class="herometa">22 statements &middot; about 3 minutes &middot; skip anything &middot; answers stay in your browser</p>
+        <p class="trustline"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 1.6 13.4 4v4.1c0 3.2-2.2 5.6-5.4 6.4-3.2-.8-5.4-3.2-5.4-6.4V4z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5.6 8.1 7.3 9.8l3.2-3.4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Decision support, not a prediction.</b> Evidence sources and uncertainty are shown throughout.</span></p>
+      </div>
+      <!-- Product interface preview. Decorative illustration of the real UI, not live data;
+           hidden from assistive tech because everything it shows exists properly further down. -->
+      <div class="hero-preview" aria-hidden="true">
+        <div class="hp-card hp-main">
+          <div class="hp-row"><span class="hp-dot" style="background:oklch(78% .15 245)"></span><span class="hp-t">Data engineering</span><span class="hp-fit">78</span></div>
+          <svg viewBox="0 0 200 148" class="hp-radar">
+            <g fill="none" stroke="var(--chart-grid)" stroke-width="1">
+              <polygon points="100,20 168,60 142,132 58,132 32,60"/>
+              <polygon points="100,48 145,74 128,122 72,122 55,74"/>
+              <polygon points="100,76 121,88 114,112 86,112 79,88"/>
+            </g>
+            <polygon points="100,30 158,66 130,126 66,120 44,68" fill="oklch(78% .15 245 / .16)" stroke="oklch(78% .15 245)" stroke-width="1.6" stroke-linejoin="round"/>
+            <polygon points="100,54 138,78 122,124 74,116 60,80" fill="oklch(76% .15 155 / .12)" stroke="oklch(76% .15 155)" stroke-width="1.4" stroke-dasharray="5 3" stroke-linejoin="round"/>
+          </svg>
+          <div class="hp-badges"><span class="hp-b hp-v">Verified</span><span class="hp-b hp-e">Estimate</span><span class="hp-b hp-f">Forecast</span></div>
+        </div>
+        <div class="hp-card hp-scatter">
+          <div class="hp-lab">Demand vs competition</div>
+          <svg viewBox="0 0 180 96">
+            <line x1="16" y1="82" x2="172" y2="82" stroke="var(--chart-axis)" stroke-width="1"/>
+            <line x1="16" y1="8" x2="16" y2="82" stroke="var(--chart-axis)" stroke-width="1"/>
+            <circle cx="52" cy="30" r="5" fill="oklch(78% .15 245)"/>
+            <circle cx="96" cy="54" r="5" fill="oklch(76% .15 155)"/>
+            <circle cx="138" cy="22" r="5" fill="oklch(74% .14 65)"/>
+            <circle cx="76" cy="68" r="5" fill="oklch(74% .14 345)"/>
+          </svg>
+        </div>
+        <div class="hp-card hp-mini"><span class="hp-dot" style="background:oklch(76% .15 155)"></span>Actuary<b>7/10</b><i>demand</i></div>
+        <div class="hp-card hp-mini"><span class="hp-dot" style="background:oklch(74% .14 345)"></span>Radiographer<b>9/10</b><i>demand</i></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="subnav" id="subnav">
+    <div class="shell">
+      <span class="eyebrow" id="subnavWhere">Matches</span>
+      <div class="scrollrow" id="subnavRow"></div>
+    </div>
   </div>
 
   <section class="panel on" id="match" role="tabpanel" aria-labelledby="tab-match" tabindex="-1">
@@ -1125,6 +1230,41 @@ function goReport(id){document.getElementById('reportSelect').value=id;showTab('
 // focus on it, so keyboard users are not left at the top of the page after pressing it.
 (function buildConfKey(){const k=document.getElementById('confKey');if(!k)return;k.innerHTML=Object.keys(CONF).map(x=>'<span class="k">'+confBadge(x)+CONF[x][1]+'</span>').join('');})();
 document.getElementById('ctaQuiz').onclick=()=>{showTab('match');setMode('quiz');const q=document.getElementById('quizBlock');q.scrollIntoView({behavior:'smooth',block:'start'});const first=q.querySelector('button,input,select');if(first)first.focus({preventScroll:true});};
+// ---- app shell wiring ----
+const navToggle=document.getElementById('navToggle'),navLinks=document.getElementById('navLinks');
+navToggle.onclick=()=>{const open=navLinks.classList.toggle('open');navToggle.setAttribute('aria-expanded',open?'true':'false');navToggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');};
+const acct=document.getElementById('accountToggle'),authBar=document.getElementById('authBar');
+acct.onclick=()=>{const open=authBar.hasAttribute('hidden');if(open)authBar.removeAttribute('hidden');else authBar.setAttribute('hidden','');acct.setAttribute('aria-expanded',open?'true':'false');if(open)document.getElementById('authEmail').focus();};
+// Saved and selected counts live in the nav so they are visible from anywhere.
+function syncNavCounts(){
+ const n=document.getElementById('navCounts');if(!n)return;
+ const bits=[];
+ if(savedIds.size)bits.push('<b>'+savedIds.size+'</b> saved');
+ if(cmpActive.size)bits.push('<b>'+cmpActive.size+'</b> comparing');
+ n.innerHTML=bits.join(' \u00b7 ');
+}
+// Sticky sub-nav: says which part of the product you are in, and offers the anchors
+// that make sense for it. Keeps a sense of place in a single-page app.
+const SUBNAV={
+ match:['Matches',[['#quizBlock','Assessment'],['#resultHead','Ranked matches']]],
+ report:['Career report',[['#reportSelect','Choose career'],['#reportBody','Briefing']]],
+ compare:['Compare',[['#cmpFilter','Select careers'],['#cmpCharts','Charts'],['#cmpTable','Table']]],
+ cv:['CV & pivot',[['#cvText','Paste CV'],['#cvBody','Analysis']]]
+};
+function syncSubnav(p){
+ const where=document.getElementById('subnavWhere'),row=document.getElementById('subnavRow');
+ if(!where||!row)return;
+ const d=SUBNAV[p];if(!d){where.textContent='Discover';row.innerHTML='';return;}
+ where.textContent=d[0];
+ row.innerHTML=d[1].map(x=>'<button type="button" class="subnavlink" data-anchor="'+x[0]+'">'+x[1]+'</button>').join('');
+}
+document.getElementById('subnavRow').addEventListener('click',(e)=>{
+ const b=e.target.closest('[data-anchor]');if(!b)return;
+ const t=document.querySelector(b.dataset.anchor);if(!t)return;
+ t.scrollIntoView({behavior:'smooth',block:'start'});
+ document.querySelectorAll('.subnavlink').forEach(x=>x.removeAttribute('aria-current'));
+ b.setAttribute('aria-current','true');
+});
 document.getElementById('recentBar').addEventListener('click',(e)=>{const b=e.target.closest('[data-recent]');if(b)goReport(b.dataset.recent);});
 document.getElementById('printReport').onclick=()=>window.print();
 renderRecent();
@@ -1344,7 +1484,7 @@ function renderMatch(){
  const shown=rows.filter(r=>!hiddenIds.has(r.c.id));
  const box=document.getElementById('matchList');
  const max=(shown[0]||rows[0]).fit||1;
- box.innerHTML=savedBarHtml()+methodHtml()+sortBarHtml()+hiddenBarHtml()
+ syncNavCounts();box.innerHTML=savedBarHtml()+methodHtml()+sortBarHtml()+hiddenBarHtml()
   +(shown.length?shown.map((r,i)=>matchCard(r,i,max)).join(''):'<p class="qintro">Every career is hidden. Use "show them again" above to bring them back.</p>');
  announce(shown.length+' careers ranked against your profile'+(shown.length?'. Top match: '+shown[0].c.name+', relative fit '+shown[0].fit+' out of 100.':'.'));
 }
@@ -1852,7 +1992,7 @@ function cmpSummaryHtml(){
   +list.map(c=>'<div class="rstep"><div class="num" style="font-size:13px">'+swatch(c)+'</div><div><div class="st">'+c.name+'</div><div class="sd">'+bestForIf(c,list)+'</div></div></div>').join('')
   +'</div></div>';
 }
-function renderCompare(){buildCmpChips();buildSectorChips();buildCmpLegend();renderRadar();renderLine();renderTable();cmpSummaryHtml();syncCmpEmpty();syncCmpWarn();if(document.getElementById('compare').classList.contains('on'))setHash(hashFor('compare'));announce(cmpActive.size?cmpActive.size+' careers overlaid: '+activeList().map(c=>c.name).join(', ')+'.':'Comparison cleared. No careers selected.');}
+function renderCompare(){syncNavCounts();buildCmpChips();buildSectorChips();buildCmpLegend();renderRadar();renderLine();renderTable();cmpSummaryHtml();syncCmpEmpty();syncCmpWarn();if(document.getElementById('compare').classList.contains('on'))setHash(hashFor('compare'));announce(cmpActive.size?cmpActive.size+' careers overlaid: '+activeList().map(c=>c.name).join(', ')+'.':'Comparison cleared. No careers selected.');}
 // Nothing selected means no chart, not an empty chart frame.
 // Every selection stays supported and rendered. Past ten the overlay stops working as a
 // comparison, so say so plainly and put the escape hatches next to the warning rather than
@@ -2028,7 +2168,12 @@ function attachTip(node,label){node.addEventListener('mouseenter',()=>{const t=t
 // region, updated deliberately, rather than making whole panels live and spamming the user.
 function announce(msg){const n=document.getElementById('srStatus');if(n)n.textContent=msg;}
 function setHash(frag){try{history.replaceState(null,'','#'+frag);}catch(e){/* sandboxed preview (srcdoc): URL updates are blocked; ignore */}}
-function showTab(p,updateHash){document.querySelectorAll('.tab').forEach(x=>{const on=x.dataset.p===p;x.classList.toggle('on',on);x.setAttribute('aria-selected',on?'true':'false');x.tabIndex=on?0:-1;});document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('on',x.id===p));if(updateHash!==false)setHash(hashFor(p));}
+function showTab(p,updateHash){
+ if(p==='discover'){document.getElementById('discover').scrollIntoView({behavior:'smooth',block:'start'});return;}
+ document.querySelectorAll('.navlinks').forEach(n=>n.classList.remove('open'));
+ const nt=document.getElementById('navToggle');if(nt)nt.setAttribute('aria-expanded','false');
+ syncSubnav(p);
+ document.querySelectorAll('.tab').forEach(x=>{const on=x.dataset.p===p;x.classList.toggle('on',on);x.setAttribute('aria-selected',on?'true':'false');x.tabIndex=on?0:-1;});document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('on',x.id===p));if(updateHash!==false)setHash(hashFor(p));}
 // The comparison is worth linking to, so the selection rides in the fragment.
 function hashFor(p){
  if(p==='report'&&document.getElementById('reportSelect'))return 'report/'+document.getElementById('reportSelect').value;
@@ -2066,10 +2211,10 @@ initReveal();
 document.getElementById('zoomClose').onclick=closeZoom;
 document.getElementById('zoomOverlay').onclick=(e)=>{if(e.target.id==='zoomOverlay')closeZoom();};
 document.addEventListener('keydown',(e)=>{if(e.key==='Escape')closeZoom();});
-initHash();
+syncSubnav('match');syncNavCounts();initHash();
 (function initTheme(){
   const root=document.documentElement,btn=document.getElementById('themeToggle');
-  function apply(t){root.setAttribute('data-theme',t);btn.textContent=t==='dark'?'Light':'Dark';try{localStorage.setItem('cn-theme',t);}catch(e){}}
+  function apply(t){root.setAttribute('data-theme',t);btn.textContent=t==='dark'?'Light':'Dark';btn.setAttribute('aria-label','Switch to '+(t==='dark'?'light':'dark')+' theme');try{localStorage.setItem('cn-theme',t);}catch(e){}}
   let saved;try{saved=localStorage.getItem('cn-theme');}catch(e){}
   apply(saved||'dark');
   btn.onclick=()=>apply(root.getAttribute('data-theme')==='dark'?'light':'dark');
