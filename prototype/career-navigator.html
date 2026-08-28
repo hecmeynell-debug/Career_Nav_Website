@@ -167,7 +167,7 @@
   .sectorchip .dot{width:8px;height:8px;border-radius:50%;background:var(--sc,currentColor)}
   .sectorchip .n{opacity:.65;font-size:10px}
   .sectorchip.on{color:#16202A;border-color:var(--sc,var(--you));background:color-mix(in oklab, var(--sc,var(--you)) 78%, white)}
-  #cmpMeta button,#cmpWarn button{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--you);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0}
+  #cmpMeta button,#cmpWarn button,#cmpTable button{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--you);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0}
   .seg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden;margin-left:auto}
   .seg button{font-family:"IBM Plex Mono",monospace;font-size:11px;text-transform:uppercase;padding:6px 11px;background:var(--btn);color:var(--ink-soft);border:none;cursor:pointer;box-shadow:var(--surf-shadow)}
   .seg button.on{background:var(--ink);color:var(--paper)}
@@ -293,7 +293,7 @@
     <div id="cmpChipsWrap"><div class="controls" id="cmpChips"></div></div>
     <div class="legend-note" id="cmpMeta" style="text-align:left;display:flex;justify-content:space-between;align-items:center;gap:8px"></div>
     <div id="cmpLegendWrap"><div class="controls" id="cmpLegend"></div></div>
-    <div id="cmpEmpty" class="qintro" style="display:none"><b>Nothing overlaid yet.</b> Pick any number of careers from the list above, narrow the list with a sector chip or the filter, or press <b>Show top 5</b> to load the top of your current match ranking. The radar, the salary curves and the table appear once something is selected.</div>
+    <div id="cmpEmpty" class="qintro" style="display:none"><b>Nothing overlaid yet.</b> Pick any number of careers from the list above, narrow the list with a sector chip or the filter, or press <b>Show top 5</b> to load the top of your current match ranking. The radar and the salary curves appear once something is selected. The table below can show the whole catalogue in the meantime.</div>
     <div id="cmpCharts">
     <div id="cmpWarn" class="qintro" style="display:none"></div>
     <div class="controls" style="justify-content:flex-end"><div class="seg" id="cmpAxSeg"><button data-v="ax" class="on">Seven axes</button><button data-v="out">+ outcome metrics</button></div></div>
@@ -303,10 +303,10 @@
     <div class="controls" style="justify-content:flex-end"><div class="seg" id="cmpSeg"><button data-m="salary" class="on">Gross £</button><button data-m="net">Take-home £</button></div></div>
     <div class="chartwrap"><svg id="lineSvg" viewBox="0 0 820 430"></svg></div>
     <div class="legend-note">Salary across a lifetime · take-home = income tax + employee NI, England 2026/27</div>
-    <div class="controls" style="justify-content:flex-end;margin-top:16px"><div class="seg" id="cmpTblSeg"><button data-v="sel" class="on">Selected</button><button data-v="all">All careers</button></div></div>
-    <div class="cmptbl-wrap"><table class="cmptbl" id="cmpTable"></table></div>
-    <div class="legend-note">Green = a standout strength (8+) · brown = a real weak spot (4.5 or below). The four outcome columns are not sortable: they describe shape, not rank.</div>
     </div>
+    <div class="controls" style="justify-content:flex-end;margin-top:16px"><div class="seg" id="cmpTblSeg"><button data-v="sel" class="on">Selected only</button><button data-v="all">Show all careers</button></div></div>
+    <div class="cmptbl-wrap"><table class="cmptbl" id="cmpTable"></table></div>
+    <div class="legend-note">Green = a standout strength (8+) · brown = a real weak spot (4.5 or below). The four outcome columns are not sortable: they describe shape, not rank. Showing all careers pins your selection to the top.</div>
   </section>
 
   <section class="panel" id="cv">
@@ -917,20 +917,31 @@ function renderTable(){
  else{sorted.sort((a,b)=>b.sal[4]-a.sal[4]);}
  // The outcome columns are deliberately not sortable. They describe shape, and putting a
  // sort arrow on them would turn "high variance" into a league position.
- const outOn=cmpAxMode==='out';
+ const outOn=cmpAxMode==='out',ncol=TABLE_COLS.length+(outOn?4:0);
+ // Showing the whole catalogue must not bury the selection: selected careers pin to the top,
+ // keeping whatever sorted order the user chose, and the rest follow under a divider. Array
+ // sort is stable, so this partition rides on top of the column sort rather than replacing it.
+ if(cmpTblScope==='all')sorted.sort((a,b)=>(cmpActive.has(a.id)?0:1)-(cmpActive.has(b.id)?0:1));
+ const sublabel="text-align:left;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)";
  let h='<thead><tr>'+TABLE_COLS.map(col=>{const active=tblSort.key===col.key;const arrow=active?(tblSort.dir==='asc'?' <span class="arrow">▲</span>':' <span class="arrow">▼</span>'):'';return '<th data-key="'+col.key+'" tabindex="0" role="button" aria-label="Sort by '+col.label+'">'+col.label+arrow+'</th>';}).join('')+(outOn?OUTAX_R.map(a=>'<th style="cursor:default">'+a[2]+'</th>').join(''):'')+'</tr></thead><tbody>';
- if(!sorted.length)h+='<tr><td colspan="'+(TABLE_COLS.length+(outOn?4:0))+'" style="text-align:center;color:var(--ink-soft)">Select careers above to compare.</td></tr>';
- sorted.forEach(c=>{const t=takeHome(c.sal[4]);const dim=cmpTblScope==='all'&&!cmpActive.has(c.id);h+='<tr'+(dim?' style="opacity:.55"':'')+'><td>'+swatch(c)+'<a href="#" data-id="'+c.id+'">'+c.name+'</a></td><td>£'+c.sal[4]+'k</td><td>£'+t.net.toFixed(0)+'k</td>'+AX.map(a=>{const v=c.ax[a[0]];const cl=v>=8?' class="hi"':(v<=4.5?' class="lo"':'');return '<td'+cl+'>'+v+'</td>';}).join('')+(outOn?OUTAX_R.map(a=>'<td>'+(c.outcome?c.outcome[a[0]]:'\u2013')+'</td>').join(''):'')+'</tr>';});
+ if(!sorted.length)h+='<tr><td colspan="'+ncol+'" style="text-align:center;color:var(--ink-soft);padding:16px 9px">Nothing selected yet. Pick one or more careers above to fill this table, or <button id="tblShowAll" type="button">show all '+C.length+' careers</button> to browse the catalogue.</td></tr>';
+ let split=false;
+ sorted.forEach(c=>{const sel=cmpActive.has(c.id),all=cmpTblScope==='all';const t=takeHome(c.sal[4]);
+  if(all&&!sel&&!split&&cmpActive.size){split=true;h+='<tr><td colspan="'+ncol+'" style="'+sublabel+'">All other careers</td></tr>';}
+  h+='<tr'+(all?(sel?' style="box-shadow:inset 3px 0 0 '+c.col+'"':' style="opacity:.55"'):'')+'><td>'+swatch(c)+'<a href="#" data-id="'+c.id+'">'+c.name+'</a></td><td>£'+c.sal[4]+'k</td><td>£'+t.net.toFixed(0)+'k</td>'+AX.map(a=>{const v=c.ax[a[0]];const cl=v>=8?' class="hi"':(v<=4.5?' class="lo"':'');return '<td'+cl+'>'+v+'</td>';}).join('')+(outOn?OUTAX_R.map(a=>'<td>'+(c.outcome?c.outcome[a[0]]:'\u2013')+'</td>').join(''):'')+'</tr>';});
  h+='</tbody>';box.innerHTML=h;
  box.querySelectorAll('th[data-key]').forEach(th=>{
   const cycle=()=>{const key=th.dataset.key;if(tblSort.key!==key)tblSort={key,dir:'desc'};else if(tblSort.dir==='desc')tblSort.dir='asc';else tblSort={key:null,dir:null};renderTable();};
   th.onclick=cycle;th.onkeydown=(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();cycle();}};
  });
  box.querySelectorAll('td a[data-id]').forEach(a=>{a.onclick=(e)=>{e.preventDefault();goReport(a.dataset.id);};});
+ const sa=document.getElementById('tblShowAll');if(sa)sa.onclick=()=>setTblScope('all');
 }
+// Scope is the table's own state: changing it never touches the chart selection.
+function setTblScope(v){cmpTblScope=v;document.querySelectorAll('#cmpTblSeg button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));renderTable();}
 document.querySelectorAll('#cmpSeg button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#cmpSeg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');metric=b.dataset.m;renderLine();});
 document.querySelectorAll('#cmpAxSeg button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#cmpAxSeg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');cmpAxMode=b.dataset.v;renderRadar();renderTable();});
-document.querySelectorAll('#cmpTblSeg button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#cmpTblSeg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');cmpTblScope=b.dataset.v;renderTable();});
+document.querySelectorAll('#cmpTblSeg button').forEach(b=>b.onclick=()=>setTblScope(b.dataset.v));
 
 /* ===== CV ANALYSER (Tier 1 heuristic, swappable functions for a future LLM backend) ===== */
 const DOMAINS={prog:['Programming','build a coding portfolio in a mainstream language (Python, JavaScript)'],data:['Data','learn SQL and a BI tool, and publish a data project'],cloud:['Cloud / DevOps','earn an AWS or Azure certification and ship a deployed project'],ml:['Machine learning','complete an applied ML course and a modelling project'],cyber:['Cybersecurity','work toward Security+ or a SOC-analyst apprenticeship'],web:['Web development','build and deploy a full-stack web app'],design:['Design','build a design portfolio in Figma/Adobe'],ux:['UX','produce two end-to-end UX case studies'],product:['Product','run a project end-to-end and learn agile/roadmapping'],pm:['Project management','take PRINCE2 or a project-management apprenticeship'],write:['Writing','build a portfolio of published pieces'],media:['Media','build a body of published creative work'],market:['Marketing','earn Google/Meta certifications and run a live campaign'],sales:['Sales','take a commission-based role to build a track record'],fin:['Finance','study toward the CFA and learn financial modelling'],acct:['Accounting','start AAT or an ACA/ACCA training contract'],econ:['Economics','strengthen econometrics and quantitative analysis'],legal:['Legal','take the SQE, or a paralegal role to build experience'],clin:['Clinical','a registered healthcare qualification (HCPC/NMC/GMC route)'],care:['Care','gain the Care Certificate and frontline experience'],teach:['Teaching','train for QTS via a PGCE or school-based route'],research:['Research','build research output and quantitative methods'],lab:['Laboratory','gain accredited lab experience (IBMS route)'],engmech:['Mechanical engineering','an accredited engineering degree + chartership'],engelec:['Electrical engineering','an accredited engineering degree + chartership'],engciv:['Civil engineering','an accredited engineering degree + chartership'],telec:['Electrical trade','an electrical apprenticeship → NVQ3 + Part P'],tplumb:['Plumbing / gas','a plumbing apprenticeship, adding Gas Safe registration'],tconstruct:['Construction trade','a construction apprenticeship → NVQ + CSCS'],tmech:['Vehicle trade','a motor-vehicle apprenticeship, ideally with EV training'],culinary:['Culinary','work up a kitchen brigade; culinary college optional'],fitness:['Fitness / rehab','a Level 3 PT qualification, or a clinical rehab degree'],admin:['Administration','build organisational and office-software skills'],hr:['HR','earn CIPD and gain people-operations experience'],aviation:['Aviation','a licensed training pathway (flight school / ATC selection)'],safety:['Public safety','a service selection and training pathway'],property:['Property','a RICS route + APC, or an estate-agency role'],env:['Environment','an environmental science degree + chartership'],transport:['Transport / driving','a vocational licence (HGV/PCV) via a training course'],horticulture:['Horticulture','a horticultural apprenticeship or course, building a client base'],beauty:['Beauty / hair','a Level 2/3 qualification or apprenticeship, then build clients']};
