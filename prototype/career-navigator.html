@@ -49,6 +49,17 @@
   .authbtn.ghost{background:transparent;border-color:var(--btn-line);color:var(--ink-soft)}
   .authbtn.ghost:hover{border-color:var(--ink-soft);color:var(--ink)}
   #authMsg{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-soft)}
+  .vh-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  .skiplink{position:absolute;left:-9999px;top:0;z-index:60;background:var(--ink);color:var(--paper);padding:11px 15px;border-radius:0 0 9px 0;font-family:"IBM Plex Mono",monospace;font-size:12px;text-decoration:none}
+  .skiplink:focus{left:0}
+  /* these controls became real <button>s; strip the UA chrome, keep their own styling */
+  button.tab,button.chip,button.persona,button.lk,button.sectorchip,button.mlink{appearance:none;-webkit-appearance:none}
+  button.mlink{background:none;border:none;padding:0;text-align:left}
+  /* WCAG 2.2 target size: give the small controls a comfortable hit area on touch */
+  @media (pointer:coarse){
+    .lk{width:44px;height:44px}
+    .chip,.sectorchip,.persona,.qopt,.authbtn,.seg button,.subseg button{min-height:44px}
+  }
   .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
   h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;line-height:.9;letter-spacing:-.01em;font-size:clamp(40px,11vw,66px);letter-spacing:-.03em;text-transform:uppercase;margin-bottom:12px}
   h1 span{display:block;color:var(--ink-soft);font-weight:600}
@@ -143,7 +154,7 @@
   .rsummary{font-size:14px;color:var(--ink-soft);margin-bottom:14px}
   .rgrid{display:grid;grid-template-columns:1fr;gap:14px}@media(min-width:600px){.rgrid{grid-template-columns:220px 1fr}}
   .rsvgwrap{background:var(--paper-2);border:1px solid var(--line);border-radius:9px;padding:8px}
-  .rblock{margin-bottom:13px}.rblock h5{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
+  .rblock{margin-bottom:13px}.rblock h4{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
   .rblock p{font-size:13.5px}.rblock .good{color:var(--a);font-weight:600}.rblock .bad{color:#9A5B34;font-weight:600}
   .pill{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11px;padding:3px 8px;border-radius:5px;background:var(--track);margin:2px 4px 2px 0}
   .route{background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:13px 14px;margin-top:6px}
@@ -191,7 +202,7 @@
   .sw{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle}
   .cmptbl .hi{color:var(--a);font-weight:600}.cmptbl .lo{color:#9A5B34}
   footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line)}
-  footer h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;text-transform:uppercase;font-size:19px;margin-bottom:10px}
+  footer h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;text-transform:uppercase;font-size:19px;margin-bottom:10px}
   footer p{font-size:14.5px;line-height:1.6;color:var(--ink-70);margin-bottom:10px;max-width:64ch}footer b{color:var(--ink)}
   /* ===== visual overhaul: instrument identity, motion, interaction ===== */
   body{background-color:var(--paper);background-image:linear-gradient(rgba(24,34,44,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(24,34,44,.035) 1px,transparent 1px);background-size:27px 27px;background-position:center top}
@@ -225,7 +236,7 @@
   .zoom-overlay.on{display:flex;animation:fadeIn .2s ease}
   @keyframes fadeIn{from{opacity:0}to{opacity:1}}
   .zoom-box{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:16px 16px 20px;max-width:520px;width:100%;position:relative;box-shadow:0 24px 70px rgba(24,34,44,.35)}
-  .zoom-box h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:22px;margin-bottom:2px}
+  .zoom-box h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:22px;margin-bottom:2px}
   .zoom-box .zsub{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
   .zoom-close{position:absolute;top:10px;right:12px;width:28px;height:28px;border:1px solid var(--line);border-radius:7px;background:var(--paper);color:var(--ink);font-size:16px;cursor:pointer;line-height:1}
   .zoom-close:hover{background:var(--track)}
@@ -238,10 +249,15 @@
 </style>
 </head>
 <body>
+  <noscript><p style="padding:14px 15px;border:1px solid var(--line);border-radius:9px;background:var(--paper-2);font-size:15px;line-height:1.6">This tool scores careers against your answers in your browser, so it needs JavaScript switched on. Nothing is sent to a server: with JavaScript off there is nothing to show.</p></noscript>
+  <a class="skiplink" href="#main">Skip to content</a>
+  <p id="srStatus" role="status" aria-live="polite" class="vh-only"></p>
   <button id="themeToggle" type="button" aria-label="Toggle dark mode">Dark</button>
   <div id="authBar">
     <span id="authStatus" class="authstatus">Not signed in</span>
+    <label class="vh-only" for="authEmail">Email address</label>
     <input id="authEmail" class="authfield" type="email" placeholder="email" autocomplete="email">
+    <label class="vh-only" for="authPass">Password</label>
     <input id="authPass" class="authfield" type="password" placeholder="password" autocomplete="current-password">
     <button id="authSignup" class="authbtn ghost" type="button">Sign up</button>
     <button id="authSignin" class="authbtn primary" type="button">Sign in</button>
@@ -256,15 +272,16 @@
     <p><b>This is a work in progress.</b> The full version runs a live data pipeline that continuously refreshes these figures against official sources, so the numbers track both micro conditions (how a specific occupation is paid now) and macro conditions (where the wider market is heading). Until then, treat everything here as a considered starting point rather than the final word, and check the relevant professional body before making a decision.</p>
   </details>
 
-  <div class="tabs">
-    <div class="tab on" data-p="match">Find your match</div>
-    <div class="tab" data-p="report">Career report</div>
-    <div class="tab" data-p="compare">Overlay &amp; compare</div>
-    <div class="tab" data-p="cv">CV &amp; pivot</div>
+  <main id="main">
+  <div class="tabs" role="tablist" aria-label="Sections">
+    <button type="button" class="tab on" role="tab" id="tab-match" data-p="match" aria-selected="true" aria-controls="match">Find your match</button>
+    <button type="button" class="tab" role="tab" id="tab-report" data-p="report" aria-selected="false" aria-controls="report" tabindex="-1">Career report</button>
+    <button type="button" class="tab" role="tab" id="tab-compare" data-p="compare" aria-selected="false" aria-controls="compare" tabindex="-1">Overlay &amp; compare</button>
+    <button type="button" class="tab" role="tab" id="tab-cv" data-p="cv" aria-selected="false" aria-controls="cv" tabindex="-1">CV &amp; pivot</button>
   </div>
 
-  <section class="panel on" id="match">
-    <div class="vh">Find your match</div>
+  <section class="panel on" id="match" role="tabpanel" aria-labelledby="tab-match" tabindex="-1">
+    <h2 class="vh">Find your match</h2>
     <p class="vsub">Work through the questionnaire, it reads both <b>what you want</b> from work and <b>how you're wired</b> to infer your fit, or set your priorities manually. Optionally add your personality type. Every match shows why it fits and flags anything it's weak on. Tap a match for its full report and route.</p>
     <div class="mbtiRow">
       <label for="mbtiSel">Personality type (optional)</label>
@@ -274,21 +291,23 @@
     <div class="subseg" id="matchMode"><button data-v="quiz" class="on">Questionnaire</button><button data-v="manual">Set it manually</button></div>
     <div id="quizBlock"></div>
     <div id="sliderBlock" style="display:none"><div class="personas" id="personas"></div><div class="imps" id="imps"></div></div>
-    <div class="resulthead" id="resultHead" style="display:none">Your matches</div>
+    <h3 class="resulthead" id="resultHead" style="display:none">Your matches</h3>
     <div id="matchList"></div>
   </section>
 
-  <section class="panel" id="report">
-    <div class="vh">Career report card</div>
+  <section class="panel" id="report" role="tabpanel" aria-labelledby="tab-report" tabindex="-1">
+    <h2 class="vh">Career report card</h2>
     <p class="vsub">Pick any career for a tailored read and a step-by-step route in.</p>
+    <label class="vh-only" for="reportSelect">Choose a career to read about</label>
     <select id="reportSelect"></select>
     <div id="reportBody"></div>
   </section>
 
-  <section class="panel" id="compare">
-    <div class="vh">Overlay &amp; compare</div>
+  <section class="panel" id="compare" role="tabpanel" aria-labelledby="tab-compare" tabindex="-1">
+    <h2 class="vh">Overlay &amp; compare</h2>
     <p class="vsub">Select any careers to <b>overlay their profiles</b> on one radar, chart their salary curves together, and read a side-by-side stats table. Use the filter to find them fast.</p>
-    <input class="filter" id="cmpFilter" placeholder="Filter careers... (e.g. electrician, nurse, quant)">
+    <label class="vh-only" for="cmpFilter">Filter the career list</label>
+    <input class="filter" id="cmpFilter" type="search" placeholder="Filter careers... (e.g. electrician, nurse, quant)">
     <div class="controls" id="sectorChips"></div>
     <div id="cmpChipsWrap"><div class="controls" id="cmpChips"></div></div>
     <div class="legend-note" id="cmpMeta" style="text-align:left;display:flex;justify-content:space-between;align-items:center;gap:8px"></div>
@@ -309,24 +328,26 @@
     <div class="legend-note">Green = a standout strength (8+) · brown = a real weak spot (4.5 or below). The four outcome columns are not sortable: they describe shape, not rank. Showing all careers pins your selection to the top.</div>
   </section>
 
-  <section class="panel" id="cv">
-    <div class="vh">CV &amp; pivot</div>
+  <section class="panel" id="cv" role="tabpanel" aria-labelledby="tab-cv" tabindex="-1">
+    <h2 class="vh">CV &amp; pivot</h2>
     <p class="vsub">Paste your CV to see how it reads, how close you are to any career, and the smartest moves from where you are now, fused with your questionnaire once you've taken it.</p>
     <div class="privacy"><b>Private by design.</b> Your CV never leaves your browser and is never stored. PDF and .docx files are parsed <b>on your device</b>, only the small parser library is fetched from a CDN, never your file. This is a transparent heuristic that reads keywords and structure, not meaning, so treat it as a rough compass, not a recruiter's verdict. The meaning-aware version needs a server and is a deliberate later step.</div>
+    <label class="vh-only" for="cvText">Paste your CV text</label>
     <textarea id="cvText" placeholder="Paste your CV text here..."></textarea>
-    <div class="cvtools"><label class="filelbl" for="cvFile">or upload .pdf, .docx or .txt</label><input type="file" id="cvFile" accept=".txt,.pdf,.docx,text/plain,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" style="display:none"><label style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft)">Target career:</label><select id="cvTarget"></select><button class="qbtn" id="cvGo" style="margin-top:0;padding:10px 18px;font-size:15px">Analyse</button><span id="cvStatus"></span></div>
+    <div class="cvtools"><label class="filelbl" for="cvFile">or upload .pdf, .docx or .txt</label><input type="file" id="cvFile" accept=".txt,.pdf,.docx,text/plain,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" style="display:none"><label for="cvTarget" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft)">Target career:</label><select id="cvTarget"></select><button class="qbtn" id="cvGo" style="margin-top:0;padding:10px 18px;font-size:15px">Analyse</button><span id="cvStatus"></span></div>
     <div id="cvBody"></div>
   </section>
 
+  </main>
   <footer>
-    <h3>From prototype to product</h3>
+    <h2>From prototype to product</h2>
     <p>120 careers is a strong prototype library; a public build would push to hundreds, each with <b>independently-sourced, cited</b> salary and route data verified against the professional bodies, plus <b>crowd-calibrated</b> axis scores rather than one person's judgement, accounts to save results, and hosting.</p>
   </footer>
 
-  <div class="zoom-overlay" id="zoomOverlay" role="dialog" aria-modal="true" aria-label="Enlarged profile chart">
+  <div class="zoom-overlay" id="zoomOverlay" role="dialog" aria-modal="true" aria-labelledby="zoomTitle">
     <div class="zoom-box">
       <button class="zoom-close" id="zoomClose" aria-label="Close enlarged chart">&times;</button>
-      <h4 id="zoomTitle"></h4>
+      <h2 id="zoomTitle"></h2>
       <div class="zsub" id="zoomSub"></div>
       <svg id="zoomSvg" viewBox="0 0 460 460"></svg>
     </div>
@@ -565,7 +586,20 @@ function takeHome(gk){const g=gk*1000;if(g<=0)return{net:0,eff:0};let pa=12570;i
 function swatch(c,px){return '<span class="sw" style="background:'+c.col+(px?';width:'+px+'px;height:'+px+'px':'')+'"></span>';}
 function fitCol(v){return v>=80?'var(--s)':v>=70?'var(--a)':v>=60?'var(--b)':v>=50?'var(--c)':'var(--d)';}
 function goReport(id){document.getElementById('reportSelect').value=id;showTab('report',false);renderReport(id);setHash('report/'+id);window.scrollTo({top:0,behavior:'smooth'});}
-document.querySelectorAll('.tab').forEach(t=>{t.setAttribute('tabindex','0');t.setAttribute('role','tab');t.setAttribute('aria-selected',t.classList.contains('on')?'true':'false');t.onclick=()=>showTab(t.dataset.p);t.onkeydown=(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showTab(t.dataset.p);}else if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const tabs=[...document.querySelectorAll('.tab')];const idx=tabs.indexOf(t);const nx=tabs[(idx+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];nx.focus();showTab(nx.dataset.p);}};});
+// Real <button role="tab"> elements, so Enter and Space come free. This adds the roving
+// arrow-key movement the tablist pattern expects, plus Home and End.
+document.querySelectorAll('.tab').forEach(t=>{
+ t.onclick=()=>showTab(t.dataset.p);
+ t.onkeydown=(e)=>{
+  const tabs=[...document.querySelectorAll('.tab')];const idx=tabs.indexOf(t);let nx=null;
+  if(e.key==='ArrowRight')nx=tabs[(idx+1)%tabs.length];
+  else if(e.key==='ArrowLeft')nx=tabs[(idx+tabs.length-1)%tabs.length];
+  else if(e.key==='Home')nx=tabs[0];
+  else if(e.key==='End')nx=tabs[tabs.length-1];
+  if(!nx)return;
+  e.preventDefault();showTab(nx.dataset.p);nx.focus();
+ };
+});
 
 let imp={pay:5,future:5,secure:5,entry:5,speed:5,life:5,option:5};let quizAns={};let userRia=[5,5,5,5,5,5];let userMbti='';let quizTaken=false;
 function buildQuiz(){const box=document.getElementById('quizBlock');box.innerHTML='';
@@ -580,21 +614,22 @@ function buildQuiz(){const box=document.getElementById('quizBlock');box.innerHTM
 function computeProfile(){const pri={pay:0,future:0,secure:0,entry:0,speed:0,life:0,option:0};const ria={R:0,I:0,A:0,S:0,E:0,C:0};let answered=0;QUIZ.forEach((q,qi)=>{const v=quizAns[qi];if(v==null)return;answered++;const s=v-3;for(const k in q.w){if(k in pri)pri[k]+=q.w[k]*s;else ria[k]+=q.w[k]*s;}});imp={};for(const k in pri)imp[k]=Math.max(0,Math.min(10,Math.round(5+pri[k]*0.9)));userRia=RKEYS.map(k=>Math.max(0,Math.min(10,Math.round(5+ria[k]*0.8))));quizTaken=answered>0;}
 function submitQuiz(){computeProfile();buildImps();document.querySelectorAll('.persona').forEach(x=>x.classList.remove('on'));setMode('manual');renderMatch();document.getElementById('resultHead').scrollIntoView({behavior:'smooth',block:'start'});if(window.sb&&window.saveMyData){window.sb.auth.getSession().then(({data})=>{if(data.session)window.saveMyData({quiz:quizAns});});}}
 function buildMbti(){const sel=document.getElementById('mbtiSel');MBTITYPES.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;sel.appendChild(o);});sel.onchange=()=>{userMbti=sel.value;if(document.getElementById('resultHead').style.display!=='none')renderMatch();};}
-function setMode(v){document.querySelectorAll('#matchMode button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));document.getElementById('quizBlock').style.display=v==='quiz'?'block':'none';document.getElementById('sliderBlock').style.display=v==='manual'?'block':'none';}
+function setMode(v){document.querySelectorAll('#matchMode button').forEach(x=>{const on=x.dataset.v===v;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on?'true':'false');});document.getElementById('quizBlock').style.display=v==='quiz'?'block':'none';document.getElementById('sliderBlock').style.display=v==='manual'?'block':'none';}
 document.querySelectorAll('#matchMode button').forEach(b=>b.onclick=()=>setMode(b.dataset.v));
-function buildPersonas(){const box=document.getElementById('personas');box.innerHTML='';Object.keys(PERSONAS).forEach(k=>{const b=document.createElement('div');b.className='persona';b.textContent=k;b.onclick=()=>{document.querySelectorAll('.persona').forEach(x=>x.classList.remove('on'));b.classList.add('on');imp={pay:0,future:0,secure:0,entry:0,speed:0,life:0,option:0};Object.assign(imp,PERSONAS[k]);quizTaken=false;buildImps();renderMatch();};box.appendChild(b);});}
-function buildImps(){const box=document.getElementById('imps');box.innerHTML='';AX.forEach(a=>{const w=document.createElement('div');w.className='imp';w.innerHTML='<label>'+a[2].replace(/^./,c=>c.toUpperCase())+' <b id="iv_'+a[0]+'">'+imp[a[0]]+'</b></label>';const inp=document.createElement('input');inp.type='range';inp.min=0;inp.max=10;inp.value=imp[a[0]];inp.oninput=()=>{imp[a[0]]=+inp.value;document.getElementById('iv_'+a[0]).textContent=inp.value;document.querySelectorAll('.persona').forEach(x=>x.classList.remove('on'));renderMatch();};w.appendChild(inp);box.appendChild(w);});}
+function buildPersonas(){const box=document.getElementById('personas');box.innerHTML='';Object.keys(PERSONAS).forEach(k=>{const b=document.createElement('button');b.type='button';b.className='persona';b.setAttribute('aria-pressed','false');b.textContent=k;b.onclick=()=>{document.querySelectorAll('.persona').forEach(x=>{x.classList.remove('on');x.setAttribute('aria-pressed','false');});b.classList.add('on');b.setAttribute('aria-pressed','true');imp={pay:0,future:0,secure:0,entry:0,speed:0,life:0,option:0};Object.assign(imp,PERSONAS[k]);quizTaken=false;buildImps();renderMatch();announce(k+' priorities applied. Matches re-ranked.');};box.appendChild(b);});}
+function buildImps(){const box=document.getElementById('imps');box.innerHTML='';AX.forEach(a=>{const w=document.createElement('div');w.className='imp';w.innerHTML='<label for="imp_'+a[0]+'">'+a[2].replace(/^./,c=>c.toUpperCase())+' <b id="iv_'+a[0]+'">'+imp[a[0]]+'</b></label>';const inp=document.createElement('input');inp.id='imp_'+a[0];inp.type='range';inp.min=0;inp.max=10;inp.value=imp[a[0]];inp.setAttribute('aria-describedby','iv_'+a[0]);inp.oninput=()=>{imp[a[0]]=+inp.value;document.getElementById('iv_'+a[0]).textContent=inp.value;document.querySelectorAll('.persona').forEach(x=>x.classList.remove('on'));renderMatch();};w.appendChild(inp);box.appendChild(w);});}
 function styleFit(id){const w=W[id]||[5,5,5,5,5,5];let s=0;for(let i=0;i<6;i++)s+=Math.abs(userRia[i]-w[i]*10/9);return Math.max(0,Math.min(100,Math.round(100-(s/6)*11)));}
 function renderMatch(){document.getElementById('resultHead').style.display='block';
  const rows=C.map(c=>{const of=outcomeFor(c);const outcome=of.outcome;const sf=styleFit(c.id);const mf=mbtiCompat(c.id,userMbti);let fit;if(userMbti&&quizTaken)fit=outcome*0.5+sf*0.3+mf*0.2;else if(quizTaken)fit=outcome*0.6+sf*0.4;else if(userMbti)fit=outcome*0.8+mf*0.2;else fit=outcome;fit=Math.round(fit);const tops=of.tops;const flags=AX.filter(a=>imp[a[0]]>=7&&c.ax[a[0]]<=4.5).map(a=>a[1]);return{c,fit,tops,flags,sf,mf};}).sort((a,b)=>b.fit-a.fit);
  const box=document.getElementById('matchList');box.innerHTML='';const max=rows[0].fit||1;
- rows.forEach((r,i)=>{const col=fitCol(r.fit);const d=document.createElement('div');d.className='match'+(r.c.you?' you':'');d.style.borderLeftColor=col;let tag=i===0?'<span class="tag tm">TOP MATCH</span>':'';let why='Delivers on the '+(r.tops.join(' and ')||'basics')+' you rated highly.';if(r.flags.length)why+=' <span class="flag">But weak on '+r.flags.join(' & ')+', which you said matters.</span>';let sub='';if(quizTaken)sub+='work-style fit '+r.sf+'%';if(userMbti&&r.mf!=null)sub+=(sub?' · ':'')+'MBTI '+r.mf+'%';d.innerHTML='<div class="mtop"><div class="mname">'+(i+1)+'. '+swatch(r.c)+r.c.name+tag+'</div><div class="mfit">'+r.fit+'<span style="font-size:11px;color:var(--ink-soft)">/100</span></div></div><div class="mbar"><i style="width:'+(r.fit/max*100).toFixed(0)+'%;background:'+col+'"></i></div><div class="mwhy">'+why+'</div>'+(sub?'<div class="fitline">'+sub+'</div>':'')+'<span class="mlink" data-id="'+r.c.id+'">See full report & route \u2192</span>';box.appendChild(d);});
- box.querySelectorAll('.mlink').forEach(l=>l.onclick=()=>goReport(l.dataset.id));}
+ rows.forEach((r,i)=>{const col=fitCol(r.fit);const d=document.createElement('div');d.className='match'+(r.c.you?' you':'');d.style.borderLeftColor=col;let tag=i===0?'<span class="tag tm">TOP MATCH</span>':'';let why='Delivers on the '+(r.tops.join(' and ')||'basics')+' you rated highly.';if(r.flags.length)why+=' <span class="flag">But weak on '+r.flags.join(' & ')+', which you said matters.</span>';let sub='';if(quizTaken)sub+='work-style fit '+r.sf+'%';if(userMbti&&r.mf!=null)sub+=(sub?' · ':'')+'MBTI '+r.mf+'%';d.innerHTML='<div class="mtop"><div class="mname">'+(i+1)+'. '+swatch(r.c)+r.c.name+tag+'</div><div class="mfit">'+r.fit+'<span style="font-size:11px;color:var(--ink-soft)">/100</span></div></div><div class="mbar"><i style="width:'+(r.fit/max*100).toFixed(0)+'%;background:'+col+'"></i></div><div class="mwhy">'+why+'</div>'+(sub?'<div class="fitline">'+sub+'</div>':'')+'<button type="button" class="mlink" data-id="'+r.c.id+'">See full report &amp; route \u2192</button>';box.appendChild(d);});
+ box.querySelectorAll('.mlink').forEach(l=>l.onclick=()=>goReport(l.dataset.id));
+ announce(rows.length+' careers ranked against your profile. Top match: '+rows[0].c.name+', relative fit '+rows[0].fit+' out of 100.');}
 
 function buildReportSelect(){const sel=document.getElementById('reportSelect');C.slice().sort((a,b)=>a.name.localeCompare(b.name)).forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.name;sel.appendChild(o);});sel.onchange=()=>{renderReport(sel.value);setHash('report/'+sel.value);};}
 function shapeOf(c){const r=c.sal[4]/c.sal[0];if(r>=3.2)return'a slow burn \u2014 low early, high late';if(r<=1.9)return'flat \u2014 steady but capped';return'a fast climber \u2014 good money early, plateauing at the top';}
 const STAGES=[['Entry','0-2 yrs'],['Early','2-5 yrs'],['Mid','5-10 yrs'],['Senior','10-15 yrs'],['Peak','15+ yrs']];
-const PROGBLOCK='<div class="rblock" style="margin-top:16px"><h5>Career progression, drag through the stages</h5><div class="chartwrap" style="padding:12px 8px 4px"><svg id="progSvg" viewBox="0 0 640 200"></svg></div><input type="range" id="progSlider" min="0" max="4" value="1" style="width:100%;accent-color:var(--ink);margin:6px 0 2px"><div id="progDetail"></div><div class="legend-note" style="text-align:left;margin-top:6px">Year bands and lifestyle are indicative, modelled from the role\u2019s profile, not stage-by-stage survey data.</div></div>';
+const PROGBLOCK='<div class="rblock" style="margin-top:16px"><h4>Career progression, drag through the stages</h4><div class="chartwrap" style="padding:12px 8px 4px"><svg id="progSvg" viewBox="0 0 640 200"></svg></div><label class="vh-only" for="progSlider">Career stage, from entry to peak</label><input type="range" id="progSlider" min="0" max="4" value="1" aria-label="Career stage, from entry to peak" style="width:100%;accent-color:var(--ink);margin:6px 0 2px"><div id="progDetail"></div><div class="legend-note" style="text-align:left;margin-top:6px">Year bands and lifestyle are indicative, modelled from the role\u2019s profile, not stage-by-stage survey data.</div></div>';
 function stageLife(c,i){const dip=(10-c.ax.entry)/10,auto=c.ax.option/10;const off=[-1.2*dip,-1.8*dip,-0.3,0.6+1.2*auto,0.9+1.8*auto][i];return Math.max(1,Math.min(10,c.ax.life+off));}
 function lifeWord(v){return v>=8?'Excellent, autonomy, sane hours':v>=6.5?'Good balance':v>=5?'Manageable, some pressure':v>=3.5?'Demanding, long hours':'Very demanding, the grind stage';}
 function roleWord(c,i){if(i<4)return['Trainee / junior','Establishing yourself','Experienced practitioner','Senior / specialist'][i];return c.ax.option>=7?'Top of field, often your own business or practice':'Top of field, senior leadership';}
@@ -623,7 +658,7 @@ function sectorBlockHtml(c){
  const info=SECTOR_INFO[c.sector];if(!info)return'';
  const q=(site)=>'https://www.google.com/search?q=site:'+encodeURIComponent(site)+'+'+encodeURIComponent(c.name.split(' (')[0]);
  const boardSites={'Indeed':'indeed.co.uk','LinkedIn':'linkedin.com/jobs','CWJobs':'cwjobs.co.uk','Otta':'otta.com','eFinancialCareers':'efinancialcareers.co.uk','Totaljobs':'totaljobs.com','NHS Jobs':'jobs.nhs.uk','BMJ Careers':'careers.bmj.com','Health Careers':'healthcareers.nhs.uk','Community Care Jobs':'communitycare.co.uk/jobs','gov.uk Find a Job':'gov.uk/find-a-job','LawCareers.net':'lawcareers.net','New Civil Engineer Jobs':'nce.co.uk/jobs','CV-Library':'cv-library.co.uk','Reed':'reed.co.uk','The Dots':'the-dots.com','Creativepool':'creativepool.com','Guardian Jobs':'jobs.theguardian.com','journalism.co.uk':'jobs.journalism.co.uk','Teaching Vacancies (DfE)':'teaching-vacancies.service.gov.uk','TES Jobs':'jobs.tes.com','Civil Service Jobs':'civilservicejobs.service.gov.uk','jobs.ac.uk':'jobs.ac.uk','Caterer.com':'caterer.com'};
- return '<div class="rblock" style="margin-top:16px"><h5>The sector: '+SECTORS[c.sector][0]+'</h5><p>'+info.para+'</p>'+
+ return '<div class="rblock" style="margin-top:16px"><h4>The sector: '+SECTORS[c.sector][0]+'</h4><p>'+info.para+'</p>'+
   '<div style="margin-top:8px"><span style="font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)">Major UK employers</span><div class="chipset" style="margin-top:5px">'+info.employers.map(e=>'<span class="pill">'+e+'</span>').join('')+'</div></div>'+
   '<div style="margin-top:8px"><span style="font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)">Where to look</span><div class="links" style="margin-top:5px">'+info.boards.map(b=>'<a href="'+q(boardSites[b]||b)+'" target="_blank" rel="noopener">'+b+' ↗</a>').join('')+'</div></div></div>';
 }
@@ -664,7 +699,7 @@ function proximateBlockHtml(c){
    '<div class="sd" style="margin-top:3px">Carries over: '+carries+'.'+(add.length?' Add: '+add.join(', ')+'.':'')+'</div>'+
    '</div></div>';
  }).join('');
- return '<div class="rblock" style="margin-top:16px"><h5>Proximate careers</h5><p style="font-size:12.5px;color:var(--ink-soft);margin-bottom:6px">Computed sideways moves — shared skills, similar working style, comparable axis scores — not a claim any of these are easy.</p>'+items+'</div>';
+ return '<div class="rblock" style="margin-top:16px"><h4>Proximate careers</h4><p style="font-size:12.5px;color:var(--ink-soft);margin-bottom:6px">Computed sideways moves — shared skills, similar working style, comparable axis scores — not a claim any of these are easy.</p>'+items+'</div>';
 }
 function ukLinks(c){const q=encodeURIComponent(c.name.split(' (')[0]);return[['National Careers Service','https://www.google.com/search?q=site:nationalcareers.service.gov.uk+'+q],['Prospects.ac.uk','https://www.google.com/search?q=site:prospects.ac.uk+'+q],['Day in the life','https://www.google.com/search?q='+q+'+day+in+the+life+UK']];}
 function stepDiff(c,i){const base=Math.max(1,Math.min(5,Math.round(6-c.ax.entry/2)));return Math.max(1,Math.min(5,base+(i===1?1:0)));}
@@ -741,7 +776,7 @@ function outcomeBlockHtml(c){
   if(a[0]==='upside'&&o.note)row+='<div class="qintro" style="margin:6px 0 9px"><b>Typical vs exceptional.</b> '+o.note+'</div>';
   return row;
  }).join('');
- return '<div class="rblock" style="margin-top:16px"><h5>Outcome profile</h5><div class="route"><p style="font-size:13.5px;margin-bottom:10px">'+outcomeSummary(o)+'</p>'+bars
+ return '<div class="rblock" style="margin-top:16px"><h4>Outcome profile</h4><div class="route"><p style="font-size:13.5px;margin-bottom:10px">'+outcomeSummary(o)+'</p>'+bars
   +'<div class="mtags" style="margin-top:9px">'+evidenceTag(o.evidence)+'</div>'
   +'<div class="ralt">These four describe the <b>shape</b> of outcomes, not their quality. A wide spread means outcomes differ a lot between people, not that the career is risky. A contained ceiling means outcomes cluster together, not that the career is limited. Nothing in this app ranks careers on any of them.</div></div></div>';
 }
@@ -755,19 +790,19 @@ function competitionBlockHtml(c){
  const gap=a.known?gapText(c,a):'Paste your CV under <b>CV &amp; pivot</b> and this becomes specific: which parts of the benchmark you already meet, and exactly which you do not.';
  const longShot=a.known?a.score<5:a.open<5;
  const stones=longShot?steppingStones(c):[];
- const stoneHtml=stones.length?'<div class="rblock" style="margin-top:12px"><h5>Stepping stones</h5><p style="font-size:12.5px;color:var(--ink-soft);margin-bottom:4px">Roles that sit between where most people start and this one, and whose experience carries across.</p>'+stones.map(r=>'<div class="rstep"><div class="num">\u2192</div><div><div class="st">'+swatch(r.o)+'<a href="#" data-id="'+r.o.id+'" style="color:inherit">'+r.o.name+'</a></div><div class="sd">'+(r.shared.length?'Carries '+r.shared.map(t=>(TAGLABEL[t]||t).toLowerCase()).join(', ')+'. ':'')+'Competition '+r.o.competition.general+'/10 against '+k.general+'/10 here.</div></div></div>').join('')+'</div>':'';
- return '<div class="rblock" style="margin-top:16px"><h5>Competition &amp; attainability</h5><div class="route"><div class="progstat">'+gen+mine+'</div><div class="mtags" style="margin-top:10px">'+evidenceTag(k.evidence)+'</div><div class="rblock" style="margin-top:12px"><h5>Candidate benchmark</h5><p>'+k.benchmark+'</p></div><div class="rblock"><h5>Gap analysis</h5><p>'+gap+'</p></div>'+stoneHtml+'</div></div>';
+ const stoneHtml=stones.length?'<div class="rblock" style="margin-top:12px"><h4>Stepping stones</h4><p style="font-size:12.5px;color:var(--ink-soft);margin-bottom:4px">Roles that sit between where most people start and this one, and whose experience carries across.</p>'+stones.map(r=>'<div class="rstep"><div class="num">\u2192</div><div><div class="st">'+swatch(r.o)+'<a href="#" data-id="'+r.o.id+'" style="color:inherit">'+r.o.name+'</a></div><div class="sd">'+(r.shared.length?'Carries '+r.shared.map(t=>(TAGLABEL[t]||t).toLowerCase()).join(', ')+'. ':'')+'Competition '+r.o.competition.general+'/10 against '+k.general+'/10 here.</div></div></div>').join('')+'</div>':'';
+ return '<div class="rblock" style="margin-top:16px"><h4>Competition &amp; attainability</h4><div class="route"><div class="progstat">'+gen+mine+'</div><div class="mtags" style="margin-top:10px">'+evidenceTag(k.evidence)+'</div><div class="rblock" style="margin-top:12px"><h4>Candidate benchmark</h4><p>'+k.benchmark+'</p></div><div class="rblock"><h4>Gap analysis</h4><p>'+gap+'</p></div>'+stoneHtml+'</div></div>';
 }
 function renderReport(id){const c=C.find(x=>x.id===id);
  // keep the picker on the report actually being shown: at load the select sat on the first
  // alphabetical option while the ML/AI report was rendered underneath it
  const rsel=document.getElementById('reportSelect');if(rsel&&rsel.value!==id)rsel.value=id;
 const t=takeHome(c.sal[4]);const strong=AX.filter(a=>c.ax[a[0]]>=7.5),weak=AX.filter(a=>c.ax[a[0]]<=4.5);const topAx=AX.slice().sort((a,b)=>c.ax[b[0]]-c.ax[a[0]]);const strongTxt=(strong.length?strong:topAx.slice(0,2)).map(a=>'<span class="pill">'+a[1]+' '+c.ax[a[0]]+'</span>').join('');const weakTxt=weak.length?weak.map(a=>'<span class="pill">'+a[1]+' '+c.ax[a[0]]+'</span>').join(''):'<span class="pill">no serious weak axis</span>';const bestIf=(strong.length?strong:topAx.slice(0,2)).map(a=>a[5]).join(', ');const twiceIf=weak.length?('Think twice if '+weak.map(a=>a[5]).join(', or ')+', those are its weak spots.'):'A genuine all-rounder, the main caveat is its ceiling is good, not stratospheric.';
- const pt=psychText(c.id),ct=careerType(c.id).letters,mf=mbtiCompat(c.id,userMbti);const psychHtml='<div class="rblock" style="margin-top:16px"><h5>Who it suits</h5><p>'+pt.lead+' <span style="color:var(--ink-soft)">'+pt.anti+'</span></p><div class="mtags"><span class="mtag hit">'+pt.top[0]+'</span><span class="mtag hit">'+pt.top[1]+'</span><span class="mtag">MBTI-leaning '+ct+'</span>'+(mf!=null?'<span class="mtag hit">'+mf+'% fit with your '+userMbti+'</span>':'')+'</div></div>';
- const compHtml=competitionBlockHtml(c),outHtml=outcomeBlockHtml(c);const vb=viability(c);const viabHtml='<div class="rblock"><h5>Viability for you</h5>'+(vb?'<div class="viab">'+vb+'</div>':'<p style="color:var(--ink-soft);font-size:12.5px">Take the questionnaire or set your priorities, and this becomes a read tailored to your profile.</p>')+'</div>';
+ const pt=psychText(c.id),ct=careerType(c.id).letters,mf=mbtiCompat(c.id,userMbti);const psychHtml='<div class="rblock" style="margin-top:16px"><h4>Who it suits</h4><p>'+pt.lead+' <span style="color:var(--ink-soft)">'+pt.anti+'</span></p><div class="mtags"><span class="mtag hit">'+pt.top[0]+'</span><span class="mtag hit">'+pt.top[1]+'</span><span class="mtag">MBTI-leaning '+ct+'</span>'+(mf!=null?'<span class="mtag hit">'+mf+'% fit with your '+userMbti+'</span>':'')+'</div></div>';
+ const compHtml=competitionBlockHtml(c),outHtml=outcomeBlockHtml(c);const vb=viability(c);const viabHtml='<div class="rblock"><h4>Viability for you</h4>'+(vb?'<div class="viab">'+vb+'</div>':'<p style="color:var(--ink-soft);font-size:12.5px">Take the questionnaire or set your priorities, and this becomes a read tailored to your profile.</p>')+'</div>';
  const rt=c.route;let steps='';rt.steps.forEach((s,i)=>{const df=stepDiff(c,i),cst=stepCost(s);steps+='<div class="rstep"><div class="num">'+(i+1)+'</div><div><div class="st">'+s[0]+'</div><div class="sd">'+s[1]+'</div><div class="diff">difficulty '+dots(df)+' &nbsp;·&nbsp; <b style="color:'+cst[1]+'">'+cst[0]+'</b></div></div></div>';});
- const linksHtml='<div class="rblock" style="margin-top:16px"><h5>Find out more (UK)</h5><div class="links">'+ukLinks(c).map(l=>'<a href="'+l[1]+'" target="_blank" rel="noopener">'+l[0]+' \u2197</a>').join('')+'</div></div>';
- const box=document.getElementById('reportBody');box.innerHTML='<div class="report"><div class="rhead"><div class="rtitle">'+swatch(c,13)+c.name+'</div><div class="rmoney">peak pay<br><b>\u00a3'+c.sal[4]+'k</b> gross<br>\u00a3'+t.net.toFixed(0)+'k take-home</div></div><div class="rsummary">'+c.blurb+'</div><div class="rgrid"><div class="rsvgwrap"><span class="zoomhint">click to zoom</span><svg id="repRadar" viewBox="0 0 220 220"></svg><svg id="repSpark" viewBox="0 0 220 70"></svg></div><div><div class="rblock"><h5>Money shape</h5><p>Peak \u00a3'+c.sal[4]+'k (\u2248\u00a3'+t.net.toFixed(0)+'k after tax, '+t.eff.toFixed(0)+'% effective). The curve is '+shapeOf(c)+'.</p></div><div class="rblock"><h5>Strengths</h5><p>'+strongTxt+'</p></div><div class="rblock"><h5>Weak spots</h5><p>'+weakTxt+'</p></div><div class="rblock"><h5>Best if</h5><p class="good">'+bestIf+'.</p></div><div class="rblock"><h5>Verdict</h5><p class="bad">'+twiceIf+'</p></div>'+viabHtml+'</div></div>'+compHtml+outHtml+psychHtml+PROGBLOCK+'<div class="rblock" style="margin-top:16px"><h5>The route in</h5><p style="margin-bottom:8px">'+rt.summary+'</p><div class="route"><div class="rtop2"><span class="meta"><b>TIME</b> '+rt.time+'</span><span class="meta"><b>OVERALL COST</b> '+rt.cost+'</span></div>'+steps+'<div class="ralt"><b>Other doors:</b> '+rt.alt+'</div></div></div>'+sectorBlockHtml(c)+proximateBlockHtml(c)+linksHtml+'</div>';drawRepRadar(c);drawRepSpark(c);const sl=document.getElementById('progSlider');if(sl){drawProg(c,+sl.value);updateProgDetail(c,+sl.value);sl.oninput=()=>{drawProg(c,+sl.value);updateProgDetail(c,+sl.value);};}box.querySelectorAll('[data-id]').forEach(a=>{a.onclick=(e)=>{e.preventDefault();goReport(a.dataset.id);};});}
+ const linksHtml='<div class="rblock" style="margin-top:16px"><h4>Find out more (UK)</h4><div class="links">'+ukLinks(c).map(l=>'<a href="'+l[1]+'" target="_blank" rel="noopener">'+l[0]+' \u2197</a>').join('')+'</div></div>';
+ announce('Report loaded for '+c.name+'.');const box=document.getElementById('reportBody');box.innerHTML='<div class="report"><div class="rhead"><h3 class="rtitle">'+swatch(c,13)+c.name+'</h3><div class="rmoney">peak pay<br><b>\u00a3'+c.sal[4]+'k</b> gross<br>\u00a3'+t.net.toFixed(0)+'k take-home</div></div><div class="rsummary">'+c.blurb+'</div><div class="rgrid"><div class="rsvgwrap"><span class="zoomhint" aria-hidden="true">click to zoom</span><ul class="vh-only">'+AX.map(a=>'<li>'+a[1]+': '+c.ax[a[0]]+' out of 10</li>').join('')+'<svg id="repRadar" viewBox="0 0 220 220"></svg><svg id="repSpark" viewBox="0 0 220 70"></svg></div><div><div class="rblock"><h4>Money shape</h4><p>Peak \u00a3'+c.sal[4]+'k (\u2248\u00a3'+t.net.toFixed(0)+'k after tax, '+t.eff.toFixed(0)+'% effective). The curve is '+shapeOf(c)+'.</p></div><div class="rblock"><h4>Strengths</h4><p>'+strongTxt+'</p></div><div class="rblock"><h4>Weak spots</h4><p>'+weakTxt+'</p></div><div class="rblock"><h4>Best if</h4><p class="good">'+bestIf+'.</p></div><div class="rblock"><h4>Verdict</h4><p class="bad">'+twiceIf+'</p></div>'+viabHtml+'</div></div>'+compHtml+outHtml+psychHtml+PROGBLOCK+'<div class="rblock" style="margin-top:16px"><h4>The route in</h4><p style="margin-bottom:8px">'+rt.summary+'</p><div class="route"><div class="rtop2"><span class="meta"><b>TIME</b> '+rt.time+'</span><span class="meta"><b>OVERALL COST</b> '+rt.cost+'</span></div>'+steps+'<div class="ralt"><b>Other doors:</b> '+rt.alt+'</div></div></div>'+sectorBlockHtml(c)+proximateBlockHtml(c)+linksHtml+'</div>';drawRepRadar(c);drawRepSpark(c);const sl=document.getElementById('progSlider');if(sl){drawProg(c,+sl.value);updateProgDetail(c,+sl.value);sl.oninput=()=>{drawProg(c,+sl.value);updateProgDetail(c,+sl.value);};}box.querySelectorAll('[data-id]').forEach(a=>{a.onclick=(e)=>{e.preventDefault();goReport(a.dataset.id);};});}
 function drawRepRadar(c){const svg=document.getElementById('repRadar');svg.innerHTML='';const cx=110,cy=110,R=76,n=AX.length;const ang=i=>(-90+i*360/n)*Math.PI/180;const pt=(i,v)=>[cx+Math.cos(ang(i))*R*v/10,cy+Math.sin(ang(i))*R*v/10];for(let ring=2;ring<=10;ring+=2){let d='';for(let i=0;i<n;i++){const p=pt(i,ring);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';}d+='Z';svg.appendChild(el('path',{d,fill:'none',stroke:'var(--line)','stroke-width':1}));}AX.forEach((a,i)=>{const p=pt(i,11.5);const tx=el('text',{x:p[0],y:p[1]+3,'text-anchor':'middle',fill:'var(--ink-soft)','font-size':'7.5'});tx.textContent=a[1].slice(0,6);svg.appendChild(tx);});let d='';AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';});d+='Z';svg.appendChild(el('path',{d,fill:c.col,'fill-opacity':.2,stroke:c.col,'stroke-width':2}));AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);svg.appendChild(el('circle',{cx:p[0],cy:p[1],r:2.4,fill:c.col}));const hit=el('circle',{cx:p[0],cy:p[1],r:9,fill:'transparent',class:'chart-node'});attachTip(hit,a[1]+' '+c.ax[a[0]].toFixed(1)+' / 10');svg.appendChild(hit);});svg.setAttribute('role','img');svg.setAttribute('aria-label',c.name+' profile across seven axes; click to enlarge and read each score.');svg.onclick=()=>openZoom(c);}
 function drawRepSpark(c){const svg=document.getElementById('repSpark');svg.innerHTML='';const W=220,H=70,L=6,R=6,T=8,B=14,pw=W-L-R,ph=H-T-B,max=360;const x=i=>L+pw*(i/4),y=v=>T+ph*(1-v/max);const nm=['Entry','Early','Mid','Senior','Peak'];let d='';c.sal.forEach((v,i)=>{d+=(i?'L':'M')+x(i)+' '+y(v)+' ';});svg.appendChild(el('path',{d,fill:'none',stroke:c.col,'stroke-width':2}));c.sal.forEach((v,i)=>{svg.appendChild(el('circle',{cx:x(i),cy:y(v),r:2.5,fill:c.col}));const hit=el('circle',{cx:x(i),cy:y(v),r:8,fill:'transparent',class:'chart-node'});attachTip(hit,nm[i]+' \u00b7 \u00a3'+v+'k gross');svg.appendChild(hit);});['Entry','','Mid','','Peak'].forEach((s,i)=>{if(!s)return;const tx=el('text',{x:x(i),y:H-3,'text-anchor':'middle',fill:'var(--ink-soft)','font-size':'8'});tx.textContent=s;svg.appendChild(tx);});svg.setAttribute('role','img');svg.setAttribute('aria-label',c.name+' salary from \u00a3'+c.sal[0]+'k at entry to \u00a3'+c.sal[4]+'k at peak.');}
 
@@ -812,7 +847,7 @@ function buildSectorChips(){
  const cnt=sectorCounts();
  const defs=[['all','All careers',null,C.length],['selected','Selected',null,cmpActive.size]].concat(Object.keys(SECTORS).map(k=>[k,SECTORS[k][0],SECTORS[k][1],cnt[k]||0]));
  defs.forEach(([key,label,hue,count])=>{
-  const ch=document.createElement('div');ch.className='sectorchip'+(cmpSector===key?' on':'');
+  const ch=document.createElement('button');ch.type='button';ch.className='sectorchip'+(cmpSector===key?' on':'');ch.setAttribute('aria-pressed',cmpSector===key?'true':'false');
   if(hue!=null)ch.style.setProperty('--sc','oklch(58% 0.14 '+hue+')');
   ch.innerHTML='<span class="dot"></span>'+label+' <span class="n">'+count+'</span>';
   ch.onclick=()=>{cmpSector=key;buildSectorChips();buildCmpChips();};
@@ -832,7 +867,7 @@ function buildCmpChips(){
  const box=document.getElementById('cmpChips');box.innerHTML='';
  const list=visibleCareers();
  list.forEach(c=>{
-  const ch=document.createElement('div');ch.className='chip'+(cmpActive.has(c.id)?' on':'');
+  const ch=document.createElement('button');ch.type='button';ch.className='chip'+(cmpActive.has(c.id)?' on':'');ch.setAttribute('aria-pressed',cmpActive.has(c.id)?'true':'false');
   ch.style.setProperty('--sw',c.col);
   ch.innerHTML='<span class="dot"></span>'+c.name;
   ch.onclick=()=>{cmpActive.has(c.id)?cmpActive.delete(c.id):cmpActive.add(c.id);renderCompare();};
@@ -852,7 +887,7 @@ function buildCmpLegend(){
  const box=document.getElementById('cmpLegend');if(!box)return;box.innerHTML='';
  const list=activeList();
  list.forEach((c,i)=>{
-  const ch=document.createElement('div');ch.className='chip on';ch.style.setProperty('--sw',c.col);
+  const ch=document.createElement('div');ch.className='chip on';ch.style.setProperty('--sw',c.col);ch.setAttribute('role','group');
   ch.innerHTML=seriesKey(i,c.col)+'<span data-go="1" style="cursor:pointer">'+c.name.split(' (')[0]+'</span><span style="opacity:.55">×</span>';
   ch.title='Remove '+c.name+' from the overlay';
   ch.querySelector('[data-go]').onclick=(e)=>{e.stopPropagation();goReport(c.id);};
@@ -863,7 +898,7 @@ function buildCmpLegend(){
 }
 document.getElementById('cmpFilter').oninput=function(){cmpFilter=this.value.toLowerCase();buildCmpChips();};
 function activeList(){return C.filter(c=>cmpActive.has(c.id));}
-function renderCompare(){buildCmpChips();buildSectorChips();buildCmpLegend();renderRadar();renderLine();renderTable();syncCmpEmpty();syncCmpWarn();}
+function renderCompare(){buildCmpChips();buildSectorChips();buildCmpLegend();renderRadar();renderLine();renderTable();syncCmpEmpty();syncCmpWarn();announce(cmpActive.size?cmpActive.size+' careers overlaid: '+activeList().map(c=>c.name).join(', ')+'.':'Comparison cleared. No careers selected.');}
 // Nothing selected means no chart, not an empty chart frame.
 // Every selection stays supported and rendered. Past ten the overlay stops working as a
 // comparison, so say so plainly and put the escape hatches next to the warning rather than
@@ -983,8 +1018,8 @@ function outcomeFor(c){
 }
 function desirability(id){const c=C.find(x=>x.id===id);if(quizTaken||userMbti){const outcome=outcomeFor(c).outcome;const sf=styleFit(id);const mf=mbtiCompat(id,userMbti);if(userMbti&&quizTaken)return outcome*0.5+sf*0.3+mf*0.2;if(quizTaken)return outcome*0.6+sf*0.4;return outcome*0.8+mf*0.2;}return(c.ax.pay+c.ax.future+c.ax.secure+c.ax.option)/4*10;}
 function pivotRank(cv){return C.map(c=>{const f=cvFit(cv,c.id);const d=Math.round(desirability(c.id));const pivot=Math.round(f.fit*0.5+d*0.5);const b=c.ax.entry;let eff;if(b<=3.5)eff=[f.fit>=60?'Long retrain':'Full retrain','#7A2E3A'];else if(f.fit>=72&&b>=5.5)eff=['Short hop','var(--a)'];else if(f.fit>=50)eff=['Moderate reskill','#9A5B34'];else eff=['Full retrain','#7A2E3A'];return{c,fit:f.fit,desir:d,pivot,eff,miss:f.miss,missCerts:f.missCerts};}).sort((a,b)=>b.pivot-a.pivot);}
-function pivotRow(p){return '<div class="match" style="border-left-color:'+p.eff[1]+'"><div class="mtop"><div class="mname">'+swatch(p.c)+p.c.name+' <span class="mtag" style="background:'+p.eff[1]+';color:#fff">'+p.eff[0]+'</span></div><div class="mfit">'+p.fit+'<span style="font-size:11px;color:var(--ink-soft)">% fit</span></div></div><div class="mwhy">'+(p.missCerts.length?'Needs: '+p.missCerts.join(', ')+'. ':'')+(p.miss.length?'Build: '+p.miss.slice(0,3).map(d=>DOMAINS[d]?DOMAINS[d][0]:d).join(', ')+'.':'Strong overlap with your current skills.')+'</div><span class="mlink" data-id="'+p.c.id+'">See report & route \u2192</span></div>';}
-function renderCV(){const text=document.getElementById('cvText').value;const box=document.getElementById('cvBody');if(!text.trim()){userCv=null;box.innerHTML='<p style="color:var(--ink-soft);font-size:13px">Paste your CV text above (or upload a .txt) and press Analyse.</p>';return;}const cv=extractCV(text);userCv=cv;const q=scoreCVQuality(cv,text);let html='<div class="report">';html+='<div class="rblock"><h5>CV quality (heuristic)</h5><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div class="scorenum" style="color:'+fitCol(q.score)+'">'+q.score+'<span style="font-size:14px;color:var(--ink-soft)">/100</span></div><div style="flex:1;min-width:230px">'+q.parts.map(p=>'<div class="bd"><span class="bdlabel">'+p[0]+'</span><span class="bdtrack"><i style="width:'+(p[1]/p[2]*100)+'%"></i></span><span class="bdval">'+p[1]+'/'+p[2]+'</span></div>').join('')+'</div></div></div>';const eduTxt=cv.edu>=3?'Doctorate':cv.edu>=2?'Master\u2019s':cv.edu>=1.5?'Degree'+(cv.cls?' ('+cv.cls+')':''):cv.edu>=0.7?'Pre-degree / vocational':'Not detected';html+='<div class="rblock"><h5>What we read from it</h5><p style="margin-bottom:6px"><b>Education:</b> '+eduTxt+' &nbsp;·&nbsp; <b>Experience:</b> '+(cv.years?cv.years+' yr'+(cv.years>1?'s':''):'not detected')+(cv.senior?' · senior-level signals':'')+'</p><div class="chipset">'+(cv.skills.length?cv.skills.map(s=>'<span class="pill">'+s+'</span>').join(''):'<span style="color:var(--ink-soft);font-size:12.5px">No known skills detected, paste the full skills/experience sections for a better read.</span>')+'</div>'+(cv.certs.size?'<div class="chipset" style="margin-top:6px">'+[...cv.certs].map(c=>'<span class="mtag hit">'+c+'</span>').join('')+'</div>':'')+'</div>';const tid=document.getElementById('cvTarget').value;const tc=C.find(x=>x.id===tid);const f=cvFit(cv,tid);html+='<div class="rblock" style="margin-top:14px"><h5>Fit with '+tc.name+'</h5><div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><div class="scorenum" style="font-size:32px;color:'+fitCol(f.fit)+'">'+f.fit+'<span style="font-size:13px;color:var(--ink-soft)">/100</span></div><div style="font-size:12.5px;color:var(--ink-soft)">'+(f.fit>=70?'You\u2019re most of the way there.':f.fit>=45?'A realistic reskill from here.':'A significant retrain from where you are now.')+'</div></div>';if(f.have.length)html+='<p style="font-size:12.5px;margin-bottom:6px"><b>Already there:</b> '+f.have.map(d=>DOMAINS[d]?DOMAINS[d][0]:d).join(', ')+(f.haveCerts.length?', '+f.haveCerts.join(', '):'')+'.</p>';const plan=[];if(cv.edu<f.eduNeed)plan.push(f.eduNeed>=3?'Meet the postgraduate/doctorate requirement for this route':f.eduNeed>=2?'Gain the master\u2019s-level qualification this route expects':'Complete the degree this route typically requires');f.missCerts.forEach(c=>plan.push('Obtain '+c));f.miss.forEach(d=>{if(DOMAINS[d])plan.push(DOMAINS[d][1]);});html+='<h5 style="margin-top:8px">Upskilling plan</h5>'+(plan.length?'<ol class="plan">'+plan.map(p=>'<li>'+p+'</li>').join('')+'</ol>':'<p class="good" style="font-size:13px">No major gaps detected, your profile already lines up with this route.</p>')+'<div class="links" style="margin-top:8px">'+ukLinks(tc).map(l=>'<a href="'+l[1]+'" target="_blank" rel="noopener">'+l[0]+' \u2197</a>').join('')+'</div></div>';const pv=pivotRank(cv);const adjacent=pv.slice().sort((a,b)=>b.fit-a.fit).filter(p=>p.c.id!==tid&&p.c.ax.entry>3.5).slice(0,5);const aspir=pv.slice().sort((a,b)=>b.desir-a.desir).filter(p=>p.fit<65&&p.c.id!==tid).slice(0,5);html+='<div class="rblock" style="margin-top:16px"><h5>Where you\u2019d slot in now, smallest jump</h5>'+adjacent.map(pivotRow).join('')+'</div>';html+='<div class="rblock" style="margin-top:12px"><h5>Worth the retrain, best fit with what you want'+(quizTaken||userMbti?'':' · take the questionnaire to personalise this')+'</h5>'+aspir.map(pivotRow).join('')+'</div>';html+='</div>';box.innerHTML=html;box.querySelectorAll('.mlink').forEach(l=>l.onclick=()=>goReport(l.dataset.id));const rs=document.getElementById('reportSelect');if(rs&&rs.value)renderReport(rs.value);}
+function pivotRow(p){return '<div class="match" style="border-left-color:'+p.eff[1]+'"><div class="mtop"><div class="mname">'+swatch(p.c)+p.c.name+' <span class="mtag" style="background:'+p.eff[1]+';color:#fff">'+p.eff[0]+'</span></div><div class="mfit">'+p.fit+'<span style="font-size:11px;color:var(--ink-soft)">% fit</span></div></div><div class="mwhy">'+(p.missCerts.length?'Needs: '+p.missCerts.join(', ')+'. ':'')+(p.miss.length?'Build: '+p.miss.slice(0,3).map(d=>DOMAINS[d]?DOMAINS[d][0]:d).join(', ')+'.':'Strong overlap with your current skills.')+'</div><button type="button" class="mlink" data-id="'+p.c.id+'">See report &amp; route \u2192</button></div>';}
+function renderCV(){const text=document.getElementById('cvText').value;const box=document.getElementById('cvBody');if(!text.trim()){userCv=null;box.innerHTML='<p style="color:var(--ink-soft);font-size:13px">Paste your CV text above (or upload a .txt) and press Analyse.</p>';return;}const cv=extractCV(text);userCv=cv;const q=scoreCVQuality(cv,text);let html='<div class="report">';html+='<h3 class="rtitle" style="font-size:20px;margin-bottom:10px">What your CV says</h3>';html+='<div class="rblock"><h4>CV quality (heuristic)</h4><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div class="scorenum" style="color:'+fitCol(q.score)+'">'+q.score+'<span style="font-size:14px;color:var(--ink-soft)">/100</span></div><div style="flex:1;min-width:230px">'+q.parts.map(p=>'<div class="bd"><span class="bdlabel">'+p[0]+'</span><span class="bdtrack"><i style="width:'+(p[1]/p[2]*100)+'%"></i></span><span class="bdval">'+p[1]+'/'+p[2]+'</span></div>').join('')+'</div></div></div>';const eduTxt=cv.edu>=3?'Doctorate':cv.edu>=2?'Master\u2019s':cv.edu>=1.5?'Degree'+(cv.cls?' ('+cv.cls+')':''):cv.edu>=0.7?'Pre-degree / vocational':'Not detected';html+='<div class="rblock"><h4>What we read from it</h4><p style="margin-bottom:6px"><b>Education:</b> '+eduTxt+' &nbsp;·&nbsp; <b>Experience:</b> '+(cv.years?cv.years+' yr'+(cv.years>1?'s':''):'not detected')+(cv.senior?' · senior-level signals':'')+'</p><div class="chipset">'+(cv.skills.length?cv.skills.map(s=>'<span class="pill">'+s+'</span>').join(''):'<span style="color:var(--ink-soft);font-size:12.5px">No known skills detected, paste the full skills/experience sections for a better read.</span>')+'</div>'+(cv.certs.size?'<div class="chipset" style="margin-top:6px">'+[...cv.certs].map(c=>'<span class="mtag hit">'+c+'</span>').join('')+'</div>':'')+'</div>';const tid=document.getElementById('cvTarget').value;const tc=C.find(x=>x.id===tid);const f=cvFit(cv,tid);html+='<div class="rblock" style="margin-top:14px"><h4>Fit with '+tc.name+'</h4><div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><div class="scorenum" style="font-size:32px;color:'+fitCol(f.fit)+'">'+f.fit+'<span style="font-size:13px;color:var(--ink-soft)">/100</span></div><div style="font-size:12.5px;color:var(--ink-soft)">'+(f.fit>=70?'You\u2019re most of the way there.':f.fit>=45?'A realistic reskill from here.':'A significant retrain from where you are now.')+'</div></div>';if(f.have.length)html+='<p style="font-size:12.5px;margin-bottom:6px"><b>Already there:</b> '+f.have.map(d=>DOMAINS[d]?DOMAINS[d][0]:d).join(', ')+(f.haveCerts.length?', '+f.haveCerts.join(', '):'')+'.</p>';const plan=[];if(cv.edu<f.eduNeed)plan.push(f.eduNeed>=3?'Meet the postgraduate/doctorate requirement for this route':f.eduNeed>=2?'Gain the master\u2019s-level qualification this route expects':'Complete the degree this route typically requires');f.missCerts.forEach(c=>plan.push('Obtain '+c));f.miss.forEach(d=>{if(DOMAINS[d])plan.push(DOMAINS[d][1]);});html+='<h4 style="margin-top:8px">Upskilling plan</h4>'+(plan.length?'<ol class="plan">'+plan.map(p=>'<li>'+p+'</li>').join('')+'</ol>':'<p class="good" style="font-size:13px">No major gaps detected, your profile already lines up with this route.</p>')+'<div class="links" style="margin-top:8px">'+ukLinks(tc).map(l=>'<a href="'+l[1]+'" target="_blank" rel="noopener">'+l[0]+' \u2197</a>').join('')+'</div></div>';const pv=pivotRank(cv);const adjacent=pv.slice().sort((a,b)=>b.fit-a.fit).filter(p=>p.c.id!==tid&&p.c.ax.entry>3.5).slice(0,5);const aspir=pv.slice().sort((a,b)=>b.desir-a.desir).filter(p=>p.fit<65&&p.c.id!==tid).slice(0,5);html+='<div class="rblock" style="margin-top:16px"><h4>Where you\u2019d slot in now, smallest jump</h4>'+adjacent.map(pivotRow).join('')+'</div>';html+='<div class="rblock" style="margin-top:12px"><h4>Worth the retrain, best fit with what you want'+(quizTaken||userMbti?'':' · take the questionnaire to personalise this')+'</h4>'+aspir.map(pivotRow).join('')+'</div>';html+='</div>';box.innerHTML=html;box.querySelectorAll('.mlink').forEach(l=>l.onclick=()=>goReport(l.dataset.id));const rs=document.getElementById('reportSelect');if(rs&&rs.value)renderReport(rs.value);}
 function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=()=>rej(new Error('load'));document.head.appendChild(s);});}
 let pdfReady=null,docxReady=null;
 function ensurePdf(){if(!pdfReady)pdfReady=loadScript('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js').then(()=>{window.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';});return pdfReady;}
@@ -998,10 +1033,25 @@ function buildCv(){const sel=document.getElementById('cvTarget');C.slice().sort(
 let _tip;
 function tipEl(){if(!_tip){_tip=document.createElement('div');_tip.className='chart-tip';document.body.appendChild(_tip);}return _tip;}
 function attachTip(node,label){node.addEventListener('mouseenter',()=>{const t=tipEl();t.textContent=label;t.style.opacity='1';});node.addEventListener('mousemove',(e)=>{const t=tipEl();t.style.left=e.clientX+'px';t.style.top=e.clientY+'px';});node.addEventListener('mouseleave',()=>{if(_tip)_tip.style.opacity='0';});node.addEventListener('click',(e)=>{e.stopPropagation();const t=tipEl();t.textContent=label;t.style.opacity='1';t.style.left=e.clientX+'px';t.style.top=e.clientY+'px';clearTimeout(_tip._h);_tip._h=setTimeout(()=>{if(_tip)_tip.style.opacity='0';},1600);});}
+// Results appear without any page change, so screen readers need telling. One polite live
+// region, updated deliberately, rather than making whole panels live and spamming the user.
+function announce(msg){const n=document.getElementById('srStatus');if(n)n.textContent=msg;}
 function setHash(frag){try{history.replaceState(null,'','#'+frag);}catch(e){/* sandboxed preview (srcdoc): URL updates are blocked; ignore */}}
-function showTab(p,updateHash){document.querySelectorAll('.tab').forEach(x=>{const on=x.dataset.p===p;x.classList.toggle('on',on);x.setAttribute('aria-selected',on?'true':'false');});document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('on',x.id===p));if(updateHash!==false){const cur=(p==='report'&&document.getElementById('reportSelect'))?('report/'+document.getElementById('reportSelect').value):p;setHash(cur);}}
-function openZoom(c){const svg=document.getElementById('zoomSvg');document.getElementById('zoomTitle').textContent=c.name;document.getElementById('zoomSub').textContent='Seven-axis profile \u00b7 hover a point for its score';drawZoomRadar(c,svg);document.getElementById('zoomOverlay').classList.add('on');document.getElementById('zoomClose').focus();}
-function closeZoom(){document.getElementById('zoomOverlay').classList.remove('on');}
+function showTab(p,updateHash){document.querySelectorAll('.tab').forEach(x=>{const on=x.dataset.p===p;x.classList.toggle('on',on);x.setAttribute('aria-selected',on?'true':'false');x.tabIndex=on?0:-1;});document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('on',x.id===p));if(updateHash!==false){const cur=(p==='report'&&document.getElementById('reportSelect'))?('report/'+document.getElementById('reportSelect').value):p;setHash(cur);}}
+let _zoomReturn=null;
+function openZoom(c){_zoomReturn=document.activeElement;const svg=document.getElementById('zoomSvg');document.getElementById('zoomTitle').textContent=c.name;document.getElementById('zoomSub').textContent='Seven-axis profile \u00b7 hover a point for its score';drawZoomRadar(c,svg);document.getElementById('zoomOverlay').classList.add('on');document.getElementById('zoomClose').focus();}
+function closeZoom(){const ov=document.getElementById('zoomOverlay');if(!ov.classList.contains('on'))return;ov.classList.remove('on');if(_zoomReturn&&_zoomReturn.focus)_zoomReturn.focus();_zoomReturn=null;}
+// Keep Tab inside the dialog while it is open. Only two things in there are focusable, so
+// the ring is short, but escaping it silently is the bug worth preventing.
+document.addEventListener('keydown',(e)=>{
+ if(e.key!=='Tab')return;
+ const ov=document.getElementById('zoomOverlay');if(!ov||!ov.classList.contains('on'))return;
+ const f=[...ov.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])')].filter(n=>n.offsetParent!==null);
+ if(!f.length)return;
+ const first=f[0],last=f[f.length-1];
+ if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+ else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+});
 function drawZoomRadar(c,svg){svg.innerHTML='';const cx=230,cy=230,R=150,n=AX.length;const ang=i=>(-90+i*360/n)*Math.PI/180;const pt=(i,v)=>[cx+Math.cos(ang(i))*R*v/10,cy+Math.sin(ang(i))*R*v/10];for(let ring=2;ring<=10;ring+=2){let d='';for(let i=0;i<n;i++){const p=pt(i,ring);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';}d+='Z';svg.appendChild(el('path',{d,fill:'none',stroke:'var(--line)','stroke-width':1}));const rl=el('text',{x:cx+3,y:pt(0,ring)[1]+3,fill:'var(--ink-soft)','font-size':'8','font-family':'IBM Plex Mono'});rl.textContent=ring;svg.appendChild(rl);}AX.forEach((a,i)=>{const e2=pt(i,10);svg.appendChild(el('line',{x1:cx,y1:cy,x2:e2[0],y2:e2[1],stroke:'var(--line)','stroke-width':1}));const lp=pt(i,11.15);const tx=el('text',{x:lp[0],y:lp[1]+4,'text-anchor':'middle',fill:'var(--ink)','font-size':'12','font-weight':'600','font-family':'IBM Plex Sans'});tx.textContent=a[1];svg.appendChild(tx);});let d='';AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';});d+='Z';svg.appendChild(el('path',{d,fill:c.col,'fill-opacity':.2,stroke:c.col,'stroke-width':2.5}));AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);svg.appendChild(el('circle',{cx:p[0],cy:p[1],r:4,fill:c.col}));const vt=el('text',{x:p[0],y:p[1]-9,'text-anchor':'middle',fill:'var(--ink)','font-size':'11','font-weight':'600','font-family':'IBM Plex Mono'});vt.textContent=c.ax[a[0]].toFixed(1);svg.appendChild(vt);const hit=el('circle',{cx:p[0],cy:p[1],r:12,fill:'transparent',class:'chart-node'});attachTip(hit,a[1]+' '+c.ax[a[0]].toFixed(1)+' / 10');svg.appendChild(hit);});}
 let revObs;
 function initReveal(){if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(!('IntersectionObserver'in window))return;revObs=new IntersectionObserver((ents)=>{ents.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');revObs.unobserve(en.target);}});},{threshold:.06,rootMargin:'0px 0px -30px 0px'});document.querySelectorAll('.lede,.prov,.vh,.vsub,.chartwrap,footer').forEach(node=>{node.classList.add('reveal');revObs.observe(node);});}
