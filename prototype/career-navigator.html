@@ -238,6 +238,7 @@
   .seg button.on{background:var(--ink);color:var(--paper)}
   .chartwrap{background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:14px 10px 8px;overflow:hidden}
   svg{display:block;width:100%;height:auto;font-family:"IBM Plex Mono",monospace;filter:var(--svg-filter)}
+  @media(max-width:560px){.axtext{font-size:17px}.lbl{font-size:16px}}
   .gridline{stroke:var(--line);stroke-width:1}.axtext{fill:var(--ink-soft);font-size:11px}.axtext.b{fill:var(--ink);font-weight:600}
   .lbl{fill:var(--ink);font-size:11px;font-weight:600;font-family:"IBM Plex Sans",sans-serif}
   .legend-note{font-family:"IBM Plex Mono",monospace;font-size:12px;line-height:1.6;color:var(--ink-70);margin-top:8px;text-align:center}
@@ -392,6 +393,7 @@
     <div id="cmpEmpty" class="qintro" style="display:none"><b>Nothing overlaid yet.</b> Pick any number of careers from the list above, narrow the list with a sector chip or the filter, or press <b>Show top 5</b> to load the top of your current match ranking. The radar and the salary curves appear once something is selected. The table below can show the whole catalogue in the meantime.</div>
     <div id="cmpCharts">
     <div id="cmpWarn" class="qintro" style="display:none"></div>
+    <div id="cmpSummary"></div>
     <div class="controls" style="justify-content:flex-end"><div class="seg" id="cmpAxSeg"><button data-v="ax" class="on">Seven axes</button><button data-v="out">+ outcome metrics</button></div></div>
     <div class="chartwrap"><svg id="radarSvg" viewBox="0 0 820 500"></svg></div>
     <div class="legend-note" id="radarNote">Seven-axis profile overlay, the bigger and rounder the shape, the stronger the all-rounder</div>
@@ -1243,7 +1245,49 @@ function buildCmpLegend(){
 }
 document.getElementById('cmpFilter').oninput=function(){cmpFilter=this.value.toLowerCase();buildCmpChips();};
 function activeList(){return C.filter(c=>cmpActive.has(c.id));}
-function renderCompare(){buildCmpChips();buildSectorChips();buildCmpLegend();renderRadar();renderLine();renderTable();syncCmpEmpty();syncCmpWarn();announce(cmpActive.size?cmpActive.size+' careers overlaid: '+activeList().map(c=>c.name).join(', ')+'.':'Comparison cleared. No careers selected.');}
+// A comparison that only draws shapes makes the user do the reading. This does the reading:
+// how alike the selection is, where it actually diverges, and what each career is the answer
+// to. It doubles as the text alternative to the radar for anyone not reading the chart.
+function bestForIf(c,list){
+ const others=list.filter(o=>o.id!==c.id);
+ if(!others.length)return'';
+ const rel=AX.map(a=>({a,d:c.ax[a[0]]-others.reduce((s,o)=>s+o.ax[a[0]],0)/others.length})).sort((x,y)=>y.d-x.d);
+ const top=rel.filter(r=>r.d>=0.5).slice(0,2);
+ return top.length?'Best of this set if '+top.map(r=>r.a[5]).join(' and ')+'.':'It is the middle option here; nothing in this set makes it the standout choice.';
+}
+function cmpSummaryHtml(){
+ const list=activeList();
+ const host=document.getElementById('cmpSummary');
+ if(!host)return;
+ if(list.length<2){host.innerHTML='';return;}
+ // pairwise mean of shared skill domains and axis-profile closeness
+ let tot=0,n=0;
+ for(let i=0;i<list.length;i++)for(let j=i+1;j<list.length;j++){tot+=0.5*jaccard(list[i].tags,list[j].tags)+0.5*axisSim(list[i],list[j]);n++;}
+ const sim=Math.round(tot/n*100);
+ const simWord=sim>=70?'very alike':sim>=50?'broadly similar':sim>=32?'partly overlapping':'pulling in different directions';
+ // skill domains every selected career shares
+ const shared=list.reduce((acc,c)=>acc.filter(t=>(c.tags||[]).includes(t)),[...(list[0].tags||[])]);
+ // the axes on which the selection actually disagrees
+ const spreads=AX.map(a=>{
+  const vals=list.map(c=>({c,v:c.ax[a[0]]})).sort((x,y)=>y.v-x.v);
+  return{a,spread:vals[0].v-vals[vals.length-1].v,hi:vals[0],lo:vals[vals.length-1]};
+ }).sort((x,y)=>y.spread-x.spread).filter(s=>s.spread>=1).slice(0,3);
+ const lo=Math.min(...list.map(c=>c.sal[0])),hi=Math.max(...list.map(c=>c.sal[4]));
+ const entryHi=list.slice().sort((a,b)=>(b.competition?b.competition.general:0)-(a.competition?a.competition.general:0))[0];
+ const entryLo=list.slice().sort((a,b)=>(a.competition?a.competition.general:0)-(b.competition?b.competition.general:0))[0];
+ host.innerHTML='<div class="rblock" style="margin-bottom:14px"><h4>Reading this comparison</h4><div class="route">'
+  +'<p><b>How alike they are.</b> These '+list.length+' careers are <b>'+simWord+'</b> ('+sim+'% overlap on shared skill domains and axis profile). '
+  +(shared.length?'All of them draw on '+shared.map(t=>(TAGLABEL[t]||t).toLowerCase()).join(', ')+'.':'They share no skill domain in common, so moving between them means starting a new one.')+'</p>'
+  +(spreads.length?'<p style="margin-top:7px"><b>Where they diverge most.</b></p><ul class="plan">'
+    +spreads.map(s=>'<li>'+s.a[1]+': '+s.hi.c.name.split(' (')[0]+' at '+s.hi.v+'/10 against '+s.lo.c.name.split(' (')[0]+' at '+s.lo.v+'/10.</li>').join('')
+    +'</ul>':'<p style="margin-top:7px">No axis separates them by more than a point; on these seven measures they are near-identical.</p>')
+  +'<p style="margin-top:7px"><b>Pay across the set.</b> £'+lo+'k at the lowest entry point to £'+hi+'k at the highest peak, gross and UK-wide. '+confBadge('estimate')+'</p>'
+  +(entryHi.competition?'<p style="margin-top:5px"><b>Getting in.</b> '+entryHi.name.split(' (')[0]+' is the most selective of these ('+entryHi.competition.general+'/10), '+entryLo.name.split(' (')[0]+' the most open ('+entryLo.competition.general+'/10).</p>':'')
+  +'<p style="margin-top:9px"><b>What each one is the answer to</b></p>'
+  +list.map(c=>'<div class="rstep"><div class="num" style="font-size:13px">'+swatch(c)+'</div><div><div class="st">'+c.name+'</div><div class="sd">'+bestForIf(c,list)+'</div></div></div>').join('')
+  +'</div></div>';
+}
+function renderCompare(){buildCmpChips();buildSectorChips();buildCmpLegend();renderRadar();renderLine();renderTable();cmpSummaryHtml();syncCmpEmpty();syncCmpWarn();announce(cmpActive.size?cmpActive.size+' careers overlaid: '+activeList().map(c=>c.name).join(', ')+'.':'Comparison cleared. No careers selected.');}
 // Nothing selected means no chart, not an empty chart frame.
 // Every selection stays supported and rendered. Past ten the overlay stops working as a
 // comparison, so say so plainly and put the escape hatches next to the warning rather than
