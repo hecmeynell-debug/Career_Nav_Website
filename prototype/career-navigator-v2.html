@@ -771,6 +771,39 @@ footer b{color:var(--ink)}
 #authBar[hidden]{display:none}
 #authBar{border-bottom:1px solid var(--line-2);background:var(--canvas-2)}
 
+/* briefing sections inside the career report */
+.brief{border-top:1px solid var(--line-2);padding-top:var(--s6);margin-top:var(--s6)}
+.brief:first-of-type{border-top:none;padding-top:0;margin-top:0}
+.briefhead{display:flex;gap:var(--s4);align-items:flex-start;margin-bottom:var(--s5)}
+.briefnum{font-family:var(--font-mono);font-size:var(--fs-label);letter-spacing:.08em;color:var(--accent);background:var(--accent-soft);border:1px solid color-mix(in oklab,var(--accent) 26%,transparent);border-radius:var(--r-sm);padding:5px 8px;flex:none;font-variant-numeric:tabular-nums}
+.briefhead h3{font-size:var(--fs-h2);letter-spacing:-.015em;margin-bottom:3px}
+.briefhead p{font-size:var(--fs-sm);color:var(--ink-3);max-width:60ch}
+
+/* match card: sector label and fit interpretation */
+.msector{font-family:var(--font-mono);font-size:var(--fs-label);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);display:flex;align-items:center;gap:6px;margin-bottom:var(--s2)}
+.mverdict{font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;margin-top:3px;white-space:nowrap}
+.mverdict.v-strong{color:var(--positive)}
+.mverdict.v-potential{color:var(--ev-strong)}
+.mverdict.v-tradeoff{color:var(--caution)}
+
+/* questionnaire: live priorities alongside the questions */
+.quizgrid{display:grid;grid-template-columns:1fr;gap:var(--s5);align-items:start}
+@media(min-width:1000px){.quizgrid{grid-template-columns:minmax(0,1fr) 280px}}
+.quizaside{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-panel);padding:var(--s4)}
+@media(min-width:1000px){.quizaside{position:sticky;top:calc(var(--nav-h) + 64px)}}
+.quizaside h3{font-family:var(--font-mono);font-size:var(--fs-label);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:var(--s3)}
+.quizaside .bd{margin-bottom:var(--s3)}
+.quizaside .bdlabel{min-width:96px}
+.quizaside p{font-size:var(--fs-xs);color:var(--ink-3);line-height:1.55}
+@media(max-width:999px){.quizaside{order:-1}.quizaside[data-collapsed="true"] .quizasidebody{display:none}}
+
+/* compare: sticky selection bar */
+.cmpbar{position:sticky;top:calc(var(--nav-h) + 44px);z-index:40;background:color-mix(in oklab,var(--canvas) 94%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line-2);border-radius:var(--r-panel);padding:var(--s4);margin-bottom:var(--s4)}
+@supports not (backdrop-filter:blur(1px)){.cmpbar{background:var(--canvas)}}
+.cmpbar input.filter{margin-bottom:var(--s3)}
+.cmpbar .controls{margin-bottom:var(--s2)}
+.cmpbar #cmpMeta{margin-bottom:0}
+
 /* --- print --- */
 @media print{
   #authBar,#themeToggle,.skiplink,.tabs,.navbar,.subnav,.herocta,.herometa,.steps,.notice,.provrow,.lede,footer,.zoom-overlay,.recentbar,#printReport,.vsub,.hero-preview{display:none!important}
@@ -911,12 +944,14 @@ footer b{color:var(--ink)}
   <section class="panel" id="compare" role="tabpanel" aria-labelledby="tab-compare" tabindex="-1">
     <h2 class="vh">Overlay &amp; compare</h2>
     <p class="vsub">Select any careers to <b>overlay their profiles</b> on one radar, chart their salary curves together, and read a side-by-side stats table. Use the filter to find them fast.</p>
-    <label class="vh-only" for="cmpFilter">Filter the career list</label>
-    <input class="filter" id="cmpFilter" type="search" placeholder="Filter careers... (e.g. electrician, nurse, quant)">
-    <div class="controls" id="sectorChips"></div>
+    <div class="cmpbar">
+      <label class="vh-only" for="cmpFilter">Filter the career list</label>
+      <input class="filter" id="cmpFilter" type="search" placeholder="Search careers... (e.g. electrician, nurse, quant)">
+      <div class="controls" id="sectorChips"></div>
+      <div class="legend-note" id="cmpMeta" style="text-align:left"></div>
+      <div id="cmpLegendWrap"><div class="controls" id="cmpLegend"></div></div>
+    </div>
     <div id="cmpChipsWrap"><div class="controls" id="cmpChips"></div></div>
-    <div class="legend-note" id="cmpMeta" style="text-align:left;display:flex;justify-content:space-between;align-items:center;gap:8px"></div>
-    <div id="cmpLegendWrap"><div class="controls" id="cmpLegend"></div></div>
     <div id="cmpEmpty" class="qintro" style="display:none"><b>Nothing overlaid yet.</b> Pick any number of careers from the list above, narrow the list with a sector chip or the filter, or press <b>Show top 5</b> to load the top of your current match ranking. The radar and the salary curves appear once something is selected. The table below can show the whole catalogue in the meantime.</div>
     <div id="cmpCharts">
     <div id="cmpWarn" class="qintro" style="display:none"></div>
@@ -1410,7 +1445,7 @@ function buildQuiz(){
  const restored=loadQuizLocal();
  box.innerHTML='<div class="qprog"><div class="mbar"><i id="qBar"></i></div><p class="qprogmeta" id="qMeta"></p></div>'
   +(restored?'<div class="qintro" id="qRestored"><b>Picked up where you left off.</b> Your previous answers were restored from this browser. <button type="button" class="mlink" id="qReset">Start the questionnaire again</button></div>':'')
-  +'<div id="qStep"></div>'
+  +'<div class="quizgrid"><div id="qStep"></div><aside class="quizaside" id="quizAside"></aside></div>'
   +'<div class="qnav"><button type="button" class="cta2" id="qBack">Back</button><button type="button" class="qbtn" id="qNext" style="margin-top:0">Next</button><button type="button" class="mlink" id="qJump">Skip the rest and see my matches</button></div>';
  const reset=document.getElementById('qReset');
  if(reset)reset.onclick=resetQuiz;
@@ -1418,11 +1453,11 @@ function buildQuiz(){
  document.getElementById('qNext').onclick=()=>{if(quizStep<QUIZ_STEPS.length-1)gotoStep(quizStep+1);else submitQuiz();};
  document.getElementById('qJump').onclick=submitQuiz;
  if(restored)computeProfile();
- renderQuizStep();
+ renderQuizStep();renderQuizAside();
 }
 function gotoStep(n){
  quizStep=Math.max(0,Math.min(QUIZ_STEPS.length-1,n));
- saveQuizLocal();renderQuizStep();
+ saveQuizLocal();renderQuizStep();renderQuizAside();
  const h=document.querySelector('#qStep legend');if(h)h.scrollIntoView({behavior:'smooth',block:'nearest'});
  const first=document.querySelector('#qStep .lk');if(first)first.focus({preventScroll:true});
  announce('Step '+(quizStep+1)+' of '+QUIZ_STEPS.length+', '+QUIZ_STEPS[quizStep].t+'.');
@@ -1436,6 +1471,22 @@ function resetQuiz(){
  const done=document.getElementById('quizDone');if(done)done.remove();
  buildQuiz();buildImps();setMode('quiz');
  announce('Questionnaire reset. No answers saved.');
+}
+// A read-only preview of the priorities the answers imply. Computed without touching imp or
+// quizTaken, so watching it move cannot change the ranking before the user submits.
+function previewPriorities(){
+ const pri={pay:0,future:0,secure:0,entry:0,speed:0,life:0,option:0};let answered=0;
+ QUIZ.forEach((q,qi)=>{const val=quizAns[qi];if(val==null)return;answered++;const sc=val-3;for(const key in q.w){if(key in pri)pri[key]+=q.w[key]*sc;}});
+ if(!answered)return null;
+ return AX.map(a=>({a,v:Math.max(0,Math.min(10,Math.round(5+pri[a[0]]*0.9)))})).sort((x,y)=>y.v-x.v);
+}
+function renderQuizAside(){
+ const box=document.getElementById('quizAside');if(!box)return;
+ const p=previewPriorities();
+ box.innerHTML='<h3>Your priorities so far</h3><div class="quizasidebody">'+(p
+  ?p.slice(0,5).map(x=>'<div class="bd"><span class="bdlabel">'+x.a[1]+'</span><span class="bdtrack"><i style="width:'+(x.v*10)+'%"></i></span><span class="bdval">'+x.v+'/10</span></div>').join('')
+   +'<p>Read from your answers as you go. Nothing is ranked until you finish, and you can adjust all seven by hand afterwards.</p>'
+  :'<p>Answer a few statements and the priorities they imply will appear here.</p>')+'</div>';
 }
 function renderQuizStep(){
  const step=QUIZ_STEPS[quizStep],host=document.getElementById('qStep');
@@ -1479,11 +1530,11 @@ document.getElementById('quizBlock').addEventListener('click',(e)=>{
  const rate=e.target.closest('.lk[data-q]');
  if(rate){const qi=+rate.dataset.q,v=+rate.dataset.v;
   if(quizAns[qi]===v)delete quizAns[qi];else quizAns[qi]=v;
-  quizSkipped.delete(qi);saveQuizLocal();syncQuestion(qi);return;}
+  quizSkipped.delete(qi);saveQuizLocal();syncQuestion(qi);renderQuizAside();return;}
  const skip=e.target.closest('[data-skip]');
  if(skip){const qi=+skip.dataset.skip;
   if(quizSkipped.has(qi))quizSkipped.delete(qi);else{quizSkipped.add(qi);delete quizAns[qi];}
-  saveQuizLocal();syncQuestion(qi);}
+  saveQuizLocal();syncQuestion(qi);renderQuizAside();}
 });
 // Answering nothing is allowed and must not be dressed up as a personalised result, so the
 // completion panel says which of the two the ranking underneath actually is.
@@ -1528,9 +1579,18 @@ function confidenceNote(c){
  const data=ev==='public'?'competition data with a public source':ev==='estimated'?'estimated competition data':'competition data that is largely inferred';
  return 'Based on '+you+' and '+data+'.';
 }
+// A number on its own does not tell anyone what it means. Three plain readings, with the
+// trade-off case called out rather than hidden behind a decent-looking score.
+function fitVerdict(r){
+ if(r.flags.length>=2)return['Trade-off-heavy fit','v-tradeoff'];
+ if(r.fit>=72)return r.flags.length?['Strong fit, with a trade-off','v-strong']:['Strong fit','v-strong'];
+ if(r.fit>=55)return['Potential fit','v-potential'];
+ if(r.flags.length)return['Trade-off-heavy fit','v-tradeoff'];
+ return['Limited fit','']
+}
 function matchCard(r,i,max){
  const c=r.c,col=fitCol(r.fit),saved=savedIds.has(c.id);
- const tag=i===0?'<span class="tag tm">TOP MATCH</span>':'';
+ const tag=i===0?'<span class="tag tm">TOP MATCH</span>':'';const v=fitVerdict(r);
  const why=r.tops.length
   ?'It scores well on '+r.tops.join(' and ')+', which you rated above your own average.'
   :(quizTaken?'Nothing here stands out against what you said matters most; it sits mid-pack on your profile.':'Ranked on an unweighted read of the field, because there are no answers to weight it with yet.');
@@ -1539,8 +1599,10 @@ function matchCard(r,i,max){
   :'Its weakest axis is '+AX.slice().sort((a,b)=>c.ax[a[0]]-c.ax[b[0]])[0][1].toLowerCase()+' at '+Math.min(...AX.map(a=>c.ax[a[0]]))+'/10.';
  let sub='';if(quizTaken)sub+='work-style fit '+r.sf+'%';if(userMbti&&r.mf!=null)sub+=(sub?' \u00b7 ':'')+'MBTI '+r.mf+'%';
  return '<article class="match" style="--sw:'+c.col+'">'
-  +'<div class="mtop"><h4 class="mname">'+(i+1)+'. '+swatch(c)+c.name+tag+'</h4>'
-  +'<div class="mfit">'+r.fit+'<span style="font-size:11px;color:var(--ink-soft)">/100 fit</span></div></div>'
+  +'<p class="msector">'+swatch(c)+(SECTORS[c.sector]?SECTORS[c.sector][0]:'')+'</p>'
+  +'<div class="mtop"><h4 class="mname">'+(i+1)+'. '+c.name+tag+'</h4>'
+  +'<div><div class="mfit">'+r.fit+'<span style="font-size:11px;color:var(--ink-soft)">/100</span></div>'
+  +'<div class="mverdict '+v[1]+'">'+v[0]+'</div></div></div>'
   +'<div class="mbar"><i style="width:'+(r.fit/max*100).toFixed(0)+'%;background:'+col+'"></i></div>'
   +'<p class="mwhy"><b>Why it fits.</b> '+why+'</p>'
   +'<p class="mwatch"><b>Watch out.</b> '+watch+'</p>'
@@ -1775,11 +1837,18 @@ function competitionBlockHtml(c){
  const mine=a.known
   ?'<div><div class="pk">Attainability (for you)</div><div class="pv" style="color:'+fitCol(a.score*10)+'">'+a.score.toFixed(1)+'<span style="font-size:12px;color:var(--ink-soft)">/10</span></div><div class="pvsub">'+likelihood(a.score)+' \u00b7 read from your CV</div></div>'
   :'<div><div class="pk">Attainability (for you)</div><div class="pv" style="color:var(--ink-soft)">\u2013</div><div class="pvsub">Nothing about you to read yet. Paste your CV under <b>CV &amp; pivot</b> and this becomes a real number.</div></div>';
+ return '<div class="rblock" style="margin-top:16px"><h4>Competition &amp; attainability</h4><div class="route"><div class="progstat">'+gen+mine+'</div><div class="mtags" style="margin-top:10px">'+evidenceTag(k.evidence)+'</div><div class="rblock" style="margin-top:12px"><h4>Candidate benchmark</h4><p>'+k.benchmark+'</p></div></div></div>';
+}
+// The personalised half of the competition read. Split out so it can be its own briefing
+// section, and so it disappears cleanly when there is no profile to read.
+function routeForYouHtml(c){
+ if(!c.competition)return'';
+ const k=c.competition,a=attainability(c);
  const gap=a.known?gapText(c,a):'Paste your CV under <b>CV &amp; pivot</b> and this becomes specific: which parts of the benchmark you already meet, and exactly which you do not.';
  const longShot=a.known?a.score<5:a.open<5;
  const stones=longShot?steppingStones(c):[];
  const stoneHtml=stones.length?'<div class="rblock" style="margin-top:12px"><h4>Stepping stones</h4><p style="font-size:12.5px;color:var(--ink-soft);margin-bottom:4px">Roles that sit between where most people start and this one, and whose experience carries across.</p>'+stones.map(r=>'<div class="rstep"><div class="num">\u2192</div><div><div class="st">'+swatch(r.o)+'<a href="#" data-id="'+r.o.id+'" style="color:inherit">'+r.o.name+'</a></div><div class="sd">'+(r.shared.length?'Carries '+r.shared.map(t=>(TAGLABEL[t]||t).toLowerCase()).join(', ')+'. ':'')+'Competition '+r.o.competition.general+'/10 against '+k.general+'/10 here.</div></div></div>').join('')+'</div>':'';
- return '<div class="rblock" style="margin-top:16px"><h4>Competition &amp; attainability</h4><div class="route"><div class="progstat">'+gen+mine+'</div><div class="mtags" style="margin-top:10px">'+evidenceTag(k.evidence)+'</div><div class="rblock" style="margin-top:12px"><h4>Candidate benchmark</h4><p>'+k.benchmark+'</p></div><div class="rblock"><h4>Gap analysis</h4><p>'+gap+'</p></div>'+stoneHtml+'</div></div>';
+ return '<div class="route"><div class="rblock"><h4>Gap analysis</h4><p>'+gap+'</p></div>'+stoneHtml+'</div>';
 }
 // The route text in the dataset already describes how people get in; this reads the shape out
 // of it rather than inventing a second route dataset. A route not detected here may still
@@ -1918,6 +1987,14 @@ function keyMetricsHtml(c){
  if(a)h+='<span class="km"><span class="kmlab">Attainability for you</span><b>'+(a.known?a.score.toFixed(1)+'/10':'\u2013')+'</b> <span class="kmsub">'+(a.known?likelihood(a.score).toLowerCase():'add your CV to see this')+'</span></span>';
  return h+'</div>';
 }
+// The report reads as a briefing with named parts rather than a stack of identical cards.
+// Each part gets a number, a title, and a one-line statement of what it answers.
+function briefOpen(id,n,title,sub){
+ return '<section class="brief" id="brief-'+id+'" aria-labelledby="bh-'+id+'">'
+  +'<header class="briefhead"><span class="briefnum">'+n+'</span>'
+  +'<div><h3 id="bh-'+id+'">'+title+'</h3><p>'+sub+'</p></div></header>';
+}
+const briefClose='</section>';
 function renderReport(id){const c=C.find(x=>x.id===id);
  // keep the picker on the report actually being shown: at load the select sat on the first
  // alphabetical option while the ML/AI report was rendered underneath it
@@ -1927,7 +2004,7 @@ const t=takeHome(c.sal[4]);const strong=AX.filter(a=>c.ax[a[0]]>=7.5),weak=AX.fi
  const compHtml=competitionBlockHtml(c),demHtml=demandBlockHtml(c),kmHtml=keyMetricsHtml(c),outHtml=outcomeBlockHtml(c),workHtml=workLikeHtml(c),skillsHtml=skillsBlockHtml(c),srcHtml=sourcesBlockHtml(c);const vb=viability(c);const viabHtml='<div class="rblock"><h4>Viability for you</h4>'+(vb?'<div class="viab">'+vb+'</div>':'<p style="color:var(--ink-soft);font-size:12.5px">Take the questionnaire or set your priorities, and this becomes a read tailored to your profile.</p>')+'</div>';
  const rt=c.route;let steps='';rt.steps.forEach((s,i)=>{const df=stepDiff(c,i),cst=stepCost(s);steps+='<div class="rstep"><div class="num">'+(i+1)+'</div><div><div class="st">'+s[0]+'</div><div class="sd">'+s[1]+'</div><div class="diff">difficulty '+dots(df)+' &nbsp;·&nbsp; <b style="color:'+cst[1]+'">'+cst[0]+'</b></div></div></div>';});
  const linksHtml='<div class="rblock" style="margin-top:16px"><h4>Find out more (UK)</h4><div class="links">'+ukLinks(c).map(l=>'<a href="'+l[1]+'" target="_blank" rel="noopener">'+l[0]+' \u2197</a>').join('')+'</div></div>';
- noteRecent(id);announce('Report loaded for '+c.name+'.');const box=document.getElementById('reportBody');box.innerHTML='<div class="report"><div class="rhead"><h3 class="rtitle">'+swatch(c,13)+c.name+'</h3><div class="rmoney">'+confBadge('estimate')+'<br>Gross pay, UK-wide<br><b>\u00a3'+c.sal[0]+'k to \u00a3'+c.sal[4]+'k</b><br>entry to peak, typical range<br>\u00a3'+t.net.toFixed(0)+'k take-home at peak '+confBadge('sourced','HMRC rules')+'</div></div><div class="rsummary">'+c.blurb+'</div>'+kmHtml+'<div class="rgrid"><div class="repcharts"><div class="rsvgwrap" data-chart="repRadar"><span class="zoomhint" aria-hidden="true">click to zoom</span><ul class="vh-only">'+AX.map(a=>'<li>'+a[1]+': '+c.ax[a[0]]+' out of 10</li>').join('')+'</ul><div class="chartbody"><svg id="repRadar" class="chart" viewBox="0 0 220 220"></svg></div><p class="vh-only" data-chartsummary></p></div><div class="rsvgwrap" data-chart="repSpark" style="margin-top:var(--s3)"><div class="chartbody"><svg id="repSpark" class="chart" viewBox="0 0 220 70"></svg></div><p class="vh-only" data-chartsummary></p></div></div><div><div class="rblock"><h4>Money shape</h4><p><b>Base pay, gross, UK-wide.</b> Around \u00a3'+c.sal[0]+'k entering, around \u00a3'+c.sal[4]+'k at peak. The curve is '+shapeOf(c)+'.</p><p style="margin-top:5px">At peak that is about \u00a3'+t.net.toFixed(0)+'k take-home, a '+t.eff.toFixed(0)+'% effective rate, using income tax and employee National Insurance for England 2026/27. Bonuses, overtime, pension and any regional weighting sit outside these figures.</p><div class="mtags" style="margin-top:7px">'+confBadge('estimate','Salary: indicative estimate')+confBadge('sourced','Tax: HMRC 2026/27')+'</div></div><div class="rblock"><h4>Strengths</h4><p>'+strongTxt+'</p></div><div class="rblock"><h4>Weak spots</h4><p>'+weakTxt+'</p><p style="font-size:12px;color:var(--ink-soft);margin-top:5px">'+confBadge('judgement','Seven axes: structured judgement')+' '+confBadge('forecast','Resilience: forecast')+'</p></div><div class="rblock"><h4>Best if</h4><p class="good">'+bestIf+'.</p></div><div class="rblock"><h4>Verdict</h4><p class="bad">'+twiceIf+'</p></div>'+viabHtml+'</div></div>'+compHtml+demHtml+outHtml+psychHtml+workHtml+skillsHtml+PROGBLOCK+'<div class="rblock" style="margin-top:16px"><h4>The route in</h4><p style="margin-bottom:8px">'+rt.summary+'</p>'+routeKindsHtml(c)+'<div class="route"><div class="rtop2"><span class="meta"><b>TIME</b> '+rt.time+'</span><span class="meta"><b>OVERALL COST</b> '+rt.cost+'</span></div>'+steps+'<div class="ralt"><b>Other doors:</b> '+rt.alt+'</div></div></div>'+sectorBlockHtml(c)+proximateBlockHtml(c)+srcHtml+linksHtml+'</div>';chartRender('repRadar');chartRender('repSpark');const sl=document.getElementById('progSlider');if(sl){drawProg(c,+sl.value);updateProgDetail(c,+sl.value);sl.oninput=()=>{drawProg(c,+sl.value);updateProgDetail(c,+sl.value);};}box.querySelectorAll('[data-id]').forEach(a=>{a.onclick=(e)=>{e.preventDefault();goReport(a.dataset.id);};});}
+ noteRecent(id);announce('Report loaded for '+c.name+'.');const box=document.getElementById('reportBody');box.innerHTML='<div class="report">'+briefOpen('glance','01','At a glance','The short version: what this career is, what it pays, and where it is strong or weak.')+'<div class="rhead"><h3 class="rtitle">'+swatch(c,13)+c.name+'</h3><div class="rmoney">'+confBadge('estimate')+'<br>Gross pay, UK-wide<br><b>\u00a3'+c.sal[0]+'k to \u00a3'+c.sal[4]+'k</b><br>entry to peak, typical range<br>\u00a3'+t.net.toFixed(0)+'k take-home at peak '+confBadge('sourced','HMRC rules')+'</div></div><div class="rsummary">'+c.blurb+'</div>'+kmHtml+'<div class="rgrid"><div class="repcharts"><div class="rsvgwrap" data-chart="repRadar"><span class="zoomhint" aria-hidden="true">click to zoom</span><ul class="vh-only">'+AX.map(a=>'<li>'+a[1]+': '+c.ax[a[0]]+' out of 10</li>').join('')+'</ul><div class="chartbody"><svg id="repRadar" class="chart" viewBox="0 0 220 220"></svg></div><p class="vh-only" data-chartsummary></p></div><div class="rsvgwrap" data-chart="repSpark" style="margin-top:var(--s3)"><div class="chartbody"><svg id="repSpark" class="chart" viewBox="0 0 220 70"></svg></div><p class="vh-only" data-chartsummary></p></div></div><div><div class="rblock"><h4>Strengths</h4><p>'+strongTxt+'</p></div><div class="rblock"><h4>Weak spots</h4><p>'+weakTxt+'</p><p style="font-size:12px;color:var(--ink-soft);margin-top:5px">'+confBadge('judgement','Seven axes: structured judgement')+' '+confBadge('forecast','Resilience: forecast')+'</p></div><div class="rblock"><h4>Best if</h4><p class="good">'+bestIf+'.</p></div><div class="rblock"><h4>Verdict</h4><p class="bad">'+twiceIf+'</p></div>'+viabHtml+'</div></div>'+briefClose+briefOpen('outcome','02','Outcome profile','What the range of results actually looks like, and who the work suits.')+outHtml+psychHtml+workHtml+briefClose+briefOpen('market','03','Market reality','How hard employers are hiring, how selective the role is, and what that combination means.')+demHtml+compHtml+briefClose+briefOpen('pay','04','Pay and progression','What the money looks like at each stage, and how confident the figures are.')+'<div class="rblock"><h4>Money shape</h4><p><b>Base pay, gross, UK-wide.</b> Around \u00a3'+c.sal[0]+'k entering, around \u00a3'+c.sal[4]+'k at peak. The curve is '+shapeOf(c)+'.</p><p style="margin-top:5px">At peak that is about \u00a3'+t.net.toFixed(0)+'k take-home, a '+t.eff.toFixed(0)+'% effective rate, using income tax and employee National Insurance for England 2026/27. Bonuses, overtime, pension and any regional weighting sit outside these figures.</p><div class="mtags" style="margin-top:7px">'+confBadge('estimate','Salary: indicative estimate')+confBadge('sourced','Tax: HMRC 2026/27')+'</div></div>'+PROGBLOCK+briefClose+briefOpen('skills','05','Skills and entry route','What the work needs, the documented ways in, and how the sector hires.')+skillsHtml+'<div class="rblock" style="margin-top:16px"><h4>The route in</h4><p style="margin-bottom:8px">'+rt.summary+'</p>'+routeKindsHtml(c)+'<div class="route"><div class="rtop2"><span class="meta"><b>TIME</b> '+rt.time+'</span><span class="meta"><b>OVERALL COST</b> '+rt.cost+'</span></div>'+steps+'<div class="ralt"><b>Other doors:</b> '+rt.alt+'</div></div></div>'+sectorBlockHtml(c)+briefClose+briefOpen('you','06','Your route in','The distance between your profile and this role. Personalised, and only as good as what you have told us.')+routeForYouHtml(c)+proximateBlockHtml(c)+briefClose+briefOpen('sources','07','Sources and limitations','What each figure on this page is, and where you would go to check it.')+srcHtml+linksHtml+briefClose+'</div>';chartRender('repRadar');chartRender('repSpark');const sl=document.getElementById('progSlider');if(sl){drawProg(c,+sl.value);updateProgDetail(c,+sl.value);sl.oninput=()=>{drawProg(c,+sl.value);updateProgDetail(c,+sl.value);};}box.querySelectorAll('[data-id]').forEach(a=>{a.onclick=(e)=>{e.preventDefault();goReport(a.dataset.id);};});}
 function drawRepRadar(c){const svg=document.getElementById('repRadar');svg.innerHTML='';const cx=110,cy=110,R=76,n=AX.length;const ang=i=>(-90+i*360/n)*Math.PI/180;const pt=(i,v)=>[cx+Math.cos(ang(i))*R*v/10,cy+Math.sin(ang(i))*R*v/10];for(let ring=2;ring<=10;ring+=2){let d='';for(let i=0;i<n;i++){const p=pt(i,ring);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';}d+='Z';svg.appendChild(el('path',{d,fill:'none',stroke:'var(--line)','stroke-width':1}));}AX.forEach((a,i)=>{const p=pt(i,11.5);const tx=el('text',{x:p[0],y:p[1]+3,'text-anchor':'middle',fill:'var(--ink-soft)','font-size':'7.5'});tx.textContent=a[1].slice(0,6);svg.appendChild(tx);});let d='';AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';});d+='Z';svg.appendChild(el('path',{d,fill:c.col,'fill-opacity':.2,stroke:c.col,'stroke-width':2}));AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);svg.appendChild(el('circle',{cx:p[0],cy:p[1],r:2.4,fill:c.col}));const hit=el('circle',{cx:p[0],cy:p[1],r:9,fill:'transparent',class:'chart-node'});attachTip(hit,a[1]+' '+c.ax[a[0]].toFixed(1)+' / 10');svg.appendChild(hit);});svg.setAttribute('role','img');svg.setAttribute('aria-label',c.name+' profile across seven axes; click to enlarge and read each score.');svg.onclick=()=>openZoom(c);}
 function drawRepSpark(c){const svg=document.getElementById('repSpark');svg.innerHTML='';const W=220,H=70,L=6,R=6,T=8,B=14,pw=W-L-R,ph=H-T-B,max=360;const x=i=>L+pw*(i/4),y=v=>T+ph*(1-v/max);const nm=['Entry','Early','Mid','Senior','Peak'];let d='';c.sal.forEach((v,i)=>{d+=(i?'L':'M')+x(i)+' '+y(v)+' ';});svg.appendChild(el('path',{d,fill:'none',stroke:c.col,'stroke-width':2}));c.sal.forEach((v,i)=>{svg.appendChild(el('circle',{cx:x(i),cy:y(v),r:2.5,fill:c.col}));const hit=el('circle',{cx:x(i),cy:y(v),r:8,fill:'transparent',class:'chart-node'});attachTip(hit,nm[i]+' \u00b7 \u00a3'+v+'k gross');svg.appendChild(hit);});['Entry','','Mid','','Peak'].forEach((s,i)=>{if(!s)return;const tx=el('text',{x:x(i),y:H-3,'text-anchor':'middle',fill:'var(--ink-soft)','font-size':'8'});tx.textContent=s;svg.appendChild(tx);});svg.setAttribute('role','img');svg.setAttribute('aria-label',c.name+' salary from \u00a3'+c.sal[0]+'k at entry to \u00a3'+c.sal[4]+'k at peak.');}
 
