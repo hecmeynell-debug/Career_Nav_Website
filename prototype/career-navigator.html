@@ -85,6 +85,20 @@
   .conf.you{color:var(--you);border-color:color-mix(in oklab,var(--you) 34%,transparent)}
   .confkey{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
   .confkey span.k{font-size:12px;color:var(--ink-70);display:inline-flex;align-items:center;gap:6px}
+  .legname,.legrm{appearance:none;background:none;border:none;padding:0;font:inherit;color:inherit;cursor:pointer}
+  .legrm{opacity:.55;line-height:1}
+  .recentbar{margin-bottom:14px}
+  .recentbar h3{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+  /* print: the career report on its own, with link targets spelled out */
+  @media print{
+    #authBar,#themeToggle,.skiplink,.tabs,.herocta,.herometa,.steps,.notice,.provrow,.lede,footer,.zoom-overlay,.recentbar,#printReport,.vsub{display:none!important}
+    .panel{display:none!important}.panel#report{display:block!important}
+    body{max-width:none;padding:0;background:#fff;color:#000;background-image:none}
+    .report,.route,.chartwrap{border:none;box-shadow:none;background:#fff}
+    details{display:block}details>summary{display:none}
+    a[href^="http"]::after{content:" (" attr(href) ")";font-size:9px;word-break:break-all}
+    .rblock,.rstep{break-inside:avoid}
+  }
   .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
   h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;line-height:.9;letter-spacing:-.01em;font-size:clamp(40px,11vw,66px);letter-spacing:-.03em;text-transform:uppercase;margin-bottom:12px}
   h1 span{display:block;color:var(--ink-soft);font-weight:600}
@@ -129,7 +143,6 @@
   .lk{width:34px;height:34px;border:1px solid var(--btn-line);border-radius:7px;background:var(--btn);color:var(--ink-soft);font-family:"IBM Plex Mono",monospace;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--surf-shadow)}
   .lk.on{background:var(--you);color:#fff;border-color:var(--you)}
   .lkends{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--ink-soft);white-space:nowrap}
-  .lkclear{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--ink-soft);cursor:pointer;text-decoration:underline;margin-left:4px}
   .mbtiRow{display:flex;flex-wrap:wrap;align-items:center;gap:9px;background:var(--paper-2);border:1px solid var(--line);border-radius:9px;padding:11px 13px;margin-bottom:16px}
   .mbtiRow label{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft)}
   .mbtiRow select{width:auto;min-width:130px;margin-bottom:0;padding:7px 10px;font-size:13px}
@@ -208,7 +221,7 @@
   .rsummary{font-size:14px;color:var(--ink-soft);margin-bottom:14px}
   .rgrid{display:grid;grid-template-columns:1fr;gap:14px}@media(min-width:600px){.rgrid{grid-template-columns:220px 1fr}}
   .rsvgwrap{background:var(--paper-2);border:1px solid var(--line);border-radius:9px;padding:8px}
-  .rblock{margin-bottom:13px}.rblock h4{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
+  .rblock{margin-bottom:13px}.rblock h3,.rblock h4{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
   .rblock p{font-size:13.5px}.rblock .good{color:var(--a);font-weight:600}.rblock .bad{color:#9A5B34;font-weight:600}
   .pill{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11px;padding:3px 8px;border-radius:5px;background:var(--track);margin:2px 4px 2px 0}
   .route{background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:13px 14px;margin-top:6px}
@@ -376,8 +389,10 @@
   <section class="panel" id="report" role="tabpanel" aria-labelledby="tab-report" tabindex="-1">
     <h2 class="vh">Career report card</h2>
     <p class="vsub">Pick any career for a tailored read and a step-by-step route in.</p>
+    <div class="recentbar" id="recentBar"></div>
     <label class="vh-only" for="reportSelect">Choose a career to read about</label>
     <select id="reportSelect"></select>
+    <div class="controls" style="margin-bottom:10px"><button type="button" class="mact" id="printReport">Print or save this report as PDF</button></div>
     <div id="reportBody"></div>
   </section>
 
@@ -675,6 +690,19 @@ const CONF={
 };
 function confBadge(kind,label){const d=CONF[kind];return '<span class="conf '+kind+'" title="'+d[1]+'">'+(label||d[0])+'</span>';}
 function fitCol(v){return v>=80?'var(--s)':v>=70?'var(--a)':v>=60?'var(--b)':v>=50?'var(--c)':'var(--d)';}
+// Recently viewed, capped and de-duplicated, so returning to something you were weighing up
+// does not mean hunting through a 120-item select.
+const recentIds=lsGet('cn-recent-v1',[]).filter(id=>C.some(c=>c.id===id));
+function noteRecent(id){
+ const i=recentIds.indexOf(id);if(i>=0)recentIds.splice(i,1);
+ recentIds.unshift(id);if(recentIds.length>8)recentIds.length=8;
+ lsSet('cn-recent-v1',recentIds);renderRecent();
+}
+function renderRecent(){
+ const box=document.getElementById('recentBar');if(!box)return;
+ if(recentIds.length<2){box.innerHTML='';return;}
+ box.innerHTML='<h3>Recently viewed</h3><div class="chipset">'+recentIds.map(id=>{const c=C.find(x=>x.id===id);return '<button type="button" class="mact" data-recent="'+id+'">'+swatch(c)+c.name+'</button>';}).join('')+'</div>';
+}
 function goReport(id){document.getElementById('reportSelect').value=id;showTab('report',false);renderReport(id);setHash('report/'+id);window.scrollTo({top:0,behavior:'smooth'});}
 // Real <button role="tab"> elements, so Enter and Space come free. This adds the roving
 // arrow-key movement the tablist pattern expects, plus Home and End.
@@ -682,6 +710,9 @@ function goReport(id){document.getElementById('reportSelect').value=id;showTab('
 // focus on it, so keyboard users are not left at the top of the page after pressing it.
 (function buildConfKey(){const k=document.getElementById('confKey');if(!k)return;k.innerHTML=Object.keys(CONF).map(x=>'<span class="k">'+confBadge(x)+CONF[x][1]+'</span>').join('');})();
 document.getElementById('ctaQuiz').onclick=()=>{showTab('match');setMode('quiz');const q=document.getElementById('quizBlock');q.scrollIntoView({behavior:'smooth',block:'start'});const first=q.querySelector('button,input,select');if(first)first.focus({preventScroll:true});};
+document.getElementById('recentBar').addEventListener('click',(e)=>{const b=e.target.closest('[data-recent]');if(b)goReport(b.dataset.recent);});
+document.getElementById('printReport').onclick=()=>window.print();
+renderRecent();
 document.getElementById('ctaBrowse').onclick=()=>{showTab('report');document.getElementById('reportSelect').focus();};
 document.getElementById('ctaCompare').onclick=()=>{showTab('compare');document.getElementById('cmpFilter').focus();};
 document.querySelectorAll('.tab').forEach(t=>{
@@ -1149,7 +1180,7 @@ const t=takeHome(c.sal[4]);const strong=AX.filter(a=>c.ax[a[0]]>=7.5),weak=AX.fi
  const compHtml=competitionBlockHtml(c),outHtml=outcomeBlockHtml(c),workHtml=workLikeHtml(c),skillsHtml=skillsBlockHtml(c),srcHtml=sourcesBlockHtml(c);const vb=viability(c);const viabHtml='<div class="rblock"><h4>Viability for you</h4>'+(vb?'<div class="viab">'+vb+'</div>':'<p style="color:var(--ink-soft);font-size:12.5px">Take the questionnaire or set your priorities, and this becomes a read tailored to your profile.</p>')+'</div>';
  const rt=c.route;let steps='';rt.steps.forEach((s,i)=>{const df=stepDiff(c,i),cst=stepCost(s);steps+='<div class="rstep"><div class="num">'+(i+1)+'</div><div><div class="st">'+s[0]+'</div><div class="sd">'+s[1]+'</div><div class="diff">difficulty '+dots(df)+' &nbsp;·&nbsp; <b style="color:'+cst[1]+'">'+cst[0]+'</b></div></div></div>';});
  const linksHtml='<div class="rblock" style="margin-top:16px"><h4>Find out more (UK)</h4><div class="links">'+ukLinks(c).map(l=>'<a href="'+l[1]+'" target="_blank" rel="noopener">'+l[0]+' \u2197</a>').join('')+'</div></div>';
- announce('Report loaded for '+c.name+'.');const box=document.getElementById('reportBody');box.innerHTML='<div class="report"><div class="rhead"><h3 class="rtitle">'+swatch(c,13)+c.name+'</h3><div class="rmoney">'+confBadge('estimate')+'<br>Gross pay, UK-wide<br><b>\u00a3'+c.sal[0]+'k to \u00a3'+c.sal[4]+'k</b><br>entry to peak, typical range<br>\u00a3'+t.net.toFixed(0)+'k take-home at peak '+confBadge('sourced','HMRC rules')+'</div></div><div class="rsummary">'+c.blurb+'</div><div class="rgrid"><div class="rsvgwrap"><span class="zoomhint" aria-hidden="true">click to zoom</span><ul class="vh-only">'+AX.map(a=>'<li>'+a[1]+': '+c.ax[a[0]]+' out of 10</li>').join('')+'<svg id="repRadar" viewBox="0 0 220 220"></svg><svg id="repSpark" viewBox="0 0 220 70"></svg></div><div><div class="rblock"><h4>Money shape</h4><p><b>Base pay, gross, UK-wide.</b> Around \u00a3'+c.sal[0]+'k entering, around \u00a3'+c.sal[4]+'k at peak. The curve is '+shapeOf(c)+'.</p><p style="margin-top:5px">At peak that is about \u00a3'+t.net.toFixed(0)+'k take-home, a '+t.eff.toFixed(0)+'% effective rate, using income tax and employee National Insurance for England 2026/27. Bonuses, overtime, pension and any regional weighting sit outside these figures.</p><div class="mtags" style="margin-top:7px">'+confBadge('estimate','Salary: indicative estimate')+confBadge('sourced','Tax: HMRC 2026/27')+'</div></div><div class="rblock"><h4>Strengths</h4><p>'+strongTxt+'</p></div><div class="rblock"><h4>Weak spots</h4><p>'+weakTxt+'</p><p style="font-size:12px;color:var(--ink-soft);margin-top:5px">'+confBadge('judgement','Seven axes: structured judgement')+' '+confBadge('forecast','Resilience: forecast')+'</p></div><div class="rblock"><h4>Best if</h4><p class="good">'+bestIf+'.</p></div><div class="rblock"><h4>Verdict</h4><p class="bad">'+twiceIf+'</p></div>'+viabHtml+'</div></div>'+compHtml+outHtml+psychHtml+workHtml+skillsHtml+PROGBLOCK+'<div class="rblock" style="margin-top:16px"><h4>The route in</h4><p style="margin-bottom:8px">'+rt.summary+'</p>'+routeKindsHtml(c)+'<div class="route"><div class="rtop2"><span class="meta"><b>TIME</b> '+rt.time+'</span><span class="meta"><b>OVERALL COST</b> '+rt.cost+'</span></div>'+steps+'<div class="ralt"><b>Other doors:</b> '+rt.alt+'</div></div></div>'+sectorBlockHtml(c)+proximateBlockHtml(c)+srcHtml+linksHtml+'</div>';drawRepRadar(c);drawRepSpark(c);const sl=document.getElementById('progSlider');if(sl){drawProg(c,+sl.value);updateProgDetail(c,+sl.value);sl.oninput=()=>{drawProg(c,+sl.value);updateProgDetail(c,+sl.value);};}box.querySelectorAll('[data-id]').forEach(a=>{a.onclick=(e)=>{e.preventDefault();goReport(a.dataset.id);};});}
+ noteRecent(id);announce('Report loaded for '+c.name+'.');const box=document.getElementById('reportBody');box.innerHTML='<div class="report"><div class="rhead"><h3 class="rtitle">'+swatch(c,13)+c.name+'</h3><div class="rmoney">'+confBadge('estimate')+'<br>Gross pay, UK-wide<br><b>\u00a3'+c.sal[0]+'k to \u00a3'+c.sal[4]+'k</b><br>entry to peak, typical range<br>\u00a3'+t.net.toFixed(0)+'k take-home at peak '+confBadge('sourced','HMRC rules')+'</div></div><div class="rsummary">'+c.blurb+'</div><div class="rgrid"><div class="rsvgwrap"><span class="zoomhint" aria-hidden="true">click to zoom</span><ul class="vh-only">'+AX.map(a=>'<li>'+a[1]+': '+c.ax[a[0]]+' out of 10</li>').join('')+'<svg id="repRadar" viewBox="0 0 220 220"></svg><svg id="repSpark" viewBox="0 0 220 70"></svg></div><div><div class="rblock"><h4>Money shape</h4><p><b>Base pay, gross, UK-wide.</b> Around \u00a3'+c.sal[0]+'k entering, around \u00a3'+c.sal[4]+'k at peak. The curve is '+shapeOf(c)+'.</p><p style="margin-top:5px">At peak that is about \u00a3'+t.net.toFixed(0)+'k take-home, a '+t.eff.toFixed(0)+'% effective rate, using income tax and employee National Insurance for England 2026/27. Bonuses, overtime, pension and any regional weighting sit outside these figures.</p><div class="mtags" style="margin-top:7px">'+confBadge('estimate','Salary: indicative estimate')+confBadge('sourced','Tax: HMRC 2026/27')+'</div></div><div class="rblock"><h4>Strengths</h4><p>'+strongTxt+'</p></div><div class="rblock"><h4>Weak spots</h4><p>'+weakTxt+'</p><p style="font-size:12px;color:var(--ink-soft);margin-top:5px">'+confBadge('judgement','Seven axes: structured judgement')+' '+confBadge('forecast','Resilience: forecast')+'</p></div><div class="rblock"><h4>Best if</h4><p class="good">'+bestIf+'.</p></div><div class="rblock"><h4>Verdict</h4><p class="bad">'+twiceIf+'</p></div>'+viabHtml+'</div></div>'+compHtml+outHtml+psychHtml+workHtml+skillsHtml+PROGBLOCK+'<div class="rblock" style="margin-top:16px"><h4>The route in</h4><p style="margin-bottom:8px">'+rt.summary+'</p>'+routeKindsHtml(c)+'<div class="route"><div class="rtop2"><span class="meta"><b>TIME</b> '+rt.time+'</span><span class="meta"><b>OVERALL COST</b> '+rt.cost+'</span></div>'+steps+'<div class="ralt"><b>Other doors:</b> '+rt.alt+'</div></div></div>'+sectorBlockHtml(c)+proximateBlockHtml(c)+srcHtml+linksHtml+'</div>';drawRepRadar(c);drawRepSpark(c);const sl=document.getElementById('progSlider');if(sl){drawProg(c,+sl.value);updateProgDetail(c,+sl.value);sl.oninput=()=>{drawProg(c,+sl.value);updateProgDetail(c,+sl.value);};}box.querySelectorAll('[data-id]').forEach(a=>{a.onclick=(e)=>{e.preventDefault();goReport(a.dataset.id);};});}
 function drawRepRadar(c){const svg=document.getElementById('repRadar');svg.innerHTML='';const cx=110,cy=110,R=76,n=AX.length;const ang=i=>(-90+i*360/n)*Math.PI/180;const pt=(i,v)=>[cx+Math.cos(ang(i))*R*v/10,cy+Math.sin(ang(i))*R*v/10];for(let ring=2;ring<=10;ring+=2){let d='';for(let i=0;i<n;i++){const p=pt(i,ring);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';}d+='Z';svg.appendChild(el('path',{d,fill:'none',stroke:'var(--line)','stroke-width':1}));}AX.forEach((a,i)=>{const p=pt(i,11.5);const tx=el('text',{x:p[0],y:p[1]+3,'text-anchor':'middle',fill:'var(--ink-soft)','font-size':'7.5'});tx.textContent=a[1].slice(0,6);svg.appendChild(tx);});let d='';AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';});d+='Z';svg.appendChild(el('path',{d,fill:c.col,'fill-opacity':.2,stroke:c.col,'stroke-width':2}));AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);svg.appendChild(el('circle',{cx:p[0],cy:p[1],r:2.4,fill:c.col}));const hit=el('circle',{cx:p[0],cy:p[1],r:9,fill:'transparent',class:'chart-node'});attachTip(hit,a[1]+' '+c.ax[a[0]].toFixed(1)+' / 10');svg.appendChild(hit);});svg.setAttribute('role','img');svg.setAttribute('aria-label',c.name+' profile across seven axes; click to enlarge and read each score.');svg.onclick=()=>openZoom(c);}
 function drawRepSpark(c){const svg=document.getElementById('repSpark');svg.innerHTML='';const W=220,H=70,L=6,R=6,T=8,B=14,pw=W-L-R,ph=H-T-B,max=360;const x=i=>L+pw*(i/4),y=v=>T+ph*(1-v/max);const nm=['Entry','Early','Mid','Senior','Peak'];let d='';c.sal.forEach((v,i)=>{d+=(i?'L':'M')+x(i)+' '+y(v)+' ';});svg.appendChild(el('path',{d,fill:'none',stroke:c.col,'stroke-width':2}));c.sal.forEach((v,i)=>{svg.appendChild(el('circle',{cx:x(i),cy:y(v),r:2.5,fill:c.col}));const hit=el('circle',{cx:x(i),cy:y(v),r:8,fill:'transparent',class:'chart-node'});attachTip(hit,nm[i]+' \u00b7 \u00a3'+v+'k gross');svg.appendChild(hit);});['Entry','','Mid','','Peak'].forEach((s,i)=>{if(!s)return;const tx=el('text',{x:x(i),y:H-3,'text-anchor':'middle',fill:'var(--ink-soft)','font-size':'8'});tx.textContent=s;svg.appendChild(tx);});svg.setAttribute('role','img');svg.setAttribute('aria-label',c.name+' salary from \u00a3'+c.sal[0]+'k at entry to \u00a3'+c.sal[4]+'k at peak.');}
 
@@ -1220,6 +1251,7 @@ function buildCmpChips(){
   ch.onclick=()=>{cmpActive.has(c.id)?cmpActive.delete(c.id):cmpActive.add(c.id);renderCompare();};
   box.appendChild(ch);
  });
+ if(!list.length)box.innerHTML='<p class="qintro" style="margin:0">No careers match <b>'+escHtml(cmpFilter)+'</b>'+(cmpSector!=='all'?' inside this sector':'')+'. Try a shorter word, or choose <b>All careers</b> above.</p>';
  const meta=document.getElementById('cmpMeta');
  if(meta){meta.innerHTML='<span>Showing '+list.length+' of '+C.length+' \u00b7 '+cmpActive.size+' overlaid</span><span>'+(cmpActive.size?'<button id="cmpFold" type="button">'+(cmpLegendOpen?'Hide':'Show')+' legend</button> &nbsp; ':'')+'<button id="cmpTop5" type="button">Show top 5</button>'+(cmpActive.size?' &nbsp; <button id="cmpClear" type="button">Clear all</button>':'')+'</span>';
   const fold=document.getElementById('cmpFold');if(fold)fold.onclick=()=>{cmpLegendOpen=!cmpLegendOpen;buildCmpChips();buildCmpLegend();};
@@ -1235,15 +1267,22 @@ function buildCmpLegend(){
  const list=activeList();
  list.forEach((c,i)=>{
   const ch=document.createElement('div');ch.className='chip on';ch.style.setProperty('--sw',c.col);ch.setAttribute('role','group');
-  ch.innerHTML=seriesKey(i,c.col)+'<span data-go="1" style="cursor:pointer">'+c.name.split(' (')[0]+'</span><span style="opacity:.55">×</span>';
-  ch.title='Remove '+c.name+' from the overlay';
-  ch.querySelector('[data-go]').onclick=(e)=>{e.stopPropagation();goReport(c.id);};
-  ch.onclick=()=>{cmpActive.delete(c.id);renderCompare();};
+  // two real buttons rather than a clickable span inside a clickable div
+  ch.innerHTML=seriesKey(i,c.col)
+   +'<button type="button" class="legname" data-go="'+c.id+'">'+c.name.split(' (')[0]+'</button>'
+   +'<button type="button" class="legrm" data-rm="'+c.id+'" aria-label="Remove '+c.name+' from the comparison">×</button>';
   box.appendChild(ch);
  });
  const wrap=document.getElementById('cmpLegendWrap');if(wrap)wrap.style.display=(list.length&&cmpLegendOpen)?'':'none';
 }
-document.getElementById('cmpFilter').oninput=function(){cmpFilter=this.value.toLowerCase();buildCmpChips();};
+// One listener for the legend rather than two handlers per entry.
+document.getElementById('cmpLegend').addEventListener('click',(e)=>{
+ const go=e.target.closest('[data-go]');if(go){goReport(go.dataset.go);return;}
+ const rm=e.target.closest('[data-rm]');if(rm){cmpActive.delete(rm.dataset.rm);renderCompare();announce('Removed from the comparison.');}
+});
+// The filter runs over 120 records and rebuilds the picker on every keystroke; debounce it.
+let _filterT;
+document.getElementById('cmpFilter').oninput=function(){const v=this.value.toLowerCase();clearTimeout(_filterT);_filterT=setTimeout(()=>{cmpFilter=v;buildCmpChips();},140);};
 function activeList(){return C.filter(c=>cmpActive.has(c.id));}
 // A comparison that only draws shapes makes the user do the reading. This does the reading:
 // how alike the selection is, where it actually diverges, and what each career is the answer
@@ -1275,7 +1314,7 @@ function cmpSummaryHtml(){
  const lo=Math.min(...list.map(c=>c.sal[0])),hi=Math.max(...list.map(c=>c.sal[4]));
  const entryHi=list.slice().sort((a,b)=>(b.competition?b.competition.general:0)-(a.competition?a.competition.general:0))[0];
  const entryLo=list.slice().sort((a,b)=>(a.competition?a.competition.general:0)-(b.competition?b.competition.general:0))[0];
- host.innerHTML='<div class="rblock" style="margin-bottom:14px"><h4>Reading this comparison</h4><div class="route">'
+ host.innerHTML='<div class="rblock" style="margin-bottom:14px"><h3>Reading this comparison</h3><div class="route">'
   +'<p><b>How alike they are.</b> These '+list.length+' careers are <b>'+simWord+'</b> ('+sim+'% overlap on shared skill domains and axis profile). '
   +(shared.length?'All of them draw on '+shared.map(t=>(TAGLABEL[t]||t).toLowerCase()).join(', ')+'.':'They share no skill domain in common, so moving between them means starting a new one.')+'</p>'
   +(spreads.length?'<p style="margin-top:7px"><b>Where they diverge most.</b></p><ul class="plan">'
@@ -1287,7 +1326,7 @@ function cmpSummaryHtml(){
   +list.map(c=>'<div class="rstep"><div class="num" style="font-size:13px">'+swatch(c)+'</div><div><div class="st">'+c.name+'</div><div class="sd">'+bestForIf(c,list)+'</div></div></div>').join('')
   +'</div></div>';
 }
-function renderCompare(){buildCmpChips();buildSectorChips();buildCmpLegend();renderRadar();renderLine();renderTable();cmpSummaryHtml();syncCmpEmpty();syncCmpWarn();announce(cmpActive.size?cmpActive.size+' careers overlaid: '+activeList().map(c=>c.name).join(', ')+'.':'Comparison cleared. No careers selected.');}
+function renderCompare(){buildCmpChips();buildSectorChips();buildCmpLegend();renderRadar();renderLine();renderTable();cmpSummaryHtml();syncCmpEmpty();syncCmpWarn();if(document.getElementById('compare').classList.contains('on'))setHash(hashFor('compare'));announce(cmpActive.size?cmpActive.size+' careers overlaid: '+activeList().map(c=>c.name).join(', ')+'.':'Comparison cleared. No careers selected.');}
 // Nothing selected means no chart, not an empty chart frame.
 // Every selection stays supported and rendered. Past ten the overlay stops working as a
 // comparison, so say so plainly and put the escape hatches next to the warning rather than
@@ -1457,7 +1496,13 @@ function attachTip(node,label){node.addEventListener('mouseenter',()=>{const t=t
 // region, updated deliberately, rather than making whole panels live and spamming the user.
 function announce(msg){const n=document.getElementById('srStatus');if(n)n.textContent=msg;}
 function setHash(frag){try{history.replaceState(null,'','#'+frag);}catch(e){/* sandboxed preview (srcdoc): URL updates are blocked; ignore */}}
-function showTab(p,updateHash){document.querySelectorAll('.tab').forEach(x=>{const on=x.dataset.p===p;x.classList.toggle('on',on);x.setAttribute('aria-selected',on?'true':'false');x.tabIndex=on?0:-1;});document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('on',x.id===p));if(updateHash!==false){const cur=(p==='report'&&document.getElementById('reportSelect'))?('report/'+document.getElementById('reportSelect').value):p;setHash(cur);}}
+function showTab(p,updateHash){document.querySelectorAll('.tab').forEach(x=>{const on=x.dataset.p===p;x.classList.toggle('on',on);x.setAttribute('aria-selected',on?'true':'false');x.tabIndex=on?0:-1;});document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('on',x.id===p));if(updateHash!==false)setHash(hashFor(p));}
+// The comparison is worth linking to, so the selection rides in the fragment.
+function hashFor(p){
+ if(p==='report'&&document.getElementById('reportSelect'))return 'report/'+document.getElementById('reportSelect').value;
+ if(p==='compare'&&cmpActive.size)return 'compare/'+[...cmpActive].join(',');
+ return p;
+}
 let _zoomReturn=null;
 function openZoom(c){_zoomReturn=document.activeElement;const svg=document.getElementById('zoomSvg');document.getElementById('zoomTitle').textContent=c.name;document.getElementById('zoomSub').textContent='Seven-axis profile \u00b7 hover a point for its score';drawZoomRadar(c,svg);document.getElementById('zoomOverlay').classList.add('on');document.getElementById('zoomClose').focus();}
 function closeZoom(){const ov=document.getElementById('zoomOverlay');if(!ov.classList.contains('on'))return;ov.classList.remove('on');if(_zoomReturn&&_zoomReturn.focus)_zoomReturn.focus();_zoomReturn=null;}
@@ -1475,7 +1520,10 @@ document.addEventListener('keydown',(e)=>{
 function drawZoomRadar(c,svg){svg.innerHTML='';const cx=230,cy=230,R=150,n=AX.length;const ang=i=>(-90+i*360/n)*Math.PI/180;const pt=(i,v)=>[cx+Math.cos(ang(i))*R*v/10,cy+Math.sin(ang(i))*R*v/10];for(let ring=2;ring<=10;ring+=2){let d='';for(let i=0;i<n;i++){const p=pt(i,ring);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';}d+='Z';svg.appendChild(el('path',{d,fill:'none',stroke:'var(--line)','stroke-width':1}));const rl=el('text',{x:cx+3,y:pt(0,ring)[1]+3,fill:'var(--ink-soft)','font-size':'8','font-family':'IBM Plex Mono'});rl.textContent=ring;svg.appendChild(rl);}AX.forEach((a,i)=>{const e2=pt(i,10);svg.appendChild(el('line',{x1:cx,y1:cy,x2:e2[0],y2:e2[1],stroke:'var(--line)','stroke-width':1}));const lp=pt(i,11.15);const tx=el('text',{x:lp[0],y:lp[1]+4,'text-anchor':'middle',fill:'var(--ink)','font-size':'12','font-weight':'600','font-family':'IBM Plex Sans'});tx.textContent=a[1];svg.appendChild(tx);});let d='';AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';});d+='Z';svg.appendChild(el('path',{d,fill:c.col,'fill-opacity':.2,stroke:c.col,'stroke-width':2.5}));AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);svg.appendChild(el('circle',{cx:p[0],cy:p[1],r:4,fill:c.col}));const vt=el('text',{x:p[0],y:p[1]-9,'text-anchor':'middle',fill:'var(--ink)','font-size':'11','font-weight':'600','font-family':'IBM Plex Mono'});vt.textContent=c.ax[a[0]].toFixed(1);svg.appendChild(vt);const hit=el('circle',{cx:p[0],cy:p[1],r:12,fill:'transparent',class:'chart-node'});attachTip(hit,a[1]+' '+c.ax[a[0]].toFixed(1)+' / 10');svg.appendChild(hit);});}
 let revObs;
 function initReveal(){if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(!('IntersectionObserver'in window))return;revObs=new IntersectionObserver((ents)=>{ents.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');revObs.unobserve(en.target);}});},{threshold:.06,rootMargin:'0px 0px -30px 0px'});document.querySelectorAll('.lede,.prov,.vh,.vsub,.chartwrap,footer').forEach(node=>{node.classList.add('reveal');revObs.observe(node);});}
-function initHash(){const h=location.hash.replace(/^#/,'');if(!h)return;const parts=h.split('/');const p=parts[0],id=parts[1];if(['match','report','compare','cv'].includes(p)){if(p==='report'&&id&&C.find(x=>x.id===id)){document.getElementById('reportSelect').value=id;renderReport(id);}showTab(p,false);}}
+function initHash(){const h=location.hash.replace(/^#/,'');if(!h)return;const parts=h.split('/');const p=parts[0],id=parts[1];if(['match','report','compare','cv'].includes(p)){
+  if(p==='report'&&id&&C.find(x=>x.id===id)){document.getElementById('reportSelect').value=id;renderReport(id);}
+  if(p==='compare'&&id){const ids=id.split(',').filter(x=>C.some(c=>c.id===x));if(ids.length){cmpActive=new Set(ids);renderCompare();}}
+  showTab(p,false);}}
 
 buildQuiz();buildPersonas();buildImps();buildMbti();
 buildReportSelect();renderReport('you');
