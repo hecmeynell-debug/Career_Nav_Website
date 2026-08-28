@@ -572,6 +572,7 @@ select:focus,input.filter:focus{outline:none;border-color:var(--accent)}
 .km .conf{align-self:flex-start;margin-top:var(--s1)}
 .rgrid{display:grid;grid-template-columns:1fr;gap:var(--s5);margin-bottom:var(--s5)}
 @media(min-width:760px){.rgrid{grid-template-columns:260px 1fr}}
+.repcharts{align-self:start;min-width:0}
 .rsvgwrap{background:var(--canvas-2);border:1px solid var(--line-2);border-radius:var(--r-panel);padding:var(--s3);position:relative;align-self:start}
 .zoomhint{position:absolute;top:8px;right:10px;font-family:var(--font-mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);pointer-events:none}
 #repRadar{cursor:zoom-in}
@@ -920,13 +921,27 @@ footer b{color:var(--ink)}
     <div id="cmpCharts">
     <div id="cmpWarn" class="qintro" style="display:none"></div>
     <div id="cmpSummary"></div>
-    <div class="controls" style="justify-content:flex-end"><div class="seg" id="cmpAxSeg"><button data-v="ax" class="on">Seven axes</button><button data-v="dem">+ market demand</button><button data-v="out">+ demand &amp; outcomes</button></div></div>
-    <div class="chartwrap"><svg id="radarSvg" viewBox="0 0 820 500"></svg></div>
-    <div class="legend-note" id="radarNote">Seven-axis profile overlay, the bigger and rounder the shape, the stronger the all-rounder</div>
+    <figure class="chartcard" data-chart="cmpRadar">
+      <figcaption class="charthead">
+        <div><h3 class="charttitle">Profile overlay</h3><p class="chartsub">Every selected career drawn on the same axes, so you can see where their shapes actually differ.</p></div>
+        <span class="chartunit">Score 0&ndash;10</span>
+      </figcaption>
+      <div class="controls" style="justify-content:flex-end"><div class="seg" id="cmpAxSeg"><button data-v="ax" class="on">Seven axes</button><button data-v="dem">+ market demand</button><button data-v="out">+ demand &amp; outcomes</button></div></div>
+      <div class="chartbody"><svg id="radarSvg" class="chart" viewBox="0 0 820 500"></svg></div>
+      <p class="chartfoot" id="radarNote">Seven-axis profile overlay, the bigger and rounder the shape, the stronger the all-rounder</p>
+      <p class="vh-only" data-chartsummary></p>
+    </figure>
     <div style="height:16px"></div>
-    <div class="controls" style="justify-content:flex-end"><div class="seg" id="cmpSeg"><button data-m="salary" class="on">Gross £</button><button data-m="net">Take-home £</button></div></div>
-    <div class="chartwrap"><svg id="lineSvg" viewBox="0 0 820 430"></svg></div>
-    <div class="legend-note">Salary across a lifetime · take-home = income tax + employee NI, England 2026/27</div>
+    <figure class="chartcard" data-chart="cmpLine" style="margin-top:var(--s5)">
+      <figcaption class="charthead">
+        <div><h3 class="charttitle">Pay progression</h3><p class="chartsub">Indicative pay across five career stages. Estimated figures, so read the shape of the curves rather than the exact values.</p></div>
+        <span class="chartunit">£000s per year</span>
+      </figcaption>
+      <div class="controls" style="justify-content:flex-end"><div class="seg" id="cmpSeg"><button data-m="salary" class="on">Gross £</button><button data-m="net">Take-home £</button></div></div>
+      <div class="chartbody"><svg id="lineSvg" class="chart" viewBox="0 0 820 430"></svg></div>
+      <p class="chartfoot">Take-home applies income tax and employee National Insurance, England 2026/27. Salary figures are indicative estimates, not sourced data.</p>
+      <p class="vh-only" data-chartsummary></p>
+    </figure>
     </div>
     <div class="controls" style="justify-content:flex-end;margin-top:16px"><div class="seg" id="cmpTblSeg"><button data-v="sel" class="on">Selected only</button><button data-v="all">Show all careers</button></div></div>
     <div class="cmptbl-wrap"><table class="cmptbl" id="cmpTable"></table></div>
@@ -1188,6 +1203,83 @@ function careerType(id){const w=W[id]||[5,5,5,5,5,5];const c=C.find(x=>x.id===id
  return{letters:(pE>=.5?'E':'I')+(pN>=.5?'N':'S')+(pF>=.5?'F':'T')+(pJ>=.5?'J':'P'),p:[pE,pN,pF,pJ]};}
 function mbtiCompat(id,type){if(!type)return null;const ct=careerType(id).p;const u=[type[0]==='E'?1:0,type[1]==='N'?1:0,type[2]==='F'?1:0,type[3]==='J'?1:0];let s=0;for(let i=0;i<4;i++)s+=1-Math.abs(u[i]-ct[i]);return Math.round(s/4*100);}
 function psychText(id){const w=W[id]||[5,5,5,5,5,5];const idx=RKEYS.map((k,i)=>[i,w[i]]).sort((a,b)=>b[1]-a[1]);const t1=RIA[idx[0][0]][2],t2=RIA[idx[1][0]][2],lo=RIA[idx[5][0]][2];return{lead:'Best suited to '+t1+', and it rewards '+t2+'.',anti:'Less natural if you\u2019re mainly drawn to being one of the '+lo+'.',top:[RIA[idx[0][0]][1],RIA[idx[1][0]][1]]};}
+/* =========================================================================
+   SHARED CHART SYSTEM
+   One wrapper standardising validation, dimensions, states, responsive
+   behaviour, accessibility text and lifecycle for every chart in the app.
+   A chart registers a spec; nothing draws except through chartRender.
+   ========================================================================= */
+const CHART_REG={};
+// --- value guards. Everything a chart is about to plot goes through these. ---
+function numOk(v){return typeof v==='number'&&isFinite(v)&&!Number.isNaN(v);}
+function inRange(v,lo,hi){return numOk(v)&&v>=lo&&v<=hi;}
+function seriesOk(a){return Array.isArray(a)&&a.length>0&&a.every(numOk);}
+function chartRegister(id,spec){CHART_REG[id]=spec;}
+function chartHost(id){return document.querySelector('[data-chart="'+id+'"]');}
+// --- state rendering: a chart never fails silently and never leaves a blank frame ---
+function chartState(host,kind,heading,detail){
+ const body=host.querySelector('.chartbody');if(!body)return;
+ const svg=body.querySelector('svg');
+ if(svg){svg.innerHTML='';svg.style.display='none';svg.setAttribute('aria-hidden','true');}
+ let el=body.querySelector('.state');
+ if(!el){el=document.createElement('div');el.className='state';body.appendChild(el);}
+ el.className='state'+(kind==='error'?' state-error':'');
+ el.hidden=false;
+ el.innerHTML=(kind==='loading'
+   ?'<div class="skeleton" style="width:100%;height:150px"></div>'
+   :'<h4>'+heading+'</h4><p>'+detail+'</p>');
+ const foot=host.querySelector('[data-chartsummary]');if(foot)foot.textContent=heading+'. '+detail;
+}
+function chartClearState(host){
+ const body=host.querySelector('.chartbody');if(!body)return;
+ const el=body.querySelector('.state');if(el)el.hidden=true;
+ const svg=body.querySelector('svg');if(svg){svg.style.display='';svg.removeAttribute('aria-hidden');}
+}
+// --- the single render path ---
+function chartRender(id){
+ const spec=CHART_REG[id];if(!spec)return;
+ const host=chartHost(id);
+ if(!host)return;                                   // not mounted: nothing to do, no throw
+ const body=host.querySelector('.chartbody');
+ const svg=body&&body.querySelector('svg');
+ if(!body||!svg)return;
+ // A chart inside a hidden panel has no box. Skip rather than draw into nothing;
+ // showTab re-renders when the panel becomes visible.
+ if(host.offsetParent===null&&getComputedStyle(host).display==='none')return;
+ let check;
+ try{check=spec.validate?spec.validate():{ok:true};}
+ catch(e){chartState(host,'error','Could not read this data','Something is wrong with the values behind this chart, so it has not been drawn. '+(e.message||''));return;}
+ if(!check||check.ok!==true){
+  chartState(host,check&&check.kind==='error'?'error':'empty',
+   (check&&check.heading)||'Nothing to show yet',
+   (check&&check.detail)||'There is no data for this chart at the moment.');
+  return;
+ }
+ chartClearState(host);
+ try{
+  svg.innerHTML='';
+  spec.draw(svg);
+  svg.setAttribute('role','img');
+  const sum=spec.summary?spec.summary():'';
+  if(sum){
+   svg.setAttribute('aria-label',sum);
+   const foot=host.querySelector('[data-chartsummary]');if(foot)foot.textContent=sum;
+  }
+  if(spec.after)spec.after(host);
+ }catch(e){
+  chartState(host,'error','This chart could not be drawn','The rest of the page is unaffected, and the same numbers are in the table below. '+(e.message||''));
+ }
+}
+function chartRenderAll(){Object.keys(CHART_REG).forEach(chartRender);}
+// --- responsive + lifecycle: one observer, one debounced resize, redraw on theme change ---
+let _chartT;
+function chartScheduleAll(){clearTimeout(_chartT);_chartT=setTimeout(chartRenderAll,140);}
+addEventListener('resize',chartScheduleAll);
+if(window.ResizeObserver){
+ const ro=new ResizeObserver(chartScheduleAll);
+ addEventListener('DOMContentLoaded',()=>document.querySelectorAll('[data-chart] .chartbody').forEach(n=>ro.observe(n)));
+ window._chartObserve=(n)=>{try{ro.observe(n);}catch(e){}};
+}
 const NS='http://www.w3.org/2000/svg';
 function el(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
 function takeHome(gk){const g=gk*1000;if(g<=0)return{net:0,eff:0};let pa=12570;if(g>100000)pa=Math.max(0,12570-Math.floor((g-100000)/2));const hrt=pa+37700;const tax=0.20*Math.max(0,Math.min(g,hrt)-pa)+0.40*Math.max(0,Math.min(g,125140)-hrt)+0.45*Math.max(0,g-125140);const ni=0.08*Math.max(0,Math.min(g,50270)-12570)+0.02*Math.max(0,g-50270);return{net:(g-tax-ni)/1000,eff:(tax+ni)/g*100};}
@@ -1835,7 +1927,7 @@ const t=takeHome(c.sal[4]);const strong=AX.filter(a=>c.ax[a[0]]>=7.5),weak=AX.fi
  const compHtml=competitionBlockHtml(c),demHtml=demandBlockHtml(c),kmHtml=keyMetricsHtml(c),outHtml=outcomeBlockHtml(c),workHtml=workLikeHtml(c),skillsHtml=skillsBlockHtml(c),srcHtml=sourcesBlockHtml(c);const vb=viability(c);const viabHtml='<div class="rblock"><h4>Viability for you</h4>'+(vb?'<div class="viab">'+vb+'</div>':'<p style="color:var(--ink-soft);font-size:12.5px">Take the questionnaire or set your priorities, and this becomes a read tailored to your profile.</p>')+'</div>';
  const rt=c.route;let steps='';rt.steps.forEach((s,i)=>{const df=stepDiff(c,i),cst=stepCost(s);steps+='<div class="rstep"><div class="num">'+(i+1)+'</div><div><div class="st">'+s[0]+'</div><div class="sd">'+s[1]+'</div><div class="diff">difficulty '+dots(df)+' &nbsp;·&nbsp; <b style="color:'+cst[1]+'">'+cst[0]+'</b></div></div></div>';});
  const linksHtml='<div class="rblock" style="margin-top:16px"><h4>Find out more (UK)</h4><div class="links">'+ukLinks(c).map(l=>'<a href="'+l[1]+'" target="_blank" rel="noopener">'+l[0]+' \u2197</a>').join('')+'</div></div>';
- noteRecent(id);announce('Report loaded for '+c.name+'.');const box=document.getElementById('reportBody');box.innerHTML='<div class="report"><div class="rhead"><h3 class="rtitle">'+swatch(c,13)+c.name+'</h3><div class="rmoney">'+confBadge('estimate')+'<br>Gross pay, UK-wide<br><b>\u00a3'+c.sal[0]+'k to \u00a3'+c.sal[4]+'k</b><br>entry to peak, typical range<br>\u00a3'+t.net.toFixed(0)+'k take-home at peak '+confBadge('sourced','HMRC rules')+'</div></div><div class="rsummary">'+c.blurb+'</div>'+kmHtml+'<div class="rgrid"><div class="rsvgwrap"><span class="zoomhint" aria-hidden="true">click to zoom</span><ul class="vh-only">'+AX.map(a=>'<li>'+a[1]+': '+c.ax[a[0]]+' out of 10</li>').join('')+'</ul><svg id="repRadar" viewBox="0 0 220 220"></svg><svg id="repSpark" viewBox="0 0 220 70"></svg></div><div><div class="rblock"><h4>Money shape</h4><p><b>Base pay, gross, UK-wide.</b> Around \u00a3'+c.sal[0]+'k entering, around \u00a3'+c.sal[4]+'k at peak. The curve is '+shapeOf(c)+'.</p><p style="margin-top:5px">At peak that is about \u00a3'+t.net.toFixed(0)+'k take-home, a '+t.eff.toFixed(0)+'% effective rate, using income tax and employee National Insurance for England 2026/27. Bonuses, overtime, pension and any regional weighting sit outside these figures.</p><div class="mtags" style="margin-top:7px">'+confBadge('estimate','Salary: indicative estimate')+confBadge('sourced','Tax: HMRC 2026/27')+'</div></div><div class="rblock"><h4>Strengths</h4><p>'+strongTxt+'</p></div><div class="rblock"><h4>Weak spots</h4><p>'+weakTxt+'</p><p style="font-size:12px;color:var(--ink-soft);margin-top:5px">'+confBadge('judgement','Seven axes: structured judgement')+' '+confBadge('forecast','Resilience: forecast')+'</p></div><div class="rblock"><h4>Best if</h4><p class="good">'+bestIf+'.</p></div><div class="rblock"><h4>Verdict</h4><p class="bad">'+twiceIf+'</p></div>'+viabHtml+'</div></div>'+compHtml+demHtml+outHtml+psychHtml+workHtml+skillsHtml+PROGBLOCK+'<div class="rblock" style="margin-top:16px"><h4>The route in</h4><p style="margin-bottom:8px">'+rt.summary+'</p>'+routeKindsHtml(c)+'<div class="route"><div class="rtop2"><span class="meta"><b>TIME</b> '+rt.time+'</span><span class="meta"><b>OVERALL COST</b> '+rt.cost+'</span></div>'+steps+'<div class="ralt"><b>Other doors:</b> '+rt.alt+'</div></div></div>'+sectorBlockHtml(c)+proximateBlockHtml(c)+srcHtml+linksHtml+'</div>';drawRepRadar(c);drawRepSpark(c);const sl=document.getElementById('progSlider');if(sl){drawProg(c,+sl.value);updateProgDetail(c,+sl.value);sl.oninput=()=>{drawProg(c,+sl.value);updateProgDetail(c,+sl.value);};}box.querySelectorAll('[data-id]').forEach(a=>{a.onclick=(e)=>{e.preventDefault();goReport(a.dataset.id);};});}
+ noteRecent(id);announce('Report loaded for '+c.name+'.');const box=document.getElementById('reportBody');box.innerHTML='<div class="report"><div class="rhead"><h3 class="rtitle">'+swatch(c,13)+c.name+'</h3><div class="rmoney">'+confBadge('estimate')+'<br>Gross pay, UK-wide<br><b>\u00a3'+c.sal[0]+'k to \u00a3'+c.sal[4]+'k</b><br>entry to peak, typical range<br>\u00a3'+t.net.toFixed(0)+'k take-home at peak '+confBadge('sourced','HMRC rules')+'</div></div><div class="rsummary">'+c.blurb+'</div>'+kmHtml+'<div class="rgrid"><div class="repcharts"><div class="rsvgwrap" data-chart="repRadar"><span class="zoomhint" aria-hidden="true">click to zoom</span><ul class="vh-only">'+AX.map(a=>'<li>'+a[1]+': '+c.ax[a[0]]+' out of 10</li>').join('')+'</ul><div class="chartbody"><svg id="repRadar" class="chart" viewBox="0 0 220 220"></svg></div><p class="vh-only" data-chartsummary></p></div><div class="rsvgwrap" data-chart="repSpark" style="margin-top:var(--s3)"><div class="chartbody"><svg id="repSpark" class="chart" viewBox="0 0 220 70"></svg></div><p class="vh-only" data-chartsummary></p></div></div><div><div class="rblock"><h4>Money shape</h4><p><b>Base pay, gross, UK-wide.</b> Around \u00a3'+c.sal[0]+'k entering, around \u00a3'+c.sal[4]+'k at peak. The curve is '+shapeOf(c)+'.</p><p style="margin-top:5px">At peak that is about \u00a3'+t.net.toFixed(0)+'k take-home, a '+t.eff.toFixed(0)+'% effective rate, using income tax and employee National Insurance for England 2026/27. Bonuses, overtime, pension and any regional weighting sit outside these figures.</p><div class="mtags" style="margin-top:7px">'+confBadge('estimate','Salary: indicative estimate')+confBadge('sourced','Tax: HMRC 2026/27')+'</div></div><div class="rblock"><h4>Strengths</h4><p>'+strongTxt+'</p></div><div class="rblock"><h4>Weak spots</h4><p>'+weakTxt+'</p><p style="font-size:12px;color:var(--ink-soft);margin-top:5px">'+confBadge('judgement','Seven axes: structured judgement')+' '+confBadge('forecast','Resilience: forecast')+'</p></div><div class="rblock"><h4>Best if</h4><p class="good">'+bestIf+'.</p></div><div class="rblock"><h4>Verdict</h4><p class="bad">'+twiceIf+'</p></div>'+viabHtml+'</div></div>'+compHtml+demHtml+outHtml+psychHtml+workHtml+skillsHtml+PROGBLOCK+'<div class="rblock" style="margin-top:16px"><h4>The route in</h4><p style="margin-bottom:8px">'+rt.summary+'</p>'+routeKindsHtml(c)+'<div class="route"><div class="rtop2"><span class="meta"><b>TIME</b> '+rt.time+'</span><span class="meta"><b>OVERALL COST</b> '+rt.cost+'</span></div>'+steps+'<div class="ralt"><b>Other doors:</b> '+rt.alt+'</div></div></div>'+sectorBlockHtml(c)+proximateBlockHtml(c)+srcHtml+linksHtml+'</div>';chartRender('repRadar');chartRender('repSpark');const sl=document.getElementById('progSlider');if(sl){drawProg(c,+sl.value);updateProgDetail(c,+sl.value);sl.oninput=()=>{drawProg(c,+sl.value);updateProgDetail(c,+sl.value);};}box.querySelectorAll('[data-id]').forEach(a=>{a.onclick=(e)=>{e.preventDefault();goReport(a.dataset.id);};});}
 function drawRepRadar(c){const svg=document.getElementById('repRadar');svg.innerHTML='';const cx=110,cy=110,R=76,n=AX.length;const ang=i=>(-90+i*360/n)*Math.PI/180;const pt=(i,v)=>[cx+Math.cos(ang(i))*R*v/10,cy+Math.sin(ang(i))*R*v/10];for(let ring=2;ring<=10;ring+=2){let d='';for(let i=0;i<n;i++){const p=pt(i,ring);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';}d+='Z';svg.appendChild(el('path',{d,fill:'none',stroke:'var(--line)','stroke-width':1}));}AX.forEach((a,i)=>{const p=pt(i,11.5);const tx=el('text',{x:p[0],y:p[1]+3,'text-anchor':'middle',fill:'var(--ink-soft)','font-size':'7.5'});tx.textContent=a[1].slice(0,6);svg.appendChild(tx);});let d='';AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';});d+='Z';svg.appendChild(el('path',{d,fill:c.col,'fill-opacity':.2,stroke:c.col,'stroke-width':2}));AX.forEach((a,i)=>{const p=pt(i,c.ax[a[0]]);svg.appendChild(el('circle',{cx:p[0],cy:p[1],r:2.4,fill:c.col}));const hit=el('circle',{cx:p[0],cy:p[1],r:9,fill:'transparent',class:'chart-node'});attachTip(hit,a[1]+' '+c.ax[a[0]].toFixed(1)+' / 10');svg.appendChild(hit);});svg.setAttribute('role','img');svg.setAttribute('aria-label',c.name+' profile across seven axes; click to enlarge and read each score.');svg.onclick=()=>openZoom(c);}
 function drawRepSpark(c){const svg=document.getElementById('repSpark');svg.innerHTML='';const W=220,H=70,L=6,R=6,T=8,B=14,pw=W-L-R,ph=H-T-B,max=360;const x=i=>L+pw*(i/4),y=v=>T+ph*(1-v/max);const nm=['Entry','Early','Mid','Senior','Peak'];let d='';c.sal.forEach((v,i)=>{d+=(i?'L':'M')+x(i)+' '+y(v)+' ';});svg.appendChild(el('path',{d,fill:'none',stroke:c.col,'stroke-width':2}));c.sal.forEach((v,i)=>{svg.appendChild(el('circle',{cx:x(i),cy:y(v),r:2.5,fill:c.col}));const hit=el('circle',{cx:x(i),cy:y(v),r:8,fill:'transparent',class:'chart-node'});attachTip(hit,nm[i]+' \u00b7 \u00a3'+v+'k gross');svg.appendChild(hit);});['Entry','','Mid','','Peak'].forEach((s,i)=>{if(!s)return;const tx=el('text',{x:x(i),y:H-3,'text-anchor':'middle',fill:'var(--ink-soft)','font-size':'8'});tx.textContent=s;svg.appendChild(tx);});svg.setAttribute('role','img');svg.setAttribute('aria-label',c.name+' salary from \u00a3'+c.sal[0]+'k at entry to \u00a3'+c.sal[4]+'k at peak.');}
 
@@ -1992,7 +2084,69 @@ function cmpSummaryHtml(){
   +list.map(c=>'<div class="rstep"><div class="num" style="font-size:13px">'+swatch(c)+'</div><div><div class="st">'+c.name+'</div><div class="sd">'+bestForIf(c,list)+'</div></div></div>').join('')
   +'</div></div>';
 }
-function renderCompare(){syncNavCounts();buildCmpChips();buildSectorChips();buildCmpLegend();renderRadar();renderLine();renderTable();cmpSummaryHtml();syncCmpEmpty();syncCmpWarn();if(document.getElementById('compare').classList.contains('on'))setHash(hashFor('compare'));announce(cmpActive.size?cmpActive.size+' careers overlaid: '+activeList().map(c=>c.name).join(', ')+'.':'Comparison cleared. No careers selected.');}
+// which career the report is currently showing, for the report chart specs
+function _repCareer(){const sel=document.getElementById('reportSelect');return sel?C.find(x=>x.id===sel.value):null;}
+/* --- chart specs. Each one validates its own inputs before anything is drawn. --- */
+chartRegister('cmpRadar',{
+ validate(){
+  const list=activeList();
+  if(!list.length)return{ok:false,heading:'No careers selected',detail:'Pick one or more careers above and their profiles will overlay here.'};
+  const axes=cmpAxes();
+  if(!Array.isArray(axes)||!axes.length)return{ok:false,kind:'error',heading:'Axis set unavailable',detail:'The chart could not work out which axes to draw.'};
+  const bad=list.filter(c=>!axes.every(a=>inRange(axVal(c,a),0,10)));
+  if(bad.length===list.length)return{ok:false,kind:'error',heading:'Scores out of range',detail:'Every selected career has a score outside 0 to 10, so the shape would be meaningless.'};
+  return{ok:true};
+ },
+ draw(){renderRadar();},
+ summary(){
+  const list=radarSeries(),axes=cmpAxes();
+  if(!list.length)return'';
+  return droppedNote(list.length)+list.length+' careers overlaid on '+axes.length+' axes, each scored 0 to 10: '
+   +list.map(c=>c.name.split(' (')[0]+' scores '+axes.map(a=>a[1]+' '+axVal(c,a)).join(', ')).join('. ')
+   +'. The same numbers are in the comparison table below.';
+ }
+});
+chartRegister('cmpLine',{
+ validate(){
+  const list=activeList();
+  if(!list.length)return{ok:false,heading:'No careers selected',detail:'Pick one or more careers above to chart their pay progression together.'};
+  const usable=list.filter(c=>seriesOk(c.sal)&&c.sal.length===5);
+  if(!usable.length)return{ok:false,kind:'error',heading:'Pay data unavailable',detail:'None of the selected careers has a usable salary series, so nothing can be plotted.'};
+  return{ok:true};
+ },
+ draw(){renderLine();},
+ summary(){
+  const list=lineSeries();if(!list.length)return'';
+  const unit=metric==='net'?'take-home':'gross';
+  return 'Pay progression for '+list.length+' careers in thousands of pounds, '+unit+', across five stages from entry to peak: '
+   +list.map(c=>{const d=metric==='net'?c.sal.map(g=>Math.round(takeHome(g).net)):c.sal;
+     return c.name.split(' (')[0]+' from '+d[0]+'k to '+d[4]+'k';}).join('; ')
+   +'. All salary figures are indicative estimates.'+droppedNote(list.length);
+ }
+});
+chartRegister('repRadar',{
+ validate(){
+  const c=_repCareer();
+  if(!c)return{ok:false,heading:'No career selected',detail:'Choose a career above to see its profile.'};
+  if(!AX.every(a=>inRange(c.ax[a[0]],0,10)))return{ok:false,kind:'error',heading:'Profile scores unavailable',detail:'This career has axis scores outside 0 to 10, so the shape is not drawn.'};
+  return{ok:true};
+ },
+ draw(){drawRepRadar(_repCareer());},
+ summary(){const c=_repCareer();if(!c)return'';
+  return c.name+' profile across seven axes, each scored 0 to 10: '+AX.map(a=>a[1]+' '+c.ax[a[0]]).join(', ')+'.';}
+});
+chartRegister('repSpark',{
+ validate(){
+  const c=_repCareer();
+  if(!c)return{ok:false,heading:'No career selected',detail:'Choose a career above to see its pay curve.'};
+  if(!seriesOk(c.sal)||c.sal.length!==5)return{ok:false,kind:'error',heading:'Pay data unavailable',detail:'This career has no usable salary series.'};
+  return{ok:true};
+ },
+ draw(){drawRepSpark(_repCareer());},
+ summary(){const c=_repCareer();if(!c)return'';
+  return c.name+' pay from about '+c.sal[0]+' thousand pounds at entry to about '+c.sal[4]+' thousand at peak, gross and UK-wide. Indicative estimate.';}
+});
+function renderCompare(){syncNavCounts();buildCmpChips();buildSectorChips();buildCmpLegend();chartRender('cmpRadar');chartRender('cmpLine');renderTable();cmpSummaryHtml();syncCmpEmpty();syncCmpWarn();if(document.getElementById('compare').classList.contains('on'))setHash(hashFor('compare'));announce(cmpActive.size?cmpActive.size+' careers overlaid: '+activeList().map(c=>c.name).join(', ')+'.':'Comparison cleared. No careers selected.');}
 // Nothing selected means no chart, not an empty chart frame.
 // Every selection stays supported and rendered. Past ten the overlay stops working as a
 // comparison, so say so plainly and put the escape hatches next to the warning rather than
@@ -2007,7 +2161,10 @@ function syncCmpWarn(){
  document.getElementById('warnClear').onclick=()=>{cmpActive.clear();renderCompare();};
 }
 function syncCmpEmpty(){const on=cmpActive.size>0;const ch=document.getElementById('cmpCharts'),em=document.getElementById('cmpEmpty');if(ch)ch.style.display=on?'':'none';if(em)em.style.display=on?'none':'';}
-function renderRadar(){const svg=document.getElementById('radarSvg');svg.innerHTML='';const list=activeList();
+function radarSeries(){const axes=cmpAxes();return activeList().filter(c=>axes.every(a=>inRange(axVal(c,a),0,10)));}
+function lineSeries(){return activeList().filter(c=>seriesOk(c.sal)&&c.sal.length===5);}
+function droppedNote(kept){const n=cmpActive.size-kept;return n>0?' '+n+' selected career'+(n>1?'s were':' was')+' left out because its figures are missing or out of range.':'';}
+function renderRadar(){const svg=document.getElementById('radarSvg');svg.innerHTML='';const list=radarSeries();
  const note=document.getElementById('radarNote');
  if(note)note.textContent=cmpAxMode==='ax'
   ?'Seven-axis profile overlay, the bigger and rounder the shape, the stronger the all-rounder'
@@ -2027,7 +2184,7 @@ function renderRadar(){const svg=document.getElementById('radarSvg');svg.innerHT
   axes.forEach((a,i)=>{const v=axVal(c,a),p=pt(i,v);svg.appendChild(markerNode(mark,p[0],p[1],2.6,c.col));const hit=el('circle',{cx:p[0],cy:p[1],r:8,fill:'transparent',class:'chart-node'});attachTip(hit,c.name.split(' (')[0]+' \u00b7 '+a[1]+' '+v.toFixed(1)+'/10');svg.appendChild(hit);});
  });
 }
-function renderLine(){const svg=document.getElementById('lineSvg');svg.innerHTML='';const list=activeList();if(!list.length)return;
+function renderLine(){const svg=document.getElementById('lineSvg');svg.innerHTML='';const list=lineSeries();if(!list.length)return;
  const W=820,H=430,L=56,R=152,T=16,B=52,pw=W-L-R,ph=H-T-B,ymax=360;const x=i=>L+pw*(i/4),y=v=>T+ph*(1-v/ymax);for(let g=0;g<=ymax;g+=50){svg.appendChild(el('line',{class:'gridline',x1:L,y1:y(g),x2:L+pw,y2:y(g)}));const tx=el('text',{class:'axtext',x:L-8,y:y(g)+4,'text-anchor':'end'});tx.textContent='£'+g+'k';svg.appendChild(tx);}['Entry','Early','Mid','Senior','Peak'].forEach((s,i)=>{const tx=el('text',{class:'axtext b',x:x(i),y:H-B+18,'text-anchor':'middle'});tx.textContent=s;svg.appendChild(tx);});
  const endLabels=[];const ink=seriesInk(list.length);
  list.forEach((c,si)=>{const dash=seriesDash(si),mark=seriesMark(si);const data=metric==='net'?c.sal.map(g=>+takeHome(g).net.toFixed(1)):c.sal;let d='';data.forEach((v,i)=>{d+=(i?'L':'M')+x(i)+' '+y(v)+' ';});const path=el('path',{d,fill:'none',stroke:c.col,'stroke-width':ink.width,'stroke-linejoin':'round','stroke-linecap':'round',opacity:ink.stroke});if(dash)path.setAttribute('stroke-dasharray',dash);svg.appendChild(path);data.forEach((v,i)=>{svg.appendChild(markerNode(mark,x(i),y(v),3.4,c.col));const hit=el('circle',{cx:x(i),cy:y(v),r:9,fill:'transparent',class:'chart-node'});attachTip(hit,c.name.split(' (')[0]+' \u00b7 '+['Entry','Early','Mid','Senior','Peak'][i]+' £'+Math.round(v)+'k');svg.appendChild(hit);});const lv=data[4];endLabels.push({id:c.id,y:y(lv)+4,col:c.col,mark:mark,text:c.name.split(' (')[0]+' £'+Math.round(lv)+'k'});});
@@ -2074,8 +2231,8 @@ function renderTable(){
 }
 // Scope is the table's own state: changing it never touches the chart selection.
 function setTblScope(v){cmpTblScope=v;document.querySelectorAll('#cmpTblSeg button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));renderTable();}
-document.querySelectorAll('#cmpSeg button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#cmpSeg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');metric=b.dataset.m;renderLine();});
-document.querySelectorAll('#cmpAxSeg button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#cmpAxSeg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');cmpAxMode=b.dataset.v;renderRadar();renderTable();});
+document.querySelectorAll('#cmpSeg button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#cmpSeg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');metric=b.dataset.m;chartRender('cmpLine');});
+document.querySelectorAll('#cmpAxSeg button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#cmpAxSeg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');cmpAxMode=b.dataset.v;chartRender('cmpRadar');renderTable();});
 document.querySelectorAll('#cmpTblSeg button').forEach(b=>b.onclick=()=>setTblScope(b.dataset.v));
 
 /* ===== CV ANALYSER (Tier 1 heuristic, swappable functions for a future LLM backend) ===== */
@@ -2172,7 +2329,7 @@ function showTab(p,updateHash){
  if(p==='discover'){document.getElementById('discover').scrollIntoView({behavior:'smooth',block:'start'});return;}
  document.querySelectorAll('.navlinks').forEach(n=>n.classList.remove('open'));
  const nt=document.getElementById('navToggle');if(nt)nt.setAttribute('aria-expanded','false');
- syncSubnav(p);
+ syncSubnav(p);setTimeout(chartRenderAll,0);
  document.querySelectorAll('.tab').forEach(x=>{const on=x.dataset.p===p;x.classList.toggle('on',on);x.setAttribute('aria-selected',on?'true':'false');x.tabIndex=on?0:-1;});document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('on',x.id===p));if(updateHash!==false)setHash(hashFor(p));}
 // The comparison is worth linking to, so the selection rides in the fragment.
 function hashFor(p){
@@ -2214,7 +2371,7 @@ document.addEventListener('keydown',(e)=>{if(e.key==='Escape')closeZoom();});
 syncSubnav('match');syncNavCounts();initHash();
 (function initTheme(){
   const root=document.documentElement,btn=document.getElementById('themeToggle');
-  function apply(t){root.setAttribute('data-theme',t);btn.textContent=t==='dark'?'Light':'Dark';btn.setAttribute('aria-label','Switch to '+(t==='dark'?'light':'dark')+' theme');try{localStorage.setItem('cn-theme',t);}catch(e){}}
+  function apply(t){root.setAttribute('data-theme',t);if(window.chartRenderAll)setTimeout(chartRenderAll,0);btn.textContent=t==='dark'?'Light':'Dark';btn.setAttribute('aria-label','Switch to '+(t==='dark'?'light':'dark')+' theme');try{localStorage.setItem('cn-theme',t);}catch(e){}}
   let saved;try{saved=localStorage.getItem('cn-theme');}catch(e){}
   apply(saved||'dark');
   btn.onclick=()=>apply(root.getAttribute('data-theme')==='dark'?'light':'dark');
