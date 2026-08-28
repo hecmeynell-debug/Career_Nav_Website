@@ -174,6 +174,22 @@
   .imp label{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-soft);display:flex;justify-content:space-between;margin-bottom:3px}
   .imp label b{color:var(--ink)}.imp input[type=range]{width:100%;accent-color:var(--ink)}
   .resulthead{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:6px 0 10px;padding-top:14px;border-top:1px solid var(--line)}
+  /* match cards: facts with their provenance, and real actions */
+  .mfacts{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 2px}
+  .fact{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-soft);background:var(--track);border-radius:6px;padding:4px 8px;display:inline-flex;align-items:center;gap:6px}
+  .fact b{color:var(--ink);font-weight:600}
+  .mwatch{font-size:12.5px;color:#9A5B34;margin-top:3px}
+  .mwatch b{color:#9A5B34}
+  .mwhy b{color:var(--ink)}
+  .mconf{font-family:"IBM Plex Mono",monospace;font-size:10px;line-height:1.5;color:var(--ink-soft);margin-top:7px}
+  .mactions{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+  .mact{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;padding:7px 11px;border:1px solid var(--btn-line);border-radius:7px;background:var(--btn);color:var(--ink-soft);cursor:pointer;box-shadow:var(--surf-shadow);appearance:none;-webkit-appearance:none}
+  .mact:hover{border-color:var(--ink-soft);color:var(--ink)}
+  .mact.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  @media (pointer:coarse){.mact{min-height:44px}}
+  .savedbar{background:var(--paper-2);border:1px solid var(--line);border-left:3px solid var(--you);border-radius:9px;padding:11px 13px;margin-bottom:12px}
+  .savedbar h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;text-transform:uppercase;font-size:15px;margin-bottom:7px}
+  .savedbar .chipset{gap:6px}
   .match{background:var(--paper-2);border:1px solid var(--line);border-left-width:4px;border-radius:8px;padding:11px 13px;margin-bottom:8px}
   .match.you{border:2px solid var(--you);border-left-width:5px}
   .mtop{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:6px}
@@ -810,12 +826,100 @@ document.querySelectorAll('#matchMode button').forEach(b=>b.onclick=()=>setMode(
 function buildPersonas(){const box=document.getElementById('personas');box.innerHTML='';Object.keys(PERSONAS).forEach(k=>{const b=document.createElement('button');b.type='button';b.className='persona';b.setAttribute('aria-pressed','false');b.textContent=k;b.onclick=()=>{document.querySelectorAll('.persona').forEach(x=>{x.classList.remove('on');x.setAttribute('aria-pressed','false');});b.classList.add('on');b.setAttribute('aria-pressed','true');imp={pay:0,future:0,secure:0,entry:0,speed:0,life:0,option:0};Object.assign(imp,PERSONAS[k]);quizTaken=false;buildImps();renderMatch();announce(k+' priorities applied. Matches re-ranked.');};box.appendChild(b);});}
 function buildImps(){const box=document.getElementById('imps');box.innerHTML='';AX.forEach(a=>{const w=document.createElement('div');w.className='imp';w.innerHTML='<label for="imp_'+a[0]+'">'+a[2].replace(/^./,c=>c.toUpperCase())+' <b id="iv_'+a[0]+'">'+imp[a[0]]+'</b></label>';const inp=document.createElement('input');inp.id='imp_'+a[0];inp.type='range';inp.min=0;inp.max=10;inp.value=imp[a[0]];inp.setAttribute('aria-describedby','iv_'+a[0]);inp.oninput=()=>{imp[a[0]]=+inp.value;document.getElementById('iv_'+a[0]).textContent=inp.value;document.querySelectorAll('.persona').forEach(x=>x.classList.remove('on'));renderMatch();};w.appendChild(inp);box.appendChild(w);});}
 function styleFit(id){const w=W[id]||[5,5,5,5,5,5];let s=0;for(let i=0;i<6;i++)s+=Math.abs(userRia[i]-w[i]*10/9);return Math.max(0,Math.min(100,Math.round(100-(s/6)*11)));}
-function renderMatch(){document.getElementById('resultHead').style.display='block';
- const rows=C.map(c=>{const of=outcomeFor(c);const outcome=of.outcome;const sf=styleFit(c.id);const mf=mbtiCompat(c.id,userMbti);let fit;if(userMbti&&quizTaken)fit=outcome*0.5+sf*0.3+mf*0.2;else if(quizTaken)fit=outcome*0.6+sf*0.4;else if(userMbti)fit=outcome*0.8+mf*0.2;else fit=outcome;fit=Math.round(fit);const tops=of.tops;const flags=AX.filter(a=>imp[a[0]]>=7&&c.ax[a[0]]<=4.5).map(a=>a[1]);return{c,fit,tops,flags,sf,mf};}).sort((a,b)=>b.fit-a.fit);
- const box=document.getElementById('matchList');box.innerHTML='';const max=rows[0].fit||1;
- rows.forEach((r,i)=>{const col=fitCol(r.fit);const d=document.createElement('div');d.className='match'+(r.c.you?' you':'');d.style.borderLeftColor=col;let tag=i===0?'<span class="tag tm">TOP MATCH</span>':'';let why='Delivers on the '+(r.tops.join(' and ')||'basics')+' you rated highly.';if(r.flags.length)why+=' <span class="flag">But weak on '+r.flags.join(' & ')+', which you said matters.</span>';let sub='';if(quizTaken)sub+='work-style fit '+r.sf+'%';if(userMbti&&r.mf!=null)sub+=(sub?' · ':'')+'MBTI '+r.mf+'%';d.innerHTML='<div class="mtop"><div class="mname">'+(i+1)+'. '+swatch(r.c)+r.c.name+tag+'</div><div class="mfit">'+r.fit+'<span style="font-size:11px;color:var(--ink-soft)">/100</span></div></div><div class="mbar"><i style="width:'+(r.fit/max*100).toFixed(0)+'%;background:'+col+'"></i></div><div class="mwhy">'+why+'</div>'+(sub?'<div class="fitline">'+sub+'</div>':'')+'<button type="button" class="mlink" data-id="'+r.c.id+'">See full report &amp; route \u2192</button>';box.appendChild(d);});
- box.querySelectorAll('.mlink').forEach(l=>l.onclick=()=>goReport(l.dataset.id));
- announce(rows.length+' careers ranked against your profile. Top match: '+rows[0].c.name+', relative fit '+rows[0].fit+' out of 100.');}
+// Saved and hidden careers live in localStorage, defensively: a private window or blocked
+// site data means the feature quietly does nothing rather than throwing.
+function lsGet(key,fallback){try{const r=localStorage.getItem(key);if(!r)return fallback;const v=JSON.parse(r);return Array.isArray(v)?v:fallback;}catch(e){return fallback;}}
+function lsSet(key,val){try{localStorage.setItem(key,JSON.stringify(val));}catch(e){}}
+const savedIds=new Set(lsGet('cn-saved-v1',[]).filter(id=>C.some(c=>c.id===id)));
+const hiddenIds=new Set(lsGet('cn-hidden-v1',[]).filter(id=>C.some(c=>c.id===id)));
+function persistLists(){lsSet('cn-saved-v1',[...savedIds]);lsSet('cn-hidden-v1',[...hiddenIds]);}
+// Short, honest words for the facts on a match card.
+function entryWord(c){const g=c.competition?c.competition.general:11-c.ax.entry;return g>=8.5?'Very selective':g>=6.5?'Selective':g>=4?'Moderate':'Open';}
+function routeWord(c){const e=careerReq(c.id).edu;return e>=3?'Doctorate':e>=2?'Degree + postgrad':e>=1.5?'Degree':'Apprenticeship or portfolio';}
+function outlookWord(c){const v=c.ax.future;return v>=7.5?'Resilient':v>=5.5?'Mixed':'Exposed';}
+// Confidence is about how much is actually known, not about the career. It is capped by
+// whichever is weaker: how much the user has told us, or the evidence behind the career's
+// own competition data.
+function confidenceNote(c){
+ const n=quizAnswered();
+ if(!n&&!userMbti&&!userCv)return 'Not personalised yet: no answers given, so this is an unweighted read of the field.';
+ const you=n>=15?'most of your answers':n>=6?'some of your answers':n?'only a few answers':'no questionnaire answers';
+ const ev=c.competition?c.competition.evidence:'estimated';
+ const data=ev==='public'?'competition data with a public source':ev==='estimated'?'estimated competition data':'competition data that is largely inferred';
+ return 'Based on '+you+' and '+data+'.';
+}
+function matchCard(r,i,max){
+ const c=r.c,col=fitCol(r.fit),saved=savedIds.has(c.id);
+ const tag=i===0?'<span class="tag tm">TOP MATCH</span>':'';
+ const why=r.tops.length
+  ?'It scores well on '+r.tops.join(' and ')+', which you rated above your own average.'
+  :(quizTaken?'Nothing here stands out against what you said matters most; it sits mid-pack on your profile.':'Ranked on an unweighted read of the field, because there are no answers to weight it with yet.');
+ const watch=r.flags.length
+  ?'Weak on '+r.flags.join(' and ')+', and you said that matters.'
+  :'Its weakest axis is '+AX.slice().sort((a,b)=>c.ax[a[0]]-c.ax[b[0]])[0][1].toLowerCase()+' at '+Math.min(...AX.map(a=>c.ax[a[0]]))+'/10.';
+ let sub='';if(quizTaken)sub+='work-style fit '+r.sf+'%';if(userMbti&&r.mf!=null)sub+=(sub?' \u00b7 ':'')+'MBTI '+r.mf+'%';
+ return '<article class="match" style="border-left-color:'+col+'">'
+  +'<div class="mtop"><h4 class="mname">'+(i+1)+'. '+swatch(c)+c.name+tag+'</h4>'
+  +'<div class="mfit">'+r.fit+'<span style="font-size:11px;color:var(--ink-soft)">/100 fit</span></div></div>'
+  +'<div class="mbar"><i style="width:'+(r.fit/max*100).toFixed(0)+'%;background:'+col+'"></i></div>'
+  +'<p class="mwhy"><b>Why it fits.</b> '+why+'</p>'
+  +'<p class="mwatch"><b>Watch out.</b> '+watch+'</p>'
+  +'<div class="mfacts">'
+  +'<span class="fact">Pay <b>£'+c.sal[0]+'k to £'+c.sal[4]+'k</b>'+confBadge('estimate','est')+'</span>'
+  +'<span class="fact">Entry <b>'+entryWord(c)+'</b></span>'
+  +'<span class="fact">Route <b>'+routeWord(c)+'</b></span>'
+  +'<span class="fact">Outlook <b>'+outlookWord(c)+'</b>'+confBadge('forecast','forecast')+'</span>'
+  +'</div>'
+  +(sub?'<div class="fitline">'+sub+'</div>':'')
+  +'<p class="mconf">'+confidenceNote(c)+'</p>'
+  +'<div class="mactions">'
+  +'<button type="button" class="mact" data-act="report" data-id="'+c.id+'">View route</button>'
+  +'<button type="button" class="mact'+(cmpActive.has(c.id)?' on':'')+'" data-act="compare" data-id="'+c.id+'" aria-pressed="'+cmpActive.has(c.id)+'">Compare</button>'
+  +'<button type="button" class="mact'+(saved?' on':'')+'" data-act="save" data-id="'+c.id+'" aria-pressed="'+saved+'">'+(saved?'Saved':'Save')+'</button>'
+  +'<button type="button" class="mact" data-act="hide" data-id="'+c.id+'">Not interested</button>'
+  +'</div></article>';
+}
+function renderMatch(){
+ document.getElementById('resultHead').style.display='block';
+ const rows=C.map(c=>{const of=outcomeFor(c);const outcome=of.outcome;const sf=styleFit(c.id);const mf=mbtiCompat(c.id,userMbti);let fit;if(userMbti&&quizTaken)fit=outcome*0.5+sf*0.3+mf*0.2;else if(quizTaken)fit=outcome*0.6+sf*0.4;else if(userMbti)fit=outcome*0.8+mf*0.2;else fit=outcome;fit=Math.round(fit);const tops=of.tops;const flags=AX.filter(a=>imp[a[0]]>=7&&c.ax[a[0]]<=4.5).map(a=>a[1].toLowerCase());return{c,fit,tops,flags,sf,mf};}).sort((a,b)=>b.fit-a.fit);
+ const shown=rows.filter(r=>!hiddenIds.has(r.c.id));
+ const box=document.getElementById('matchList');
+ const max=(shown[0]||rows[0]).fit||1;
+ box.innerHTML=savedBarHtml()+methodHtml()+hiddenBarHtml()
+  +(shown.length?shown.map((r,i)=>matchCard(r,i,max)).join(''):'<p class="qintro">Every career is hidden. Use "show them again" above to bring them back.</p>');
+ announce(shown.length+' careers ranked against your profile'+(shown.length?'. Top match: '+shown[0].c.name+', relative fit '+shown[0].fit+' out of 100.':'.'));
+}
+function methodHtml(){
+ const n=quizAnswered();
+ return '<details class="prov" style="margin-bottom:12px"><summary>How this match was calculated</summary>'
+  +'<p>Each career carries seven 0-10 scores. Your answers set how much you care about each one. A career is then scored against <b>the whole field</b> on the axes you rated above your own average, so being merely good at everything does not beat being excellent at what you asked for.</p>'
+  +'<p><b>A fit of 84 is not an 84% chance of anything.</b> It is a relative compatibility score: 84 sits closer to your stated priorities than 60 does. It says nothing about whether you would get in, succeed, or enjoy it. Competition and attainability are scored separately, on each career report.</p>'
+  +'<p>Right now this is using '+(n?'<b>'+n+' of '+QUIZ.length+'</b> questionnaire answers':'<b>no questionnaire answers</b>')
+  +(quizTaken?', a work-style read from the same answers':'')
+  +(userMbti?', and an optional soft-weighted MBTI layer':'')+'. '+(n?'Answering more sharpens it.':'Answer some statements to make this personal.')+'</p></details>';
+}
+function savedBarHtml(){
+ if(!savedIds.size)return '';
+ const list=C.filter(c=>savedIds.has(c.id));
+ return '<div class="savedbar"><h3>Saved careers ('+list.length+')</h3><div class="chipset">'
+  +list.map(c=>'<button type="button" class="mact" data-act="report" data-id="'+c.id+'">'+c.name+'</button>').join('')
+  +'</div><div class="mactions"><button type="button" class="mact" data-act="clearsaved">Clear saved list</button></div></div>';
+}
+function hiddenBarHtml(){
+ if(!hiddenIds.size)return '';
+ return '<p class="qintro"><b>'+hiddenIds.size+' career'+(hiddenIds.size>1?'s':'')+' hidden.</b> <button type="button" class="mlink" data-act="unhide">Show them again</button></p>';
+}
+// One delegated handler for every action on every card.
+document.getElementById('matchList').addEventListener('click',(e)=>{
+ const b=e.target.closest('[data-act]');if(!b)return;
+ const id=b.dataset.id,act=b.dataset.act;
+ if(act==='report'){goReport(id);return;}
+ if(act==='compare'){const on=cmpActive.has(id);on?cmpActive.delete(id):cmpActive.add(id);renderCompare();renderMatch();announce((on?'Removed from':'Added to')+' the comparison.');return;}
+ if(act==='save'){const on=savedIds.has(id);on?savedIds.delete(id):savedIds.add(id);persistLists();renderMatch();announce(on?'Removed from saved.':'Saved.');return;}
+ if(act==='hide'){hiddenIds.add(id);savedIds.delete(id);persistLists();renderMatch();announce('Hidden from your matches.');return;}
+ if(act==='unhide'){hiddenIds.clear();persistLists();renderMatch();announce('Hidden careers restored.');return;}
+ if(act==='clearsaved'){savedIds.clear();persistLists();renderMatch();announce('Saved list cleared.');}
+});
 
 function buildReportSelect(){const sel=document.getElementById('reportSelect');C.slice().sort((a,b)=>a.name.localeCompare(b.name)).forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.name;sel.appendChild(o);});sel.onchange=()=>{renderReport(sel.value);setHash('report/'+sel.value);};}
 function shapeOf(c){const r=c.sal[4]/c.sal[0];if(r>=3.2)return'a slow burn \u2014 low early, high late';if(r<=1.9)return'flat \u2014 steady but capped';return'a fast climber \u2014 good money early, plateauing at the top';}
